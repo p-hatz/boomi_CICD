@@ -4,7 +4,7 @@ name: buildPackage
 on:
   push:
     branches:
-      - INT-001
+      - master
     paths-ignore:
       - '.gitignore'
       - '.github/workflows/**'
