@@ -57,12 +57,12 @@ jobs:
             echo compVer is "$compVer"
             echo compNotes is "$compNotes"
 
-            export WD=~/Downloads/boomicicd-cli/cli/scripts/
+            export WD=~/src/boomicicd-cli/cli/scripts/
             
-            chmod +x ~/Downloads/boomicicd-cli/cli/scripts/bin/common.sh
-            ~/Downloads/boomicicd-cli/cli/scripts/bin/common.sh
+            chmod +x ~/src/boomicicd-cli/cli/scripts/bin/common.sh
+            ~/src/boomicicd-cli/cli/scripts/bin/common.sh
             
-            chmod +x ~/Downloads/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh
-            ~/Downloads/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes"
+            chmod +x ~/src/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh
+            ~/src/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes"
           done
 
