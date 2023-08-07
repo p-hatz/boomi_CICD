@@ -63,7 +63,7 @@ jobs:
             chmod +x ~/src/boomicicd-cli/cli/scripts/bin/common.sh
             ~/src/boomicicd-cli/cli/scripts/bin/common.sh
             
-            chmod +x ~/src/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh
-            ~/src/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes"
+            chmod +x ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh
+            ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes"
           done
 
