@@ -48,7 +48,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build Package
         run: |
-          for file in ${{ steps.changed-files-int-001.outputs.all_changed_files }}; do
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             compNotes=$(grep '^notes=' $file | cut -f2 -d'=')
