@@ -1,5 +1,5 @@
 #!/bin/bash
-source bin/common.sh
+source "$1/bin/common.sh"
 
 # mandatory arguments
 ARGUMENTS=(packageVersion notes) 
