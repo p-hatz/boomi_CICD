@@ -23,7 +23,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  createPackage:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     
@@ -49,11 +49,12 @@ jobs:
       - name: Build Package
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            cat $file
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             compNotes=$(grep '^notes=' $file | cut -f2 -d'=')
-            echo $compId $compVer $compNotes
+            echo compId is "$compId"
+            echo compVer is "$compVer"
+            echo compNotes is "$compNotes"
            
             #chmod +x /home/peter/src/PAC/initcrPackage.sh
             #/home/peter/src/PAC/initcrPackage.sh authToken=${{ secrets.BOOMI }} componentId=$compId packageVersion=$compVer notes="$compNotes"
