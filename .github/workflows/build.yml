@@ -58,6 +58,9 @@ jobs:
            
             #chmod +x /home/peter/src/PAC/initcrPackage.sh
             #/home/peter/src/PAC/initcrPackage.sh authToken=${{ secrets.BOOMI }} componentId=$compId packageVersion=$compVer notes="$compNotes"
+            chmod +x ${{ github.workspace }}/boomicicd-cli/cli/scripts/bin/common.sh
+            ${{ github.workspace }}/boomicicd-cli/cli/scripts/bin/common.sh
+            
             chmod +x ${{ github.workspace }}/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh
             ${{ github.workspace }}/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh componentId=$compId packageVersion=$compVer notes="$compNotes"
           done
