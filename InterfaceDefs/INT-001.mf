@@ -1,4 +1,4 @@
 componentId=e611f7a4-a0cd-4ffd-a65c-43e278557791
 componentType=process
 ver=0.2.3
-notes=Build from GitHub
+notes=Build from GitHub.
