@@ -56,7 +56,8 @@ jobs:
             echo compId is "$compId"
             echo compVer is "$compVer"
             echo compNotes is "$compNotes"
-           
+
+            export WD=${{github.workspace }}/boomicicd-cli/cli/scripts/
             chmod +x ${{ github.workspace }}/boomicicd-cli/cli/scripts/bin/common.sh
             ${{ github.workspace }}/boomicicd-cli/cli/scripts/bin/common.sh
             
