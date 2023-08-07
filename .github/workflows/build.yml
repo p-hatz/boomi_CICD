@@ -31,15 +31,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          path: INT-001
+        #with:
+        #  fetch-depth: 0
+        #  path: INT-001
 
       - name: Changed Files
-        id: changed-files-int-001
+        id: changed-files
         uses: tj-actions/changed-files@v37.5.2
-        with:
-          path: INT-001
+        #with:
+        #  path: INT-001
         
       # Runs a single command using the runners shell
       #- name: Run a one-line script
