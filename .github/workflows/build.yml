@@ -57,11 +57,12 @@ jobs:
             echo compVer is "$compVer"
             echo compNotes is "$compNotes"
 
-            export WD=${{github.workspace }}/boomicicd-cli/cli/scripts/
-            chmod +x ${{ github.workspace }}/boomicicd-cli/cli/scripts/bin/common.sh
-            ${{ github.workspace }}/boomicicd-cli/cli/scripts/bin/common.sh
+            export WD=~/boomicicd-cli/cli/scripts/
             
-            chmod +x ${{ github.workspace }}/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh
-            ${{ github.workspace }}/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes"
+            chmod +x ~/boomicicd-cli/cli/scripts/bin/common.sh
+            ~/boomicicd-cli/cli/scripts/bin/common.sh
+            
+            chmod +x ~/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh
+            ~/boomicicd-cli/cli/scripts/bin/createSinglePackage.sh componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes"
           done
 
