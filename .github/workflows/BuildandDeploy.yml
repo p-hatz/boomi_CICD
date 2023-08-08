@@ -53,6 +53,7 @@ jobs:
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            codeXML=$(grep '^codeXML=' $file | cut -f2 -d'=')
 
             export WD=~/src/boomicicd-cli/cli/scripts
             export WORKSPACE=~/src/boomicicd-cli/cli/scripts
@@ -61,7 +62,7 @@ jobs:
             ~/src/boomicicd-cli/cli/scripts/bin/common.sh
             
             chmod +x ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh
-            ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes"
+            ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$codeXML"
           done
 
   deployPackage:
