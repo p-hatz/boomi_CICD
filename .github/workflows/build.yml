@@ -67,3 +67,49 @@ jobs:
             ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes"
           done
 
+  deployPackage:
+    needs: createPackage
+    # The type of runner that the job will run on
+    runs-on: [self-hosted, linux, X64]
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        #with:
+        #  fetch-depth: 0
+        #  path: INT-001
+
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v37.5.2
+        #with:
+        #  path: INT-001
+        
+      # Runs a single command using the runners shell
+      #- name: Run a one-line script
+      #  run:  cat ${{ github.workspace }}/README.md
+
+      # Runs a set of commands using the runners shell
+      - name: Build Package
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
+            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            envId=$(grep '^envId=' $file | cut -f2 -d'=')
+            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^notes=' $file | cut -f2 -d'=')
+            echo compId is "$compId"
+            echo compVer is "$compVer"
+            echo compNotes is "$compNotes"
+
+            export WD=~/src/boomicicd-cli/cli/scripts/
+            export WORKSPACE=~/src/boomicicd-cli/cli/scripts/
+            
+            chmod +x ~/src/boomicicd-cli/cli/scripts/bin/common.sh
+            ~/src/boomicicd-cli/cli/scripts/bin/common.sh
+            
+            chmod +x ~/src/boomicicd-cli/cli/scripts/initdeployPackage.sh
+            ~/src/boomicicd-cli/cli/scripts/initdeployPackage.sh componentId=$compId packageVersion=$compVer componentType=$compType env=$envId notes="$compNotes" listenerStatus=$listenerStatus
+          done
