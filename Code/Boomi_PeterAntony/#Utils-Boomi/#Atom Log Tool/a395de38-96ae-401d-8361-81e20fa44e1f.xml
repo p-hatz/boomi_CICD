@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/#Utils-Boomi/#Atom Log Tool" componentId="a395de38-96ae-401d-8361-81e20fa44e1f" version="2" name="Download Log FIle" type="connector-action" subType="http" createdDate="2022-10-13T03:18:06Z" createdBy="peterantony@boomi.com" modifiedDate="2022-12-28T03:50:25Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="#Atom Log Tool" folderId="Rjo1Mjc3Nzg4">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <HttpGetAction dataContentType="text/plain" followRedirects="false" methodType="GET" mimePassthrough="false" requestProfileType="NONE" responseProfileType="NONE" returnErrors="false" returnMimeResponse="false">
+          <requestHeaders/>
+          <pathElements>
+            <element isVariable="true" key="2000000" name="ddpLogURL"/>
+          </pathElements>
+          <responseHeaderMapping/>
+          <reflectHeaders/>
+        </HttpGetAction>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>
