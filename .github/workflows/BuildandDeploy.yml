@@ -94,7 +94,8 @@ jobs:
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            envId=$(grep '^envId=' $file | cut -f2 -d'=')
+            #envId=$(grep '^envId=' $file | cut -f2 -d'=')
+            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
             
@@ -105,5 +106,5 @@ jobs:
             ~/src/boomicicd-cli/cli/scripts/bin/common.sh
             
             chmod +x ~/src/boomicicd-cli/cli/scripts/initdeployPackage.sh
-            ~/src/boomicicd-cli/cli/scripts/initdeployPackage.sh componentId=$compId packageVersion=$compVer componentType=$compType env=$envId notes="$compNotes" listenerStatus=$listenerStatus
+            ~/src/boomicicd-cli/cli/scripts/initdeployPackage.sh componentId=$compId packageVersion=$compVer componentType=$compType env=$envName notes="$compNotes" listenerStatus=$listenerStatus
           done
