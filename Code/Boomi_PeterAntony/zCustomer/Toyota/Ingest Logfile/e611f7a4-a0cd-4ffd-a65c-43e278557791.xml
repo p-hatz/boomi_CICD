@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/zCustomer/Toyota/Ingest Logfile" componentId="e611f7a4-a0cd-4ffd-a65c-43e278557791" version="99" name="[proc] Ingest Runtime Log" type="process" createdDate="2023-08-02T05:44:18Z" createdBy="peterantony@boomi.com" modifiedDate="2023-08-08T05:12:21Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Ingest Logfile" folderId="Rjo2MDU0MjUz">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/zCustomer/Toyota/Ingest Logfile" componentId="e611f7a4-a0cd-4ffd-a65c-43e278557791" version="100" name="[proc] Ingest Runtime Log" type="process" createdDate="2023-08-02T05:44:18Z" createdBy="peterantony@boomi.com" modifiedDate="2023-08-08T08:10:43Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Ingest Logfile" folderId="Rjo2MDU0MjUz">
   <bns:encryptedValues/>
   <bns:description/>
   <bns:object>
@@ -712,14 +712,6 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
           </configuration>
           <dragpoints>
             <dragpoint name="shape54.dragpoint1" toShape="shape12" x="1376.0" y="536.0"/>
-          </dragpoints>
-        </shape>
-        <shape image="map_icon" name="shape55" shapetype="map" userlabel="" x="816.0" y="336.0">
-          <configuration>
-            <map mapId="9e64217d-7097-4e02-b08b-f8585ec2d302"/>
-          </configuration>
-          <dragpoints>
-            <dragpoint name="shape55.dragpoint1" toShape="unset" x="948.0" y="346.0"/>
           </dragpoints>
         </shape>
       </shapes>
