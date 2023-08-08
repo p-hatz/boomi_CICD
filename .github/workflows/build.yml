@@ -57,8 +57,8 @@ jobs:
             echo compVer is "$compVer"
             echo compNotes is "$compNotes"
 
-            export WD=~/src/boomicicd-cli/cli/scripts/
-            export WORKSPACE=~/src/boomicicd-cli/cli/scripts/
+            export WD=~/src/boomicicd-cli/cli/scripts
+            export WORKSPACE=~/src/boomicicd-cli/cli/scripts
             
             chmod +x ~/src/boomicicd-cli/cli/scripts/bin/common.sh
             ~/src/boomicicd-cli/cli/scripts/bin/common.sh
