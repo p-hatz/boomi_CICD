@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/zCustomer/Toyota/Ingest Logfile" componentId="9e64217d-7097-4e02-b08b-f8585ec2d302" version="1" name="New Map" type="transform.map" createdDate="2023-08-08T05:12:16Z" createdBy="peterantony@boomi.com" modifiedDate="2023-08-08T05:12:16Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Ingest Logfile" folderId="Rjo2MDU0MjUz">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Map xmlns="">
+      <Mappings/>
+      <Functions optimizeExecutionOrder="true"/>
+      <Defaults/>
+      <DocumentCacheJoins/>
+    </Map>
+  </bns:object>
+</bns:Component>

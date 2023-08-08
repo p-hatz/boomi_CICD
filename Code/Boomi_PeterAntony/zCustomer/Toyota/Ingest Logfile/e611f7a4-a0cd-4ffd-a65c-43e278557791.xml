@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/zCustomer/Toyota/Ingest Logfile" componentId="e611f7a4-a0cd-4ffd-a65c-43e278557791" version="99" name="[proc] Ingest Runtime Log" type="process" createdDate="2023-08-02T05:44:18Z" createdBy="peterantony@boomi.com" modifiedDate="2023-08-08T05:12:21Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Ingest Logfile" folderId="Rjo2MDU0MjUz">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <process xmlns="" allowSimultaneous="false" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" updateRunDates="true" workload="general">
+      <shapes>
+        <shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="46.0">
+          <configuration>
+            <noaction/>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape1.dragpoint1" toShape="shape34" x="224.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="dataprocess_icon" name="shape6" shapetype="dataprocess" userlabel="Extract Lines" x="816.0" y="528.0">
+          <configuration>
+            <dataprocess>
+              <step index="1" key="2" name="Custom Scripting" processtype="12">
+                <dataprocessscript language="groovy2" useCache="true">
+                  <script>import java.util.Properties;
+import java.io.InputStream;
+import com.boomi.execution.ExecutionUtil;
+
+logger = ExecutionUtil.getBaseLogger();
+
+fName = ExecutionUtil.getDynamicProcessProperty("dppFilename");
+_start = ExecutionUtil.getDynamicProcessProperty("dppStart");
+_end = ExecutionUtil.getDynamicProcessProperty("dppEnd");
+start = _start.toInteger()
+end = _end.toInteger()
+totLine = 0
+
+String content = "";
+
+def readRange = {file -&gt;
+    fileToRead = new File(file)
+    fileToRead.eachLine{line, lineNo = 0 -&gt;
+        if(lineNo &gt; end) {
+            return lineNo
+        }
+        if(lineNo &gt;= start) {
+                    logger.info(line);
+                content += line + System.getProperty("line.separator");
+        }            
+        lineNo++
+    }
+}
+
+totLine = readRange(fName)
+totLine = totLine + 1
+
+for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
+    InputStream is = dataContext.getStream(i);
+    Properties props = dataContext.getProperties(i);
+
+    ExecutionUtil.setDynamicProcessProperty("dppContent", content, false);
+    ExecutionUtil.setDynamicProcessProperty("dppLineCount", totLine.toString(), false);
+
+    dataContext.storeStream(is, props);
+}</script>
+                </dataprocessscript>
+              </step>
+            </dataprocess>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape6.dragpoint1" toShape="shape9" x="992.0" y="536.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="documentproperties_icon" name="shape7" shapetype="documentproperties" userlabel="Set Start/End" x="624.0" y="528.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppFilename" persist="false" propertyId="process.dppFilename" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="6" valueType="static">
+                    <staticparameter staticproperty="/tmp/"/>
+                  </parametervalue>
+                  <parametervalue key="8" valueType="process">
+                    <processparameter processproperty="dppLogfileName" processpropertydefaultvalue=""/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppStart" persist="false" propertyId="process.dppStart" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="4" valueType="definedparameter">
+                    <definedprocessparameter componentId="f8e1b2dd-bd94-41f7-b3ba-4874495aa365" componentName="[procProp] Runtime Log" propertyKey="cac3db87-239a-4da7-8b49-602bfd7ca458" propertyLabel="Line Start"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppEnd" persist="false" propertyId="process.dppEnd" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="5" valueType="static">
+                    <staticparameter staticproperty="1000000"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape7.dragpoint1" toShape="shape6" x="800.0" y="536.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="message_icon" name="shape9" shapetype="message" userlabel="" x="1008.0" y="528.0">
+          <configuration>
+            <message combined="false">
+              <msgTxt>{1}</msgTxt>
+              <msgParameters>
+                <parametervalue key="0" valueType="process">
+                  <processparameter processproperty="dppContent" processpropertydefaultvalue=""/>
+                </parametervalue>
+              </msgParameters>
+            </message>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape9.dragpoint1" toShape="shape54" x="1184.0" y="536.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape10" shapetype="connectoraction" userlabel="" x="1584.0" y="528.0">
+          <configuration>
+            <connectoraction actionType="CREATE" allowDynamicCredentials="NONE" connectionId="db9c8841-60f2-4a95-b6bc-e9cb334b251c" connectorType="disk-sdk" hideSettings="false" operationId="267e8c95-1157-4647-ac1a-8eef899b6439">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape10.dragpoint1" toShape="shape41" x="1760.0" y="536.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="documentproperties_icon" name="shape12" shapetype="documentproperties" userlabel="Set Delta" x="1392.0" y="528.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Disk v2 - Directory" persist="false" propertyId="connector.disk-sdk.directory" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="1" valueType="static">
+                    <staticparameter staticproperty="/tmp"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Disk v2 - File Name" persist="false" propertyId="connector.disk-sdk.fileName" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="2" valueType="date">
+                    <dateparameter dateparametertype="current" datetimemask="yyyyMMddHHmm"/>
+                  </parametervalue>
+                  <parametervalue key="3" valueType="static">
+                    <staticparameter staticproperty=".log.part"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Process Property - [procProp] Runtime Log - Line Start" persist="false" propertyId="definedprocess.f8e1b2dd-bd94-41f7-b3ba-4874495aa365@cac3db87-239a-4da7-8b49-602bfd7ca458" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="4" valueType="process">
+                    <processparameter processproperty="dppLineCount" processpropertydefaultvalue=""/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape12.dragpoint1" toShape="shape10" x="1568.0" y="536.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="documentproperties_icon" name="shape14" shapetype="documentproperties" userlabel="Set S3 filename" x="432.0" y="848.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - ddpfName" persist="false" propertyId="dynamicdocument.ddpfName" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="3" valueType="static">
+                    <staticparameter staticproperty="2023_08_03.container.log"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppfName" persist="false" propertyId="process.dppfName" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="4" valueType="track">
+                    <trackparameter defaultValue="" propertyId="dynamicdocument.ddpfName" propertyName="Dynamic Document Property - ddpfName"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape14.dragpoint1" toShape="shape16" x="608.0" y="856.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape16" shapetype="connectoraction" userlabel="" x="624.0" y="848.0">
+          <configuration>
+            <connectoraction actionType="Get" allowDynamicCredentials="NONE" connectionId="f1323a08-0995-4386-8855-d998da488181" connectorType="http" hideSettings="false" operationId="b4436cb1-9398-407d-933f-64553330d26e" parameter-profile="EMBEDDED|HttpParameterChooser|b4436cb1-9398-407d-933f-64553330d26e">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape16.dragpoint1" toShape="shape43" x="800.0" y="856.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="stop_icon" name="shape17" shapetype="stop" x="1200.0" y="848.0">
+          <configuration>
+            <stop continue="true"/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="notify_icon" name="shape25" shapetype="notify" userlabel="" x="1968.0" y="48.0">
+          <configuration>
+            <notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+              <notifyMessage>Using {1} as date</notifyMessage>
+              <notifyMessageLevel>INFO</notifyMessageLevel>
+              <notifyParameters>
+                <parametervalue key="0" valueType="process">
+                  <processparameter processproperty="dppLogdate" processpropertydefaultvalue=""/>
+                </parametervalue>
+              </notifyParameters>
+            </notify>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape25.dragpoint1" toShape="shape19" x="2144.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="dataprocess_icon" name="shape18" shapetype="dataprocess" userlabel="" x="816.0" y="48.0">
+          <configuration>
+            <dataprocess>
+              <step index="1" key="2" name="Custom Scripting" processtype="12">
+                <dataprocessscript language="groovy2" useCache="true">
+                  <script>import java.util.Properties;
+import java.io.InputStream;
+import com.boomi.execution.ExecutionUtil;
+
+// Retrieve current Dynamic Process Property value
+_preLogdateFile = ExecutionUtil.getDynamicProcessProperty("dppLogdate");
+_logdateFile = _preLogdateFile.replaceAll('-','_')
+
+// Set the dynamic process property
+ExecutionUtil.setDynamicProcessProperty("dppLogdate", _logdateFile, false);
+
+for ( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
+  InputStream is = dataContext.getStream(i);
+  Properties props = dataContext.getProperties(i);
+
+  dataContext.storeStream(is, props);
+}</script>
+                </dataprocessscript>
+              </step>
+            </dataprocess>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape18.dragpoint1" toShape="shape32" x="992.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="stop_icon" name="shape21" shapetype="stop" userlabel="" x="2928.0" y="368.0">
+          <configuration>
+            <stop continue="true"/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="dataprocess_icon" name="shape28" shapetype="dataprocess" userlabel="Sleep 15 seconds" x="1776.0" y="48.0">
+          <configuration>
+            <dataprocess>
+              <step index="1" key="1" name="Custom Scripting" processtype="12">
+                <dataprocessscript language="groovy2">
+                  <script>import java.util.Properties;
+import java.io.InputStream;
+
+Thread.sleep(40000)
+
+for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
+    InputStream is = dataContext.getStream(i);
+    Properties props = dataContext.getProperties(i);
+
+    dataContext.storeStream(is, props);
+}</script>
+                </dataprocessscript>
+              </step>
+            </dataprocess>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape28.dragpoint1" toShape="shape25" x="1952.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="documentproperties_icon" name="shape23" shapetype="documentproperties" userlabel="Set URL" x="1584.0" y="48.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - ddpLogURL" persist="false" propertyId="dynamicdocument.ddpLogURL" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="1" valueType="current">
+                    <profileelement elementId="4" elementName="url (Root/Object/url)" profileId="674004de-ded2-4137-99a5-bbf323d3fcdf" profileType="profile.json"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape23.dragpoint1" toShape="shape28" x="1760.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="notify_icon" name="shape31" shapetype="notify" userlabel="" x="2544.0" y="48.0">
+          <configuration>
+            <notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+              <notifyMessage>Empty file. Exiting</notifyMessage>
+              <notifyMessageLevel>INFO</notifyMessageLevel>
+              <notifyParameters/>
+            </notify>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape31.dragpoint1" toShape="shape30" x="2720.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape32" shapetype="connectoraction" userlabel="" x="1008.0" y="48.0">
+          <configuration>
+            <connectoraction actionType="Get" allowDynamicCredentials="NONE" connectionId="4d81874e-d263-49c9-a7fe-ed6b9d10bb8d" connectorType="http" hideSettings="false" operationId="688b3ece-0e41-4b5c-881c-9435f8322d40" parameter-profile="EMBEDDED|HttpParameterChooser|688b3ece-0e41-4b5c-881c-9435f8322d40">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape32.dragpoint1" toShape="shape27" x="1184.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="message_icon" name="shape29" shapetype="message" userlabel="Build Request with GW ID" x="432.0" y="48.0">
+          <configuration>
+            <message combined="false">
+              <msgTxt>'{
+  "atomId" : "'{1}'", 
+  "logDate" : "'{2}'",
+  "includeBin" : false
+}'</msgTxt>
+              <msgParameters>
+                <parametervalue key="1" valueType="static">
+                  <staticparameter staticproperty="acb100ae-5325-4c0c-b799-7881442909ee"/>
+                </parametervalue>
+                <parametervalue key="0" valueType="date">
+                  <dateparameter dateparametertype="current" datetimemask="yyyy-MM-dd"/>
+                </parametervalue>
+              </msgParameters>
+            </message>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape29.dragpoint1" toShape="shape33" x="608.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="decision_icon" name="shape20" shapetype="decision" userlabel="Container Log?" x="2736.0" y="208.0">
+          <configuration>
+            <decision comparison="regex" name="Container Log?">
+              <decisionvalue valueType="track">
+                <trackparameter defaultValue="" propertyId="connector.disk.filename" propertyName="Disk - File Name"/>
+              </decisionvalue>
+              <decisionvalue valueType="static">
+                <staticparameter staticproperty="(?s).*?container.*?"/>
+              </decisionvalue>
+            </decision>
+          </configuration>
+          <dragpoints>
+            <dragpoint identifier="true" name="shape20.dragpoint1" text="True" toShape="shape37" x="2912.0" y="216.0"/>
+            <dragpoint identifier="false" name="shape20.dragpoint2" text="False" toShape="shape21" x="2912.0" y="376.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape19" shapetype="connectoraction" userlabel="" x="2160.0" y="48.0">
+          <configuration>
+            <connectoraction actionType="Get" allowDynamicCredentials="NONE" connectionId="1f9be60b-220c-4726-b476-ce4f57244b55" connectorType="http" hideSettings="false" operationId="a395de38-96ae-401d-8361-81e20fa44e1f" parameter-profile="EMBEDDED|HttpParameterChooser|a395de38-96ae-401d-8361-81e20fa44e1f">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape19.dragpoint1" toShape="shape22" x="2336.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="decision_icon" name="shape22" shapetype="decision" userlabel="" x="2352.0" y="48.0">
+          <configuration>
+            <decision comparison="equals" name="">
+              <decisionvalue valueType="track">
+                <trackparameter defaultValue="" propertyId="meta.base.size" propertyName="Base - Size"/>
+              </decisionvalue>
+              <decisionvalue valueType="static">
+                <staticparameter staticproperty="0"/>
+              </decisionvalue>
+            </decision>
+          </configuration>
+          <dragpoints>
+            <dragpoint identifier="true" name="shape22.dragpoint1" text="True" toShape="shape31" x="2528.0" y="56.0"/>
+            <dragpoint identifier="false" name="shape22.dragpoint2" text="False" toShape="shape26" x="2528.0" y="216.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="dataprocess_icon" name="shape24" shapetype="dataprocess" userlabel="Strip Domain Name" x="1392.0" y="48.0">
+          <configuration>
+            <dataprocess>
+              <step index="1" key="1" name="Search/Replace" processtype="1">
+                <dataprocessreplace replacewith="" searchCharacterLimit="1024" searchType="char_limit" texttofind="https://platform.boomi.com/"/>
+              </step>
+              <step index="2" key="2" name="Search/Replace" processtype="1">
+                <dataprocessreplace replacewith="" searchCharacterLimit="1024" searchType="char_limit" texttofind="\r"/>
+              </step>
+              <step index="3" key="3" name="Search/Replace" processtype="1">
+                <dataprocessreplace replacewith="" searchCharacterLimit="1024" searchType="char_limit" texttofind="\n"/>
+              </step>
+            </dataprocess>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape24.dragpoint1" toShape="shape23" x="1568.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="dataprocess_icon" name="shape26" shapetype="dataprocess" userlabel="Unzip" x="2544.0" y="208.0">
+          <configuration>
+            <dataprocess>
+              <step index="1" key="1" name="Unzip" processtype="5">
+                <dataprocessunzip actionType="Get" connectorType="disk" propertyValue="filename"/>
+              </step>
+            </dataprocess>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape26.dragpoint1" toShape="shape20" x="2720.0" y="216.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="message_icon" name="shape27" shapetype="message" userlabel="Get URL" x="1200.0" y="48.0">
+          <configuration>
+            <message combined="false">
+              <msgTxt>{1}</msgTxt>
+              <msgParameters>
+                <parametervalue key="0" valueType="profile">
+                  <profileelement elementId="4" elementName="url (Root/Object/url)" profileId="674004de-ded2-4137-99a5-bbf323d3fcdf" profileType="profile.json"/>
+                </parametervalue>
+              </msgParameters>
+            </message>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape27.dragpoint1" toShape="shape24" x="1376.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="stop_icon" name="shape30" shapetype="stop" userlabel="" x="2736.0" y="48.0">
+          <configuration>
+            <stop continue="true"/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="documentproperties_icon" name="shape33" shapetype="documentproperties" userlabel="Set Logdir and Logdate" x="624.0" y="48.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppLogdate" persist="false" propertyId="process.dppLogdate" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="2" valueType="date">
+                    <dateparameter dateparametertype="current" datetimemask="yyyy-MM-dd"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppAtomLogDirIn" persist="false" propertyId="process.dppAtomLogDirIn" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="3" valueType="static">
+                    <staticparameter staticproperty="/tmp"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape33.dragpoint1" toShape="shape18" x="800.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="branch_icon" name="shape34" shapetype="branch" userlabel="" x="240.0" y="48.0">
+          <configuration>
+            <branch numBranches="5"/>
+          </configuration>
+          <dragpoints>
+            <dragpoint identifier="1" name="shape34.dragpoint1" text="1" toShape="shape29" x="416.0" y="56.0"/>
+            <dragpoint identifier="2" name="shape34.dragpoint2" text="2" toShape="shape39" x="416.0" y="536.0"/>
+            <dragpoint identifier="3" name="shape34.dragpoint3" text="3" toShape="shape14" x="416.0" y="856.0"/>
+            <dragpoint identifier="4" name="shape34.dragpoint4" text="4" toShape="shape46" x="416.0" y="1016.0"/>
+            <dragpoint identifier="5" name="shape34.dragpoint5" text="5" toShape="shape53" x="416.0" y="1176.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape35" shapetype="connectoraction" userlabel="" x="3120.0" y="208.0">
+          <configuration>
+            <connectoraction actionType="Send" allowDynamicCredentials="NONE" connectionId="c5eca2db-804f-4fb0-a06e-dc4a7a2cec98" connectorType="disk" hideSettings="false" operationId="cf139af1-c352-42b0-ba73-fca49e6e6f04">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape35.dragpoint1" toShape="shape36" x="3296.0" y="216.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="stop_icon" name="shape36" shapetype="stop" userlabel="" x="3312.0" y="208.0">
+          <configuration>
+            <stop continue="true"/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="documentproperties_icon" name="shape37" shapetype="documentproperties" userlabel="Set Runtime log" x="2928.0" y="208.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - ddpLogfileName" persist="false" propertyId="dynamicdocument.ddpLogfileName" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="13" valueType="track">
+                    <trackparameter defaultValue="" propertyId="connector.disk.filename" propertyName="Disk - File Name"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Disk - Directory" persist="false" propertyId="connector.disk.directory" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="14" valueType="process">
+                    <processparameter processproperty="dppAtomLogDirIn" processpropertydefaultvalue=""/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Disk - File Name" persist="false" propertyId="connector.disk.filename" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="15" valueType="track">
+                    <trackparameter defaultValue="" propertyId="dynamicdocument.ddpLogfileName" propertyName="Dynamic Document Property - ddpLogfileName"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppLogfileSaved" persist="false" propertyId="process.dppLogfileSaved" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="16" valueType="static">
+                    <staticparameter staticproperty="1"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppLogfileName" persist="false" propertyId="process.dppLogfileName" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="17" valueType="track">
+                    <trackparameter defaultValue="" propertyId="dynamicdocument.ddpLogfileName" propertyName="Dynamic Document Property - ddpLogfileName"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape37.dragpoint1" toShape="shape35" x="3104.0" y="216.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="decision_icon" name="shape39" shapetype="decision" userlabel="Logfile Saved?" x="432.0" y="528.0">
+          <configuration>
+            <decision comparison="equals" name="Logfile Saved?">
+              <decisionvalue valueType="process">
+                <processparameter processproperty="dppLogfileSaved" processpropertydefaultvalue=""/>
+              </decisionvalue>
+              <decisionvalue valueType="static">
+                <staticparameter staticproperty="1"/>
+              </decisionvalue>
+            </decision>
+          </configuration>
+          <dragpoints>
+            <dragpoint identifier="true" name="shape39.dragpoint1" text="True" toShape="shape7" x="608.0" y="536.0"/>
+            <dragpoint identifier="false" name="shape39.dragpoint2" text="False" toShape="shape40" x="608.0" y="696.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="stop_icon" name="shape40" shapetype="stop" x="624.0" y="688.0">
+          <configuration>
+            <stop continue="true"/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="stop_icon" name="shape41" shapetype="stop" x="1776.0" y="528.0">
+          <configuration>
+            <stop continue="true"/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="connectoraction_icon" name="shape42" shapetype="connectoraction" userlabel="" x="1008.0" y="848.0">
+          <configuration>
+            <connectoraction actionType="CREATE" allowDynamicCredentials="NONE" connectionId="db9c8841-60f2-4a95-b6bc-e9cb334b251c" connectorType="disk-sdk" hideSettings="false" operationId="267e8c95-1157-4647-ac1a-8eef899b6439">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape42.dragpoint1" toShape="shape17" x="1184.0" y="856.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="documentproperties_icon" name="shape43" shapetype="documentproperties" userlabel="Set Directory and File" x="816.0" y="848.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Disk v2 - Directory" persist="false" propertyId="connector.disk-sdk.directory" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="1" valueType="static">
+                    <staticparameter staticproperty="/tmp/S3"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Disk v2 - File Name" persist="false" propertyId="connector.disk-sdk.fileName" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="2" valueType="track">
+                    <trackparameter defaultValue="" propertyId="dynamicdocument.ddpfName" propertyName="Dynamic Document Property - ddpfName"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape43.dragpoint1" toShape="shape42" x="992.0" y="856.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape44" shapetype="connectoraction" userlabel="" x="816.0" y="1008.0">
+          <configuration>
+            <connectoraction actionType="CREATE" allowDynamicCredentials="NONE" connectionId="db9c8841-60f2-4a95-b6bc-e9cb334b251c" connectorType="disk-sdk" hideSettings="false" operationId="b28e7570-4ff8-40f9-a76e-1912880663b3">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape44.dragpoint1" toShape="shape48" x="992.0" y="1016.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="message_icon" name="shape46" shapetype="message" userlabel="" x="432.0" y="1008.0">
+          <configuration>
+            <message combined="false">
+              <msgTxt>{1}</msgTxt>
+              <msgParameters>
+                <parametervalue key="0" valueType="process">
+                  <processparameter processproperty="dppContent" processpropertydefaultvalue=""/>
+                </parametervalue>
+              </msgParameters>
+            </message>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape46.dragpoint1" toShape="shape47" x="608.0" y="1016.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="documentproperties_icon" name="shape47" shapetype="documentproperties" userlabel="Set Directory and File" x="624.0" y="1008.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Disk v2 - Directory" persist="false" propertyId="connector.disk-sdk.directory" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="1" valueType="static">
+                    <staticparameter staticproperty="/tmp/S3"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Disk v2 - File Name" persist="false" propertyId="connector.disk-sdk.fileName" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="2" valueType="process">
+                    <processparameter processproperty="dppfName" processpropertydefaultvalue=""/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape47.dragpoint1" toShape="shape44" x="800.0" y="1016.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="stop_icon" name="shape48" shapetype="stop" x="1008.0" y="1008.0">
+          <configuration>
+            <stop continue="true"/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="connectoraction_icon" name="shape49" shapetype="connectoraction" userlabel="" x="816.0" y="1168.0">
+          <configuration>
+            <connectoraction actionType="Send" allowDynamicCredentials="NONE" connectionId="f1323a08-0995-4386-8855-d998da488181" connectorType="http" hideSettings="false" operationId="1cae6b57-6b2c-4930-8654-cbb655b7d926" parameter-profile="EMBEDDED|HttpParameterChooser|1cae6b57-6b2c-4930-8654-cbb655b7d926">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape49.dragpoint1" toShape="shape50" x="992.0" y="1176.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="stop_icon" name="shape50" shapetype="stop" userlabel="" x="1008.0" y="1168.0">
+          <configuration>
+            <stop continue="true"/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="connectoraction_icon" name="shape52" shapetype="connectoraction" userlabel="" x="624.0" y="1168.0">
+          <configuration>
+            <connectoraction actionType="GET" allowDynamicCredentials="NONE" connectionId="db9c8841-60f2-4a95-b6bc-e9cb334b251c" connectorType="disk-sdk" hideSettings="false" operationId="7c50b099-72c1-42b6-92d1-ceaf192e15a1" parameter-profile="EMBEDDED|genericparameterchooser|7c50b099-72c1-42b6-92d1-ceaf192e15a1">
+              <parameters>
+                <parametervalue elementToSetId="0" elementToSetName="ID" name="ID" valueType="process">
+                  <processparameter processproperty="dppfName" processpropertydefaultvalue=""/>
+                </parametervalue>
+              </parameters>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape52.dragpoint1" toShape="shape49" x="800.0" y="1176.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="documentproperties_icon" name="shape53" shapetype="documentproperties" userlabel="Set Directory and File" x="432.0" y="1168.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Disk v2 - Directory" persist="false" propertyId="connector.disk-sdk.directory" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="1" valueType="static">
+                    <staticparameter staticproperty="/tmp/S3"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - ddpfName" persist="false" propertyId="dynamicdocument.ddpfName" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="2" valueType="process">
+                    <processparameter processproperty="dppfName" processpropertydefaultvalue=""/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape53.dragpoint1" toShape="shape52" x="608.0" y="1176.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="notify_icon" name="shape54" shapetype="notify" userlabel="" x="1200.0" y="528.0">
+          <configuration>
+            <notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+              <notifyMessage>Line Count set to: {1}</notifyMessage>
+              <notifyMessageLevel>INFO</notifyMessageLevel>
+              <notifyParameters>
+                <parametervalue key="0" valueType="process">
+                  <processparameter processproperty="dppLineCount" processpropertydefaultvalue=""/>
+                </parametervalue>
+              </notifyParameters>
+            </notify>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape54.dragpoint1" toShape="shape12" x="1376.0" y="536.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="map_icon" name="shape55" shapetype="map" userlabel="" x="816.0" y="336.0">
+          <configuration>
+            <map mapId="9e64217d-7097-4e02-b08b-f8585ec2d302"/>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape55.dragpoint1" toShape="unset" x="948.0" y="346.0"/>
+          </dragpoints>
+        </shape>
+      </shapes>
+    </process>
+  </bns:object>
+  <bns:processOverrides>
+    <Overrides xmlns="">
+      <Connections>
+        <ConnectionOverride id="4d81874e-d263-49c9-a7fe-ed6b9d10bb8d">
+          <field id="url" label="URL" overrideable="false" xpath="HttpSettings/@url"/>
+          <field id="connectTimeout" label="Connect Timeout" overrideable="false" xpath="HttpSettings/@connectTimeout"/>
+          <field id="readTimeout" label="Read Timeout" overrideable="false" xpath="HttpSettings/@readTimeout"/>
+          <field id="useBasicAuth" label="Use Basic Authentication" overrideable="false" xpath="HttpSettings/@useBasicAuth"/>
+          <field id="user" label="User" overrideable="false" xpath="HttpSettings/AuthSettings/@user"/>
+          <field id="password" label="Password" overrideable="false" xpath="HttpSettings/AuthSettings/@password"/>
+          <field id="consumerKey" label="OAuth Consumer Key" overrideable="false" xpath="HttpSettings/OAuthSettings/@consumerKey"/>
+          <field id="accessToken" label="OAuth Access Token" overrideable="false" xpath="HttpSettings/OAuthSettings/@accessToken"/>
+          <field id="tokenSecret" label="OAuth Token Secret" overrideable="false" xpath="HttpSettings/OAuthSettings/@tokenSecret"/>
+          <field id="requestTokenURL" label="OAuth Request Token URL" overrideable="false" xpath="HttpSettings/OAuthSettings/@requestTokenURL"/>
+          <field id="authorizationURL" label="OAuth Authorization URL" overrideable="false" xpath="HttpSettings/OAuthSettings/@authorizationURL"/>
+          <field id="accessTokenURL" label="OAuth Access URL" overrideable="false" xpath="HttpSettings/OAuthSettings/@accessTokenURL"/>
+          <field id="consumerSecret" label="OAuth Consumer Secret" overrideable="false" xpath="HttpSettings/OAuthSettings/@consumerSecret"/>
+          <field id="realm" label="OAuth Realm" overrideable="false" xpath="HttpSettings/OAuthSettings/@realm"/>
+          <field id="signatureMethod" label="OAuth Signature Method" overrideable="false" xpath="HttpSettings/OAuthSettings/@signatureMethod"/>
+          <field id="clientauth" label="Use Client Authorization" overrideable="false" xpath="HttpSettings/SSLOptions/@clientauth"/>
+          <field id="clientsslalias" label="Client SSL Certificate" overrideable="false" xpath="HttpSettings/SSLOptions/@clientsslalias"/>
+          <field id="trustServerCert" label="Use Trusted SSL Certificate" overrideable="false" xpath="HttpSettings/SSLOptions/@trustServerCert"/>
+          <field id="trustedcertalias" label="Trust SSL Server Certificate" overrideable="false" xpath="HttpSettings/SSLOptions/@trustedcertalias"/>
+          <field id="clientId" label="OAuth2 Client ID" overrideable="false" xpath="HttpSettings/OAuth2Settings/credentials/@clientId"/>
+          <field id="clientSecret" label="OAuth2 Client Secret" overrideable="false" xpath="HttpSettings/OAuth2Settings/credentials/@clientSecret"/>
+          <field id="authTokenURL2" label="OAuth2 Authorization Token URL" overrideable="false" xpath="HttpSettings/OAuth2Settings/authorizationTokenEndpoint/@url"/>
+          <field id="accessTokenURL2" label="OAuth2 Access Token URL" overrideable="false" xpath="HttpSettings/OAuth2Settings/accessTokenEndpoint/@url"/>
+          <field id="scope" label="OAuth2 Scope" overrideable="false" xpath="HttpSettings/OAuth2Settings/scope"/>
+          <field id="accessToken2" label="OAuth2 Access Token" overrideable="false" xpath="HttpSettings/OAuth2Settings/credentials/@accessToken"/>
+          <field id="refreshAuthScheme" label="OAuth2 Refresh Authorization Scheme" overrideable="false" xpath="HttpSettings/OAuth2Settings/@refreshAuthScheme"/>
+          <field id="accessKeyId" label="Amazon AWS Access Key" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/accessKeyId"/>
+          <field id="awsSecret" label="Amazon AWS Secret Key" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/awsSecret"/>
+          <field id="awsRegion" label="Amazon AWS Region" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/awsRegion"/>
+          <field id="customRegion" label="Custom Region" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/customRegion"/>
+        </ConnectionOverride>
+      </Connections>
+      <PartnerOverrides/>
+      <Properties/>
+      <Extensions>
+        <ObjectDefinitions>
+          <objectDefinition connectionId="db9c8841-60f2-4a95-b6bc-e9cb334b251c" connectorType="disk-sdk" id="db9c8841-60f2-4a95-b6bc-e9cb334b251cFILE" name="Disk v2 FILE ([conn] Generic (v2))" objectType="FILE" userDefined="false">
+            <profiles/>
+          </objectDefinition>
+          <unusedProfiles/>
+        </ObjectDefinitions>
+        <DataMaps>
+          <unusedMaps/>
+        </DataMaps>
+      </Extensions>
+      <CrossReferenceOverrides/>
+      <PGPOverrides/>
+      <DefinedProcessPropertyOverrides>
+        <OverrideableDefinedProcessPropertyComponent componentId="f8e1b2dd-bd94-41f7-b3ba-4874495aa365">
+          <OverrideableDefinedProcessPropertyValue key="cac3db87-239a-4da7-8b49-602bfd7ca458" name="Line Start" overrideable="true"/>
+        </OverrideableDefinedProcessPropertyComponent>
+      </DefinedProcessPropertyOverrides>
+    </Overrides>
+  </bns:processOverrides>
+</bns:Component>
