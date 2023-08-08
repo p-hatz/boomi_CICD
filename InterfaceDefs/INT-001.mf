@@ -5,5 +5,5 @@ envId=404c80a4-efb7-4bc1-b44f-a948b567d884
 #uat
 #envId=89f00cf2-a788-4f85-9740-d1d339ee66dc
 listenerStatus=PAUSED
-ver=0.2.11
+ver=0.2.12
 notes=Build from GitHub
