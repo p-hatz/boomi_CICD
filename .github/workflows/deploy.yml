@@ -2,12 +2,16 @@
 
 name: Deploy Package
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '.gitignore'
-      - '.github/workflows/**'
+  workflow_run:
+    workflows: [build]
+    types:
+      - completed
+  #push:
+  #  branches:
+  #    - main
+  #  paths-ignore:
+  #    - '.gitignore'
+  #    - '.github/workflows/**'
 
 # Controls when the workflow will run
 #on:
