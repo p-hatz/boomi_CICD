@@ -6,6 +6,7 @@ on:
     branches:
       - main
     paths-ignore:
+      - 'InterfaceDefs'
       - '.gitignore'
       - '.github/workflows/**'
 
@@ -49,9 +50,11 @@ jobs:
       - name: Build Package
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            envId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            envId=$(grep '^envId=' $file | cut -f2 -d'=')
+            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^notes=' $file | cut -f2 -d'=')
             echo compId is "$compId"
             echo compVer is "$compVer"
