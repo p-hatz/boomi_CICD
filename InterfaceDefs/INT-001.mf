@@ -10,3 +10,4 @@ listenerStatus=PAUSED
 ver=0.2.15
 buildNotes=Build from GitHub
 deployNotes=Deployment from GitHub
+codeXML=Code
