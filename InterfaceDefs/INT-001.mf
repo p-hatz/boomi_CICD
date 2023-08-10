@@ -8,7 +8,7 @@ targetEnv=1.Dev
 #targetEnv=2.Test
 
 listenerStatus=PAUSED
-ver=0.2.23
+ver=0.2.24
 buildNotes=Build from GitHub
 deployNotes=Deployment from GitHub
 codeXML=Code
