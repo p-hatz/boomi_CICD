@@ -45,7 +45,7 @@ jobs:
       #  run:  cat ${{ github.workspace }}/README.md
 
       # Runs a set of commands using the runners shell
-      - name: Build Package
+      - name: Deploy Package
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
