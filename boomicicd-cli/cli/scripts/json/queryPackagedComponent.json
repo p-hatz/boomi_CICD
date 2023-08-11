@@ -5,26 +5,21 @@
         {
           "operator" : "and",
           "nestedExpression": [
-			    {
+			{
               "argument":["${componentId}"],
               "operator":"EQUALS",
               "property":"componentId"
-           },
-			     {
+            },
+            {
               "argument":["${componentType}"],
               "operator":"EQUALS",
-              "property":"type"
-           },
-			     {
-              "argument":["${deleted}"],
+              "property":"componentType"
+            },
+			{
+              "argument":["${packageVersion}"],
               "operator":"EQUALS",
-              "property":"deleted"
-           },
-			     {
-              "argument":["${currentVersion}"],
-              "operator":"EQUALS",
-              "property":"currentVersion"
-           }
+              "property":"packageVersion"
+            }				
           ]
         }
     }

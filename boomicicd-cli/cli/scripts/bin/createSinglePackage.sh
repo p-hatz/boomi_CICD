@@ -1,6 +1,5 @@
 #!/bin/bash
-
-#source "bin/common.sh"
+source $WD/bin/common.sh
 
 # mandatory arguments
 ARGUMENTS=(packageVersion notes) 
@@ -16,6 +15,7 @@ notes="$(<<< "$notes" sed -e 's`[\\/^$&`\\]`\\&`g')"
 
 folder="${WORKSPACE}/${extractComponentXmlFolder}"
 saveNotes="${notes}"
+saveComponentId="${componentId}"
 savePackageVersion="${packageVersion}"
 saveComponentType="${componentType}"
 saveComponentVersion="${componentVersion}"
@@ -27,11 +27,11 @@ then
         saveProcessName="${processName}"
         componentType="${saveComponentType}"
         componentId=""
-		source bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted=""
+		source $WD/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted=""
 		saveComponentName="${componentName}"
         saveComponentId="${componentId}"
         saveComponentVersion="${componentVersion}"
-		source bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
+		source $WD/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
 		if [ ! -z ${packageId} ]
 		then
 		 echoi "Created package ${packageId} for component ${saveProcessName}"
@@ -41,14 +41,16 @@ then
 else    
 		notes="${saveNotes}"
         packageVersion="${savePackageVersion}"
-        componentId=`echo "${componentId}" | xargs`
+        componentId="${saveComponentId}"
+        #componentId=`echo "${componentId}" | xargs`
         saveComponentId="${componentId}"
         componentType="${saveComponentType}"
 		processName=""
-		source bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted="" 
+		source $WD/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted="" 
 		saveComponentName="${componentName}"
-        saveComponentVersion="${componentVersion}"
-		source bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
+        	saveComponentVersion="${componentVersion}"
+		componentId="${saveComponentId}"
+		source $WD/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
 		if [ ! -z ${packageId} ]
 		then
 		 echoi "Created package ${packageId} for componentId ${saveComponentId}"
@@ -69,14 +71,19 @@ then
   # save the list of component details for a codereview report to be published at the end
 	printf "%s%s%s\n" "${saveComponentId}|" "${saveComponentName}|" "${saveComponentVersion}" >> "${WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
 	echov "Publishing package metatdata for ${packageId}."
-	source bin/publishPackagedComponentMetadata.sh packageIds="${packageId}" > "${packageFolder}/Manifest_${saveComponentId}.html"
+	source $WD/bin/publishPackagedComponentMetadata.sh packageIds="${packageId}" > "${packageFolder}/Manifest_${saveComponentId}.html"
 
   g=0
+	export baseFolder="${packageFolder}"
+
 	for g in ${!componentIds[@]}; 
 	do
 		componentId=${componentIds[$g]}
 		componentVersion=${componentVersions[$g]}
-		source bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
+
+		echo $componentId : $componentVersion
+
+		source $WD/bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
     eval `cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
     mkdir -p "${packageFolder}/${folderFullPath}"
 		type=$(cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath 'string(//*/@type)' -)
@@ -85,14 +92,21 @@ then
 		if [ $type == "process" ] 
 		then
 			componentFile="${WORKSPACE}"/${componentIds[$g]}.xml
-			source bin/createExtensionsJson.sh componentFile="${componentFile}"
+			source $WD/bin/createExtensionsJson.sh componentFile="${componentFile}"
 		fi
  
     mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
  done
   
   # Create a violations report using sonarqube rules	
-	bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
+	$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
+
+	#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
+	export baseFolder="${packageFolder}"
+	#$WD/bin/gitPush.sh ${gitComponentOption}
+	export tag="${componentId}"
+	export notes="Created from GitHub Actions Pipeline"
+	$WD/bin/gitPush.sh "${notes}" "${tag}"
 
 fi
 
@@ -106,4 +120,3 @@ if [ "$ERROR" -gt 0 ]
 then
    return 255;
 fi
-

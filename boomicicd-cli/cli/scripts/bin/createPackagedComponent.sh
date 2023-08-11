@@ -1,13 +1,13 @@
 #!/bin/bash
-source bin/common.sh
+source $WD/bin/common.sh
 # Query processattachment id before creating it
-source bin/queryPackagedComponent.sh "$@"
-
+source $WD/bin/queryPackagedComponent.sh "$@"
 
 # mandatory arguments
 ARGUMENTS=(componentId componentType packageVersion notes createdDate) 
 OPT_ARGUMENTS=(componentVersion) 
 createdDate=`date -u +"%Y-%m-%d"T%H:%M:%SZ`
+
 inputs "$@"
 if [ "$?" -gt "0" ]
 then
@@ -27,10 +27,10 @@ exportVariable=packageId
 
 if [ null == "${componentVersion}" ]
 then
- JSON_FILE=json/createPackagedComponent.json
+ JSON_FILE=$WD/json/createPackagedComponent.json
 else 
  ARGUMENTS=(componentId componentType componentVersion packageVersion notes createdDate) 
- JSON_FILE=json/createPackagedComponentVersion.json
+ JSON_FILE=$WD/json/createPackagedComponentVersion.json
 fi
 
 createJSON

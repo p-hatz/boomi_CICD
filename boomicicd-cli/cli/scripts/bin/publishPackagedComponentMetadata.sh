@@ -1,5 +1,5 @@
 #!/bin/bash
-source bin/common.sh
+source $WD/bin/common.sh
 
 # No verbose for this script
 saveVerbose=${VERBOSE}
@@ -44,7 +44,7 @@ do
 		componentVersion="${cvs[$k]}"
 		componentIds+=( "${componentId}" )
 		componentVersions+=( "${componentVersion}" )
-		source bin/getComponentMetadata.sh componentId="${componentId}" version="${componentVersion}"
+		source $WD/bin/getComponentMetadata.sh componentId="${componentId}" version="${componentVersion}"
     printReportRow  "${h}" "${packageId}" "${cids[$k]}" "${name}" "${type}" "${subType}" "${cvs[$k]}"	"${currentVersion}" "${modifiedBy}" "${folderName}"
 		k=$(( $k + 1 )); 
 	done

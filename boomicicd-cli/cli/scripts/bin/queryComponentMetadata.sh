@@ -1,5 +1,5 @@
 #!/bin/bash
-source bin/common.sh
+source $WD/bin/common.sh
 
 unset _saveComponentId _saveComponentType _saveComponentName _saveComponentVersion exportVariable
 # mandatory arguments
@@ -33,7 +33,7 @@ then
 fi
 
 ARGUMENTS=(componentId componentName componentType componentVersion deleted currentVersion)
-JSON_FILE=json/queryComponentMetadata
+JSON_FILE=$WD/json/queryComponentMetadata
 # Create the JSON File with either componentType, componentVersion and (componentId or processName)
 
 if [ ! -z "${componentId}" ]
@@ -69,6 +69,9 @@ extract result[0].componentId _saveComponentId
 extract result[0].name _saveComponentName
 extract result[0].version _saveComponentVersion
 extract result[0].type _saveComponentType
+
+#debug
+_saveComponentType=${componentType}
 
 clean
 

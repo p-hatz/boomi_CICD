@@ -1,13 +1,13 @@
 #!/bin/bash
 
-source bin/common.sh
+source $WD/bin/common.sh
 ARGUMENTS=componentFile
 inputs "$@"
 
 
 if [ -z "${extensionJson}" ] 
 then 
-	JSON_FILE=json/ExtensionTemplate.json
+	JSON_FILE=$WD/json/ExtensionTemplate.json
 	json=$(jq . ${JSON_FILE})
 else
 	json="${extensionJson}"
@@ -28,7 +28,7 @@ do
 	componentId=$connectionId
 	connectionExists=$(echo "${extensionJson}" | jq --arg id ${connectionId} '.extensionJson.connections.connection[] | select(.id == $id)')
 	fields=$(echo ${componentXML} | xmllint -xpath 'count(/Component/processOverrides/Overrides/Connections/ConnectionOverride['${h}']/field[@overrideable="true"])' -)
-	source bin/queryComponentMetadata.sh componentId=${componentId} componentVersion="" 
+	source $WD/bin/queryComponentMetadata.sh componentId=${componentId} componentVersion="" 
   # Add connection only if does not exist in the extensions and the componentName is not null or deleted and if there are fields in the connection
 	if [ -z "${connectionExists}" ] && [ "${componentName}" != null ] && [ ${fields} -gt 0 ]
     then
@@ -81,7 +81,7 @@ for (( h_ppc=1; h_ppc<=${ProcessPropertyComponents}; h_ppc++ ))
 do
 	
 	ProcessPropertyComponentId=$( echo $componentXML | xmllint -xpath "string(/Component/processOverrides/Overrides/DefinedProcessPropertyOverrides/OverrideableDefinedProcessPropertyComponent[$h_ppc]/@componentId)" -)  
-    source bin/queryComponentMetadata.sh componentId=${ProcessPropertyComponentId} 
+    source $WD/bin/queryComponentMetadata.sh componentId=${ProcessPropertyComponentId} 
     ProcessPropertyComponentId="${componentId}"
 
 	# Get the component name of the ProcessPropertyComponentId

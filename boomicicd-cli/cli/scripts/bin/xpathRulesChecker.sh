@@ -1,5 +1,5 @@
 #!/bin/bash
-source bin/common.sh
+source $WD/bin/common.sh
 
 # No verbose for this script
 saveVerbose=${VERBOSE}
@@ -25,7 +25,8 @@ do
  componentType=$( cat "${componentFile}" | sed -e 's/bns://g' | xmllint --xpath "string(Component/@type)" - ) 
  for (( i=1; i<=${rules}; i++ ))
   do 
-   xpath="`cat "${sonarRulesFile}" | xmllint -xpath 'profile/rules/rule['$i']/parameters/parameter/key[text()="expression"]/../value/text()' -`"
+   #xpath="`cat "${sonarRulesFile}" | xmllint -xpath 'profile/rules/rule['$i']/parameters/parameter/key[text()="expression"]/../value/text()' -`"
+   xpath=$(xmllint --xpath "//profile/rules/rule[$i]/parameters/parameter[starts-with(key,'expression')]/value/text()" ${sonarRulesFile})
    fail=`cat "${componentFile}" | sed -e 's/bns://g' | xmllint --xpath "$xpath" - 2> /dev/null | wc -c`
    if [ "${fail}" -gt 0 ];  then
 		 export VIOLATIONS_FOUND="true"

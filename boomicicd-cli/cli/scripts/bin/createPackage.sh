@@ -1,5 +1,5 @@
 #!/bin/bash
-source bin/common.sh
+source $WD/bin/common.sh
 
 # mandatory arguments
 ARGUMENTS=(packageVersion notes) 
@@ -10,7 +10,6 @@ if [ "$?" -gt "0" ]
 then
     return 255;
 fi
-
 
 if [ ! -z "${extractComponentXmlFolder}" ]
 then
@@ -23,10 +22,9 @@ fi
 saveNotes="${notes}"
 saveTag="${tag}"
 
-source bin/createSinglePackage.sh "$@"
+source $WD/bin/createSinglePackage.sh "$@"
 
 handleXmlComponents "${saveExtractComponentXmlFolder}" "${saveTag}" "${saveNotes}"
-
 
 if [ "$ERROR" -gt 0 ]
  then

@@ -1,0 +1,22 @@
+{
+		"job": "Update Environment Extensions",
+		"extensionJson": {
+            "@type": "EnvironmentExtensions",
+                "connections": {
+                "@type": "Connections",
+                "connection": []
+            },
+			 "processProperties" : {
+			 "@type" : "OverrideProcessProperties",
+			 "ProcessProperty" : []
+			},
+		     "properties": {
+             "@type": "",
+             "property": []
+            },
+	        "environmentId": "",
+	        "partial": "true",
+            "extensionGroupId": "",
+            "id": ""
+        }	
+}    

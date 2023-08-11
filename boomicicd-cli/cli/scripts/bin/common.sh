@@ -1,5 +1,7 @@
 #!/bin/bash
+
 unset ARGUMENTS OPT_ARGUMENTS
+
 # Capture user inputs
 function inputs {
      for ARGUMENT in "$@"
@@ -123,6 +125,7 @@ function callAPI {
 	if [ ! -z ${SLEEP_TIMER} ]; then sleep ${SLEEP_TIMER}; fi
   if [[ $URL != *queryMore* ]]
   then
+#	  cat $WORKSPACE/tmp.json
    curl -s -X POST -u $authToken -H "${h1}" -H "${h2}" $URL -d@"${WORKSPACE}"/tmp.json > "${WORKSPACE}"/out.json
    export ERROR=$(jq  -r . "${WORKSPACE}"/out.json 2>&1 > /dev/null)
    if [[ ! -z $ERROR ]]; then 
@@ -321,11 +324,11 @@ function handleXmlComponents {
     if [ ! -z "${tag}" ] && [ null != "${tag}" ] && [ "" != "${tag}" ]
         then
         mkdir -p "${WORKSPACE}/${extractComponentXmlFolder}/CodeReviewReports"
-   		  bin/publishCodeReviewReport.sh COMPONENT_LIST_FILE="${WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list" GIT_COMMIT_ID="master" > "${WORKSPACE}/${extractComponentXmlFolder}_CodeReviewReport.html"
+   		  $WD/bin/publishCodeReviewReport.sh COMPONENT_LIST_FILE="${WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list" GIT_COMMIT_ID="master" > "${WORKSPACE}/${extractComponentXmlFolder}_CodeReviewReport.html"
 		    cp "${WORKSPACE}/${extractComponentXmlFolder}_CodeReviewReport.html" "${WORKSPACE}/${extractComponentXmlFolder}/CodeReviewReports/${extractComponentXmlFolder}_CodeReviewReport.html" 
 		    rm -f "${WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
-        bin/sonarScanner.sh baseFolder="${folder}"
-        bin/gitPush.sh baseFolder="${folder}" tag="${tag}" notes="${notes}"
+        $WD/bin/sonarScanner.sh baseFolder="${folder}"
+        $WD/bin/gitPush.sh baseFolder="${folder}" tag="${tag}" notes="${notes}"
     	fi
    fi
 	 
