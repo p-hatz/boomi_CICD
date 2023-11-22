@@ -12,7 +12,3 @@ ver=0.2.26
 buildNotes=Build from GitHub
 deployNotes=Deployment from GitHub
 codeXML=Code
-
-
-
-
