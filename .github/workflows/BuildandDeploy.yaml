@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'InterfaceDefs/**.mf'
+      - 'InterfaceDefs/INT*.mf'
 
 # Controls when the workflow will run
 #on:
