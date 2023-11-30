@@ -59,8 +59,9 @@ jobs:
             ~/src/boomicicd-cli/cli/scripts/bin/common.sh
             
             #chmod +x ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh
-            cp "$fileOut" changed/
-            cat changed/$fileOut
-            ~/src/boomicicd-cli/cli/scripts/bin/updateExtensions.sh mfFile=changed/$fileOut
+            #cp "$fileOut" changed/
+            echo $PWD
+            cat $file
+            ~/src/boomicicd-cli/cli/scripts/bin/updateExtensions.sh mfFile="$file"
             done
           done
