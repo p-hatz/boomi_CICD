@@ -36,6 +36,15 @@ jobs:
       #- name: Run a one-line script
       #  run:  cat ${{ github.workspace }}/README.md
 
+      - name: Create destination directory
+        run: mkdir changed
+
+      - name: Copy changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.files }}; do
+            cp "$file" changed/
+          done
+
       # Runs a set of commands using the runners shell
       - name: Update Environment Extensions
         run: |
@@ -49,5 +58,6 @@ jobs:
             ~/src/boomicicd-cli/cli/scripts/bin/common.sh
             
             chmod +x ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh
-            ~/src/boomicicd-cli/cli/scripts/bin/updateExtensions.sh $file
+            export extensionJson="$(<${{ inputs.extensionfilename}})"
+            ~/src/boomicicd-cli/cli/scripts/bin/updateExtensions.sh mfFile=$file
           done
