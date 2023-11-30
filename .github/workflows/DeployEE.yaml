@@ -5,8 +5,13 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '.gitignore'
+      - '.github/workflows/**'
+      - 'InterfaceDefs/INT**.mf'
     paths:
       - 'InterfaceDefs/EnvironmentExt.mf'
+
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
