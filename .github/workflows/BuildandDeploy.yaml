@@ -5,10 +5,8 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '.gitignore'
-      - '.github/workflows/**'
-      - '.github/workflows/Environment*.mf'
+    paths:
+      - 'InterfaceDefs/**.mf'
 
 # Controls when the workflow will run
 #on:
