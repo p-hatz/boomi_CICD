@@ -51,26 +51,3 @@ jobs:
             chmod +x ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh
             ~/src/boomicicd-cli/cli/scripts/bin/updateExtensions.sh $file
           done
-
-  deployPackage:
-    #needs: createPackage
-    # The type of runner that the job will run on
-    runs-on: [self-hosted, linux, X64]
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-        #with:
-        #  fetch-depth: 0
-        #  path: INT-001
-
-      - name: Changed Files
-        id: changed-files
-        uses: tj-actions/changed-files@v37.5.2
-        #with:
-        #  path: INT-001
-        
-      # Runs a single command using the runners shell
-      #- name: Run a one-line script
-      #  run:  cat ${{ github.workspace }}/README.md
