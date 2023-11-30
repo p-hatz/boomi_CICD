@@ -40,17 +40,17 @@ jobs:
       - name: Create destination directory
         run: mkdir changed
 
-      - name: Copy changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.files }}; do
-            cp "$file" changed/
-          done
+      #- name: Copy changed files
+      #  run: |
+      #    for file in ${{ steps.changed-files.outputs.files }}; do
+      #      cp "$file" changed/
+      #    done
 
       # Runs a set of commands using the runners shell
       - name: Update Environment Extensions
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            #compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             
             export WD=~/src/boomicicd-cli/cli/scripts
             export WORKSPACE=~/src/boomicicd-cli/cli/scripts
@@ -58,6 +58,9 @@ jobs:
             chmod +x ~/src/boomicicd-cli/cli/scripts/bin/common.sh
             ~/src/boomicicd-cli/cli/scripts/bin/common.sh
             
-            chmod +x ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh
-            ~/src/boomicicd-cli/cli/scripts/bin/updateExtensions.sh mfFile=$file
+            #chmod +x ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh
+            for fileOut in ${{ steps.changed-files.outputs.files }}; do
+              cp "$fileOut" changed/
+              ~/src/boomicicd-cli/cli/scripts/bin/updateExtensions.sh mfFile=changed/$fileOut
+            done
           done
