@@ -37,15 +37,11 @@ jobs:
       #  run:  cat ${{ github.workspace }}/README.md
 
       # Runs a set of commands using the runners shell
-      - name: Build Package
+      - name: Update Environment Extensions
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
-            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
-            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
-            codeXML=$(grep '^codeXML=' $file | cut -f2 -d'=')
-
+            
             export WD=~/src/boomicicd-cli/cli/scripts
             export WORKSPACE=~/src/boomicicd-cli/cli/scripts
             
@@ -53,11 +49,11 @@ jobs:
             ~/src/boomicicd-cli/cli/scripts/bin/common.sh
             
             chmod +x ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh
-            ~/src/boomicicd-cli/cli/scripts/initcrPackage.sh componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$codeXML"
+            ~/src/boomicicd-cli/cli/scripts/bin/updateExtensions.sh $file
           done
 
   deployPackage:
-    needs: createPackage
+    #needs: createPackage
     # The type of runner that the job will run on
     runs-on: [self-hosted, linux, X64]
     
@@ -78,25 +74,3 @@ jobs:
       # Runs a single command using the runners shell
       #- name: Run a one-line script
       #  run:  cat ${{ github.workspace }}/README.md
-
-      # Runs a set of commands using the runners shell
-      - name: Build Package
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
-            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
-            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            #envId=$(grep '^envId=' $file | cut -f2 -d'=')
-            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
-            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
-            compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
-            
-            export WD=~/src/boomicicd-cli/cli/scripts/
-            export WORKSPACE=~/src/boomicicd-cli/cli/scripts/
-            
-            chmod +x ~/src/boomicicd-cli/cli/scripts/bin/common.sh
-            ~/src/boomicicd-cli/cli/scripts/bin/common.sh
-            
-            chmod +x ~/src/boomicicd-cli/cli/scripts/initdeployPackage.sh
-            ~/src/boomicicd-cli/cli/scripts/initdeployPackage.sh componentId=$compId packageVersion=$compVer componentType=$compType env=$envName notes="$compNotes" listenerStatus=$listenerStatus
-          done
