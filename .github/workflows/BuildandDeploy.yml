@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - '.gitignore'
       - '.github/workflows/**'
+      - '.github/workflows/Environment*.mf'
 
 # Controls when the workflow will run
 #on:
