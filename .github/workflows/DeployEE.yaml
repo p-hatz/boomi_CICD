@@ -63,5 +63,4 @@ jobs:
             echo $PWD
             cat $file
             ~/src/boomicicd-cli/cli/scripts/bin/updateExtensions.sh mfFile="$file"
-            done
           done
