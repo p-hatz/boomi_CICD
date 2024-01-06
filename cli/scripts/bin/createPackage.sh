@@ -1,6 +1,5 @@
 #!/bin/bash
-source ${GITHUB_WORKSPACE}/cli/bin/common.sh
-
+#source ${GITHUB_WORKSPACE}/cli/bin/common.sh
 echo post $authToken > /tmp/post.out
 
 # mandatory arguments
