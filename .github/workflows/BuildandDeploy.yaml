@@ -19,7 +19,7 @@ on:
 
 jobs:
   createPackage:
-    runs-on: [self-hosted, linux, X64]
+    runs-on: [self-hosted]
     
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
