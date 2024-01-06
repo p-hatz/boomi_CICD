@@ -8,8 +8,7 @@ targetEnv=1.Dev
 #targetEnv=2.Test
 
 listenerStatus=PAUSED
-ver=0.5.63
+ver=0.5.64
 buildNotes=Build from GitHub
 deployNotes=Deployment from GitHub
 codeXML=Code
-
