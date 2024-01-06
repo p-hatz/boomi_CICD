@@ -19,7 +19,7 @@ on:
 
 jobs:
   CreatePackage:
-    runs-on: [self-hosted]
+    runs-on: [self-hosted, linux, X64]
     
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -35,8 +35,9 @@ jobs:
         #  path: INT-001
 
       # Runs a set of commands using the runners shell
-      - name: Build Package
+      - name: Create Package
         run: |
+          echo "workspace:" ${GITHUB_WORKSPACE}
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             
