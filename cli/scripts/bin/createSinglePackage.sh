@@ -104,7 +104,8 @@ then
 	#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
 	export baseFolder="${packageFolder}"
 	#$WD/bin/gitPush.sh ${gitComponentOption}
-	export tag="${componentId}"
+	#export tag="${componentId}"
+ 	export tag="${processName}"
 	export notes="Created from GitHub Actions Pipeline"
 	$WD/bin/gitPush.sh "${notes}" "${tag}"
 
