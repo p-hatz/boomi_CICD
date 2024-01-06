@@ -1,5 +1,5 @@
 #!/bin/bash
-source $WD/bin/common.sh
+#source $WD/bin/common.sh
 
 # mandatory arguments
 ARGUMENTS=(packageVersion notes) 
