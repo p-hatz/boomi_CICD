@@ -1,5 +1,5 @@
 #!/bin/bash
-source $WD/bin/common.sh
+#source $WD/bin/common.sh
 
 # No verbose for this script
 saveVerbose=${VERBOSE}
