@@ -40,10 +40,11 @@ jobs:
           API=${{ secrets.API }}
           RepoURL=${{ github.SERVER_URL }}
           RepoName=${{ github.GITHUB_REPOSITORY }}
-          RepoPath=$RepoURL/$RepoName
+          #RepoPath=$RepoURL/$RepoName
           GITUsername=${{ github.GITHUB_REPOSITORY_OWNER }}
+          GITUseremail=${{ vars.EMAIL }}
           
-          echo $RepoPath
+          echo $RepoURL $RepoName $GITUsername GITUseremail
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
@@ -67,7 +68,7 @@ jobs:
             chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
 
-            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API 
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoURL $GITUsername $GITUseremail $RepoName 
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
             "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$codeXML"
