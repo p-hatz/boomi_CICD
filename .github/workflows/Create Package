@@ -41,3 +41,4 @@ jobs:
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             
             bash ${GITHUB_WORKSPACE}/boomi-CI-CD/boomi-CI-CD/boomicicd-cli/cli/scripts/bin/propertiesCICD.sh
+          done
