@@ -40,12 +40,10 @@ jobs:
           API=${{ secrets.API }}
           RepoURL=${{ github.server_url }}
           RepoName=${{ github.repository }}
-          RepoPath=$RepoURL/$RepoName
+          RepoPath=${RepoURL}/${RepoName}
           GITUsername=${{ github.repository_owner }}
           GITUseremail=${{ vars.EMAIL }}
-          
-          echo $RepoPath
-          
+
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
