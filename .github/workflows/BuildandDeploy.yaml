@@ -18,7 +18,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  createPackage:
+  CreatePackage:
     runs-on: [self-hosted]
     
     steps:
@@ -37,5 +37,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build Package
         run: |
-          echo $GITHUB_WORKSPACE
-          find $GITHUB_WORKSPACE
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            
+            bash ${GITHUB_WORKSPACE}/boomi-CI-CD/boomi-CI-CD/boomicicd-cli/cli/scripts/bin/propertiesCICD.sh
