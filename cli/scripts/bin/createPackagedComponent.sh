@@ -1,5 +1,5 @@
 #!/bin/bash
-source $WD/bin/common.sh
+#source $WD/bin/common.sh
 # Query processattachment id before creating it
 source $WD/bin/queryPackagedComponent.sh "$@"
 
