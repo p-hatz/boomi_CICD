@@ -36,7 +36,7 @@ jobs:
       - name: Create Package
         run: |
           ACCOUNT=${{ vars.ACCOUNT }}
-          USERNAME=${{ secrets.USERNAME }}
+          USERNAME=${{ vars.USERNAME }}
           API=${{ secrets.API }}
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
