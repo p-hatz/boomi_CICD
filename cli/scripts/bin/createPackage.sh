@@ -1,5 +1,7 @@
 #!/bin/bash
-source $WD/bin/common.sh
+source ${GITHUB_WORKSPACE}/cli/bin/common.sh
+
+echo post $authToken > /tmp/post.out
 
 # mandatory arguments
 ARGUMENTS=(packageVersion notes) 
@@ -13,7 +15,7 @@ fi
 
 if [ ! -z "${extractComponentXmlFolder}" ]
 then
- folder="${WORKSPACE}/${extractComponentXmlFolder}"
+ folder="${GITHUB_WORKSPACE}/${extractComponentXmlFolder}"
  rm -rf ${folder}
  unset extensionJson
  saveExtractComponentXmlFolder="${extractComponentXmlFolder}"
@@ -22,7 +24,7 @@ fi
 saveNotes="${notes}"
 saveTag="${tag}"
 
-source $WD/bin/createSinglePackage.sh "$@"
+source $GITHUB_WORKSPACE/cli/bin/createSinglePackage.sh "$@"
 
 handleXmlComponents "${saveExtractComponentXmlFolder}" "${saveTag}" "${saveNotes}"
 
