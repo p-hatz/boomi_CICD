@@ -1,0 +1,45 @@
+name: Create Package
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'InterfaceDefs/INT*.mf'
+
+# Controls when the workflow will run
+#on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+#  push:
+#    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  CreatePackage:
+    runs-on: [self-hosted, linux, X64]
+    
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        #with:
+        #  fetch-depth: 0
+        #  path: INT-001
+
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v37.5.2
+        #with:
+        #  path: INT-001
+
+      # Runs a set of commands using the runners shell
+      - name: Create Package
+        run: |
+          echo "workspace:" ${GITHUB_WORKSPACE}
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            
+            bash ${GITHUB_WORKSPACE}/boomi-CI-CD/boomi-CI-CD/boomicicd-cli/cli/scripts/bin/propertiesCICD.sh
+          done
