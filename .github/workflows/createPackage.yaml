@@ -34,11 +34,11 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Create Package
-        with:
+        run: |
           ACCOUNT: ${{ vars.ACCOUNT }}
           USERNAME: ${{ secrets.USERNAME }}
           API: ${{ secrets.API }}
-        run: |
+          
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             
