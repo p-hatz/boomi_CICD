@@ -1,8 +1,7 @@
 #Boomi Account Properties
-export accountId="{replacewithAccount}"
-#The subAccount ID to which an attachment to the parent Cloud will be installed
-export authToken="{replacewithAuthToken}"
-#Sub Account Authorization (using an Atomsphere API Token)
+export accountId="$1"
+export authToken="$2:$3"
+#Account Authorization (using an Atomsphere API Token)
 export baseURL=https://api.boomi.com/api/rest/v1/$accountId
 #Do not set 
 export sonarRulesFile="$WD/conf/BoomiSonarRules.xml"
