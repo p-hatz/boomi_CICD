@@ -43,3 +43,5 @@ jobs:
             
             bash ${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh
           done
+
+
