@@ -35,7 +35,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Create Package
         run: |
-          USERNAME: ${{ env.APIName }}
+          USERNAME: ${{ vars.APIName }}
           echo "username: " $USERNAME
           USERNAME2: ${{ secrets.API }}
           echo "username: " $USERNAME2
