@@ -56,8 +56,8 @@ jobs:
             chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
 
-            "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $ACCOUNT $USERNAME $API
-            ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $ACCOUNT $USERNAME $API
+            source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
             echo "authToken: $authToken" > /tmp/auth.xxx
 
