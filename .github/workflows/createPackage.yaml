@@ -31,9 +31,11 @@ jobs:
       - name: Changed Files
         id: changed-files
         uses: tj-actions/changed-files@v37.5.2
-        #with:
-        #  path: INT-001
 
+      - env:
+        USERNAME: ${{ env.APIName }}
+        echo "username: " $USERNAME
+        
       # Runs a set of commands using the runners shell
       - name: Create Package
         run: |
@@ -43,5 +45,3 @@ jobs:
             
             bash ${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh
           done
-
-
