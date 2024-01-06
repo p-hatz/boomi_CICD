@@ -50,7 +50,7 @@ jobs:
             codeXML=$(grep '^codeXML=' $file | cut -f2 -d'=')
 
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
-            #export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
             
             export GITHUB_WORKSPACE
 
