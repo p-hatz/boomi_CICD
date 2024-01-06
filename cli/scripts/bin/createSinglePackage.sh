@@ -107,7 +107,7 @@ then
 	#export tag="${componentId}"
  	export tag="${processName}"
 	export notes="Created from GitHub Actions Pipeline"
-	$WD/bin/gitPush.sh "${notes}" "${tag}"
+	source $WD/bin/gitPush.sh "${notes}" "${tag}"
 
 fi
 
