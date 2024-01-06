@@ -38,10 +38,10 @@ jobs:
           BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
           BoomiUsername=${{ vars.BOOMI_USERNAME }}
           API=${{ secrets.API }}
-          RepoURL=${{ github.SERVER_URL }}
-          RepoName=${{ github.GITHUB_REPOSITORY }}
+          RepoURL=${{ github.server_url }}
+          RepoName=${{ github.repository }}
           #RepoPath=$RepoURL/$RepoName
-          GITUsername=${{ github.GITHUB_REPOSITORY_OWNER }}
+          GITUsername=${{ github.repository_owner }}
           GITUseremail=${{ vars.EMAIL }}
           
           echo $RepoURL $RepoName $GITUsername GITUseremail
