@@ -48,12 +48,14 @@ jobs:
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
             codeXML=$(grep '^codeXML=' $file | cut -f2 -d'=')
-            
+
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
-            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+            #export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+            
+            export GITHUB_WORKSPACE
 
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
-            find ${GITHUB_WORKSPACE} -name *.sh -exec ls -ltr {} \;
+            #find ${GITHUB_WORKSPACE} -name *.sh -exec ls -ltr {} \;
 
             chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
             chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
@@ -62,9 +64,6 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $ACCOUNT $USERNAME $API
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            echo "authToken: $authToken" > /tmp/auth.xxx
-
-            
             "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$codeXML"
             #bash "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType env=$envName notes="$compNotes" listenerStatus=$listenerStatus
           done
