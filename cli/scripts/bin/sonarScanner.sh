@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-source bin/common.sh
+#source bin/common.sh
 
 # mandatory arguments
 ARGUMENTS=(baseFolder) 
