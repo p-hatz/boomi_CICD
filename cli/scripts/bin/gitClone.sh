@@ -22,7 +22,8 @@ git clone "${gitComponentRepoURL}"
 _repoName=$(basename $gitComponentRepoURL)
 #cp -R "${baseFolder}"/* "${gitComponentRepoName}"
 cp -R "${baseFolder}"/* "${_repoName}"
-cd "${gitComponentRepoName}"
+#cd "${gitComponentRepoName}"
+cd "${_repoName}"
 
 #cp -R "${baseFolder}"/* "${_repoName}/${gitComponentRepoName}"
 #cd "${gitComponentRepoName}"
