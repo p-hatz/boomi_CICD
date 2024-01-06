@@ -14,4 +14,4 @@ then
 fi
 
 echo pre $authToken > /tmp/pre.out
-${GITHUB_WORKSPACE}/cli/scripts/bin/createPackage.sh componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$notes" extractComponentXmlFolder="$extractComponentXmlFolder="
+${GITHUB_WORKSPACE}/cli/scripts/bin/createPackage.sh authToken=$authToken componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$notes" extractComponentXmlFolder="$extractComponentXmlFolder="
