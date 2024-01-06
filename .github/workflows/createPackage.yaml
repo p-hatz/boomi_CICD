@@ -52,6 +52,6 @@ jobs:
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
 
             bash "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $ACCOUNT $USERNAME $API
-            bash "${GITHUB_WORKSPACE} ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            bash "${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             bash "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh componentId=$compId packageVersion=$compVer componentType=$compType env=$envName notes="$compNotes" listenerStatus=$listenerStatus
           done
