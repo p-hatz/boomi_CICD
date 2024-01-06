@@ -25,3 +25,5 @@ export WORKSPACE=${WD}
 #Do not set
 export VERBOSE="true"
 #Enables verbose logging, set to false if you do not want the previously mentioned logs
+
+echo $accountId $authToken > /tmp/xx.out
