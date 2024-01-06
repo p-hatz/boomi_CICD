@@ -41,6 +41,17 @@ jobs:
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
+            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            #envId=$(grep '^envId=' $file | cut -f2 -d'=')
+            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
+            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
             
+            export WD=${GITHUB_WORKSPACE}/cli/scripts/
+            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+
             bash "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $ACCOUNT $USERNAME $API
+            bash "${GITHUB_WORKSPACE} ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            bash "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh componentId=$compId packageVersion=$compVer componentType=$compType env=$envName notes="$compNotes" listenerStatus=$listenerStatus
           done
