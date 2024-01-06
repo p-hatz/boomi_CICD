@@ -19,8 +19,9 @@ fi
 #git config --global user.name  "${gitComponentUserName}"
 
 git clone "${gitComponentRepoURL}"
-#_repoName=$(basename $gitComponentRepoURL)
-cp -R "${baseFolder}"/* "${gitComponentRepoName}"
+_repoName=$(basename $gitComponentRepoURL)
+#cp -R "${baseFolder}"/* "${gitComponentRepoName}"
+cp -R "${baseFolder}"/* "${_repoName}"
 cd "${gitComponentRepoName}"
 
 #cp -R "${baseFolder}"/* "${_repoName}/${gitComponentRepoName}"
