@@ -1,5 +1,5 @@
 #!/bin/bash
-source $WD/bin/common.sh
+#source $WD/bin/common.sh
 
 unset _saveComponentId _saveComponentType _saveComponentName _saveComponentVersion exportVariable
 # mandatory arguments
