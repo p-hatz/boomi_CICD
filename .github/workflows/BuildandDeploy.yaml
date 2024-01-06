@@ -33,23 +33,9 @@ jobs:
         uses: tj-actions/changed-files@v37.5.2
         #with:
         #  path: INT-001
-        
+
       # Runs a set of commands using the runners shell
       - name: Build Package
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
-            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
-            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
-            codeXML=$(grep '^codeXML=' $file | cut -f2 -d'=')
-
-            export WD="${GITHUB_WORKSPACE}/boomicicd-cli/cli/scripts"
-            export WORKSPACE="${GITHUB_WORKSPACE}/boomicicd-cli/cli/scripts"
-            
-            chmod +x "${WD}/bin/common.sh"
-            "${WD}/bin/common.sh"
-            
-            chmod +x "${WD}/initcrPackage.sh"
-            chmod +x "${WD}/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$codeXML"
-          done
+          echo $GITHUB_WORKSPACE
+          find $GITHUB_WORKSPACE
