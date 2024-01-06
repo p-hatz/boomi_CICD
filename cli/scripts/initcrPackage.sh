@@ -2,8 +2,8 @@
 
 set -a
 
-source $WD/bin/common.sh
-source $WD/bin/propertiesCICD.sh
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+#source $WD/bin/propertiesCICD.sh
 
 ARGUMENTS=(authToken componentId packageVersion notes componentType extractComponentXmlFolder)
 
