@@ -33,15 +33,15 @@ jobs:
         uses: tj-actions/changed-files@v37.5.2
 
       with:
-        key: ${{ secrets.PUBLISH_KEY }}
+        ACCOUNT: ${{ vars.Account }}
+        USERNAME: ${{ secrets.Username }}
+        API: ${{ secrets.API }}
 
       # Runs a set of commands using the runners shell
       - name: Create Package
         run: |
-          USERNAME: ${{ vars.APIName }}
-          API: ${{ secrets.API }}
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             
-            bash ${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh $USERNAME $API
+            bash ${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh $ACCOUNT $USERNAME $API
           done
