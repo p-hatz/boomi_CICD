@@ -35,9 +35,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Create Package
         run: |
-          ACCOUNT=${{ vars.ACCOUNT }}
-          USERNAME=${{ vars.USERNAME }}
+          BoomiAccount=${{ vars.ACCOUNT }}
+          BoomiUsername=${{ vars.USERNAME }}
           API=${{ secrets.API }}
+          
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
@@ -61,7 +62,7 @@ jobs:
             chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
 
-            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $ACCOUNT $USERNAME $API
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API 
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
             "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$codeXML"
