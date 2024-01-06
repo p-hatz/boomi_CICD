@@ -52,6 +52,8 @@ jobs:
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
 
+            find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
+
             chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
             chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
