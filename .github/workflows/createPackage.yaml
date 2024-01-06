@@ -42,5 +42,5 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             
-            bash "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh $ACCOUNT $USERNAME $API"
+            bash "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $ACCOUNT $USERNAME $API
           done
