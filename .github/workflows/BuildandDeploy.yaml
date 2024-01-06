@@ -1,6 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Build Package
+name: Build and Package
 on:
   push:
     branches:
@@ -19,14 +17,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   createPackage:
-    # The type of runner that the job will run on
     runs-on: [self-hosted, linux, X64]
     
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
@@ -40,10 +34,6 @@ jobs:
         #with:
         #  path: INT-001
         
-      # Runs a single command using the runners shell
-      #- name: Run a one-line script
-      #  run:  cat ${{ github.workspace }}/README.md
-
       # Runs a set of commands using the runners shell
       - name: Build Package
         run: |
