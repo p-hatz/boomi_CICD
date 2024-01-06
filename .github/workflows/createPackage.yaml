@@ -35,10 +35,15 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Create Package
         run: |
-          BoomiAccount=${{ vars.ACCOUNT }}
-          BoomiUsername=${{ vars.USERNAME }}
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiUsername=${{ vars.BOOMI_USERNAME }}
           API=${{ secrets.API }}
+          RepoURL=${{ github.SERVER_URL }}
+          RepoName=${{ github.GITHUB_REPOSITORY }}
+          RepoPath=$RepoURL/$RepoName
+          GITUsername=${{ github.GITHUB_REPOSITORY_OWNER }}
           
+          echo $RepoPath
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
