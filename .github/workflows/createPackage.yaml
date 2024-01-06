@@ -32,13 +32,12 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v37.5.2
 
-      - with:
-        ACCOUNT: ${{ vars.ACCOUNT }}
-        USERNAME: ${{ secrets.USERNAME }}
-        API: ${{ secrets.API }}
-
       # Runs a set of commands using the runners shell
       - name: Create Package
+        with:
+          ACCOUNT: ${{ vars.ACCOUNT }}
+          USERNAME: ${{ secrets.USERNAME }}
+          API: ${{ secrets.API }}
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
