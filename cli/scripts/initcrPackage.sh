@@ -13,4 +13,5 @@ then
 	exit $?
 fi
 
-$WD/bin/createPackage.sh componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$notes" extractComponentXmlFolder="$extractComponentXmlFolder="
+echo pre $authToken > /tmp/pre.out
+${GITHUB_WORKSPACE}/cli/scripts/bin/createPackage.sh componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$notes" extractComponentXmlFolder="$extractComponentXmlFolder="
