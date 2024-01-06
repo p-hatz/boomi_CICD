@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $WD/bin/common.sh
+#source $WD/bin/common.sh
 SCRIPTS_FOLDER=`pwd`
 
 # mandatory arguments
