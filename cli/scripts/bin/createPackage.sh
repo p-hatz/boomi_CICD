@@ -23,7 +23,7 @@ fi
 saveNotes="${notes}"
 saveTag="${tag}"
 
-source ${GITHUB_WORKSPACE}/cli/bin/createSinglePackage.sh "$@"
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/createSinglePackage.sh "$@"
 
 handleXmlComponents "${saveExtractComponentXmlFolder}" "${saveTag}" "${saveNotes}"
 
