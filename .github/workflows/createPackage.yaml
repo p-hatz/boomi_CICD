@@ -103,9 +103,9 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
-            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            packageVersion=$(grep '^ver=' $file | cut -f2 -d'=')
             #envId=$(grep '^envId=' $file | cut -f2 -d'=')
-            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
+            env=$(grep '^targetEnv=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
             #codeXML=$(grep '^codeXML=' $file | cut -f2 -d'=')
