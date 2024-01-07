@@ -24,13 +24,13 @@ saveNotes="${notes}";
 saveTag="${tag}"
 
 
-source $WD/bin/createSinglePackage.sh componentId=${componentId} processName="${processName}" componentType="${componentType}" componentVersion="${componentVersion}" packageVersion="$packageVersion" notes="$notes" extractComponentXmlFolder="${extractComponentXmlFolder}" 
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/createSinglePackage.sh componentId=${componentId} processName="${processName}" componentType="${componentType}" componentVersion="${componentVersion}" packageVersion="$packageVersion" notes="$notes" extractComponentXmlFolder="${extractComponentXmlFolder}" 
 notes="${saveNotes}";
 
-source $WD/bin/queryEnvironment.sh env="$env" classification="*"
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryEnvironment.sh env="$env" classification="*"
 saveEnvId=${envId}
 
-source $WD/bin/createDeployedPackage.sh envId=${envId} listenerStatus="${listenerStatus}" packageId=$packageId notes="$notes"
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/createDeployedPackage.sh envId=${envId} listenerStatus="${listenerStatus}" packageId=$packageId notes="$notes"
 
 handleXmlComponents "${saveExtractComponentXmlFolder}" "${saveTag}" "${saveNotes}"
 
