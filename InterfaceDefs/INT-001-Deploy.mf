@@ -12,5 +12,3 @@ ver=0.5.119
 buildNotes=Packaged from GitHub
 deployNotes=Deployment from GitHub
 #codeXML=Code
-
-
