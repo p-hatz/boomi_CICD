@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/##_misc" componentId="a0314381-7c2b-42c4-9093-b29939ba1512" version="16" name="[conn] HTTP Mock API" type="connector-settings" subType="http" createdDate="2023-12-08T02:35:15Z" createdBy="peterantony@boomi.com" modifiedDate="2023-12-12T04:46:27Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="##_misc" folderId="RjoyNzY4MjI5">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <HttpSettings xmlns="" authenticationType="NONE" url="http://localhost:6090">
+      <AuthSettings user=""/>
+      <OAuthSettings accessToken="" accessTokenURL="" authorizationURL="" consumerKey="" realm="" requestTokenURL="" signatureMethod="SHA256" suppressBlankAccessToken="false"/>
+      <OAuth2Settings grantType="code" refreshAuthScheme="req_body_params_auth">
+        <credentials clientId=""/>
+        <authorizationTokenEndpoint url="">
+          <sslOptions/>
+        </authorizationTokenEndpoint>
+        <authorizationParameters/>
+        <accessTokenEndpoint url="">
+          <sslOptions/>
+        </accessTokenEndpoint>
+        <accessTokenParameters/>
+        <scope/>
+      </OAuth2Settings>
+      <AwsSettings>
+        <credentials>
+          <accessKeyId/>
+          <awsService>s3</awsService>
+          <customService/>
+          <awsRegion>ap-northeast-1</awsRegion>
+          <customRegion/>
+        </credentials>
+      </AwsSettings>
+      <SSLOptions clientauth="false" trustServerCert="false"/>
+    </HttpSettings>
+  </bns:object>
+</bns:Component>
