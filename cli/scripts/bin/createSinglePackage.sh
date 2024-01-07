@@ -81,7 +81,7 @@ then
 		componentId=${componentIds[$g]}
 		componentVersion=${componentVersions[$g]}
 
-		echo $componentId : $componentVersion
+		#echo $componentId : $componentVersion
 
 		source $WD/bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
     eval `cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
@@ -103,11 +103,14 @@ then
 
 	#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
 	export baseFolder="${packageFolder}"
-	#$WD/bin/gitPush.sh ${gitComponentOption}
+	echo savenotes: ${saveNotes}
+
+	export $saveNotes
+	source $WD/bin/gitPush.sh ${gitComponentOption}
 	#export tag="${componentId}"
- 	export tag="${processName}"
-	export notes="Created from GitHub Actions Pipeline"
-	source $WD/bin/gitPush.sh "${notes}" "${tag}"
+ 	#export tag="${processName}"
+	#export notes="Created from GitHub Actions Pipeline"
+	#source $WD/bin/gitPush.sh "${notes}" "${tag}"
 
 fi
 

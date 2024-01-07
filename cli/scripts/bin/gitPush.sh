@@ -1,9 +1,10 @@
 #!/bin/bash
 
-
+saveNotes="${saveNotes}: ${compId}:${compVer}"
 if [ "${gitComponentOption}" == "CLONE" ]
 then
-   $WD/bin/gitClone.sh "$@"
+   source $WD/bin/gitClone.sh notes="${saveNotes}"
+   #source $WD/bin/gitClone.sh "$@"
 else
-  $WD/bin/gitRelease.sh "$@"
+  source $WD/bin/gitRelease.sh "$@"
 fi
