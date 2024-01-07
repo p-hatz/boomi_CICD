@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Connections" componentId="c5eca2db-804f-4fb0-a06e-dc4a7a2cec98" version="19" name="[conn] tmp" type="connector-settings" subType="disk" createdDate="2021-10-06T07:22:22Z" createdBy="peterantony@boomi.com" modifiedDate="2023-11-26T07:07:03Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Connections" folderId="RjoyNzI5NDE1">
-  <bns:encryptedValues/>
-  <bns:description/>
-  <bns:object>
-    <DiskSettings xmlns="" directory=""/>
-  </bns:object>
-</bns:Component>
