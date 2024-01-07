@@ -7,8 +7,6 @@ componentType=process
 targetEnv=1.Dev
 #targetEnv=2.Test
 
-
-
 listenerStatus=PAUSED
 ver=0.5.118
 buildNotes=Packaged from GitHub
