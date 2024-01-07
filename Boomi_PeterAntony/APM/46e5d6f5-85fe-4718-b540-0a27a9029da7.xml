@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/APM" componentId="46e5d6f5-85fe-4718-b540-0a27a9029da7" version="11" name="[oper] Stop Trace" type="connector-action" subType="boomi_peterantony-XG9LRG-apmpla-test" createdDate="2023-02-24T06:53:25Z" createdBy="peterantony@boomi.com" modifiedDate="2023-02-28T07:30:32Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="APM" folderId="Rjo1NjMwNzYy">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="" returnApplicationErrors="false" trackResponse="false">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <GenericOperationConfig operationType="EXECUTE" requestProfileType="xml" responseProfileType="xml">
+          <field id="action" type="string" value="stop"/>
+          <field id="realTimeProcessing" type="string" value="ignore"/>
+          <field id="sendEvent" type="boolean" value="true"/>
+          <Options/>
+        </GenericOperationConfig>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>
