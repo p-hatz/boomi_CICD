@@ -125,5 +125,5 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            "${GITHUB_WORKSPACE}/cli/scripts/bin/deployPackage.sh" componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$compNotes" env=$env listenerStatus=$listenerStatus
+            "${GITHUB_WORKSPACE}/cli/scripts/bin/initdeployPackage.sh" componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$compNotes" env=$env listenerStatus=$listenerStatus
           done
