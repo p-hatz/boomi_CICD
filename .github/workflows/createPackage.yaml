@@ -52,7 +52,7 @@ jobs:
             #envId=$(grep '^envId=' $file | cut -f2 -d'=')
             envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
-            compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
             #codeXML=$(grep '^codeXML=' $file | cut -f2 -d'=')
 
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
