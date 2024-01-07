@@ -313,12 +313,19 @@ function handleXmlComponents {
 	tag="${2}"
 	notes="${3}"
 
-
 	# Tag all the packages of the release together
 	if [ ! -z "${extractComponentXmlFolder}" ] && [ null != "${extractComponentXmlFolder}" ] && [ "" != "${extractComponentXmlFolder}" ]
 	then
   	folder="${WORKSPACE}/${extractComponentXmlFolder}"
 	printExtensions
+
+	#debug - start
+        mkdir -p "${WORKSPACE}/${extractComponentXmlFolder}/"
+        #mkdir -p "${GITHUB_WORKSPACE}/CodeReview/${extractComponentXmlFolder}"
+   	#$WD/bin/publishCodeReviewReport.sh COMPONENT_LIST_FILE="${GITHUB_WORKSPACE}/CodeReview/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list" GIT_COMMIT_ID="master" > "${GITHUB_WORKSPACE}/CodeReview/${extractComponentXmlFolder}_CodeReviewReport.html"
+	#cp "${WORKSPACE}/CodeReview/${extractComponentXmlFolder}_CodeReviewReport.html" "${WORKSPACE}/CodeReview/${extractComponentXmlFolder}/${extractComponentXmlFolder}_CodeReviewReport.html" 
+	#rm -f "${WORKSPACE}/CodeReview/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
+	#debug - end
 
   	# Save componentExtractFolder into git
     if [ ! -z "${tag}" ] && [ null != "${tag}" ] && [ "" != "${tag}" ]

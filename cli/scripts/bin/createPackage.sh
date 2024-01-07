@@ -1,6 +1,5 @@
 #!/bin/bash
-#source ${GITHUB_WORKSPACE}/cli/bin/common.sh
-echo post $authToken > /tmp/post.out
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
 # mandatory arguments
 ARGUMENTS=(packageVersion notes) 
