@@ -4,8 +4,8 @@ ver=0.5.122
 buildNotes=Packaged from GitHub
 
 deploy=1
-targetEnv=1.Dev
-#targetEnv=2.Test
+#targetEnv=1.Dev
+targetEnv=2.Test
 
 listenerStatus=PAUSED
 deployNotes=Deployment from GitHub
