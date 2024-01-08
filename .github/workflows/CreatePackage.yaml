@@ -67,12 +67,12 @@ jobs:
             export GITHUB_WORKSPACE
 
             #if ( $funcTest == 1 ) && ( $_postmanInst == 0 )
-            if [ $_postmanInst == 0 ]
+            if [ $_postmanInst == "0" ]
             then
               #sudo apt-get install -y curl
               #sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
               /usr/local/bin/postman login --with-api-key $POSTMAN
-              _postmanInst = 1
+              _postmanInst=1
             fi
             
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
