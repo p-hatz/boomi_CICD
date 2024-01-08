@@ -71,7 +71,7 @@ jobs:
             then
               #sudo apt-get install -y curl
               #sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
-              sh "/usr/local/bin/postman login --with-api-key $POSTMAN"
+              /usr/local/bin/postman login --with-api-key $POSTMAN
               _postmanInst = 1
             fi
             
