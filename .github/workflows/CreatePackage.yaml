@@ -67,7 +67,7 @@ jobs:
             export GITHUB_WORKSPACE
 
             #if ( $funcTest == 1 ) && ( $_postmanInst == 0 )
-            if [ $_postmanInst == "0" ]
+            if [ "$_postmanInst" == "0" ]
             then
               #sudo apt-get install -y curl
               #sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
