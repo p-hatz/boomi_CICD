@@ -78,4 +78,12 @@ jobs:
               echo Deploying
               "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$env listenerStatus=$listenerStatus
             fi
+
+            if [ $funcTest == "1" ]
+            then
+              echo Running Postman Collection
+              
+              #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$env listenerStatus=$listenerStatus
+            fi
+
           done
