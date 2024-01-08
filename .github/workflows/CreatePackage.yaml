@@ -32,6 +32,7 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v37.5.2
 
+
       # Runs a set of commands using the runners shell
       - name: Create Package
         run: |
@@ -44,6 +45,9 @@ jobs:
           GITUsername=${{ github.repository_owner }}
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
+          POSTMAN=${{ secrets.POSTMAN }}
+
+          _postmanInst=0
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
@@ -55,12 +59,20 @@ jobs:
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
             deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
+            collectionId=$(grep '^postmanCollection=' $file | cut -f2 -d'=')
+            testId=$(grep '^postmanTestId=' $file | cut -f2 -d'=')
 
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
-            
             export GITHUB_WORKSPACE
 
+            if [ $funcTest == 1 ] && [ $_postmanInst == 0 ]
+            then
+              sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
+              sh 'postman login --with-api-key $POSTMAN'
+              _postmanInst = 1
+            fi
+            
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
             #find ${GITHUB_WORKSPACE} -name *.sh -exec ls -ltr {} \;
 
@@ -71,18 +83,18 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+            #"${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
 
             if [ $deployPackage == "1" ]
             then
               echo Deploying
-              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$env listenerStatus=$listenerStatus
+              #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$env listenerStatus=$listenerStatus
             fi
 
             if [ $funcTest == "1" ]
             then
               echo Running Postman Collection
-              
+              postman collection run $postmanCollection -i $testId
               #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$env listenerStatus=$listenerStatus
             fi
 
