@@ -59,8 +59,8 @@ jobs:
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
             deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
-            collectionId=$(grep '^postmanCollection=' $file | cut -f2 -d'=')
-            testId=$(grep '^postmanTestId=' $file | cut -f2 -d'=')
+            collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
+            testId=$(grep '^testId=' $file | cut -f2 -d'=')
 
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
