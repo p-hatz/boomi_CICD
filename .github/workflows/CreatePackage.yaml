@@ -49,7 +49,9 @@ jobs:
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            packageVersion=$(grep '^ver=' $file | cut -f2 -d'=')
             envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
+            env=$(grep '^targetEnv=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
             deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
@@ -73,4 +75,5 @@ jobs:
 
             if: deployPackage == 1
               echo Deploying
+              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$env listenerStatus=$listenerStatus
           done
