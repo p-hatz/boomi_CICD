@@ -67,7 +67,7 @@ jobs:
             export GITHUB_WORKSPACE
 
             #if ( $funcTest == 1 ) && ( $_postmanInst == 0 )
-            if [ "$_postmanInst" == "0" ]
+            if [ $postmanInst == 0 ]
             then
               #sudo apt-get install -y curl
               #sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
@@ -87,13 +87,13 @@ jobs:
 
             #"${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
 
-            if [ $deployPackage == "1" ]
+            if [ $deployPackage == 1 ]
             then
               echo Deploying
               #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$env listenerStatus=$listenerStatus
             fi
 
-            if [ $funcTest == "1" ]
+            if [ $funcTest == 1 ]
             then
               echo Running Postman Collection
               /usr/local/bin/postman collection run $collection -i $testId
