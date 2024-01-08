@@ -44,16 +44,15 @@ jobs:
           GITUsername=${{ github.repository_owner }}
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
-
+          
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            #envId=$(grep '^envId=' $file | cut -f2 -d'=')
             envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
-            #codeXML=$(grep '^codeXML=' $file | cut -f2 -d'=')
+            deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
 
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
@@ -70,5 +69,8 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+            #"${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+
+            if: deployPackage == 1
+              echo Deploying
           done
