@@ -1,11 +1,17 @@
+##Build
 componentId=14970c43-775f-4921-ab22-720566c70dfa
 componentType=process
 ver=0.5.122
 buildNotes=Packaged from GitHub
 
+##Deployment
 deploy=1
 #targetEnv=1.Dev
 targetEnv=2.Test
-
 listenerStatus=PAUSED
 deployNotes=Deployment from GitHub
+
+##Testing
+funcTest=1
+collectionId=3718514-2052e7c8-2814-4514-ab3f-6d14efeb7f2a
+testId=3718514-a34d25c9-beae-43ea-8e29-e33314bd99f4
