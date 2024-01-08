@@ -96,7 +96,7 @@ jobs:
             if [ $funcTest == "1" ]
             then
               echo Running Postman Collection
-              /usr/local/bin/postman collection run $postmanCollection -i $testId
+              /usr/local/bin/postman collection run $collection -i $testId
               #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$env listenerStatus=$listenerStatus
             fi
 
