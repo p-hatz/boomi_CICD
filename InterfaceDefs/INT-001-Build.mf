@@ -1,6 +1,6 @@
 componentId=14970c43-775f-4921-ab22-720566c70dfa
 componentType=process
-ver=0.5.118
+ver=0.5.120
 buildNotes=Packaged from GitHub
 
 deploy=1
@@ -8,5 +8,4 @@ targetEnv=1.Dev
 #targetEnv=2.Test
 
 listenerStatus=PAUSED
-ver=0.5.120
 deployNotes=Deployment from GitHub
