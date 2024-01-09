@@ -69,6 +69,7 @@ jobs:
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
             export GITHUB_WORKSPACE
 
+            echo pre
             if [ $postmanInst == 0  && $funcTest == 1 ]
             then
               #sudo apt-get install -y curl
@@ -76,6 +77,7 @@ jobs:
               /usr/local/bin/postman login --with-api-key $POSTMAN
               postmanInst=1
             fi
+            echo post
             
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
 
