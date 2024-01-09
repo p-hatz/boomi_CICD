@@ -98,7 +98,7 @@ jobs:
             then
               echo Running Postman Collection
               postmanOut=$(/usr/local/bin/postman collection run "$collectionId" -i "$testId" | grep test-scripts | sed 's/  *//g')
-              echo output: $_postmanOut
+              echo output: $postmanOut
               postmanResult=$(echo $postmanOut | awk -F "|" '{ print $3 }')
               if [ $postmanResult != "1" ]
               then
