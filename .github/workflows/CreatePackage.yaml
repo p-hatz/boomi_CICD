@@ -50,6 +50,8 @@ jobs:
           postmanInst=0
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            funcTest=0
+            
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
@@ -67,8 +69,7 @@ jobs:
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
             export GITHUB_WORKSPACE
 
-            #if ( $funcTest == 1 ) && ( $_postmanInst == 0 )
-            if [ $postmanInst == 0 ]
+            if [[ $postmanInst == 0 ] && [ $funcTest == 1 ]]
             then
               #sudo apt-get install -y curl
               #sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
@@ -100,5 +101,4 @@ jobs:
               /usr/local/bin/postman collection run "$collectionId" -i "$testId"
               #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$env listenerStatus=$listenerStatus
             fi
-
           done
