@@ -100,11 +100,11 @@ jobs:
               _postmanOut=$(/usr/local/bin/postman collection run "$collectionId" -i "$testId" | grep test-scripts | sed 's/  *//g')
               echo output: $_postmanOut
               _postmanResult=$(echo $_postmanOut | awk -F "|" '{ print $3 }')
-              if $_postmanResult != 1
+              if [ $_postmanResult != "1" ]
               then
                   echo "::error Postman test failed"
                   exit 1
-              elif $_postmanResult == 0
+              elif [ $_postmanResult == "0" ]
               then
                 echo "Postman test OK"
                 exit 0
