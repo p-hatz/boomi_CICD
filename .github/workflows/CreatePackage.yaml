@@ -95,6 +95,8 @@ jobs:
 
             if [ $funcTest == 1 ]
             then
+              echo Sleeping...
+              sleep 30
               echo Running Postman Collection
               postmanOut=$(/usr/local/bin/postman collection run "$collectionId" -i "$testId")       
               postmanResult=$(echo $postmanOut | grep '200 OK' | wc -l)
