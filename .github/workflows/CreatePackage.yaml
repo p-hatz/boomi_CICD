@@ -46,7 +46,7 @@ jobs:
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
           POSTMAN=${{ secrets.POSTMAN }}
-
+          
           postmanInst=0
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
@@ -61,6 +61,7 @@ jobs:
             deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
             testId=$(grep '^testId=' $file | cut -f2 -d'=')
+            funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
 
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
@@ -72,9 +73,7 @@ jobs:
               #sudo apt-get install -y curl
               #sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
               /usr/local/bin/postman login --with-api-key $POSTMAN
-              echo pre
-              postmanInst==1
-              echo post
+              postmanInst=1
             fi
             
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
@@ -98,9 +97,7 @@ jobs:
             if [ $funcTest == 1 ]
             then
               echo Running Postman Collection
-              echo pre1
               /usr/local/bin/postman collection run "$collection" -i "$testId"
-              echo post1
               #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$env listenerStatus=$listenerStatus
             fi
 
