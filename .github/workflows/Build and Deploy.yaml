@@ -162,3 +162,59 @@ jobs:
               fi
             fi
           done
+
+deploytoTest:
+    runs-on: [self-hosted, linux, X64]
+    needs: createPackage
+    environment:
+      name: "Test"
+    if: needs.createPackage.outputs.runDeploy == '1'
+    
+    steps:
+      - uses: actions/checkout@v3
+        #with:
+        #  fetch-depth: 0
+        #  path: INT-001
+
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v37.5.2
+        
+      # Runs a set of commands using the runners shell
+      - name: Deploy Package
+        run: |
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiUsername=${{ vars.BOOMI_USERNAME }}
+          API=${{ secrets.API }}
+          RepoURL=${{ github.server_url }}
+          RepoName=${{ github.repository }}
+          RepoPath=${RepoURL}/${RepoName}
+          GITUsername=${{ github.repository_owner }}
+          GITUseremail=${{ vars.EMAIL }}
+          CodeFolderXML=${{ vars.CODEFOLDER }}
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            funcTest=0
+            
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
+            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
+            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            
+            export WD=${GITHUB_WORKSPACE}/cli/scripts/
+            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+            export GITHUB_WORKSPACE
+
+            find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
+
+            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
+            chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
+
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+            source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+
+            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+          done
