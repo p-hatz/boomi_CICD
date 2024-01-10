@@ -165,7 +165,7 @@ jobs:
 
   deploytoTest:
     runs-on: [self-hosted, linux, X64]
-    needs: createPackage
+    needs: deploytoDev
     environment:
       name: "Test"
     if: needs.createPackage.outputs.runDeploy == '1'
