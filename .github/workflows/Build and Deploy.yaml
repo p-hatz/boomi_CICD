@@ -54,16 +54,9 @@ jobs:
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            packageVersion=$(grep '^ver=' $file | cut -f2 -d'=')
-            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
-            env=$(grep '^targetEnv=' $file | cut -f2 -d'=')
-            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
             deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
-            collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
-            testId=$(grep '^testId=' $file | cut -f2 -d'=')
-            funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
-
+            
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
             export GITHUB_WORKSPACE
@@ -87,10 +80,6 @@ jobs:
     needs: createPackage
     if: needs.createPackage.outputs.runDeploy == '1'
     
-    #environment:
-    #  name: "Development"
-    #  boomiEnv: ${{ vars.BOOMI_ENVIRONMENT }}
-      
     steps:
       - uses: actions/checkout@v3
         #with:
@@ -124,12 +113,9 @@ jobs:
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            packageVersion=$(grep '^ver=' $file | cut -f2 -d'=')
-            #envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
-            #env=$(grep '^targetEnv=' $file | cut -f2 -d'=')
+            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
-            deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
             testId=$(grep '^testId=' $file | cut -f2 -d'=')
             funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
@@ -155,7 +141,7 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$ listenerStatus=$listenerStatus
+            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
             
             if [ $funcTest == 1 ]
             then
