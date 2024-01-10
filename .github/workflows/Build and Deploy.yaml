@@ -78,8 +78,7 @@ jobs:
   deploytoDev:
     runs-on: [self-hosted, linux, X64]
     needs: createPackage
-    if: needs.createPackage.outputs.runDeploy == '1'
-    
+    if: needs.createPackage.outputs.runDeploy == '1.Dev'
     steps:
       - uses: actions/checkout@v3
         #with:
@@ -168,7 +167,7 @@ jobs:
     needs: deploytoDev
     environment:
       name: "Test"
-    if: needs.createPackage.outputs.runDeploy == '1'
+    if: needs.createPackage.outputs.runDeploy == '2.Test'
     
     steps:
       - uses: actions/checkout@v3
