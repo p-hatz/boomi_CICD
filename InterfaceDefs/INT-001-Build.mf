@@ -5,7 +5,7 @@ ver=0.5.132
 buildNotes=Packaged from GitHub
 
 ##Deployment
-deploy=1
+deploy=0
 targetEnv=1.Dev
 #targetEnv=2.Test
 listenerStatus=RUNNING
