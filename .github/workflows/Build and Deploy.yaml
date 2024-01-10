@@ -21,7 +21,7 @@ jobs:
   createPackage:
     runs-on: [self-hosted, linux, X64]
     outputs:
-      deployOut: ${{ steps.createPackage.outputs.deploy }}
+      runDeploy: ${{ steps.createPackage.outputs.deploy }}
     
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -96,6 +96,8 @@ jobs:
   deploytoDev:
     runs-on: [self-hosted, linux, X64]
     needs: createPackage
+    if: needs.createPackage.outputs.runDeploy == '1'
+    
     #environment:
     #  name: "Development"
     #  boomiEnv: ${{ vars.BOOMI_ENVIRONMENT }}
@@ -112,9 +114,6 @@ jobs:
         
       # Runs a set of commands using the runners shell
       - name: Deploy Package
-        env:
-          DEPLOY: ${{needs.createPackage.outputs.deployOut}}
-        if: $DEPLOY == 1
         run: |
           BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
           BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
