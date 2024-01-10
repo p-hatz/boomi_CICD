@@ -112,7 +112,7 @@ jobs:
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
+            envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
@@ -198,7 +198,7 @@ jobs:
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
+            envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
             
