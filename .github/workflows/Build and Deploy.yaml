@@ -47,9 +47,6 @@ jobs:
           GITUsername=${{ github.repository_owner }}
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
-          POSTMAN=${{ secrets.POSTMAN }}
-          
-          postmanInst=0
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             funcTest=0
@@ -71,14 +68,6 @@ jobs:
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
             export GITHUB_WORKSPACE
 
-            if [[ $postmanInst == 0  && $funcTest == 1 ]]
-            then
-              #sudo apt-get install -y curl
-              #sh 'curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh'
-              /usr/local/bin/postman login --with-api-key $POSTMAN
-              postmanInst=1
-            fi
-            
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
 
             chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
@@ -88,7 +77,7 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            #"${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+            "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
           done
           
           echo "deploy=$deployPackage" >> "$GITHUB_OUTPUT"
@@ -166,12 +155,12 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$ listenerStatus=$listenerStatus
+            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$packageVersion componentType=$compType notes="$compNotes" env=$ listenerStatus=$listenerStatus
             
             if [ $funcTest == 1 ]
             then
               echo Sleeping...
-              sleep 30
+              sleep 15
               echo Running Postman Collection
               postmanOut=$(/usr/local/bin/postman collection run "$collectionId" -i "$testId")       
               postmanResult=$(echo $postmanOut | grep '200 OK' | wc -l)
