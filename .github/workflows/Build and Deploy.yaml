@@ -20,6 +20,8 @@ on:
 jobs:
   createPackage:
     runs-on: [self-hosted, linux, X64]
+    outputs:
+      deployOut: ${{ steps.createPackage.outputs.deploy }}
     
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -34,6 +36,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Create Package
+        id: createPackage
         run: |
           BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
           BoomiUsername=${{ vars.BOOMI_USERNAME }}
@@ -87,9 +90,10 @@ jobs:
 
             #"${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
           done
+          
+          echo "deploy=$deployPackage" >> "$GITHUB_OUTPUT"
 
   deploytoDev:
-    if: $deployPackage == 1
     runs-on: [self-hosted, linux, X64]
     needs: createPackage
     #environment:
@@ -97,7 +101,6 @@ jobs:
     #  boomiEnv: ${{ vars.BOOMI_ENVIRONMENT }}
       
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         #with:
         #  fetch-depth: 0
@@ -109,6 +112,9 @@ jobs:
         
       # Runs a set of commands using the runners shell
       - name: Deploy Package
+        env:
+          DEPLOY: ${{needs.createPackage.outputs.deployOut}}
+        if: $DEPLOY == 1
         run: |
           BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
           BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
