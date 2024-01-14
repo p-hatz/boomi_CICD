@@ -74,7 +74,7 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+            #"${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
           done
 
           #Dev is already set
