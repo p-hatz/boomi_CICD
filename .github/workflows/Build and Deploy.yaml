@@ -242,12 +242,13 @@ jobs:
             echo random: $_id
             
             _timeOut=${{ vars.TIMEOUT }}
-            if $_timeOut == 0
+            if [[ $_timeOut == 0 ]]
             then
+              echo need to set timeout
               _timeOut=30
             fi
 
-            if [[ $sample == 1 ]]
+            if [[ $sampleProc == 1 ]]
             then
               echo Sampling Proc...
               "${GITHUB_WORKSPACE}/cli/scripts/sampleProc.sh" $_timeOut $_id
