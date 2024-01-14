@@ -69,9 +69,9 @@ jobs:
 
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
 
-            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
-            chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
-            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
+            #chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
+            #chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            #chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
 
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
