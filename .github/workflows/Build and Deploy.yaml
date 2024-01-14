@@ -90,7 +90,7 @@ jobs:
 
           echo "deploy=$deployPackage" >> "$GITHUB_OUTPUT"
 
-          echo "runDeploy: $GITHUB_OUTPUT"
+          echo "runDeploy: $deployPackage"
           exit 0
           
   deploytoDev:
