@@ -227,7 +227,7 @@ jobs:
             "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
           done
 
-deploytoProd:
+  deploytoProd:
     runs-on: [self-hosted, linux, X64]
     needs: [createPackage, deploytoDev, deploytoTest]
     environment:
