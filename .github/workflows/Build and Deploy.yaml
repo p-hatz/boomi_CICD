@@ -9,6 +9,7 @@ env:
   envDev: "1.Dev"
   envTest: "2.Dev"
   envProd: "3.Prod"
+  ID: ${{ github.run_id }}-${{ github.run_attempt }}
 
 # Controls when the workflow will run
 #on:
@@ -244,7 +245,8 @@ jobs:
             envName="2.Test"
             "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
 
-            _id=$RANDOM
+            #_id=$RANDOM
+            _id=${{ env.ID }}
             echo random: $_id
             
             _timeOut=${{ vars.TIMEOUT }}
