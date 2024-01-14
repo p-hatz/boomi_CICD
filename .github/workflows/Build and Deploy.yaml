@@ -74,7 +74,7 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            #"${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+            "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
           done
 
           #Dev is already set
@@ -90,9 +90,6 @@ jobs:
 
           echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
 
-          echo "runDeploy: $deployPackageHWM"
-          exit 0
-          
   deploytoDev:
     runs-on: [self-hosted, linux, X64]
     needs: createPackage
@@ -162,7 +159,7 @@ jobs:
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
             envName="1.Dev"
-            #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
             
             if [ $funcTest == 1 ]
             then
@@ -237,7 +234,7 @@ jobs:
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             
             envName="2.Test"
-            #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
           done
 
   deploytoProd:
@@ -293,5 +290,5 @@ jobs:
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
             envName="3.Prod"
-            #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
           done
