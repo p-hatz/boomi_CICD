@@ -1,12 +1,12 @@
 ##Build
 componentId=14970c43-775f-4921-ab22-720566c70dfa
 componentType=process
-ver=0.5.140
+ver=0.5.141
 buildNotes=Packaged from GitHub
 
 ##Deployment
-#deploy=1.Dev
-deploy=2.Test
+deploy=1.Dev
+#deploy=2.Test
 #targetEnv=1.Dev
 listenerStatus=RUNNING
 deployNotes=Deployment from GitHub
