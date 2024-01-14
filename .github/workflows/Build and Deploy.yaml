@@ -274,6 +274,7 @@ jobs:
                 echo "Postman test OK"
                 #we run spark separately because the `timeout` command terminates the script
                 spark < /tmp/$_id.sample > /tmp/$_id.sample.out
+                cat /tmp/$_id.sample
                 cat /tmp/$_id.sample.out
               fi
             fi
