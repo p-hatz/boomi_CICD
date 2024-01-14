@@ -5,6 +5,10 @@ on:
       - main
     paths:
       - 'InterfaceDefs/INT-*.mf'
+env:
+  envDev: "1.Dev"
+  envTest: "2.Dev"
+  envProd: "3.Prod"
 
 # Controls when the workflow will run
 #on:
@@ -88,6 +92,8 @@ jobs:
       - name: Changed Files
         id: changed-files
         uses: tj-actions/changed-files@v37.5.2
+        #with:
+        #  envTargetName: "1.Dev"
         
       # Runs a set of commands using the runners shell
       - name: Deploy Package
@@ -140,7 +146,8 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+            #envNameDev="1.Dev"
+            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envDev listenerStatus=$listenerStatus
             
             if [ $funcTest == 1 ]
             then
@@ -216,10 +223,9 @@ jobs:
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
             envNameDev="1.Dev"
-            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envNameDev listenerStatus=$listenerStatus
+            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envTargetName listenerStatus=$listenerStatus
             "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
           done
-
 
 deploytoProd:
     runs-on: [self-hosted, linux, X64]
