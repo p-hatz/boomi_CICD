@@ -54,12 +54,14 @@ jobs:
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             funcTest=0
+            sampleProc=0
             
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
             deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
+            sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
             
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
@@ -236,6 +238,18 @@ jobs:
             envName="2.Test"
             "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
           done
+
+      - name: Generate Uniq Id
+        run: echo ID=$RANDOM >> $GITHUB_ENV
+        
+      - name: System Usage
+        run: |
+          _timeOut=30
+          if [[ $sample == 1 ]]
+          then
+              "${GITHUB_WORKSPACE}/cli/scripts/sampleProc.sh" $_timeOut $ID
+              sample=1
+          fi
 
   deploytoProd:
     runs-on: [self-hosted, linux, X64]
