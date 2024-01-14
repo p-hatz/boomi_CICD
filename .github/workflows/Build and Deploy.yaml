@@ -90,6 +90,7 @@ jobs:
 
           echo "deploy=$deployPackage" >> "$GITHUB_OUTPUT"
 
+          echo "runDeploy: $GITHUB_OUTPUT"
   deploytoDev:
     runs-on: [self-hosted, linux, X64]
     needs: createPackage
