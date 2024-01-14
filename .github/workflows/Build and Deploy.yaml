@@ -77,12 +77,23 @@ jobs:
             "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
           done
 
-          echo "deploy=$deployPackage" >> "$GITHUB_OUTPUT"
+          #Dev is already set
+          deployPackage=5
           
+          if [ $deployPackage == "2.Test" ]
+          then
+            deployPackage=3
+          elif [ $deployPackage == "3.Prod" ]
+            deployPackage=1
+          fi
+
+          echo "deploy=$deployPackage" >> "$GITHUB_OUTPUT"
+
   deploytoDev:
     runs-on: [self-hosted, linux, X64]
     needs: createPackage
-    if: needs.createPackage.outputs.runDeploy == '1.Dev'
+    #if: contains('1.Dev',needs.createPackage.outputs.runDeploy)
+    if: needs.createPackage.outputs.runDeploy <= 5
     steps:
       - uses: actions/checkout@v3
         #with:
@@ -146,8 +157,7 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            #envNameDev="1.Dev"
-            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envDev listenerStatus=$listenerStatus
+            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
             
             if [ $funcTest == 1 ]
             then
@@ -174,8 +184,7 @@ jobs:
     needs: [createPackage, deploytoDev]
     environment:
       name: "Test"
-    if: needs.createPackage.outputs.runDeploy == '2.Test'
-    
+    if: needs.createPackage.outputs.runDeploy <= 3
     steps:
       - uses: actions/checkout@v3
         #with:
@@ -222,8 +231,8 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            envNameDev="1.Dev"
-            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envTargetName listenerStatus=$listenerStatus
+
+            envName="2.Test"
             "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
           done
 
@@ -232,8 +241,7 @@ jobs:
     needs: [createPackage, deploytoDev, deploytoTest]
     environment:
       name: "Prod"
-    if: needs.createPackage.outputs.runDeploy == '3.Prod'
-    
+    if: needs.createPackage.outputs.runDeploy <= 1
     steps:
       - uses: actions/checkout@v3
         #with:
@@ -280,7 +288,7 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-            envNameDev="1.Dev"
-            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envNameDev listenerStatus=$listenerStatus
+            envName="3.Prod"
             "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+            #"${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
           done
