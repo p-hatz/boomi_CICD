@@ -134,6 +134,7 @@ jobs:
             envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
             testId=$(grep '^testId=' $file | cut -f2 -d'=')
             funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
@@ -211,6 +212,8 @@ jobs:
           GITUsername=${{ github.repository_owner }}
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
+          POSTMAN=${{ secrets.POSTMAN }}  
+          
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             funcTest=0
             
@@ -220,8 +223,11 @@ jobs:
             envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
-            sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
             
+            sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
+            collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
+            testId=$(grep '^testId=' $file | cut -f2 -d'=')
+          
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
             export GITHUB_WORKSPACE
@@ -251,9 +257,22 @@ jobs:
             if [[ $sampleProc == 1 ]]
             then
               echo Sampling Proc...
-              "${GITHUB_WORKSPACE}/cli/scripts/sampleProc.sh" $_timeOut $_id
-              sample=1
+              "${GITHUB_WORKSPACE}/cli/scripts/sampleProc.sh" $_timeOut $_id&
+
+              echo Running Postman Collection
+              postmanOut=$(/usr/local/bin/postman collection run "$collectionId" -i "$testId")       
+              postmanResult=$(echo $postmanOut | grep '200 OK' | wc -l)
+              echo output: $postmanResult
+              if [ "$postmanResult" == 0 ]
+              then
+                  echo "::error Postman test failed"
+                  exit 1
+              elif [ "$postmanResult" == 1 ]
+              then
+                echo "Postman test OK"
+              fi
             fi
+            sample=1              
           done
 
       #- name: System Usage
