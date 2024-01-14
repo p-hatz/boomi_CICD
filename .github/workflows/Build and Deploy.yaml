@@ -134,7 +134,7 @@ jobs:
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
-            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
             
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
             testId=$(grep '^testId=' $file | cut -f2 -d'=')
@@ -223,7 +223,7 @@ jobs:
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
-            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
             
             sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
@@ -320,6 +320,7 @@ jobs:
           GITUsername=${{ github.repository_owner }}
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
+          
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             funcTest=0
             
@@ -328,7 +329,7 @@ jobs:
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
-            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
             
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
