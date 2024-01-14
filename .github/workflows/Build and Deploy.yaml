@@ -272,8 +272,8 @@ jobs:
               elif [ "$postmanResult" == 1 ]
               then
                 echo "Postman test OK"
-                spark < /tmp/$2.sample > /tmp/$2.sample.out
-                cat /tmp/$2.sample.out
+                spark < /tmp/$_id.sample > /tmp/$_id.sample.out
+                cat /tmp/$_id.sample.out
               fi
             fi
             sample=1              
