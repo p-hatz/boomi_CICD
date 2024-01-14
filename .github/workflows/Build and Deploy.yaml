@@ -61,7 +61,6 @@ jobs:
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
             deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
-            sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
             
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
@@ -221,6 +220,7 @@ jobs:
             envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
             
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
@@ -237,19 +237,33 @@ jobs:
             
             envName="2.Test"
             "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+
+            _id=$RANDOM
+            echo random: $_id
+            
+            _timeOut=${{ vars.TIMEOUT }}
+            if $_timeOut == 0
+            then
+              _timeOut=30
+            fi
+
+            if [[ $sample == 1 ]]
+            then
+              echo Sampling Proc...
+              "${GITHUB_WORKSPACE}/cli/scripts/sampleProc.sh" $_timeOut $_id
+              sample=1
+            fi
           done
 
-      - name: Generate Uniq Id
-        run: echo ID=$RANDOM >> $GITHUB_ENV
-        
-      - name: System Usage
-        run: |
-          _timeOut=30
-          if [[ $sample == 1 ]]
-          then
-              "${GITHUB_WORKSPACE}/cli/scripts/sampleProc.sh" $_timeOut $ID
-              sample=1
-          fi
+      #- name: System Usage
+      #  run: |
+      #    _timeOut=30
+      #    if [[ $sample == 1 ]]
+      #    then
+       #       echo Sampling Proc...
+       #       "${GITHUB_WORKSPACE}/cli/scripts/sampleProc.sh" $_timeOut $ID
+       #       sample=1
+       #   fi
 
   deploytoProd:
     runs-on: [self-hosted, linux, X64]
