@@ -84,6 +84,7 @@ jobs:
           then
             deployPackage=3
           elif [ $deployPackage == "3.Prod" ]
+          then
             deployPackage=1
           fi
 
