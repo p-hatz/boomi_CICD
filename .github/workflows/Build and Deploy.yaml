@@ -78,19 +78,19 @@ jobs:
           done
 
           #Dev is already set
-          deployPackage=5
+          deployPackageHWM=5
           
           if [ $deployPackage == "2.Test" ]
           then
-            deployPackage=3
+            deployPackageHWM=3
           elif [ $deployPackage == "3.Prod" ]
           then
-            deployPackage=1
+            deployPackageHWM=1
           fi
 
-          echo "deploy=$deployPackage" >> "$GITHUB_OUTPUT"
+          echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
 
-          echo "runDeploy: $deployPackage"
+          echo "runDeploy: $deployPackageHWM"
           exit 0
           
   deploytoDev:
