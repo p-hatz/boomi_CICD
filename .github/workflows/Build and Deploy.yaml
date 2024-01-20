@@ -81,14 +81,6 @@ jobs:
           CodeFolderXML=${{ vars.CODEFOLDER }}
           POSTMAN=${{ secrets.POSTMAN }}
 
-          #debug
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-              devEnvUpd=$(grep '^devEnvUpd=' $file | cut -f2 -d'=')
-          done
-          #debug
-
-          postmanInst=0
-
           find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
           chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
           chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
@@ -96,30 +88,32 @@ jobs:
 
           source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
           source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
-
-          if [[ $devEnvUpd == 1 ]]
-          then
-             _devEnvId=$(grep '^devEnvId=' $file | cut -f2 -d'=')
-             _devEnvConnId=$(grep '^devEnvConnId=' $file | cut -f2 -d'=')
-             _devEnvConnName=$(grep '^devEnvConnName=' $file | cut -f2 -d'=')
-             _devEnvConnFieldId=$(grep '^devEnvConnFieldId=' $file | cut -f2 -d'=')
-             _devEnvSSMId=$(grep '^devEnvSSMId=' $file | cut -f2 -d'=')
-
-             _pass=$(aws secretsmanager get-secret-value --secret-id $_devEnvSSMId | jq -r ".SecretString" | awk -F ":" '{ print $2 }' | sed "s/^\"//g ; s/\"}//g")
-             echo _pass: $_pass
-          fi
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             funcTest=0
             compCount=1
-            
+            postmanInst=0
+
+            devEnvUpd=$(grep '^devEnvUpd=' $file | cut -f2 -d'=')
+
+            if [[ $devEnvUpd == 1 ]]
+            then
+              _devEnvId=$(grep '^devEnvId=' $file | cut -f2 -d'=')
+              _devEnvConnId=$(grep '^devEnvConnId=' $file | cut -f2 -d'=')
+              _devEnvConnName=$(grep '^devEnvConnName=' $file | cut -f2 -d'=')
+              _devEnvConnFieldId=$(grep '^devEnvConnFieldId=' $file | cut -f2 -d'=')
+              _devEnvSSMId=$(grep '^devEnvSSMId=' $file | cut -f2 -d'=')
+
+              _pass=$(aws secretsmanager get-secret-value --secret-id $_devEnvSSMId | jq -r ".SecretString" | awk -F ":" '{ print $2 }' | sed "s/^\"//g ; s/\"}//g")
+              echo _pass: $_pass
+            fi
+          
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
-            devEnvUpd=$(grep '^devEnvUpd=' $file | cut -f2 -d'=')
             
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
             testId=$(grep '^testId=' $file | cut -f2 -d'=')
