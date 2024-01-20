@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/zCustomer/CatholicDioceseMaitlandNewcastle/Students/INT-0001 - SAS Student to MDH/Unit Tests" componentId="22253a48-1c04-4ddc-aff0-b7389ea2f6c1" version="1" name="[prof] Employees" type="profile.db" createdDate="2024-01-17T05:52:56Z" createdBy="peterantony@boomi.com" modifiedDate="2024-01-17T05:52:56Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="Unit Tests" folderId="Rjo0NDgyNzUz">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/zCustomer/CatholicDioceseMaitlandNewcastle/Students/INT-0001 - SAS Student to MDH/Unit Tests" componentId="22253a48-1c04-4ddc-aff0-b7389ea2f6c1" version="3" name="[prof] Employees" type="profile.db" createdDate="2024-01-17T05:52:56Z" createdBy="peterantony@boomi.com" modifiedDate="2024-01-20T01:18:40Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Unit Tests" folderId="Rjo0NDgyNzUz">
   <bns:encryptedValues/>
   <bns:description/>
   <bns:object>
@@ -27,8 +27,10 @@
             </DatabaseElement>
           </DBFields>
           <DBParameters isNode="true" key="4" name="Parameters"/>
-          <sql>select empno, firstname, lastname
-from emp</sql>
+          <sql>select emp_no, first_name, last_name
+from emp
+limit 10
+</sql>
         </DBStatement>
       </DataElements>
     </DatabaseProfile>
