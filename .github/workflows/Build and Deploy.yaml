@@ -39,10 +39,12 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.ID2 }}
       run:  |
+          sudo apt install jq
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
           unzip -q /tmp/awscliv2.zip -d /tmp
           rm /tmp/awscliv2.zip
           sudo /tmp/aws/install --update
           rm -rf /tmp/aws/
 
-          aws secretsmanager get-secret-value --secret-id employees
+          _pass=$(aws secretsmanager get-secret-value --secret-id employees | jq -r ".SecretString" | awk -F ":" '{ print $2 }' | sed "s/^\"//g ; s/\"}//g")
+          echo $_pass
