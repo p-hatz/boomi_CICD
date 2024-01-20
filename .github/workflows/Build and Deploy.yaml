@@ -46,7 +46,7 @@ jobs:
           sudo /tmp/aws/install --update
           rm -rf /tmp/aws/
 
-createPackage:
+  createPackage:
     runs-on: [self-hosted, linux, X64]
     outputs:
       runDeploy: ${{ steps.createPackage.outputs.deploy }}
