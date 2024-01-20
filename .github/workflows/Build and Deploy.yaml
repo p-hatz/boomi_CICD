@@ -168,7 +168,7 @@ jobs:
 
   deploytoTest:
     runs-on: [self-hosted, linux, X64]
-    needs: [createPackage, deploytoDev]
+    #needs: [createPackage, deploytoDev]
     environment:
       name: "Test"
     if: needs.createPackage.outputs.runDeploy <= 3
@@ -272,7 +272,7 @@ jobs:
 
   deploytoProd:
     runs-on: [self-hosted, linux, X64]
-    needs: [createPackage, deploytoDev, deploytoTest]
+    #needs: [createPackage, deploytoDev, deploytoTest]
     environment:
       name: "Prod"
     if: needs.createPackage.outputs.runDeploy <= 1
