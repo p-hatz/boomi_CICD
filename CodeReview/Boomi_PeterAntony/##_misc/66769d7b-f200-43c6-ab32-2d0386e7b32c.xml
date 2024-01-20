@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/##_misc" componentId="66769d7b-f200-43c6-ab32-2d0386e7b32c" version="205" name="[proc] General" type="process" createdDate="2023-06-18T10:10:48Z" createdBy="peterantony@boomi.com" modifiedDate="2024-01-18T06:27:34Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="##_misc" folderId="RjoyNzY4MjI5">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/##_misc" componentId="66769d7b-f200-43c6-ab32-2d0386e7b32c" version="208" name="[proc] General" type="process" createdDate="2023-06-18T10:10:48Z" createdBy="peterantony@boomi.com" modifiedDate="2024-01-20T01:18:09Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="##_misc" folderId="RjoyNzY4MjI5">
   <bns:encryptedValues/>
   <bns:description/>
   <bns:object>
@@ -10,16 +10,16 @@
             <noaction/>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape1.dragpoint1" toShape="shape96" x="304.0" y="184.0"/>
+            <dragpoint name="shape1.dragpoint1" toShape="shape102" x="464.0" y="360.0"/>
           </dragpoints>
         </shape>
-        <shape image="stop_icon" name="shape44" shapetype="stop" userlabel="" x="1392.0" y="368.0">
+        <shape image="stop_icon" name="shape44" shapetype="stop" userlabel="" x="1200.0" y="368.0">
           <configuration>
             <stop continue="true"/>
           </configuration>
           <dragpoints/>
         </shape>
-        <shape image="dataprocess_icon" name="shape71" shapetype="dataprocess" userlabel="Sleep" x="816.0" y="48.0">
+        <shape image="dataprocess_icon" name="shape71" shapetype="dataprocess" userlabel="Sleep" x="624.0" y="48.0">
           <configuration>
             <dataprocess>
               <step index="1" key="1" name="Custom Scripting" processtype="12">
@@ -38,10 +38,10 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </dataprocess>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape71.dragpoint1" toShape="shape94" x="992.0" y="56.0"/>
+            <dragpoint name="shape71.dragpoint1" toShape="shape94" x="800.0" y="56.0"/>
           </dragpoints>
         </shape>
-        <shape image="message_icon" name="shape73" shapetype="message" userlabel="Return Message" x="1392.0" y="48.0">
+        <shape image="message_icon" name="shape73" shapetype="message" userlabel="Return Message" x="1200.0" y="48.0">
           <configuration>
             <message combined="false">
               <msgTxt>OK</msgTxt>
@@ -49,10 +49,10 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </message>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape73.dragpoint1" toShape="shape95" x="1568.0" y="56.0"/>
+            <dragpoint name="shape73.dragpoint1" toShape="shape95" x="1376.0" y="56.0"/>
           </dragpoints>
         </shape>
-        <shape image="dataprocess_icon" name="shape74" shapetype="dataprocess" userlabel="Increment Counter" x="624.0" y="48.0">
+        <shape image="dataprocess_icon" name="shape74" shapetype="dataprocess" userlabel="Increment Counter" x="432.0" y="176.0">
           <configuration>
             <dataprocess>
               <step index="1" key="1" name="Custom Scripting" processtype="12">
@@ -71,10 +71,10 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </dataprocess>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape74.dragpoint1" toShape="shape71" x="800.0" y="56.0"/>
+            <dragpoint name="shape74.dragpoint1" toShape="shape71" x="608.0" y="56.0"/>
           </dragpoints>
         </shape>
-        <shape image="documentproperties_icon" name="shape81" shapetype="documentproperties" userlabel="Set Sleep" x="464.0" y="80.0">
+        <shape image="documentproperties_icon" name="shape81" shapetype="documentproperties" userlabel="Set Sleep" x="288.0" y="32.0">
           <configuration>
             <documentproperties>
               <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppSleep" persist="false" propertyId="process.dppSleep" shouldEncrypt="false">
@@ -94,7 +94,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </documentproperties>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape81.dragpoint1" toShape="shape74" x="608.0" y="56.0"/>
+            <dragpoint name="shape81.dragpoint1" toShape="shape74" x="416.0" y="184.0"/>
           </dragpoints>
         </shape>
         <shape image="connectoraction_icon" name="shape82" shapetype="connectoraction" userlabel="" x="48.0" y="528.0">
@@ -126,7 +126,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             <dragpoint name="shape84.dragpoint1" toShape="unset" x="224.0" y="698.0"/>
           </dragpoints>
         </shape>
-        <shape image="connectoraction_icon" name="shape87" shapetype="connectoraction" userlabel="HTTP Mock API" x="1200.0" y="48.0">
+        <shape image="connectoraction_icon" name="shape87" shapetype="connectoraction" userlabel="HTTP Mock API" x="1008.0" y="48.0">
           <configuration>
             <connectoraction actionType="Get" allowDynamicCredentials="NONE" connectionId="a0314381-7c2b-42c4-9093-b29939ba1512" connectorType="http" hideSettings="false" operationId="3cff1b30-9401-466e-b0de-c41fdb1e3fbc" parameter-profile="EMBEDDED|HttpParameterChooser|3cff1b30-9401-466e-b0de-c41fdb1e3fbc">
               <parameters/>
@@ -134,7 +134,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape87.dragpoint1" toShape="shape73" x="1376.0" y="56.0"/>
+            <dragpoint name="shape87.dragpoint1" toShape="shape73" x="1184.0" y="56.0"/>
           </dragpoints>
         </shape>
         <shape image="map_icon" name="shape90" shapetype="map" userlabel="" x="48.0" y="848.0">
@@ -151,7 +151,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
           </configuration>
           <dragpoints/>
         </shape>
-        <shape image="connectoraction_icon" name="shape92" shapetype="connectoraction" userlabel="" x="48.0" y="1008.0">
+        <shape image="connectoraction_icon" name="shape92" shapetype="connectoraction" userlabel="" x="48.0" y="160.0">
           <configuration>
             <connectoraction actionType="EXECUTE" allowDynamicCredentials="NONE" connectionId="6a66211f-f0f6-41b1-8283-8917e3ec0fb8" connectorType="boomi_peterantony-XG9LRG-apmpla-test" hideSettings="false" operationId="d9133a46-f892-4e15-b86f-3681f8b48070">
               <parameters/>
@@ -159,7 +159,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape92.dragpoint1" toShape="shape81" x="448.0" y="88.0"/>
+            <dragpoint name="shape92.dragpoint1" toShape="shape81" x="272.0" y="40.0"/>
           </dragpoints>
         </shape>
         <shape image="connectoraction_icon" name="shape93" shapetype="connectoraction" userlabel="" x="48.0" y="1168.0">
@@ -173,23 +173,23 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             <dragpoint name="shape93.dragpoint1" toShape="unset" x="224.0" y="1178.0"/>
           </dragpoints>
         </shape>
-        <shape image="branch_icon" name="shape94" shapetype="branch" userlabel="" x="1008.0" y="48.0">
+        <shape image="branch_icon" name="shape94" shapetype="branch" userlabel="" x="816.0" y="48.0">
           <configuration>
             <branch numBranches="3"/>
           </configuration>
           <dragpoints>
-            <dragpoint identifier="1" name="shape94.dragpoint1" text="1" toShape="shape87" x="1184.0" y="56.0"/>
-            <dragpoint identifier="2" name="shape94.dragpoint2" text="2" toShape="shape99" x="1184.0" y="216.0"/>
-            <dragpoint identifier="3" name="shape94.dragpoint3" text="3" toShape="shape97" x="1184.0" y="376.0"/>
+            <dragpoint identifier="1" name="shape94.dragpoint1" text="1" toShape="shape87" x="992.0" y="56.0"/>
+            <dragpoint identifier="2" name="shape94.dragpoint2" text="2" toShape="shape99" x="992.0" y="216.0"/>
+            <dragpoint identifier="3" name="shape94.dragpoint3" text="3" toShape="shape97" x="992.0" y="376.0"/>
           </dragpoints>
         </shape>
-        <shape image="stop_icon" name="shape95" shapetype="stop" x="1584.0" y="48.0">
+        <shape image="stop_icon" name="shape95" shapetype="stop" x="1392.0" y="48.0">
           <configuration>
             <stop continue="true"/>
           </configuration>
           <dragpoints/>
         </shape>
-        <shape image="connectoraction_icon" name="shape96" shapetype="connectoraction" userlabel="" x="320.0" y="176.0">
+        <shape image="connectoraction_icon" name="shape96" shapetype="connectoraction" userlabel="" x="240.0" y="48.0">
           <configuration>
             <connectoraction actionType="EXECUTE" allowDynamicCredentials="NONE" connectionId="2ed9923d-c49d-4d2e-a946-550e839b7505" connectorType="boomi_peterantony-XG9LRG-apm202-dev" hideSettings="false" operationId="150e4fd2-913e-44e6-a523-375ccbf59f6a" parameter-profile="5c4265da-729c-48d9-87c4-ca18c467ff19">
               <parameters/>
@@ -197,10 +197,10 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape96.dragpoint1" toShape="shape101" x="512.0" y="200.0"/>
+            <dragpoint name="shape96.dragpoint1" toShape="shape101" x="416.0" y="56.0"/>
           </dragpoints>
         </shape>
-        <shape image="connectoraction_icon" name="shape97" shapetype="connectoraction" userlabel="" x="1200.0" y="368.0">
+        <shape image="connectoraction_icon" name="shape97" shapetype="connectoraction" userlabel="" x="1008.0" y="368.0">
           <configuration>
             <connectoraction actionType="EXECUTE" allowDynamicCredentials="NONE" connectionId="2ed9923d-c49d-4d2e-a946-550e839b7505" connectorType="boomi_peterantony-XG9LRG-apm202-dev" hideSettings="false" operationId="35d819b2-22a1-408b-9238-fa4592adcc3d" parameter-profile="963b1ef0-91a0-48f9-b1af-3d6f82978024">
               <parameters/>
@@ -208,10 +208,10 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape97.dragpoint1" toShape="shape44" x="1376.0" y="376.0"/>
+            <dragpoint name="shape97.dragpoint1" toShape="shape44" x="1184.0" y="376.0"/>
           </dragpoints>
         </shape>
-        <shape image="connectoraction_icon" name="shape99" shapetype="connectoraction" userlabel="" x="1200.0" y="208.0">
+        <shape image="connectoraction_icon" name="shape99" shapetype="connectoraction" userlabel="" x="1008.0" y="208.0">
           <configuration>
             <connectoraction actionType="Get" allowDynamicCredentials="NONE" connectionId="0b5fa9ed-7982-4d9a-8a46-8f94d0e18a54" connectorType="database" hideSettings="false" operationId="4ae75492-c814-4f54-bfb3-420c92384f61" parameter-profile="EMBEDDED|databaseparameterchooser|22253a48-1c04-4ddc-aff0-b7389ea2f6c1|4ae75492-c814-4f54-bfb3-420c92384f61">
               <parameters/>
@@ -219,16 +219,16 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape99.dragpoint1" toShape="shape100" x="1376.0" y="216.0"/>
+            <dragpoint name="shape99.dragpoint1" toShape="shape100" x="1184.0" y="216.0"/>
           </dragpoints>
         </shape>
-        <shape image="stop_icon" name="shape100" shapetype="stop" x="1392.0" y="208.0">
+        <shape image="stop_icon" name="shape100" shapetype="stop" x="1200.0" y="208.0">
           <configuration>
             <stop continue="true"/>
           </configuration>
           <dragpoints/>
         </shape>
-        <shape image="documentproperties_icon" name="shape101" shapetype="documentproperties" userlabel="" x="528.0" y="192.0">
+        <shape image="documentproperties_icon" name="shape101" shapetype="documentproperties" userlabel="" x="432.0" y="48.0">
           <configuration>
             <documentproperties>
               <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="APM (2024.1) - Tags (k=v separated by ;)" persist="false" propertyId="connector.boomi_peterantony-XG9LRG-apm202-dev.keyvalueTags" shouldEncrypt="false">
@@ -241,8 +241,25 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </documentproperties>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape101.dragpoint1" toShape="shape71" x="800.0" y="56.0"/>
+            <dragpoint name="shape101.dragpoint1" toShape="shape71" x="608.0" y="56.0"/>
           </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape102" shapetype="connectoraction" userlabel="" x="480.0" y="352.0">
+          <configuration>
+            <connectoraction actionType="Get" allowDynamicCredentials="NONE" connectionId="f7c9f762-9174-47c3-b37d-8aa2505a2149" connectorType="database" hideSettings="false" operationId="4ae75492-c814-4f54-bfb3-420c92384f61" parameter-profile="EMBEDDED|databaseparameterchooser|22253a48-1c04-4ddc-aff0-b7389ea2f6c1|4ae75492-c814-4f54-bfb3-420c92384f61">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape102.dragpoint1" toShape="shape103" x="608.0" y="360.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="stop_icon" name="shape103" shapetype="stop" x="624.0" y="352.0">
+          <configuration>
+            <stop continue="true"/>
+          </configuration>
+          <dragpoints/>
         </shape>
       </shapes>
     </process>
