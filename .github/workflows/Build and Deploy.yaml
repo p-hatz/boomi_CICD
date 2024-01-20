@@ -80,7 +80,13 @@ jobs:
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
           POSTMAN=${{ secrets.POSTMAN }}
-          
+
+          #debug
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+              devEnvUpd=$(grep '^devEnvUpd=' $file | cut -f2 -d'=')
+          done
+          #debug
+
           postmanInst=0
 
           find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
