@@ -204,6 +204,7 @@ jobs:
 
             if [[ $devEnvUpd == 1 ]]
             then
+               echo here!!!
                source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" envId="$_devEnvId" connectionId="$_devEnvConnId" passVal="$_pass"
             fi
             
