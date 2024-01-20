@@ -10,8 +10,6 @@ inputs "$@"
 URL=$baseURL/EnvironmentExtensions/$envId/update
 createJSON
 
-exit
- 
 if [ "$deploymentId" == "null" ] || [ -z "$deploymentId" ]
 then 
 	callAPI
@@ -23,7 +21,6 @@ then
 	echoi "Deployed package ${packageId} in env ${envId} with deploymentId ${deploymentId}."	
 fi
 
-echo here
 clean
 if [ "$ERROR" -gt "0" ]
 then
