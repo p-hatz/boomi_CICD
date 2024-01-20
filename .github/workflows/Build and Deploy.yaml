@@ -23,7 +23,7 @@ env:
   workflow_dispatch:
 
 jobs:
-  preReq:
+  preReqs:
     runs-on: [self-hosted, linux, X64]
     steps:
     - name: AWS Cli
