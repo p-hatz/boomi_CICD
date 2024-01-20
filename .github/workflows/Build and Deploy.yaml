@@ -65,8 +65,9 @@ jobs:
             deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
 
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
-            compCount=$((compId + 1))
             echo number of Components: $compCount
+            compCount=$((compId + 1))
+            
             
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
