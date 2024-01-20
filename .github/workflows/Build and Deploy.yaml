@@ -34,6 +34,6 @@ jobs:
         verbose: false                     # default
         arch: amd64                        # allowed values: amd64, arm64
         
-    - name: AWS run
+    - name: AWS SSM
       run: |
         aws
