@@ -26,10 +26,12 @@ jobs:
   preReq:
   runs-on: [self-hosted, linux, X64]
   steps:
-    - id: install-aws-cli
+    - name: AWS Cli
+      id: install-aws-cli
       uses: unfor19/install-aws-cli-action@v1
       with:
         version: 2                         # default
         verbose: false                     # default
         arch: amd64                        # allowed values: amd64, arm64
+      run: |
         aws
