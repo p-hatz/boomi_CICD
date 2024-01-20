@@ -35,9 +35,14 @@ jobs:
         arch: amd64                        # allowed values: amd64, arm64
         
     - name: Install AWS CLI v2
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.ID2 }}
       run:  |
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
           unzip -q /tmp/awscliv2.zip -d /tmp
           rm /tmp/awscliv2.zip
           sudo /tmp/aws/install --update
           rm -rf /tmp/aws/
+
+          aws secretsmanager get-secret-value --secret-id employees
