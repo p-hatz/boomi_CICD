@@ -87,7 +87,7 @@ jobs:
 
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
             compCount=$((compCount + 1))
-            echo number of Components: $compCount
+            #echo number of Components: $compCount
             
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
@@ -171,13 +171,13 @@ jobs:
             if [[ $devEnvUpd == 1 ]]
             then
               _devEnvId=$(grep '^devEnvId=' $file | cut -f2 -d'=')
+              _devEnvCompType=$(grep '^devEnvCompType=' $file | cut -f2 -d'=')
               _devEnvConnId=$(grep '^devEnvConnId=' $file | cut -f2 -d'=')
-              _devEnvConnName=$(grep '^devEnvConnName=' $file | cut -f2 -d'=')
               _devEnvConnFieldId=$(grep '^devEnvConnFieldId=' $file | cut -f2 -d'=')
               _devEnvSSMId=$(grep '^devEnvSSMId=' $file | cut -f2 -d'=')
 
               _pass=$(aws secretsmanager get-secret-value --secret-id $_devEnvSSMId | jq -r ".SecretString" | awk -F ":" '{ print $2 }' | sed "s/^\"//g ; s/\"}//g")
-              echo _pass: $_pass
+              #echo _pass: $_pass
             fi
           
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
@@ -201,8 +201,7 @@ jobs:
 
             if [[ $devEnvUpd == 1 ]]
             then
-               echo here!!!
-               source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" envId="$_devEnvId" connectionId="$_devEnvConnId" passVal="$_pass"
+               source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" environmentId="$_devEnvId" componentId="$_devEnvConnId" componentType="$_devEnvCompType" fieldVal="$_pass"
             fi
             
             if [[ $postmanInst == 0  && $funcTest == 1 ]]
