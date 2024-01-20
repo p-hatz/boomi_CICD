@@ -1,10 +1,10 @@
 {
    "@type" : "EnvironmentExtensions",
    "connections" : {
-      "@type" : "${extensionType}",
+      "@type" : "${componentType}",
       "connection" : [
          {
-            "@type" : "${extensionType}",
+            "@type" : "${componentType}",
             "field" : [
                {
                   "@type" : "Field",
@@ -16,7 +16,7 @@
                   "useDefault" : "false"
                }
                ],
-               "id": "${extensionId}"
+               "id": "${componentId}"
          }
          ]
    },
