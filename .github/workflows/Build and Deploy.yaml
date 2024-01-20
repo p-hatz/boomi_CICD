@@ -136,6 +136,7 @@ jobs:
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             funcTest=0
+            compCount=1
             
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
@@ -147,6 +148,10 @@ jobs:
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
             testId=$(grep '^testId=' $file | cut -f2 -d'=')
             funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
+
+            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
+            compCount=$((compCount + 1))
+            echo number of Components: $compCount
 
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
@@ -170,7 +175,11 @@ jobs:
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
             envName="1.Dev"
-            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+
+            for (( _compIdx=1 ; _compIdx < $compCount ; _compIdx++ )) ; do
+              _compId=$(echo $compId | cut -f $_compIdx -d",")
+              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+            done            
             
             if [ $funcTest == 1 ]
             then
