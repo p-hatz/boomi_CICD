@@ -51,7 +51,7 @@ jobs:
 
   deploytoDev:
     runs-on: [self-hosted, linux, X64]
-    needs: createPackage
+    #needs: createPackage
     #if: contains('1.Dev',needs.createPackage.outputs.runDeploy)
     if: needs.createPackage.outputs.runDeploy <= 5
     steps:
