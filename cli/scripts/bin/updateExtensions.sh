@@ -1,19 +1,18 @@
 #!/bin/bash
 
-source $WD/bin/common.sh 
+source $WD/bin/common.sh
 
 # mandatory arguments
-ARGUMENTS=(envId connectionId passVal)
+ARGUMENTS=(environmentId componentId componentType fieldVal)
 JSON_FILE=$WD/json/updateEnvironmentExtension.json
 inputs "$@"
 
-URL=$baseURL/EnvironmentExtensions/$envId/update
+URL=$baseURL/EnvironmentExtensions/$environmentId/update
 createJSON
 
 if [ "$deploymentId" == "null" ] || [ -z "$deploymentId" ]
 then 
 	callAPI
-exit
 fi
 
 if [ "$deploymentId" != "null" ] || [ ! -z "$deploymentId" ]
