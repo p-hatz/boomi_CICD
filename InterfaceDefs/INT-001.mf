@@ -11,6 +11,12 @@ deploy=1.Dev
 listenerStatus=RUNNING
 deployNotes=Deployment from GitHub
 
+##Environment Extensions
+id=f7c9f762-9174-47c3-b37d-8aa2505a2149
+name="[conn] MariaDB Local - Employees"
+fieldId="password"
+ssm="arn:aws:secretsmanager:ap-southeast-2:294343101033:secret:employees-E8T8tS"
+
 ##Testing
 funcTest=0
 collectionId=3718514-2052e7c8-2814-4514-ab3f-6d14efeb7f2a
@@ -18,3 +24,6 @@ testId=3718514-a34d25c9-beae-43ea-8e29-e33314bd99f4
 
 ##Sample Process
 sample=0
+
+
+
