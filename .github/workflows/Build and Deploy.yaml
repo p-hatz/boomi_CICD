@@ -9,6 +9,11 @@ env:
   envDev: "1.Dev"
   envTest: "2.Dev"
   envProd: "3.Prod"
+  AWS_ACCESS_KEY_ID: ${{ secrets.ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.ID2 }}
+  AWS_DEFAULT_REGION: ap-southeast-2
+  AWS_DEFAULT_OUTPUT: json
+      
   ID: ${{ github.run_id }}-${{ github.run_attempt }}
 
 # Controls when the workflow will run
@@ -35,9 +40,6 @@ jobs:
         arch: amd64                        # allowed values: amd64, arm64
         
     - name: Install AWS CLI v2
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.ID2 }}
       run:  |
           sudo apt-get install -y curl
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
