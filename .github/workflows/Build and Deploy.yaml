@@ -43,6 +43,84 @@ jobs:
           deployPackageHWM=5        
           echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
 
+  createPackage:
+    runs-on: [self-hosted, linux, X64]
+    needs: preReqs
+    outputs:
+      runDeploy: ${{ steps.createPackage.outputs.deploy }}
+    
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        #with:
+        #  fetch-depth: 0
+        #  path: INT-001
+      
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v37.5.2
+
+      # Runs a set of commands using the runners shell
+      - name: Create Package
+        id: createPackage
+        run: |
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiUsername=${{ vars.BOOMI_USERNAME }}
+          API=${{ secrets.API }}
+          RepoURL=${{ github.server_url }}
+          RepoName=${{ github.repository }}
+          RepoPath=${RepoURL}/${RepoName}
+          GITUsername=${{ github.repository_owner }}
+          GITUseremail=${{ vars.EMAIL }}
+          CodeFolderXML=${{ vars.CODEFOLDER }}
+
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            funcTest=0
+            sampleProc=0
+            compCount=1
+            
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
+            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
+
+            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
+            compCount=$((compCount + 1))
+            echo number of Components: $compCount
+            
+            export WD=${GITHUB_WORKSPACE}/cli/scripts/
+            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+            export GITHUB_WORKSPACE
+
+            find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
+
+            #chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
+            #chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            #chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
+
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+            source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+
+            for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
+              _compId=$(echo $compId | cut -f $_compIdx -d",")
+              "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+            done
+          done
+
+          #Dev is already set
+          deployPackageHWM=5
+          
+          if [ $deployPackage == "2.Test" ]
+          then
+            deployPackageHWM=3
+          elif [ $deployPackage == "3.Prod" ]
+          then
+            deployPackageHWM=1
+          fi
+
+          echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
+
   deploytoDev:
     runs-on: [self-hosted, linux, X64]
     needs: createPackage
