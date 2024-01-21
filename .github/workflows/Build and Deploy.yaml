@@ -137,11 +137,8 @@ jobs:
           source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            funcTest=0
             compCount=1
-            postmanInst=0
-            perfTest=0
-
+            
             devEnvUpd=$(grep '^devEnvUpd=' $file | cut -f2 -d'=')
 
             if [[ $devEnvUpd == 1 ]]
@@ -217,6 +214,8 @@ jobs:
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             funcTest=0
+            postmanInst=0
+            perfTest=0
             
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
