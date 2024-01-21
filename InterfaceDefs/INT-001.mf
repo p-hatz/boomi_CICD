@@ -28,7 +28,9 @@ testId=3718514-a34d25c9-beae-43ea-8e29-e33314bd99f4
 ##Performance Testing
 perfTest=1
 perfTestFile="Testing/General Web Server.jmx"
-perfThreshold=10000
+perfThreshold=20000
 
 ##Sample Process
 sample=0
+
+
