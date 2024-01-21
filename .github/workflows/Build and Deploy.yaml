@@ -199,17 +199,18 @@ jobs:
               echo Sleeping...
               sleep 15
               echo Running Postman Collection
-              postmanOut=$(/usr/local/bin/postman collection run "$collectionId" -i "$testId")       
-              postmanResult=$(echo $postmanOut | grep '200 OK' | wc -l)
+              /usr/local/bin/postman collection run "$collectionId" -i "$testId" > /tmp/$collectionId.$testId.out
+              sed -i 's/\[90m//g ; s/\[30m//g' /tmp/$collectionId.$testId.out
+              postmanResult=$(grep test-scripts /tmp/post.out|tr -s ' ' '|' | awk -F "|" '{ print $6 }')
+              #postmanResult=$(echo $postmanOut | grep '200 OK' | wc -l)
               echo output: $postmanResult
               if [ "$postmanResult" == 0 ]
               then
-                  echo "::error Postman test failed"
-                  exit 1
+                echo "Postman test OK"
               elif [ "$postmanResult" == 1 ]
               then
-                echo "Postman test OK"
-                exit 0
+                echo "::error Postman test failed"
+                exit 1
               fi
             fi
           done
