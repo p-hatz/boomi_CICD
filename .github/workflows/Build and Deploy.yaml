@@ -45,6 +45,7 @@ jobs:
         
   createPackage:
     runs-on: [self-hosted, linux, X64]
+    needs: preReqs
     outputs:
       runDeploy: ${{ steps.createPackage.outputs.deploy }}
     steps:
