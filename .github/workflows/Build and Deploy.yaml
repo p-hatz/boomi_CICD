@@ -205,6 +205,11 @@ jobs:
                 echo "Performance OK"
               fi
 
+              if [[ $_maxTime > $_perfThreshold ]]
+              then
+                echo "Performance not OK!"
+              fi
+              
               rm /tmp/jmeter.tgz
               
             fi
