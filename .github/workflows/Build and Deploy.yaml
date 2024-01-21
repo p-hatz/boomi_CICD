@@ -167,7 +167,7 @@ jobs:
               echo maxtime: $_maxTime
 
               #if [[ $_maxTime <= $_perfThreshold ]]
-              if $_maxTime <= 10000
+              if $_maxTime <= $_perfThreshold
               then
                 echo "Performance OK"
               fi
