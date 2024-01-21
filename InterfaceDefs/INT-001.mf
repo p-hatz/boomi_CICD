@@ -34,7 +34,3 @@ perfThreshold=10000
 sample=0
 
 
-
-
-
-
