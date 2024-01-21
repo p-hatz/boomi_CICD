@@ -200,7 +200,8 @@ jobs:
               _maxTime=$(cat /tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
               echo maxtime: $_maxTime
 
-              if [[ $_maxTime <= $_perfThreshold ]]
+              #if [[ $_maxTime <= $_perfThreshold ]]
+              if [[ $_maxTime <= 10000 ]]
               then
                 echo "Performance OK"
               fi
