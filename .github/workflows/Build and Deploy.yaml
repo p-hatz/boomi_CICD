@@ -183,6 +183,26 @@ jobs:
             fi
 
             #
+            perfTest=$(grep '^perfTest=' $file | cut -f2 -d'=')
+            if [[ $perfTest == 1 ]]
+            then
+              _perfTestFile=$(grep '^perfTestFile=' $file | cut -f2 -d'=')
+              _perfThreshold=$(grep '^perfThreshold=' $file | cut -f2 -d'=')
+
+              curl "https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz" -o "/tmp/jmeter.tgz"
+              mkdir /tmp/jmeter
+              tar -zxvf /tmp/jmeter.tgz -C /tmp/jmeter
+              rm /tmp/jmeter.tgz
+
+              _perfTestFile=$(echo $_perfTestFile | sed "s/\"//g")
+              _resultFile=$(echo $_perfTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
+              /tmp/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t "${GITHUB_WORKSPACE}/$_perfTestFile" > /tmp/jmeter/$_resultFile.out
+              _maxTime=$(cat /tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
+              echo maxtime: $_maxTime
+
+              rm -fr /tmp/jmeter
+            fi
+            
             #
             
             if [[ $postmanInst == 0  && $funcTest == 1 ]]
