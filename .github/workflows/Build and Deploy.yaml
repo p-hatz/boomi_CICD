@@ -166,8 +166,8 @@ jobs:
               _maxTime=$(cat /tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
               echo maxtime: $_maxTime
 
-              #if [[ $_maxTime <= $_perfThreshold ]]
-              if [[ $_maxTime < $_perfThreshold ]]
+              #<= didn't seem to work (?)
+              if [[ $_maxTime < $_perfThreshold  || $_maxTime == $_perfThreshold ]]
               then
                 echo "Performance OK"
               fi
@@ -178,7 +178,6 @@ jobs:
               fi
               
               rm /tmp/jmeter.tgz
-              
             fi
 
             if [[ $postmanInst == 0  && $funcTest == 1 ]]
