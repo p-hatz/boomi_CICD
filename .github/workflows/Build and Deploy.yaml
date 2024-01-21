@@ -201,7 +201,7 @@ jobs:
               echo Running Postman Collection
               /usr/local/bin/postman collection run "$collectionId" -i "$testId" > /tmp/$collectionId.$testId.out
               sed -i 's/\[90m//g ; s/\[30m//g' /tmp/$collectionId.$testId.out
-              postmanResult=$(grep test-scripts /tmp/post.out|tr -s ' ' '|' | awk -F "|" '{ print $6 }')
+              postmanResult=$(grep assertions /tmp/post.out|tr -s ' ' '|' | awk -F "|" '{ print $6 }')
               #postmanResult=$(echo $postmanOut | grep '200 OK' | wc -l)
               echo output: $postmanResult
               if [ "$postmanResult" == 0 ]
@@ -209,7 +209,7 @@ jobs:
                 echo "Postman test OK"
               elif [ "$postmanResult" == 1 ]
               then
-                echo "::error Postman test failed"
+                echo "Postman test failed"
                 exit 1
               fi
             fi
