@@ -21,8 +21,8 @@ env:
 
 jobs:
   preReqs:
-  #  runs-on: [self-hosted, linux, X64]
-  #  steps:
+    runs-on: [self-hosted, linux, X64]
+    steps:
   #  - name: AWS Cli
   #    id: install-aws-cli
   #    uses: unfor19/install-aws-cli-action@v1
@@ -31,8 +31,8 @@ jobs:
   #      verbose: false                     # default
   #      arch: amd64                        # allowed values: amd64, arm64
         
-  #  - name: Install AWS CLI v2
-  #    run:  |
+    - name: Install AWS CLI v2
+      run:  |
   #        sudo apt-get install -y curl
   #        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
   #        unzip -q /tmp/awscliv2.zip -d /tmp
