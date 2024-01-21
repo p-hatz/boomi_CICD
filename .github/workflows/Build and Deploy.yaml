@@ -214,11 +214,12 @@ jobs:
               _perfThreshold=$(grep '^perfThreshold=' $file | cut -f2 -d'=')
 
               curl "https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz" -o "/tmp/jmeter.tgz"
-              tar -zxvf /tmp/jmeter.zip -d /tmp/jmeter
+              mkdir /tmp/jmeter
+              tar -zxvf /tmp/jmeter.zip -C /tmp/jmeter
               rm /tmp/jmeter.tgz
 
-              /tmp/jmeter/jmeter.sh -n -t ${GITHUB_WORKSPACE}/Testing/$_perfTestFile > /tmp/jmeter/$_perfTestFile.jmx.out
-              _maxTime=$(cat /tmp/jmeter/$_perfTestFile.jmx.out | grep summary | grep Max: | awk -F" " '{ print $13 }')
+              /tmp/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t ${GITHUB_WORKSPACE}/Testing/$_perfTestFile > ${GITHUB_WORKSPACE}/Testing/$_perfTestFile.jmx.out
+              _maxTime=$(cat ${GITHUB_WORKSPACE}/Testing/$_perfTestFile.jmx.out | grep summary | grep Max: | awk -F" " '{ print $13 }')
               echo maxtime: $_maxTime
             fi
             #
