@@ -197,9 +197,16 @@ jobs:
               _resultFile=$(echo $_perfTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
               /tmp/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t "${GITHUB_WORKSPACE}/$_perfTestFile" > /tmp/jmeter/$_resultFile.out
 
-              maxTime=$(cat /tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
-              echo maxtime: $maxTime
+              _maxTime=$(cat /tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
+              echo maxtime: $_maxTime
+
+              if [[ $_maxTime <= $_perfThreshold ]]
+              then
+                echo "Performance OK"
+              fi
+
               rm /tmp/jmeter.tgz
+              
             fi
 
             if [[ $postmanInst == 0  && $funcTest == 1 ]]
