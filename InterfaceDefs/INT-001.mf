@@ -12,7 +12,7 @@ listenerStatus=RUNNING
 deployNotes=Deployment from GitHub
 
 ##Environment Extensions
-devEnvUpd=1
+devEnvUpd=0
 devEnvId=404c80a4-efb7-4bc1-b44f-a948b567d884
 devEnvCompType=connection
 devEnvConnId=f7c9f762-9174-47c3-b37d-8aa2505a2149
@@ -20,10 +20,15 @@ devEnvConnName="[conn] MariaDB Local - Employees"
 devEnvConnFieldId=password
 devEnvSSMId=employeeDevDB
 
-##Testing
+##Functional Testing
 funcTest=0
 collectionId=3718514-2052e7c8-2814-4514-ab3f-6d14efeb7f2a
 testId=3718514-a34d25c9-beae-43ea-8e29-e33314bd99f4
+
+##Performance Testing
+perfTest=1
+perfTestFile="Testing/General Web Server.jmx"
+perfThreshold=10000
 
 ##Sample Process
 sample=0
