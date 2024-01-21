@@ -195,8 +195,8 @@ jobs:
               rm /tmp/jmeter.tgz
 
               _resultFile=$(echo $_perfTestFile | awk -F/ '{print $NF}')
-              /tmp/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t ${GITHUB_WORKSPACE}/Testing/$_perfTestFile > "/tmp/jmeter/$_perfTestFile.out"
-              _maxTime=$(cat "/tmp/jmeter/$_perfTestFile.jmx.out" | grep summary | grep Max: | awk -F" " '{ print $13 }')
+              /tmp/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t ${GITHUB_WORKSPACE}/$_perfTestFile > "/tmp/jmeter/$_resultFile.out"
+              _maxTime=$(cat "/tmp/jmeter/$_resultFile.out" | grep summary | grep Max: | awk -F" " '{ print $13 }')
               echo maxtime: $_maxTime
             fi
             #
