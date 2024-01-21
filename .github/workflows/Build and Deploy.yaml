@@ -199,12 +199,12 @@ jobs:
               /tmp/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t "${GITHUB_WORKSPACE}/$_perfTestFile" > /tmp/jmeter/$_resultFile.out
               _maxTime=$(cat /tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
               echo maxtime: $_maxTime
-              if [[ $_maxTime -gt $_perfThreshold ]]
+              if [[ $_maxTime > $_perfThreshold ]]
               then
 	              echo "Performance not OK!"
 	      fi
 
-       	      if [[ $_maxTime -gt $_perfThreshold ]]
+       	      if [[ $_maxTime <= $_perfThreshold ]]
               then
 	              echo "Performance OK"
               fi
