@@ -161,10 +161,6 @@ jobs:
           source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            compCount=1
-            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
-            compCount=$((compCount + 1))
-            
             devEnvUpd=$(grep '^devEnvUpd=' $file | cut -f2 -d'=')
 
             if [[ $devEnvUpd == 1 ]]
@@ -185,6 +181,10 @@ jobs:
             envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
+
+            compCount=1
+            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
+            compCount=$((compCount + 1))
             
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
             testId=$(grep '^testId=' $file | cut -f2 -d'=')
@@ -242,13 +242,17 @@ jobs:
             funcTest=0
             postmanInst=0
             perfTest=0
-            
+
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
+
+            compCount=1
+            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
+            compCount=$((compCount + 1))
             
             sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
@@ -268,8 +272,11 @@ jobs:
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             
             envName="2.Test"
-            "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
-
+            for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
+              _compId=$(echo $compId | cut -f $_compIdx -d",")
+              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+            done
+          
             #_id=$RANDOM
             _id=${{ env.ID }}
             echo random: $_id
@@ -277,7 +284,7 @@ jobs:
             _timeOut=${{ vars.TIMEOUT }}
             if [[ $_timeOut == 0 ]]
             then
-              echo need to set timeout
+              echo Need to set timeout
               _timeOut=30
             fi
 
