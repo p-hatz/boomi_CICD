@@ -203,22 +203,6 @@ jobs:
               rm -fr /tmp/jmeter
 	    fi
 
-            if [[ $maxTime == 1 ]]
-            then
-	        echo "Performance not OK!"
-	    fi
-
-       	      #if [[ $_maxTime <= $_perfThreshold ]]
-              #then
-	      #        echo "Performance OK"
-              #fi
-
-
-
-            #fi
-            
-            #
-            
             if [[ $postmanInst == 0  && $funcTest == 1 ]]
             then
               #curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
