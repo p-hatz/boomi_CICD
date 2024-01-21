@@ -301,6 +301,7 @@ jobs:
               postmanInst=1
             fi
 
+            funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
             if [ $funcTest == 1 ]
             then
               echo Sleeping...
