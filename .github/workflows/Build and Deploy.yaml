@@ -20,7 +20,7 @@ env:
   workflow_dispatch:
 
 jobs:
-  #preReqs:
+  preReqs:
   #  runs-on: [self-hosted, linux, X64]
   #  steps:
   #  - name: AWS Cli
@@ -42,7 +42,7 @@ jobs:
 
           deployPackageHWM=5        
           echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
-
+        
   createPackage:
     runs-on: [self-hosted, linux, X64]
     outputs:
