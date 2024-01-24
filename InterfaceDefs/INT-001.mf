@@ -6,8 +6,8 @@ buildNotes=Packaged from GitHub
 
 ##Deployment
 #deploy=1.Dev
-deploy=2.Test
-#deploy=3.Prod
+#deploy=2.Test
+deploy=3.Prod
 listenerStatus=RUNNING
 deployNotes=Deployment from GitHub
 
@@ -21,12 +21,12 @@ devEnvConnFieldId=password
 devEnvSSMId=employeeDevDB
 
 ##Functional Testing
-funcTest=1
+funcTest=0
 collectionId=3718514-2052e7c8-2814-4514-ab3f-6d14efeb7f2a
 testId=3718514-a34d25c9-beae-43ea-8e29-e33314bd99f4
 
 ##Performance Testing
-perfTest=1
+perfTest=0
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=20000
 
