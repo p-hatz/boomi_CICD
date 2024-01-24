@@ -5,14 +5,14 @@ ver=0.5.184
 buildNotes=Packaged from GitHub
 
 ##Deployment
-#deploy=1.Dev
-deploy=2.Test
+deploy=1.Dev
+#deploy=2.Test
 #deploy=3.Prod
 listenerStatus=RUNNING
 deployNotes=Deployment from GitHub
 
 ##Environment Extensions
-devEnvUpd=0
+devEnvUpd=1
 devEnvId=404c80a4-efb7-4bc1-b44f-a948b567d884
 devEnvCompType=connection
 devEnvConnId=f7c9f762-9174-47c3-b37d-8aa2505a2149
