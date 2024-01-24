@@ -1,7 +1,7 @@
 ##Build
 componentId=14970c43-775f-4921-ab22-720566c70dfa,66769d7b-f200-43c6-ab32-2d0386e7b32c
 componentType=process
-ver=0.5.188
+ver=0.5.189
 buildNotes=Packaged from GitHub
 
 ##Deployment
