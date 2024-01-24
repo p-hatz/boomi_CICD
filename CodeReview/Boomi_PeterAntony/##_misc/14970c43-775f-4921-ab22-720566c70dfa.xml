@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/##_misc" componentId="14970c43-775f-4921-ab22-720566c70dfa" version="348" name="[wsvc] General Web Server" type="process" createdDate="2021-01-28T01:04:40Z" createdBy="peterantony@boomi.com" modifiedDate="2024-01-24T22:12:27Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="##_misc" folderId="RjoyNzY4MjI5">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/##_misc" componentId="14970c43-775f-4921-ab22-720566c70dfa" version="349" name="[wsvc] General Web Server" type="process" createdDate="2021-01-28T01:04:40Z" createdBy="peterantony@boomi.com" modifiedDate="2024-01-24T22:26:55Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="##_misc" folderId="RjoyNzY4MjI5">
   <bns:encryptedValues/>
   <bns:description/>
   <bns:object>
@@ -293,7 +293,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape111.dragpoint1" toShape="unset" x="224.0" y="218.0"/>
+            <dragpoint name="shape111.dragpoint1" toShape="unset" x="224.0" y="1178.0"/>
           </dragpoints>
         </shape>
         <shape image="connectoraction_icon" name="shape113" shapetype="connectoraction" userlabel="" x="1200.0" y="208.0">
@@ -358,7 +358,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </documentproperties>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape115.dragpoint1" toShape="unset" x="416.0" y="58.0"/>
+            <dragpoint name="shape115.dragpoint1" toShape="unset" x="416.0" y="1018.0"/>
           </dragpoints>
         </shape>
         <shape image="connectoraction_icon" name="shape117" shapetype="connectoraction" userlabel="" x="48.0" y="1328.0">
@@ -369,7 +369,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape117.dragpoint1" toShape="unset" x="224.0" y="234.0"/>
+            <dragpoint name="shape117.dragpoint1" toShape="unset" x="224.0" y="1338.0"/>
           </dragpoints>
         </shape>
         <shape image="documentproperties_icon" name="shape116" shapetype="documentproperties" userlabel="" x="240.0" y="48.0">
@@ -403,7 +403,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape118.dragpoint1" toShape="unset" x="224.0" y="331.0"/>
+            <dragpoint name="shape118.dragpoint1" toShape="unset" x="224.0" y="1498.0"/>
           </dragpoints>
         </shape>
       </shapes>
@@ -449,13 +449,55 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
         <ConnectionOverride id="c5eca2db-804f-4fb0-a06e-dc4a7a2cec98">
           <field id="directory" label="Directory" overrideable="true" xpath="DiskSettings/@directory"/>
         </ConnectionOverride>
+        <ConnectionOverride id="2ed9923d-c49d-4d2e-a946-550e839b7505">
+          <field id="platform" label="APM Platform" overrideable="false"/>
+          <field id="eventsAPIURL" label="Events API Endpoint" overrideable="false"/>
+          <field id="metricsAPIURL" label="Metrics API Endpoint" overrideable="false"/>
+          <field id="apiKey" label="API Key" overrideable="false"/>
+          <field id="appKey" label="App Key" overrideable="false"/>
+          <field id="serviceName" label="Service Name" overrideable="false"/>
+        </ConnectionOverride>
+        <ConnectionOverride id="f7c9f762-9174-47c3-b37d-8aa2505a2149">
+          <field id="driverId" label="Driver Type" overrideable="false" xpath="DatabaseConnectionSettings/@driverId"/>
+          <field id="username" label="User" overrideable="true" xpath="DatabaseConnectionSettings/@username"/>
+          <field id="password" label="Password" overrideable="true" xpath="DatabaseConnectionSettings/@password"/>
+          <field id="host" label="Host" overrideable="true" xpath="DatabaseConnectionSettings/@host"/>
+          <field id="port" label="Port" overrideable="true" xpath="DatabaseConnectionSettings/@port"/>
+          <field id="dbname" label="DB Name" overrideable="false" xpath="DatabaseConnectionSettings/@dbname"/>
+          <field id="additional" label="Additional Options" overrideable="false" xpath="DatabaseConnectionSettings/@additional"/>
+          <field id="className" label="Class Name" overrideable="false" xpath="DatabaseConnectionSettings/@className"/>
+          <field id="urlFormat" label="Connection URL" overrideable="false" xpath="DatabaseConnectionSettings/@urlFormat"/>
+          <field id="writeSQLToFile" label="Write SQL To File?" overrideable="false" xpath="DatabaseConnectionSettings/WriteOptions/@writeSQLToFile"/>
+          <field id="sqlFilePath" label="SQL File Path" overrideable="false" xpath="DatabaseConnectionSettings/WriteOptions/@sqlFilePath"/>
+          <field id="isPoolEnabled" label="Enable Pooling" overrideable="false" xpath="DatabaseConnectionSettings/@isPoolEnabled"/>
+          <field id="maxActive" label="Maximum Connections (0 for unlimited)" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@maxActive"/>
+          <field id="minIdle" label="Minimum Connections" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@minIdle"/>
+          <field id="maxIdleTime" label="Maximum Idle Time (sec)" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@maxIdleTime"/>
+          <field id="exhaustedAction" label="When Exhausted Action" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@exhaustedAction"/>
+          <field id="maxWait" label="Maximum Wait Time (sec)" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@maxWait"/>
+          <field id="testOnBorrow" label="Test Connection When Borrowing From Pool" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@testOnBorrow"/>
+          <field id="testOnReturn" label="Test Connection When Returning To Pool" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@testOnReturn"/>
+          <field id="testIdle" label="Test Idle Connections" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@testIdle"/>
+          <field id="maxIdle" label="Validation Query" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@validationQuery"/>
+        </ConnectionOverride>
       </Connections>
+      <Operations>
+        <OperationOverride id="ac207356-94da-4ef5-b065-aed786453326">
+          <field id="ObjectName" label="Object" overrideable="false" xpath="WebServicesServerListenAction/@objectName"/>
+        </OperationOverride>
+      </Operations>
       <PartnerOverrides/>
       <Properties>
         <PropertyOverride name="dppPackageIds"/>
       </Properties>
       <Extensions>
         <ObjectDefinitions>
+          <objectDefinition connectionId="2ed9923d-c49d-4d2e-a946-550e839b7505" connectorType="boomi_peterantony-XG9LRG-apm202-dev" id="2ed9923d-c49d-4d2e-a946-550e839b7505Update" name="APM (2024.1) Update ([conn] AppDynamics)" objectType="Update" userDefined="false">
+            <profiles>
+              <profile id="5c4265da-729c-48d9-87c4-ca18c467ff19" name="APM (2024.1) Update EXECUTE Request" operationId="150e4fd2-913e-44e6-a523-375ccbf59f6a" operationProfilePath="//GenericOperationConfig/@requestProfile" operationProfileRole="input" operationType="EXECUTE" type="profile.xml"/>
+              <profile id="963b1ef0-91a0-48f9-b1af-3d6f82978024" name="APM (2024.1) Update EXECUTE Request" operationId="35d819b2-22a1-408b-9238-fa4592adcc3d" operationProfilePath="//GenericOperationConfig/@requestProfile" operationProfileRole="input" operationType="EXECUTE" type="profile.xml"/>
+            </profiles>
+          </objectDefinition>
           <unusedProfiles/>
         </ObjectDefinitions>
         <DataMaps>
