@@ -192,10 +192,6 @@ jobs:
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
             compCount=$((compCount + 1))
             
-            collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
-            testId=$(grep '^testId=' $file | cut -f2 -d'=')
-            funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
-
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
             compCount=$((compCount + 1))
             echo number of Components: $compCount
@@ -262,8 +258,9 @@ jobs:
             compCount=1
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
             compCount=$((compCount + 1))
-            
+
             sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
+            funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
             testId=$(grep '^testId=' $file | cut -f2 -d'=')
           
@@ -312,7 +309,6 @@ jobs:
               postmanInst=1
             fi
 
-            funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
             if [ $funcTest == 1 ]
             then
               echo Sleeping...
