@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Connections" componentId="f7c9f762-9174-47c3-b37d-8aa2505a2149" version="8" name="[conn] MariaDB Local - Employees" type="connector-settings" subType="database" createdDate="2023-07-02T10:16:45Z" createdBy="peterantony@boomi.com" modifiedDate="2024-02-01T04:43:22Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Connections" folderId="RjoyNzI5NDE1">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Connections" componentId="f7c9f762-9174-47c3-b37d-8aa2505a2149" version="6" name="[conn] MariaDB Local - Employees" type="connector-settings" subType="database" createdDate="2023-07-02T10:16:45Z" createdBy="peterantony@boomi.com" modifiedDate="2024-01-24T22:31:54Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="###Connections" folderId="RjoyNzI5NDE1">
   <bns:encryptedValues>
     <bns:encryptedValue path="//DatabaseConnectionSettings/@password" isSet="true"/>
   </bns:encryptedValues>
   <bns:description/>
   <bns:object>
-    <DatabaseConnectionSettings xmlns="" additional="" className="org.mariadb.jdbc.Driver" dbname="test" driverId="custom" host="localhost" isPoolEnabled="true" password="b639e042e5790aa77018c6efe8eee194489796a76f388d55b5679ebe2068c769f4cfa6b90511b8c75f65f7d448ee149ecd10ad1551871fe3bc8deaf2dcecc704" port="3306" urlFormat="jdbc:mariadb://localhost:{1}/employees" username="agora">
+    <DatabaseConnectionSettings xmlns="" additional="" className="org.mariadb.jdbc.Driver" dbname="test" driverId="custom" host="localhost" isPoolEnabled="true" password="b639e042e5790aa77018c6efe8eee194489796a76f388d55b5679ebe2068c769f4cfa6b90511b8c75f65f7d448ee149ecd10ad1551871fe3bc8deaf2dcecc704" port="3306" urlFormat="jdbc:mariadb://{0}:{1}/employees" username="agora">
       <WriteOptions sqlFilePath="" writeSQLToFile="false"/>
       <AdapterPoolInfo exhaustedAction="1" maxActive="-1" maxIdle="-1" maxIdleTime="0" maxWait="0" minIdle="0" numberOfTests="0" testIdle="false" testOnBorrow="false" testOnReturn="false" timeBetweenRuns="0" validationQuery=""/>
     </DatabaseConnectionSettings>
