@@ -165,7 +165,8 @@ jobs:
 
             if [[ $devEnvUpd == 1 ]]
             then
-              _devEnvId=$(grep '^devEnvId=' $file | cut -f2 -d'=')
+              #_devEnvId=$(grep '^devEnvId=' $file | cut -f2 -d'=')
+              _devEnvId=${{ vars.envDevId }}
               _devEnvCompType=$(grep '^devEnvCompType=' $file | cut -f2 -d'=')
               _devEnvConnId=$(grep '^devEnvConnId=' $file | cut -f2 -d'=')
               _devEnvConnFieldId=$(grep '^devEnvConnFieldId=' $file | cut -f2 -d'=')
