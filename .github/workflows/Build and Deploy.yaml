@@ -42,5 +42,399 @@ jobs:
           
           deployPackageHWM=5        
           echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
+
+          createPackage:
+    #runs-on: [self-hosted, linux, X64]
+    runs-on: [ubuntu-latest]
+    needs: preReqs
+    outputs:
+      runDeploy: ${{ steps.createPackage.outputs.deploy }}
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        #with:
+        #  fetch-depth: 0
+        #  path: INT-001
+      
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v37.5.2
+
+      # Runs a set of commands using the runners shell
+      - name: Create Package
+        id: createPackage
+        run: |
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiUsername=${{ vars.BOOMI_USERNAME }}
+          API=${{ secrets.API }}
+          RepoURL=${{ github.server_url }}
+          RepoName=${{ github.repository }}
+          RepoPath=${RepoURL}/${RepoName}
+          GITUsername=${{ github.repository_owner }}
+          GITUseremail=${{ vars.EMAIL }}
+          CodeFolderXML=${{ vars.CODEFOLDER }}
+
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            funcTest=0
+            sampleProc=0
+            compCount=1
+            
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
+            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            deployPackage=$(grep '^targetEnv=' $file | cut -f2 -d'=')
+
+            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
+            compCount=$((compCount + 1))
+            #echo number of Components: $compCount
+            
+            export WD=${GITHUB_WORKSPACE}/cli/scripts/
+            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+            export GITHUB_WORKSPACE
+
+            find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
+
+            #chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
+            #chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            #chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
+
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+            source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+
+            for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
+              _compId=$(echo $compId | cut -f $_compIdx -d",")
+              "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+            done
+          done
+
+          #Dev is already set
+          deployPackageHWM=5
+          
+          if [ $deployPackage == "2.Test" ]
+          then
+            deployPackageHWM=3
+          elif [ $deployPackage == "3.Prod" ]
+          then
+            deployPackageHWM=1
+          fi
+
+          echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
+
+  deploytoDev:
+    #runs-on: [self-hosted, linux, X64]
+    runs-on: [ubuntu-latest]
+    needs: createPackage
+    #if: contains('1.Dev',needs.createPackage.outputs.runDeploy)
+    if: needs.createPackage.outputs.runDeploy <= 5
+    steps:
+      - uses: actions/checkout@v3
+        #with:
+        #  fetch-depth: 0
+        #  path: INT-001
+
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v37.5.2
+        #with:
+        #  envTargetName: "1.Dev"
         
-  
+      # Runs a set of commands using the runners shell
+      - name: Deploy Package
+        run: |
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiUsername=${{ vars.BOOMI_USERNAME }}
+          API=${{ secrets.API }}
+          RepoURL=${{ github.server_url }}
+          RepoName=${{ github.repository }}
+          RepoPath=${RepoURL}/${RepoName}
+          GITUsername=${{ github.repository_owner }}
+          GITUseremail=${{ vars.EMAIL }}
+          CodeFolderXML=${{ vars.CODEFOLDER }}
+          POSTMAN=${{ secrets.POSTMAN }}
+
+          find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
+          chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
+          chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+          chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
+
+          source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+          source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+          
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            devEnvUpd=$(grep '^devEnvUpd=' $file | cut -f2 -d'=')
+
+            if [[ $devEnvUpd == 1 ]]
+            then
+              #_devEnvId=$(grep '^devEnvId=' $file | cut -f2 -d'=')
+              _devEnvId=${{ vars.envDevId }}
+              _devEnvCompType=$(grep '^devEnvCompType=' $file | cut -f2 -d'=')
+              _devEnvConnId=$(grep '^devEnvConnId=' $file | cut -f2 -d'=')
+              _devEnvConnFieldId=$(grep '^devEnvConnFieldId=' $file | cut -f2 -d'=')
+              _devEnvSSMId=$(grep '^devEnvSSMId=' $file | cut -f2 -d'=')
+
+              _pass=$(aws secretsmanager get-secret-value --secret-id $_devEnvSSMId | jq -r ".SecretString" | awk -F ":" '{ print $2 }' | sed "s/^\"//g ; s/\"}//g")
+              #echo _pass: $_pass
+            fi
+          
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
+            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            envName=$(grep '^deploy=' $file | cut -f2 -d'=')
+            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
+
+            compCount=1
+            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
+            compCount=$((compCount + 1))
+            
+            collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
+            testId=$(grep '^testId=' $file | cut -f2 -d'=')
+            funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
+
+            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
+            compCount=$((compCount + 1))
+            echo number of Components: $compCount
+
+            export WD=${GITHUB_WORKSPACE}/cli/scripts/
+            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+            export GITHUB_WORKSPACE
+
+            if [[ $devEnvUpd == 1 ]]
+            then
+               source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" environmentId="$_devEnvId" componentId="$_devEnvConnId" componentType="$_devEnvCompType" fieldVal="$_pass"
+            fi
+
+            envName: ${{ vars.envDev }}
+            for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
+              _compId=$(echo $compId | cut -f $_compIdx -d",")
+              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+            done
+          done
+
+  deploytoTest:
+    #runs-on: [self-hosted, linux, X64]
+    runs-on: [ubuntu-latest]
+    needs: [createPackage, deploytoDev]
+    environment:
+      name: "Test"
+    if: needs.createPackage.outputs.runDeploy <= 3
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v37.5.2
+        
+      # Runs a set of commands using the runners shell
+      - name: Deploy Package
+        run: |
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiUsername=${{ vars.BOOMI_USERNAME }}
+          API=${{ secrets.API }}
+          RepoURL=${{ github.server_url }}
+          RepoName=${{ github.repository }}
+          RepoPath=${RepoURL}/${RepoName}
+          GITUsername=${{ github.repository_owner }}
+          GITUseremail=${{ vars.EMAIL }}
+          CodeFolderXML=${{ vars.CODEFOLDER }}
+          POSTMAN=${{ secrets.POSTMAN }}  
+          
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            funcTest=0
+            postmanInst=0
+            perfTest=0
+
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
+            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            envName=$(grep '^deploy=' $file | cut -f2 -d'=')
+            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
+
+            compCount=1
+            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
+            compCount=$((compCount + 1))
+            
+            sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
+            collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
+            testId=$(grep '^testId=' $file | cut -f2 -d'=')
+          
+            export WD=${GITHUB_WORKSPACE}/cli/scripts/
+            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+            export GITHUB_WORKSPACE
+
+            find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
+
+            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
+            chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
+
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+            source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            
+            envName: ${{ vars.envTest }}
+            for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
+              _compId=$(echo $compId | cut -f $_compIdx -d",")
+              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+            done
+          
+            #_id=$RANDOM
+            _id=${{ env.ID }}
+            echo random: $_id
+            
+            _timeOut=${{ vars.TIMEOUT }}
+            if [[ $_timeOut == 0 ]]
+            then
+              echo Need to set timeout
+              _timeOut=30
+            fi
+
+            if [[ $sampleProc == 1 ]]
+            then
+              echo Sampling Proc...
+              "${GITHUB_WORKSPACE}/cli/scripts/sampleProc.sh" $_timeOut $_id&
+            fi
+
+            if [[ $postmanInst == 0  && $funcTest == 1 ]]
+            then
+              curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+              /usr/local/bin/postman login --with-api-key $POSTMAN
+              postmanInst=1
+            fi
+
+            funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
+            if [ $funcTest == 1 ]
+            then
+              echo Sleeping...
+              sleep 15
+              echo Running Postman Collection
+              /usr/local/bin/postman collection run "$collectionId" -i "$testId" > /tmp/$collectionId.$testId.out
+              sed -i 's/\[90m//g ; s/\[30m//g' /tmp/$collectionId.$testId.out
+              postmanResult=$(grep assertions /tmp/$collectionId.$testId.out | tr -s ' ' '|' | awk -F "|" '{ print $6 }')
+              #postmanResult=$(echo $postmanOut | grep '200 OK' | wc -l)
+              echo output: $postmanResult
+              if [ "$postmanResult" == 0 ]
+              then
+                echo "Postman test OK"
+              elif [ "$postmanResult" == 1 ]
+              then
+                echo "Postman test failed"
+                exit 1
+              fi
+            fi
+
+            perfTest=$(grep '^perfTest=' $file | cut -f2 -d'=')
+            if [[ $perfTest == 1 ]]
+            then
+              _perfTestFile=$(grep '^perfTestFile=' $file | cut -f2 -d'=')
+              _perfThreshold=$(grep '^perfThreshold=' $file | cut -f2 -d'=')
+
+              curl "https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz" -o "/tmp/jmeter.tgz"
+              mkdir /tmp/jmeter
+              tar -zxvf /tmp/jmeter.tgz -C /tmp/jmeter
+
+              _perfTestFile=$(echo $_perfTestFile | sed "s/\"//g")
+              _resultFile=$(echo $_perfTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
+              /tmp/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t "${GITHUB_WORKSPACE}/$_perfTestFile" > /tmp/jmeter/$_resultFile.out
+
+              _maxTime=$(cat /tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
+              echo maxtime: $_maxTime
+
+              #<= didn't seem to work (?)
+              if [[ $_maxTime < $_perfThreshold  || $_maxTime == $_perfThreshold ]]
+              then
+                echo "Performance OK"
+              fi
+
+              if [[ $_maxTime > $_perfThreshold ]]
+              then
+                echo "Performance not OK!"
+                exit 1
+              fi
+              
+              rm /tmp/jmeter.tgz
+            fi
+              
+            #we run spark separately because the `timeout` command terminates the script
+            #spark < /tmp/$_id.sample > /tmp/$_id.sample.out
+            #cat /tmp/$_id.sample
+            #cat /tmp/$_id.sample.out
+            #sample=1
+          done
+
+      #- name: System Usage
+      #  run: |
+      #    _timeOut=30
+      #    if [[ $sample == 1 ]]
+      #    then
+       #       echo Sampling Proc...
+       #       "${GITHUB_WORKSPACE}/cli/scripts/sampleProc.sh" $_timeOut $ID
+       #       sample=1
+       #   fi
+
+  deploytoProd:
+    #runs-on: [self-hosted, linux, X64]
+    runs-on: [ubuntu-latest]
+    needs: [createPackage, deploytoDev, deploytoTest]
+    environment:
+      name: "Prod"
+    if: needs.createPackage.outputs.runDeploy <= 1
+    steps:
+      - uses: actions/checkout@v3
+    
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v37.5.2
+        
+      # Runs a set of commands using the runners shell
+      - name: Deploy Package
+        run: |
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiUsername=${{ vars.BOOMI_USERNAME }}
+          API=${{ secrets.API }}
+          RepoURL=${{ github.server_url }}
+          RepoName=${{ github.repository }}
+          RepoPath=${RepoURL}/${RepoName}
+          GITUsername=${{ github.repository_owner }}
+          GITUseremail=${{ vars.EMAIL }}
+          CodeFolderXML=${{ vars.CODEFOLDER }}
+          
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            funcTest=0
+            postmanInst=0
+            perfTest=0
+
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
+            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            envName=$(grep '^deploy=' $file | cut -f2 -d'=')
+            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
+
+            compCount=1
+            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
+            compCount=$((compCount + 1))
+            
+            export WD=${GITHUB_WORKSPACE}/cli/scripts/
+            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+            export GITHUB_WORKSPACE
+
+            find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
+
+            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
+            chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
+
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+            source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+
+            envName: ${{ vars.envProd }}
+            for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
+              _compId=$(echo $compId | cut -f $_compIdx -d",")
+              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+            done
+          done
