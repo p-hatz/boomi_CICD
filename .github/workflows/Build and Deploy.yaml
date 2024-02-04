@@ -82,7 +82,7 @@ jobs:
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
-            deployPackage=$(grep '^deploy=' $file | cut -f2 -d'=')
+            deployPackage=$(grep '^targetEnv=' $file | cut -f2 -d'=')
 
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
             compCount=$((compCount + 1))
