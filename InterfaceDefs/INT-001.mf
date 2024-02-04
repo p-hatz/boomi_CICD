@@ -5,7 +5,7 @@ ver=0.5.196
 buildNotes=Packaged from GitHub
 
 ##Deployment
-targetEnv=1.Dev
+targetEnv=2.Test
 listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
 
@@ -18,7 +18,7 @@ devEnvConnFieldId=password
 devEnvSSMId=employeeDevDB
 
 ##Functional Testing
-funcTest=0
+funcTest=1
 collectionId=3718514-2052e7c8-2814-4514-ab3f-6d14efeb7f2a
 testId=3718514-a34d25c9-beae-43ea-8e29-e33314bd99f4
 
