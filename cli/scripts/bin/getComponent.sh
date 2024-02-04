@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#source $WD/bin/common.sh
+source ${GITHUB_WORKSPACE}/bin/common.sh
 # get atom id of the by atom name
 # mandatory arguments
 unset version
