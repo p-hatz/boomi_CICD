@@ -313,18 +313,13 @@ jobs:
               echo Sleeping...
               sleep 15
               echo Running Postman Collection
-              echo pre 1
               mkdir ${GITHUB_WORKSPACE}/tmp
-              echo pre 2
-              which postman
-              echo $collectionId
-              echo $testId
               #/usr/local/bin/postman collection run "$collectionId" -i "$testId" > ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out
-              /usr/local/bin/postman collection run "${GITHUB_WORKSPACE}/$collectionId" > ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out
-              echo pre 3
+              _collectionIdTest=$(basename $collectionId)
+              /usr/local/bin/postman collection run "${GITHUB_WORKSPACE}/$collectionId" > ${GITHUB_WORKSPACE}/tmp/$_collectionIdTest.out
               sed -i 's/\[90m//g ; s/\[30m//g' ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out
               echo pre 5
-              postmanResult=$(grep assertions ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out | tr -s ' ' '|' | awk -F "|" '{ print $6 }')
+              postmanResult=$(grep assertions ${GITHUB_WORKSPACE}/tmp/$_collectionIdTest.out | tr -s ' ' '|' | awk -F "|" '{ print $6 }')
               #postmanResult=$(echo $postmanOut | grep '200 OK' | wc -l)
               echo output: $postmanResult
               if [ "$postmanResult" == 0 ]
@@ -343,7 +338,7 @@ jobs:
               _perfTestFile=$(grep '^perfTestFile=' $file | cut -f2 -d'=')
               _perfThreshold=$(grep '^perfThreshold=' $file | cut -f2 -d'=')
 
-              curl "https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz" -o "/tmp/jmeter.tgz"
+              curl "https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz" -o "/tmp/jmeter.tgz"
               mkdir /tmp/jmeter
               tar -zxvf /tmp/jmeter.tgz -C /tmp/jmeter
 
