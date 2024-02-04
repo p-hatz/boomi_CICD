@@ -306,7 +306,8 @@ jobs:
             if [[ $postmanInst == 0  && $funcTest == 1 ]]
             then
               curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-              /usr/local/bin/postman login --with-api-key $POSTMAN
+              which postman
+              #/usr/local/bin/postman login --with-api-key $POSTMAN
               postmanInst=1
             fi
 
