@@ -6,9 +6,9 @@ on:
     paths:
       - 'InterfaceDefs/INT-*.mf'
 env:
-  envDev: "1.Dev"
-  envTest: "2.Dev"
-  envProd: "3.Prod"
+  envDev: ${{ vars.envDev }}
+  envTest: ${{ vars.envTest }}
+  envProd: ${{ vars.envProd }}
   AWS_ACCESS_KEY_ID: ${{ secrets.ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.ID2 }}
   AWS_DEFAULT_REGION: ap-southeast-2
