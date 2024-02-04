@@ -31,7 +31,7 @@ jobs:
         
     - name: Install AWS CLI v2 and OS Packages
       run:  |
-          sudo apt-get install -y curl libxml2-utils jq
+          sudo apt-get install -y curl
           #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "${GITHUB_WORKSPACE}/awscliv2.zip"
           #unzip -q /tmp/awscliv2.zip -d /tmp
           #unzip -q ${GITHUB_WORKSPACE}/awscliv2.zip -d ${GITHUB_WORKSPACE}/awscli
@@ -63,6 +63,7 @@ jobs:
       - name: Create Package
         id: createPackage
         run: |
+          sudo apt-get install -y libxml2-utils jq
           BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
           BoomiUsername=${{ vars.BOOMI_USERNAME }}
           API=${{ secrets.API }}
