@@ -28,7 +28,7 @@
 					"raw": "http://api.fromthegarage.com.au/ws/simple/executeTest",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"api.fromthegarage.com.au"
 					],
 					"port": "9090",
 					"path": [
