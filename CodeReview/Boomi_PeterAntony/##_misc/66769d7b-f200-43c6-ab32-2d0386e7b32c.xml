@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/##_misc" componentId="66769d7b-f200-43c6-ab32-2d0386e7b32c" version="212" name="[proc] General" type="process" createdDate="2023-06-18T10:10:48Z" createdBy="peterantony@boomi.com" modifiedDate="2024-02-01T04:24:20Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="##_misc" folderId="RjoyNzY4MjI5">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/##_misc" componentId="66769d7b-f200-43c6-ab32-2d0386e7b32c" version="213" name="[proc] General" type="process" createdDate="2023-06-18T10:10:48Z" createdBy="peterantony@boomi.com" modifiedDate="2024-02-01T04:26:59Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="##_misc" folderId="RjoyNzY4MjI5">
   <bns:encryptedValues/>
   <bns:description/>
   <bns:object>
@@ -123,7 +123,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </message>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape84.dragpoint1" toShape="unset" x="224.0" y="698.0"/>
+            <dragpoint name="shape84.dragpoint1" toShape="unset" x="224.0" y="378.0"/>
           </dragpoints>
         </shape>
         <shape image="connectoraction_icon" name="shape87" shapetype="connectoraction" userlabel="HTTP Mock API" x="1008.0" y="688.0">
@@ -179,7 +179,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
           </configuration>
           <dragpoints>
             <dragpoint identifier="1" name="shape94.dragpoint1" text="1" toShape="shape87" x="992.0" y="696.0"/>
-            <dragpoint identifier="2" name="shape94.dragpoint2" text="2" toShape="unset" x="992.0" y="58.0"/>
+            <dragpoint identifier="2" name="shape94.dragpoint2" text="2" toShape="unset" x="992.0" y="698.0"/>
             <dragpoint identifier="3" name="shape94.dragpoint3" text="3" toShape="shape97" x="992.0" y="1016.0"/>
           </dragpoints>
         </shape>
@@ -241,21 +241,21 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape102.dragpoint1" toShape="shape104" x="400.0" y="184.0"/>
+            <dragpoint name="shape102.dragpoint1" toShape="shape104" x="416.0" y="56.0"/>
           </dragpoints>
         </shape>
-        <shape image="stop_icon" name="shape103" shapetype="stop" x="432.0" y="48.0">
+        <shape image="stop_icon" name="shape103" shapetype="stop" x="624.0" y="48.0">
           <configuration>
             <stop continue="true"/>
           </configuration>
           <dragpoints/>
         </shape>
-        <shape image="flowcontrol_icon" name="shape104" shapetype="flowcontrol" userlabel="" x="416.0" y="176.0">
+        <shape image="flowcontrol_icon" name="shape104" shapetype="flowcontrol" userlabel="" x="432.0" y="48.0">
           <configuration>
             <flowcontrol chunkStyle="threadOnly" chunks="15" forEachCount="0"/>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape104.dragpoint1" toShape="shape103" x="416.0" y="56.0"/>
+            <dragpoint name="shape104.dragpoint1" toShape="shape103" x="608.0" y="56.0"/>
           </dragpoints>
         </shape>
       </shapes>
