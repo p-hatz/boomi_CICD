@@ -318,6 +318,7 @@ jobs:
               echo Sleeping...
               sleep 15
               echo Running Postman Collection
+              which postman
               #/usr/local/bin/postman collection run "$collectionId" -i "$testId" > /tmp/$collectionId.$testId.out
               sed -i 's/\[90m//g ; s/\[30m//g' /tmp/$collectionId.$testId.out
               postmanResult=$(grep assertions /tmp/$collectionId.$testId.out | tr -s ' ' '|' | awk -F "|" '{ print $6 }')
