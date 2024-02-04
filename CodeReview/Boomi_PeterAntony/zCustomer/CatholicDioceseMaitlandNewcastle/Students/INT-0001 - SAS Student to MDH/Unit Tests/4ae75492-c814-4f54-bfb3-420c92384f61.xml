@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/zCustomer/CatholicDioceseMaitlandNewcastle/Students/INT-0001 - SAS Student to MDH/Unit Tests" componentId="4ae75492-c814-4f54-bfb3-420c92384f61" version="4" name="[oper] Get Employees" type="connector-action" subType="database" createdDate="2021-12-22T06:40:09Z" createdBy="peterantony@boomi.com" modifiedDate="2024-01-20T01:18:45Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Unit Tests" folderId="Rjo0NDgyNzUz">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <DatabaseGetAction batchCount="0" maxRows="0">
+          <ReadProfile profileId="22253a48-1c04-4ddc-aff0-b7389ea2f6c1"/>
+        </DatabaseGetAction>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>
