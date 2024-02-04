@@ -32,8 +32,6 @@ jobs:
     - name: Install AWS CLI v2 and OS Packages
       run:  |
           sudo apt-get install -y curl libxml2-utils jq
-          #when using Hosted Runners
-          export PATH=$PATH:/usr/bin
           #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "${GITHUB_WORKSPACE}/awscliv2.zip"
           #unzip -q /tmp/awscliv2.zip -d /tmp
           #unzip -q ${GITHUB_WORKSPACE}/awscliv2.zip -d ${GITHUB_WORKSPACE}/awscli
@@ -74,6 +72,9 @@ jobs:
           GITUsername=${{ github.repository_owner }}
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
+
+          #when using Hosted Runners
+          export PATH=$PATH:/usr/bin
 
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             funcTest=0
