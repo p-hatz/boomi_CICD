@@ -321,6 +321,7 @@ jobs:
               echo $_resultFile
               echo pre 3
               /usr/local/bin/postman collection run "${GITHUB_WORKSPACE}/$_collectionIdFile" > ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
+              cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               echo pre 4
               sed -i 's/\[90m//g ; s/\[30m//g' ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               
