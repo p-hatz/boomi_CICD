@@ -33,7 +33,7 @@ jobs:
       run:  |
           sudo apt-get install -y curl libxml2-utils jq
           #when using Hosted Runners
-          export PATH:$PATH:/usr/bin
+          export PATH=$PATH:/usr/bin
           #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "${GITHUB_WORKSPACE}/awscliv2.zip"
           #unzip -q /tmp/awscliv2.zip -d /tmp
           #unzip -q ${GITHUB_WORKSPACE}/awscliv2.zip -d ${GITHUB_WORKSPACE}/awscli
