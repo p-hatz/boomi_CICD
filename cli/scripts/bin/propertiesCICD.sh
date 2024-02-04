@@ -25,3 +25,6 @@ export h2="Accept: application/json"
 #Do not set
 export VERBOSE="true"
 #Enables verbose logging, set to false if you do not want the previously mentioned logs
+
+#for xmllint
+export PATH=$PATH:/usr/bin/
