@@ -3,7 +3,6 @@
 set -a
 
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
-ls -ltr /usr/bin/xmllint
 
 ARGUMENTS=(authToken componentId packageVersion notes componentType extractComponentXmlFolder)
 
