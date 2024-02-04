@@ -313,9 +313,10 @@ jobs:
               echo Sleeping...
               sleep 15
               echo Running Postman Collection
-              /usr/local/bin/postman collection run "$collectionId" -i "$testId" > /tmp/$collectionId.$testId.out
-              sed -i 's/\[90m//g ; s/\[30m//g' /tmp/$collectionId.$testId.out
-              postmanResult=$(grep assertions /tmp/$collectionId.$testId.out | tr -s ' ' '|' | awk -F "|" '{ print $6 }')
+              mkdir ${GITHUB_WORKSPACE}/tmp
+              /usr/local/bin/postman collection run "$collectionId" -i "$testId" > ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out
+              sed -i 's/\[90m//g ; s/\[30m//g' ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out
+              postmanResult=$(grep assertions ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out | tr -s ' ' '|' | awk -F "|" '{ print $6 }')
               #postmanResult=$(echo $postmanOut | grep '200 OK' | wc -l)
               echo output: $postmanResult
               if [ "$postmanResult" == 0 ]
