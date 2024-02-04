@@ -24,8 +24,8 @@
       </ThreadGroup>
       <hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request">
-          <stringProp name="HTTPSampler.domain">localhost</stringProp>
-          <stringProp name="HTTPSampler.port">9090</stringProp>
+          <stringProp name="HTTPSampler.domain">api.fromthegarage.com.au</stringProp>
+          <stringProp name="HTTPSampler.port">80</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.path">ws/simple/executeTest</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
