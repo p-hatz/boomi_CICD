@@ -316,6 +316,9 @@ jobs:
               echo pre 1
               mkdir ${GITHUB_WORKSPACE}/tmp
               echo pre 2
+              which postman
+              echo $collectionId
+              echo $testId
               /usr/local/bin/postman collection run "$collectionId" -i "$testId" > ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out
               echo pre 3
               sed -i 's/\[90m//g ; s/\[30m//g' ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out
