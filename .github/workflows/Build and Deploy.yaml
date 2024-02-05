@@ -342,14 +342,14 @@ jobs:
               _perfThreshold=$(grep '^perfThreshold=' $file | cut -f2 -d'=')
 
               rm -fr "${GITHUB_WORKSPACE}/tmp/jmeter"
-              mkdir "${GITHUB_WORKSPACE}/tmp/jmeter"
+              mkdir -p "${GITHUB_WORKSPACE}/tmp/jmeter"
               
-              curl "https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz" -o "${GITHUB_WORKSPACE}/jmeter.tgz"
-              tar -zxvf "${GITHUB_WORKSPACE}/jmeter.tgz" -C "${GITHUB_WORKSPACE}/tmp/jmeter"
+              curl "https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz" -o "${GITHUB_WORKSPACE}/tmp/jmeter.tgz"
+              tar -zxvf "${GITHUB_WORKSPACE}/tmp/jmeter.tgz" -C "${GITHUB_WORKSPACE}/tmp/jmeter"
 
               _perfTestFile=$(echo $_perfTestFile | sed "s/\"//g")
               _resultFile=$(echo $_perfTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
-              ${GITHUB_WORKSPACE}/tmp/jmeter/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t "${GITHUB_WORKSPACE}/$_perfTestFile" > ${GITHUB_WORKSPACE}/tmp/jmeter/$_resultFile.out
+              ${GITHUB_WORKSPACE}/tmp/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t "${GITHUB_WORKSPACE}/$_perfTestFile" > ${GITHUB_WORKSPACE}/tmp/jmeter/$_resultFile.out
 
               _maxTime=$(cat ${GITHUB_WORKSPACE}/tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
               echo maxtime: $_maxTime
