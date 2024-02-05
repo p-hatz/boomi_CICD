@@ -316,7 +316,6 @@ jobs:
               mkdir ${GITHUB_WORKSPACE}/tmp
               #/usr/local/bin/postman collection run "$collectionId" -i "$testId" > ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out
               _collectionIdFile=$(echo $collectionId | sed "s/\"//g")
-              echo $_collectionIdFile
               _resultFile=$(echo $collectionId | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
               #/usr/local/bin/postman collection run "${GITHUB_WORKSPACE}/$_collectionIdFile" > ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               /usr/local/bin/postman collection run "${GITHUB_WORKSPACE}/$_collectionIdFile" > ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
@@ -342,15 +341,17 @@ jobs:
               _perfTestFile=$(grep '^perfTestFile=' $file | cut -f2 -d'=')
               _perfThreshold=$(grep '^perfThreshold=' $file | cut -f2 -d'=')
 
-              curl "https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz" -o "/tmp/jmeter.tgz"
-              mkdir /tmp/jmeter
-              tar -zxvf /tmp/jmeter.tgz -C /tmp/jmeter
+              rm -fr "${GITHUB_WORKSPACE}/tmp/jmeter"
+              mkdir "${GITHUB_WORKSPACE}/tmp/jmeter"
+              
+              curl "https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz" -o "${GITHUB_WORKSPACE}/jmeter.tgz"
+              tar -zxvf "${GITHUB_WORKSPACE}/jmeter.tgz" -C "${GITHUB_WORKSPACE}/tmp/jmeter"
 
               _perfTestFile=$(echo $_perfTestFile | sed "s/\"//g")
               _resultFile=$(echo $_perfTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
-              /tmp/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t "${GITHUB_WORKSPACE}/$_perfTestFile" > /tmp/jmeter/$_resultFile.out
+              ${GITHUB_WORKSPACE}/tmp/jmeter/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t "${GITHUB_WORKSPACE}/$_perfTestFile" > ${GITHUB_WORKSPACE}/tmp/jmeter/$_resultFile.out
 
-              _maxTime=$(cat /tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
+              _maxTime=$(cat ${GITHUB_WORKSPACE}/tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
               echo maxtime: $_maxTime
 
               #<= didn't seem to work (?)
@@ -365,7 +366,7 @@ jobs:
                 exit 1
               fi
               
-              rm /tmp/jmeter.tgz
+              rm -fr "${GITHUB_WORKSPACE}/tmp/jmeter"
             fi
               
             #we run spark separately because the `timeout` command terminates the script
