@@ -18,13 +18,14 @@ devEnvConnFieldId=password
 devEnvSSMId=employeeDevDB
 
 ##Functional Testing
-funcTest=1
-#collectionId=3718514-2052e7c8-2814-4514-ab3f-6d14efeb7f2a
+funcTestPostman=0
 collectionId="Testing/GeneralAPITest.json"
-testId=3718514-a34d25c9-beae-43ea-8e29-e33314bd99f4
+funcTestBDC=1
+BDCTestURL=https://3181-49-179-1-5.ngrok-free.app/ws/simple/executeTestSuite
+BDCTest="Testing/DevOpsCentreTest.json"
 
 ##Performance Testing
-perfTest=1
+perfTest=0
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=20000
 
