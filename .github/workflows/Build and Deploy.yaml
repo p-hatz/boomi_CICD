@@ -48,7 +48,7 @@ jobs:
             _BDCURL=$(grep '^BDCTestURL=' $file | cut -f2 -d'=')
             __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
             _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
-            _resultFile=$(echo $BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
+            _resultFile=$(echo $_BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
             _BDCAuth=${{ secrets.BDC }}
 
             echo $_BDCURL
