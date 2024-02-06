@@ -61,7 +61,7 @@ jobs:
             _testSuiteExecutionId=$(jq -r '.testSuiteExecutionId' ${GITHUB_WORKSPACE}/tmp/$_resultFile.out)
             echo output: $_testSuiteExecutionId
 
-            _BDCURLTestExecutionSuite=$(echo $_BDCURL | sed "s/executeTest$/getTestExecutions?processId=/g")
+            _BDCURLTestExecutionSuite=$(echo $_BDCURL | sed "s/executeTestSuite$/getTestExecutions?processId=/g")
             _BDCURLTestExecutionSuite=$_BDCURLTestExecutionSuite$_processId"&testSuiteExecutionId="$_testSuiteExecutionId
             echo test execution URL: $_BDCURLTestExecutionSuite
             
