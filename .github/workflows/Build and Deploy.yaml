@@ -186,7 +186,6 @@ jobs:
               _devEnvSSMId=$(grep '^devEnvSSMId=' $file | cut -f2 -d'=')
 
               _pass=$(aws secretsmanager get-secret-value --secret-id $_devEnvSSMId | jq -r ".SecretString" | awk -F ":" '{ print $2 }' | sed "s/^\"//g ; s/\"}//g")
-              #echo _pass: $_pass
             fi
           
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
@@ -462,6 +461,8 @@ jobs:
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
           
+          _bot=${{ secrets.BOT }}
+          
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             funcTest=0
             postmanInst=0
@@ -495,5 +496,11 @@ jobs:
             for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
               _compId=$(echo $compId | cut -f $_compIdx -d",")
               "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+              
+              _msg="Component '" $componentId "' (ver: " $packageVersion " deployed to Production"
+              curl -d "$_msg" -d "channel=general" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
             done
+
+            
+             "text=Hi I am a bot that can post messages to any public channel." -d "channel=general" 
           done
