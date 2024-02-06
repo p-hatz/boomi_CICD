@@ -21,7 +21,6 @@ devEnvSSMId=employeeDevDB
 funcTestPostman=0
 collectionId="Testing/GeneralAPITest.json"
 funcTestBDC=1
-BDCTestURL=https://3181-49-179-1-5.ngrok-free.app/ws/simple/executeTestSuite
 BDCTestFile="Testing/DevOpsCentreTest.json"
 
 ##Performance Testing
