@@ -326,17 +326,13 @@ jobs:
               echo Running Postman Collection
               #/usr/local/bin/postman collection run "$collectionId" -i "$testId" > ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out
               _collectionIdFile=$(echo $collectionId | sed "s/\"//g")
-              echo $_collectionIdFile
-              echo here 1
               
               _resultFile=$(echo $collectionId | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
-              echo $_resultFile
-              echo here 2
               
               #/usr/local/bin/postman collection run "${GITHUB_WORKSPACE}/$_collectionIdFile" > ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
+              ls -ltr /usr/local/bin/postman
               /usr/local/bin/postman collection run "${GITHUB_WORKSPACE}/$_collectionIdFile" > ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
 
-              echo here 3
               cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               sed -i 's/\[90m//g ; s/\[30m//g' ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               
