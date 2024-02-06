@@ -349,7 +349,8 @@ jobs:
               echo Testing using Boomi DevOps Centre
               
               #_BDCURL=$(grep '^BDCTestURL=' $file | cut -f2 -d'=')
-              _BDCURL=${{ vars.BDCURL }}/ws/simple/executeTestSuite
+              __BDCURL=${{ vars.BDCURL }}/ws/simple/executeTestSuite
+              _BDCURL="$__BDCURL/ws/simple/executeTestSuite"
               __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
               _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
               _processId=$(jq -r ".processId" ${GITHUB_WORKSPACE}/$_BDCTestFile)
