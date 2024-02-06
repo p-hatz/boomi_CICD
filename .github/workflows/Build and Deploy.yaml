@@ -21,6 +21,10 @@ jobs:
     #runs-on: [self-hosted, linux, X64]
     runs-on: [ubuntu-latest]
     steps:
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v37.5.2
+
   #  - name: AWS Cli
   #    id: install-aws-cli
   #    uses: unfor19/install-aws-cli-action@v1
@@ -29,8 +33,8 @@ jobs:
   #      verbose: false                     # default
   #      arch: amd64                        # allowed values: amd64, arm64
         
-    - name: Install AWS CLI v2 and OS Packages
-      run:  |
+      - name: Install AWS CLI v2 and OS Packages
+        run:  |
           sudo apt-get install -y curl
           #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "${GITHUB_WORKSPACE}/awscliv2.zip"
           #unzip -q /tmp/awscliv2.zip -d /tmp
