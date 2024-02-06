@@ -49,8 +49,8 @@ jobs:
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             #_BDCURL=$(grep '^BDCTestURL=' $file | cut -f2 -d'=')
-            __BDCURL=${{ vars.BDCURL }}/ws/simple/executeTestSuite
-            _BDCURL=$__BDCURL/ws/simple/executeTestSuite
+            _BDCURL=${{ vars.BDCURL }}/ws/simple/executeTestSuite
+            #_BDCURL=$__BDCURL/ws/simple/executeTestSuite
 
             echo $_BDCURL
             __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
