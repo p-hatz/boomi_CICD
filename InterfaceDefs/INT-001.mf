@@ -30,12 +30,3 @@ perfThreshold=20000
 
 ##Sample Process
 sample=0
-
-
-
-
-
-
-
-
-
