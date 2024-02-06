@@ -322,7 +322,6 @@ jobs:
               echo Sleeping...
               sleep 15
               echo Running Postman Collection
-              mkdir ${GITHUB_WORKSPACE}/tmp
               #/usr/local/bin/postman collection run "$collectionId" -i "$testId" > ${GITHUB_WORKSPACE}/tmp/$collectionId.$testId.out
               _collectionIdFile=$(echo $collectionId | sed "s/\"//g")
               _resultFile=$(echo $collectionId | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
@@ -366,7 +365,7 @@ jobs:
                 
               sleep 30
               curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out --location $_BDCURLTestExecutionSuite --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
-              _BDCStatus=$(jq '.[0]."Overall Status"' ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out)
+              _BDCStatus=$(jq -r '.[0]."Overall Status"' ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out)
               echo BDC Status: $_BDCStatus
 
               if [ "$_BDCStatus" == "OK" ]
