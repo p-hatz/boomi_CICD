@@ -352,6 +352,7 @@ jobs:
               __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
               _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
               _processId=$(jq -r ".processId" ${GITHUB_WORKSPACE}/$_BDCTestFile)
+              echo $_processId
                 
               _resultFile=$(echo $_BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
               _BDCAuth=${{ secrets.BDC }}
