@@ -73,10 +73,7 @@ jobs:
             if [ "$_BDCStatus" == "OK" ]
             then
                 echo "Test OK"
-            fi
-            
-            if [ "$_BDCStatus" != "OK" ]
-            then
+            else
                 echo "Test failed"
                 exit 1
             fi
