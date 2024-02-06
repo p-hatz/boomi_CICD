@@ -49,7 +49,7 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             _BDCURL=$(grep '^BDCTestURL=' $file | cut -f2 -d'=')
             __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
-            #_processId=$(jq -r ".processId" $__BDCTestFile)
+            _processId=$(jq -r ".processId" ${GITHUB_WORKSPACE}/$__BDCTestFile)
             _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
             _resultFile=$(echo $_BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
             _BDCAuth=${{ secrets.BDC }}
