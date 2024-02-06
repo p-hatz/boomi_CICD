@@ -244,7 +244,8 @@ jobs:
           POSTMAN=${{ secrets.POSTMAN }}  
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            funcTest=0
+            funcTestPostman=0
+            funcTestBDC=0
             postmanInst=0
             perfTest=0
 
@@ -260,10 +261,10 @@ jobs:
             compCount=$((compCount + 1))
 
             sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
-            funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
+            funcTestPostman=$(grep '^funcTestPostman=' $file | cut -f2 -d'=')
+            funcTestBDC=$(grep '^funcTestBDC=' $file | cut -f2 -d'=')
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
-            testId=$(grep '^testId=' $file | cut -f2 -d'=')
-          
+            
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
             export GITHUB_WORKSPACE
@@ -300,7 +301,7 @@ jobs:
               "${GITHUB_WORKSPACE}/cli/scripts/sampleProc.sh" $_timeOut $_id&
             fi
 
-            if [[ $postmanInst == 0  && $funcTest == 1 ]]
+            if [[ $postmanInst == 0  && $funcTestPostman == 1 ]]
             then
               echo Installing Postman...
               curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
@@ -308,7 +309,7 @@ jobs:
               postmanInst=1
             fi
 
-            if [ $funcTest == 1 ]
+            if [ $funcTestPostman == 1 ]
             then
               echo Sleeping...
               sleep 15
@@ -333,6 +334,33 @@ jobs:
                 echo "Postman test failed"
                 exit 1
               fi
+            elif [ $funcTestBDC == 1 ]
+            then
+              echo Sleeping...
+              sleep 15
+              echo Testing using Boomi DevOps Centre
+              mkdir ${GITHUB_WORKSPACE}/tmp
+
+              _BDCURL=$(grep '^BDCTestURL=' $file | cut -f2 -d'=')
+              __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
+              _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
+              _resultFile=$(echo $BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
+              _BDCAuth=${{ secrets.BDC }}
+              
+              curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.out -d @$_BDCTestFile --location $_BDCURL --header 'Content-Type: application/json' --header 'Authorization: Basic "$_BDCAuth"'
+              cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
+
+              _testSuiteExecutionId=$(jq -r '.testSuiteExecutionId' ${GITHUB_WORKSPACE}/tmp/$_resultFile.out)
+              
+              echo output: $_testSuiteExecutionId
+              #if [ "$postmanResult" == 0 ]
+              #then
+              #  echo "Postman test OK"
+              #elif [ "$postmanResult" == 1 ]
+              #then
+              #  echo "Postman test failed"
+              #  exit 1
+              #fi
             fi
 
             perfTest=$(grep '^perfTest=' $file | cut -f2 -d'=')
