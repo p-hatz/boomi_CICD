@@ -355,9 +355,11 @@ jobs:
               echo $_processId
                 
               _resultFile=$(echo $_BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
+              echo $_resultFile
               _BDCAuth=${{ secrets.BDC }}
 
               curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.out -d @$_BDCTestFile --location $_BDCURL --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
+              cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               
               _testSuiteExecutionId=$(jq -r '.testSuiteExecutionId' ${GITHUB_WORKSPACE}/tmp/$_resultFile.out)
               echo $_testSuiteExecutionId
