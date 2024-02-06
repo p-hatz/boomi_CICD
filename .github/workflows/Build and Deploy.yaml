@@ -344,10 +344,11 @@ jobs:
             elif [ $funcTestBDC == 1 ]
             then
               echo Sleeping...
-              sleep 15
+              #sleep 15
               echo Testing using Boomi DevOps Centre
               
               _BDCURL=${{ vars.BDCURL }}/ws/simple/executeTestSuite
+              echo $_BDCURL
               __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
               _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
               _processId=$(jq -r ".processId" ${GITHUB_WORKSPACE}/$_BDCTestFile)
@@ -358,6 +359,7 @@ jobs:
               curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.out -d @$_BDCTestFile --location $_BDCURL --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
               
               _testSuiteExecutionId=$(jq -r '.testSuiteExecutionId' ${GITHUB_WORKSPACE}/tmp/$_resultFile.out)
+              echo $_testSuiteExecutionId
 
               _BDCURLTestExecutionSuite=$(echo $_BDCURL | sed "s/executeTestSuite$/getTestExecutions?processId=/g")
               _BDCURLTestExecutionSuite=$_BDCURLTestExecutionSuite$_processId"&testSuiteExecutionId="$_testSuiteExecutionId
