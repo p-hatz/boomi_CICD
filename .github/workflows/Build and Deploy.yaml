@@ -51,6 +51,8 @@ jobs:
             #_BDCURL=$(grep '^BDCTestURL=' $file | cut -f2 -d'=')
             __BDCURL=${{ vars.BDCURL }}/ws/simple/executeTestSuite
             _BDCURL=$__BDCURL/ws/simple/executeTestSuite
+
+            echo $_BDCURL
             __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
             _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
             _processId=$(jq -r ".processId" ${GITHUB_WORKSPACE}/$_BDCTestFile)
