@@ -328,8 +328,6 @@ jobs:
               _collectionIdFile=$(echo $collectionId | sed "s/\"//g")
               _resultFile=$(echo $collectionId | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
               
-              #/usr/local/bin/postman collection run "${GITHUB_WORKSPACE}/$_collectionIdFile" > ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
-              ls -ltr /usr/local/bin/postman
               /usr/local/bin/postman collection run "${GITHUB_WORKSPACE}/$_collectionIdFile" > ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
 
               cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
@@ -337,7 +335,7 @@ jobs:
               
               postmanResult=$(grep assertions ${GITHUB_WORKSPACE}/tmp/$_resultFile.out | tr -s ' ' '|' | awk -F "|" '{ print $6 }')
               #postmanResult=$(echo $postmanOut | grep '200 OK' | wc -l)
-              echo output: $postmanResult
+              echo Postman Result: $postmanResult
               if [ "$postmanResult" == 0 ]
               then
                 echo "Postman test OK"
@@ -353,31 +351,26 @@ jobs:
               echo Testing using Boomi DevOps Centre
               
               _BDCURL=${{ vars.BDCURL }}/ws/simple/executeTestSuite
-              #echo $_BDCURL
               __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
               _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
-              #echo $_BDCTestFile
               _processId=$(jq -r ".processId" ${GITHUB_WORKSPACE}/$_BDCTestFile)
-              #echo $_processId
                 
               _resultFile=$(echo $_BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
-              #echo $_resultFile
               _BDCAuth=${{ secrets.BDC }}
 
               curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.out -d @$_BDCTestFile --location $_BDCURL --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
               #cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               
               _testSuiteExecutionId=$(jq -r '.testSuiteExecutionId' ${GITHUB_WORKSPACE}/tmp/$_resultFile.out)
-              #echo $_testSuiteExecutionId
-
+              
               _BDCURLTestExecutionSuite=$(echo $_BDCURL | sed "s/executeTestSuite$/getTestExecutions?processId=/g")
               _BDCURLTestExecutionSuite=$_BDCURLTestExecutionSuite$_processId"&testSuiteExecutionId="$_testSuiteExecutionId
               #echo test execution URL: $_BDCURLTestExecutionSuite
-                
+               
               sleep 30
               curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out --location $_BDCURLTestExecutionSuite --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
               _BDCStatus=$(jq -r '.[0]."Overall Status"' ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out)
-              echo BDC Status: $_BDCStatus
+              echo Boomi DevOps Centre Test Status: $_BDCStatus
 
               if [ "$_BDCStatus" == "OK" ]
               then
@@ -405,7 +398,7 @@ jobs:
               ${GITHUB_WORKSPACE}/tmp/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t "${GITHUB_WORKSPACE}/$_perfTestFile" > ${GITHUB_WORKSPACE}/tmp/jmeter/$_resultFile.out
 
               _maxTime=$(cat ${GITHUB_WORKSPACE}/tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
-              echo maxtime: $_maxTime
+              echo maxtime: $_maxTime (threshold: $_perfThreshold)
 
               #<= didn't seem to work (?)
               if [[ $_maxTime < $_perfThreshold  || $_maxTime == $_perfThreshold ]]
