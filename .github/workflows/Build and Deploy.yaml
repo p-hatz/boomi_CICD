@@ -68,7 +68,7 @@ jobs:
             
             sleep 30
             curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out --location $_BDCURLTestExecutionSuite --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
-            _BDCStatus=$(jq '.[0]."Overall Status"' ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out)
+            _BDCStatus=$(jq -r '.[0]."Overall Status"' ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out)
             echo BDC Status: $_BDCStatus
             if [ "$_BDCStatus" == "OK" ]
             then
