@@ -39,16 +39,19 @@ jobs:
           #sudo /tmp/aws/install --update
           #rm -rf /tmp/aws/
 
-          _BDCURL=$(grep '^BDCTestURL=' $file | cut -f2 -d'=')
-          __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
-          _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
-          _resultFile=$(echo $BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
-          _BDCAuth=${{ secrets.BDC }}
-              
-          curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.out -d @$_BDCTestFile --location $_BDCURL --header 'Content-Type: application/json' --header 'Authorization: Basic "$_BDCAuth"'
-          cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
-
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            _BDCURL=$(grep '^BDCTestURL=' $file | cut -f2 -d'=')
+            __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
+            _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
+            _resultFile=$(echo $BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
+            _BDCAuth=${{ secrets.BDC }}
+                
+            curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.out -d @$_BDCTestFile --location $_BDCURL --header 'Content-Type: application/json' --header 'Authorization: Basic "$_BDCAuth"'
+            cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
+          done
+  
           deployPackageHWM=5        
           echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
+          
 
   
