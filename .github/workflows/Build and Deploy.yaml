@@ -351,6 +351,7 @@ jobs:
               echo $_BDCURL
               __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
               _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
+              echo $_BDCTestFile
               _processId=$(jq -r ".processId" ${GITHUB_WORKSPACE}/$_BDCTestFile)
               echo $_processId
                 
@@ -358,6 +359,7 @@ jobs:
               echo $_resultFile
               _BDCAuth=${{ secrets.BDC }}
 
+              mkdir -p ${GITHUB_WORKSPACE}/tmp
               curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.out -d @$_BDCTestFile --location $_BDCURL --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
               cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               
