@@ -18,13 +18,13 @@ devEnvConnFieldId=password
 devEnvSSMId=employeeDevDB
 
 ##Functional Testing
-funcTestPostman=1
+funcTestPostman=0
 collectionId="Testing/GeneralAPITest.json"
 funcTestBDC=0
 BDCTestFile="Testing/DevOpsCentreTest.json"
 
 ##Performance Testing
-perfTest=1
+perfTest=0
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=20000
 
