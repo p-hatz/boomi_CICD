@@ -50,8 +50,13 @@ jobs:
             _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
             _resultFile=$(echo $BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
             _BDCAuth=${{ secrets.BDC }}
-                
-            curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.out -d @$_BDCTestFile --location $_BDCURL --header 'Content-Type: application/json' --header 'Authorization: Basic "$_BDCAuth"'
+
+            echo $_BDCURL
+            echo $__BDCTestFile
+            echo $_BDCTestFile
+            echo $_resultFile
+            
+            curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.out -d @$_BDCTestFile --location $_BDCURL --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
             cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
           done
   
