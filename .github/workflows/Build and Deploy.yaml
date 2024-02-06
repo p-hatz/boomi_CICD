@@ -44,6 +44,8 @@ jobs:
           #sudo /tmp/aws/install --update
           #rm -rf /tmp/aws/
 
+          mkdir -p ${GITHUB_WORKSPACE}/tmp
+
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             _BDCURL=$(grep '^BDCTestURL=' $file | cut -f2 -d'=')
             __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
