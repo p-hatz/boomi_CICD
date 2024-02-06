@@ -397,7 +397,7 @@ jobs:
               ${GITHUB_WORKSPACE}/tmp/jmeter/apache-jmeter-5.6.3/bin/jmeter.sh -n -t "${GITHUB_WORKSPACE}/$_perfTestFile" > ${GITHUB_WORKSPACE}/tmp/jmeter/$_resultFile.out
 
               _maxTime=$(cat ${GITHUB_WORKSPACE}/tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
-              echo maxtime: $_maxTime (threshold: $_perfThreshold)
+              echo "maxtime: $_maxTime (threshold: $_perfThreshold)"
 
               #<= didn't seem to work (?)
               if [[ $_maxTime < $_perfThreshold  || $_maxTime == $_perfThreshold ]]
