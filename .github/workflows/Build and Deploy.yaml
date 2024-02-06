@@ -249,7 +249,9 @@ jobs:
           GITUsername=${{ github.repository_owner }}
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
-          POSTMAN=${{ secrets.POSTMAN }}  
+          POSTMAN=${{ secrets.POSTMAN }}
+
+          mkdir -p ${GITHUB_WORKSPACE}/tmp
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             funcTestPostman=0
@@ -348,27 +350,26 @@ jobs:
               echo Testing using Boomi DevOps Centre
               
               _BDCURL=${{ vars.BDCURL }}/ws/simple/executeTestSuite
-              echo $_BDCURL
+              #echo $_BDCURL
               __BDCTestFile=$(grep '^BDCTestFile=' $file | cut -f2 -d'=')
               _BDCTestFile=$(echo $__BDCTestFile | sed "s/\"//g")
-              echo $_BDCTestFile
+              #echo $_BDCTestFile
               _processId=$(jq -r ".processId" ${GITHUB_WORKSPACE}/$_BDCTestFile)
-              echo $_processId
+              #echo $_processId
                 
               _resultFile=$(echo $_BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
-              echo $_resultFile
+              #echo $_resultFile
               _BDCAuth=${{ secrets.BDC }}
 
-              mkdir -p ${GITHUB_WORKSPACE}/tmp
               curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.out -d @$_BDCTestFile --location $_BDCURL --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
-              cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
+              #cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               
               _testSuiteExecutionId=$(jq -r '.testSuiteExecutionId' ${GITHUB_WORKSPACE}/tmp/$_resultFile.out)
-              echo $_testSuiteExecutionId
+              #echo $_testSuiteExecutionId
 
               _BDCURLTestExecutionSuite=$(echo $_BDCURL | sed "s/executeTestSuite$/getTestExecutions?processId=/g")
               _BDCURLTestExecutionSuite=$_BDCURLTestExecutionSuite$_processId"&testSuiteExecutionId="$_testSuiteExecutionId
-              echo test execution URL: $_BDCURLTestExecutionSuite
+              #echo test execution URL: $_BDCURLTestExecutionSuite
                 
               sleep 30
               curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out --location $_BDCURLTestExecutionSuite --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
