@@ -500,7 +500,4 @@ jobs:
               _msg="Component '$componentId ' (ver: '$packageVersion' ) deployed to Production"
               curl -d "$_msg" -d "channel=general" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
             done
-
-            
-             "text=Hi I am a bot that can post messages to any public channel." -d "channel=general" 
           done
