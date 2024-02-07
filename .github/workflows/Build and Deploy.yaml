@@ -165,6 +165,8 @@ jobs:
           CodeFolderXML=${{ vars.CODEFOLDER }}
           POSTMAN=${{ secrets.POSTMAN }}
 
+          _bot=${{ secrets.BOT }}
+
           find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
           chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
           chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
@@ -252,6 +254,8 @@ jobs:
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
           POSTMAN=${{ secrets.POSTMAN }}
+
+          _bot=${{ secrets.BOT }}
 
           mkdir -p ${GITHUB_WORKSPACE}/tmp
           
