@@ -5,7 +5,7 @@ ver=0.5.201
 buildNotes=Packaged from GitHub
 
 ##Deployment
-targetEnv=1.Dev
+targetEnv=2.Test
 listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
 
@@ -18,13 +18,13 @@ devEnvConnFieldId=password
 devEnvSSMId=employeeDevDB
 
 ##Functional Testing
-funcTestPostman=0
+funcTestPostman=1
 collectionId="Testing/GeneralAPITest.json"
 funcTestBDC=0
 BDCTestFile="Testing/DevOpsCentreTest.json"
 
 ##Performance Testing
-perfTest=0
+perfTest=1
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=20000
 
