@@ -498,6 +498,6 @@ jobs:
               "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
               
               _msg="Component '$componentId ' (ver: '$packageVersion' ) deployed to Production"
-              curl -d "$_msg" -d "channel=general" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
+              curl -d text="$_msg" -d "channel=general" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
             done
           done
