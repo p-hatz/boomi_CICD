@@ -5,7 +5,7 @@ ver=0.5.200
 buildNotes=Packaged from GitHub
 
 ##Deployment
-targetEnv=2.Test
+targetEnv=3.Prod
 listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
 
