@@ -29,7 +29,6 @@ jobs:
       - name: Install AWS CLI v2 and OS Packages
         run:  |
           sudo apt-get install -y curl
-          
           mkdir -p ${GITHUB_WORKSPACE}/tmp
   
   createPackage:
@@ -39,9 +38,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-        #with:
-        #  fetch-depth: 0
-        #  path: INT-001
       
       - name: Changed Files
         id: changed-files
