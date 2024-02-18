@@ -374,7 +374,7 @@ jobs:
               
               _BDCURLTestExecutionSuite=$(echo $_BDCURL | sed "s/executeTestSuite$/getTestExecutions?processId=/g")
               _BDCURLTestExecutionSuite=$_BDCURLTestExecutionSuite$_processId"&testSuiteExecutionId="$_testSuiteExecutionId
-              echo test execution URL: $_BDCURLTestExecutionSuite
+              #echo test execution URL: $_BDCURLTestExecutionSuite
                
               sleep 30
               curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out --location $_BDCURLTestExecutionSuite --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
