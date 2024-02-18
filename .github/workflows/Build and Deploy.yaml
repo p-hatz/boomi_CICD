@@ -365,15 +365,12 @@ jobs:
               _processId=$(jq -r ".processId" ${GITHUB_WORKSPACE}/$_BDCTestFile)
                 
               _resultFile=$(echo $_BDCTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
-              echo 1
               _BDCAuth=${{ secrets.BDC }}
 
               curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.out -d @$_BDCTestFile --location $_BDCURL --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
-              echo 2
               cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               
               _testSuiteExecutionId=$(jq -r '.testSuiteExecutionId' ${GITHUB_WORKSPACE}/tmp/$_resultFile.out)
-              echo 3
               
               _BDCURLTestExecutionSuite=$(echo $_BDCURL | sed "s/executeTestSuite$/getTestExecutions?processId=/g")
               _BDCURLTestExecutionSuite=$_BDCURLTestExecutionSuite$_processId"&testSuiteExecutionId="$_testSuiteExecutionId
