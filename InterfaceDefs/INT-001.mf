@@ -1,7 +1,7 @@
 ##Build
 componentId=14970c43-775f-4921-ab22-720566c70dfa,66769d7b-f200-43c6-ab32-2d0386e7b32c
 componentType=process
-ver=0.5.204
+ver=0.5.211
 buildNotes=Packaged from GitHub
 
 ##Deployment
@@ -18,13 +18,13 @@ devEnvConnFieldId=password
 devEnvSSMId=employeeDevDB
 
 ##Functional Testing
-funcTestPostman=1
+funcTestPostman=0
 collectionId="Testing/GeneralAPITest.json"
-funcTestBDC=0
+funcTestBDC=1
 BDCTestFile="Testing/DevOpsCentreTest.json"
 
 ##Performance Testing
-perfTest=1
+perfTest=0
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=20000
 
