@@ -2,35 +2,42 @@
 	"info": {
 		"_postman_id": "2052e7c8-2814-4514-ab3f-6d14efeb7f2a",
 		"name": "_General API Test",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/
+collection.json",
 		"_exporter_id": "3718514"
 	},
 	"item": [
 		{
-			"name": "p-hatz.duckdns.org:29090/ws/simple/executeTest",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"  pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
+			"name": "http://p-hatz.duckdns.org:29090/ws/simple/execu
+teTest",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "9a64bf3b-467c-
+464e-80cb-d5b97fbf9de6",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "bdc@boomi_peterantony-XG9LRG",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "p-hatz.duckdns.org:29090/ws/simple/executeTest",
+					"raw": "http://p-hatz.duckdns.org:29090/ws/simple/executeTest",
+					"protocol": "http",
 					"host": [
 						"p-hatz",
 						"duckdns",
-						"org",
+						"org"
 					],
+					"port": "29090",
 					"path": [
 						"ws",
 						"simple",
