@@ -2,22 +2,19 @@
 	"info": {
 		"_postman_id": "2052e7c8-2814-4514-ab3f-6d14efeb7f2a",
 		"name": "_General API Test",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/
-collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "3718514"
 	},
 	"item": [
 		{
-			"name": "http://p-hatz.duckdns.org:29090/ws/simple/execu
-teTest",
+			"name": "http://p-hatz.duckdns.org:29090/ws/simple/executeTest",
 			"request": {
 				"auth": {
 					"type": "basic",
 					"basic": [
 						{
 							"key": "password",
-							"value": "9a64bf3b-467c-
-464e-80cb-d5b97fbf9de6",
+							"value": "9a64bf3b-467c-464e-80cb-d5b97fbf9de6",
 							"type": "string"
 						},
 						{
