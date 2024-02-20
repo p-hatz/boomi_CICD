@@ -10,7 +10,7 @@ listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
 
 ##Environment Extensions
-devEnvUpd=0
+devEnvUpd=1
 devEnvCompType=connection
 devEnvConnId=f7c9f762-9174-47c3-b37d-8aa2505a2149
 devEnvConnName="[conn] MariaDB Local - Employees"
