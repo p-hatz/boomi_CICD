@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "api.fromthegarage.com.au/ws/simple/executeTest",
+			"name": "p-hatz.duckdns.org:29090/ws/simple/executeTest",
 			"event": [
 				{
 					"listen": "test",
@@ -25,12 +25,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "api.fromthegarage.com.au/ws/simple/executeTest",
+					"raw": "p-hatz.duckdns.org:29090/ws/simple/executeTest",
 					"host": [
-						"api",
-						"fromthegarage",
-						"com",
-						"au"
+						"p-hatz",
+						"duckdns",
+						"org",
 					],
 					"path": [
 						"ws",
