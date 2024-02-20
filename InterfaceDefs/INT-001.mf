@@ -1,11 +1,11 @@
 ##Build
 componentId=14970c43-775f-4921-ab22-720566c70dfa,66769d7b-f200-43c6-ab32-2d0386e7b32c
 componentType=process
-ver=0.5.212
+ver=0.5.215
 buildNotes=Packaged from GitHub
 
 ##Deployment
-targetEnv=2.Test
+targetEnv=1.Devx
 listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
 
@@ -20,7 +20,7 @@ devEnvSSMId=employeeDevDB
 ##Functional Testing
 funcTestPostman=0
 collectionId="Testing/GeneralAPITest.json"
-funcTestBDC=1
+funcTestBDC=0
 BDCTestFile="Testing/DevOpsCentreTest.json"
 
 ##Performance Testing
