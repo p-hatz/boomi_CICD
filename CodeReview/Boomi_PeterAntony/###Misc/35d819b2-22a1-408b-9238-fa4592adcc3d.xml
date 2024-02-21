@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Misc" componentId="35d819b2-22a1-408b-9238-fa4592adcc3d" version="1" name="[oper] APM Stop" type="connector-action" subType="boomi_peterantony-XG9LRG-apm202-dev" createdDate="2024-01-18T04:50:13Z" createdBy="peterantony@boomi.com" modifiedDate="2024-01-18T04:50:13Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="" returnApplicationErrors="false" trackResponse="false">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <GenericOperationConfig objectTypeId="Update" operationType="EXECUTE" requestProfile="963b1ef0-91a0-48f9-b1af-3d6f82978024" requestProfileType="xml" responseProfileType="xml">
+          <field id="action" type="string" value="stop"/>
+          <field id="realTimeProcessing" type="string" value="ignore"/>
+          <field id="sendEvent" type="boolean" value="true"/>
+          <Options>
+            <QueryOptions>
+              <Fields>
+                <ConnectorObject name="Update"/>
+              </Fields>
+              <Inputs/>
+            </QueryOptions>
+          </Options>
+        </GenericOperationConfig>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>

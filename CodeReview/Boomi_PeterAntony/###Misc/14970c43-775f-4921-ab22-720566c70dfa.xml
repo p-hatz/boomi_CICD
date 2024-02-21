@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Misc" componentId="14970c43-775f-4921-ab22-720566c70dfa" version="356" name="[wsvc] General Web Server" type="process" createdDate="2021-01-28T01:04:40Z" createdBy="peterantony@boomi.com" modifiedDate="2024-02-12T03:01:36Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <process xmlns="" allowSimultaneous="false" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" updateRunDates="true" workload="general">
+      <shapes>
+        <shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="46.0">
+          <configuration>
+            <connectoraction actionType="Listen" allowDynamicCredentials="NONE" connectorType="wss" hideSettings="true" operationId="ac207356-94da-4ef5-b065-aed786453326">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape1.dragpoint1" toShape="shape116" x="224.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="dataprocess_icon" name="shape88" shapetype="dataprocess" userlabel="" x="48.0" y="368.0">
+          <configuration>
+            <dataprocess>
+              <step index="1" key="1" name="Custom Scripting" processtype="12">
+                <dataprocessscript componentId="08d9e548-4da5-41f7-a730-5123888c9401" language="groovy2" useCache="true" useComponent="true">
+                  <script>import java.util.Properties;
+import java.io.InputStream;
+
+for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
+    InputStream is = dataContext.getStream(i);
+    Properties props = dataContext.getProperties(i);
+
+    dataContext.storeStream(is, props);
+}</script>
+                </dataprocessscript>
+              </step>
+            </dataprocess>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape88.dragpoint1" toShape="shape97" x="224.0" y="376.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="message_icon" name="shape89" shapetype="message" userlabel="" x="1200.0" y="144.0">
+          <configuration>
+            <message combined="false">
+              <msgTxt>OK</msgTxt>
+              <msgParameters/>
+            </message>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape89.dragpoint1" toShape="shape114" x="1376.0" y="216.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="documentproperties_icon" name="shape87" shapetype="documentproperties" userlabel="" x="624.0" y="48.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppCurrentCounter" persist="false" propertyId="process.dppCurrentCounter" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="1" valueType="static">
+                    <staticparameter staticproperty="0"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppMaxCounter" persist="false" propertyId="process.dppMaxCounter" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="2" valueType="static">
+                    <staticparameter staticproperty="100"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppSleep" persist="false" propertyId="process.dppSleep" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="3" valueType="static">
+                    <staticparameter staticproperty="30"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppExecTime" persist="false" propertyId="process.dppExecTime" shouldEncrypt="false">
+                <sourcevalues/>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppExecId" persist="false" propertyId="process.dppExecId" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="4" valueType="execution">
+                    <executionparameter executionproperty="Execution Id"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Disk - File Name" persist="false" propertyId="connector.disk.filename" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="5" valueType="process">
+                    <processparameter processproperty="dppExecId" processpropertydefaultvalue=""/>
+                  </parametervalue>
+                  <parametervalue key="6" valueType="static">
+                    <staticparameter staticproperty="-agora.tmp"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - ddpProcId" persist="false" propertyId="dynamicdocument.ddpProcId" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="7" valueType="execution">
+                    <executionparameter executionproperty="Process Id"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - ddpAccountId" persist="false" propertyId="dynamicdocument.ddpAccountId" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="8" valueType="execution">
+                    <executionparameter executionproperty="Account Id"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - dppProcName" persist="false" propertyId="dynamicdocument.dppProcName" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="9" valueType="execution">
+                    <executionparameter executionproperty="Process Name"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Disk - Directory" persist="false" propertyId="connector.disk.directory" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="10" valueType="static">
+                    <staticparameter staticproperty="/tmp/agora"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape87.dragpoint1" toShape="shape98" x="800.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape86" shapetype="connectoraction" userlabel="" x="1392.0" y="48.0">
+          <configuration>
+            <connectoraction actionType="Send" allowDynamicCredentials="NONE" connectionId="c5eca2db-804f-4fb0-a06e-dc4a7a2cec98" connectorType="disk" hideSettings="false" operationId="cf139af1-c352-42b0-ba73-fca49e6e6f04">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape86.dragpoint1" toShape="shape93" x="1568.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="dataprocess_icon" name="shape90" shapetype="dataprocess" userlabel="" x="48.0" y="688.0">
+          <configuration>
+            <dataprocess>
+              <step index="1" key="1" name="Custom Scripting" processtype="12">
+                <dataprocessscript componentId="4ae3fd8b-b147-46c3-9760-44fb52b55da6" language="groovy2" useCache="true" useComponent="true">
+                  <script>import java.util.Properties;
+import java.io.InputStream;
+
+for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
+    InputStream is = dataContext.getStream(i);
+    Properties props = dataContext.getProperties(i);
+
+    dataContext.storeStream(is, props);
+}</script>
+                </dataprocessscript>
+              </step>
+            </dataprocess>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape90.dragpoint1" toShape="unset" x="224.0" y="698.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="branch_icon" name="shape92" shapetype="branch" userlabel="" x="1008.0" y="48.0">
+          <configuration>
+            <branch numBranches="2"/>
+          </configuration>
+          <dragpoints>
+            <dragpoint identifier="1" name="shape92.dragpoint1" text="1" toShape="shape96" x="1184.0" y="56.0"/>
+            <dragpoint identifier="2" name="shape92.dragpoint2" text="2" toShape="shape89" x="1184.0" y="152.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="stop_icon" name="shape93" shapetype="stop" x="1584.0" y="48.0">
+          <configuration>
+            <stop continue="true"/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="message_icon" name="shape96" shapetype="message" userlabel="" x="1200.0" y="48.0">
+          <configuration>
+            <message combined="false">
+              <msgTxt>{1}~{2}~{3}~{4}~{5}</msgTxt>
+              <msgParameters>
+                <parametervalue key="4" valueType="process">
+                  <processparameter processproperty="dppTid" processpropertydefaultvalue=""/>
+                </parametervalue>
+                <parametervalue key="2" valueType="execution">
+                  <executionparameter executionproperty="Execution Id"/>
+                </parametervalue>
+                <parametervalue key="3" valueType="execution">
+                  <executionparameter executionproperty="Process Id"/>
+                </parametervalue>
+                <parametervalue key="5" valueType="execution">
+                  <executionparameter executionproperty="Process Name"/>
+                </parametervalue>
+                <parametervalue key="1" valueType="profile">
+                  <profileelement elementId="85" elementName="@workload (Component/object/process/@workload)" profileId="1b91b297-639f-405a-be6a-4136d45e21be" profileType="profile.xml"/>
+                </parametervalue>
+              </msgParameters>
+            </message>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape96.dragpoint1" toShape="shape86" x="1376.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="returndocuments_icon" name="shape97" shapetype="returndocuments" x="240.0" y="368.0">
+          <configuration>
+            <returndocuments/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="connectoraction_icon" name="shape98" shapetype="connectoraction" userlabel="" x="816.0" y="48.0">
+          <configuration>
+            <connectoraction actionType="Get" allowDynamicCredentials="NONE" connectionId="365b0bc5-c299-4044-b2f9-8d47f899600a" connectorType="http" hideSettings="false" operationId="fadddadb-2143-4710-907d-2bc0860c723f" parameter-profile="EMBEDDED|HttpParameterChooser|fadddadb-2143-4710-907d-2bc0860c723f">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape98.dragpoint1" toShape="shape92" x="992.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="dataprocess_icon" name="shape102" shapetype="dataprocess" userlabel="Set tId" x="432.0" y="48.0">
+          <configuration>
+            <dataprocess>
+              <step index="1" key="1" name="Custom Scripting" processtype="12">
+                <dataprocessscript language="groovy2" useCache="true">
+                  <script>import java.util.*; 
+import java.util.Properties;
+import java.io.InputStream;
+import com.boomi.execution.ExecutionUtil;
+
+logger = ExecutionUtil.getBaseLogger();
+
+long threadId = Thread.currentThread().getId();
+logger.info("Thread # " + threadId + " is doing this task");
+        
+    
+for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
+    InputStream is = dataContext.getStream(i);
+    Properties props = dataContext.getProperties(i);
+    
+    ExecutionUtil.setDynamicProcessProperty("dppTid", threadId.toString(), false);
+
+    dataContext.storeStream(is, props);
+}
+
+</script>
+                </dataprocessscript>
+              </step>
+            </dataprocess>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape102.dragpoint1" toShape="shape87" x="608.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="returndocuments_icon" name="shape104" shapetype="returndocuments" x="1584.0" y="208.0">
+          <configuration>
+            <returndocuments/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="connectoraction_icon" name="shape108" shapetype="connectoraction" userlabel="" x="48.0" y="848.0">
+          <configuration>
+            <connectoraction actionType="Get" allowDynamicCredentials="NONE" connectionId="a0314381-7c2b-42c4-9093-b29939ba1512" connectorType="http" hideSettings="false" operationId="3cff1b30-9401-466e-b0de-c41fdb1e3fbc" parameter-profile="EMBEDDED|HttpParameterChooser|3cff1b30-9401-466e-b0de-c41fdb1e3fbc">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape108.dragpoint1" toShape="unset" x="224.0" y="858.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape110" shapetype="connectoraction" userlabel="" x="48.0" y="1008.0">
+          <configuration>
+            <connectoraction actionType="EXECUTE" allowDynamicCredentials="NONE" connectionId="6a66211f-f0f6-41b1-8283-8917e3ec0fb8" connectorType="boomi_peterantony-XG9LRG-apmpla-test" hideSettings="false" operationId="d9133a46-f892-4e15-b86f-3681f8b48070">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape110.dragpoint1" toShape="shape115" x="224.0" y="1016.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape111" shapetype="connectoraction" userlabel="" x="48.0" y="1168.0">
+          <configuration>
+            <connectoraction actionType="EXECUTE" allowDynamicCredentials="NONE" connectionId="6a66211f-f0f6-41b1-8283-8917e3ec0fb8" connectorType="boomi_peterantony-XG9LRG-apmpla-test" hideSettings="false" operationId="46e5d6f5-85fe-4718-b540-0a27a9029da7">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape111.dragpoint1" toShape="unset" x="224.0" y="1178.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape113" shapetype="connectoraction" userlabel="" x="1200.0" y="208.0">
+          <configuration>
+            <connectoraction actionType="Get" allowDynamicCredentials="NONE" connectionId="f7c9f762-9174-47c3-b37d-8aa2505a2149" connectorType="database" hideSettings="false" operationId="4ae75492-c814-4f54-bfb3-420c92384f61" parameter-profile="EMBEDDED|databaseparameterchooser|22253a48-1c04-4ddc-aff0-b7389ea2f6c1|4ae75492-c814-4f54-bfb3-420c92384f61">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape113.dragpoint1" toShape="unset" x="1329.0" y="245.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="dataprocess_icon" name="shape114" shapetype="dataprocess" userlabel="" x="1392.0" y="208.0">
+          <configuration>
+            <dataprocess>
+              <step index="1" key="1" name="Custom Scripting" processtype="12">
+                <dataprocessscript componentId="61d6f69c-231e-4f2d-902b-f99913fb146c" language="groovy2" useCache="true" useComponent="true">
+                  <script>import java.util.Properties;
+import java.io.InputStream;
+
+for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
+    InputStream is = dataContext.getStream(i);
+    Properties props = dataContext.getProperties(i);
+
+    dataContext.storeStream(is, props);
+}</script>
+                </dataprocessscript>
+              </step>
+            </dataprocess>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape114.dragpoint1" toShape="shape104" x="1568.0" y="216.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="documentproperties_icon" name="shape115" shapetype="documentproperties" userlabel="" x="240.0" y="1008.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="APM - Tags (k=v separated by ;)" persist="false" propertyId="connector.boomi_peterantony-XG9LRG-apmpla-test.keyvalueTags" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="1" valueType="static">
+                    <staticparameter staticproperty="CustomerId='11211311A'"/>
+                  </parametervalue>
+                  <parametervalue key="3" valueType="static">
+                    <staticparameter staticproperty=";"/>
+                  </parametervalue>
+                  <parametervalue key="4" valueType="static">
+                    <staticparameter staticproperty="AtomName="/>
+                  </parametervalue>
+                  <parametervalue key="5" valueType="execution">
+                    <executionparameter executionproperty="Atom Name"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_SLEEP_MILLISECONDS" persist="false" propertyId="process.DPP_SLEEP_MILLISECONDS" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="2" valueType="static">
+                    <staticparameter staticproperty="5000"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape115.dragpoint1" toShape="unset" x="416.0" y="1018.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape117" shapetype="connectoraction" userlabel="" x="48.0" y="1328.0">
+          <configuration>
+            <connectoraction actionType="EXECUTE" allowDynamicCredentials="NONE" connectionId="2ed9923d-c49d-4d2e-a946-550e839b7505" connectorType="boomi_peterantony-XG9LRG-apm202-dev" hideSettings="false" operationId="150e4fd2-913e-44e6-a523-375ccbf59f6a" parameter-profile="5c4265da-729c-48d9-87c4-ca18c467ff19">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape117.dragpoint1" toShape="unset" x="224.0" y="1338.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="documentproperties_icon" name="shape116" shapetype="documentproperties" userlabel="" x="240.0" y="48.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="APM (2024.1) - Tags (k=v separated by ;)" persist="false" propertyId="connector.boomi_peterantony-XG9LRG-apm202-dev.keyvalueTags" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="1" valueType="static">
+                    <staticparameter staticproperty="CustomerId=123"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - DPP_SLEEP_MILLISECONDS" persist="false" propertyId="process.DPP_SLEEP_MILLISECONDS" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="2" valueType="static">
+                    <staticparameter staticproperty="12000"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape116.dragpoint1" toShape="shape102" x="416.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="connectoraction_icon" name="shape118" shapetype="connectoraction" userlabel="" x="48.0" y="1488.0">
+          <configuration>
+            <connectoraction actionType="EXECUTE" allowDynamicCredentials="NONE" connectionId="2ed9923d-c49d-4d2e-a946-550e839b7505" connectorType="boomi_peterantony-XG9LRG-apm202-dev" hideSettings="false" operationId="35d819b2-22a1-408b-9238-fa4592adcc3d" parameter-profile="963b1ef0-91a0-48f9-b1af-3d6f82978024">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape118.dragpoint1" toShape="unset" x="224.0" y="1498.0"/>
+          </dragpoints>
+        </shape>
+      </shapes>
+    </process>
+  </bns:object>
+  <bns:processOverrides>
+    <Overrides xmlns="">
+      <Connections>
+        <ConnectionOverride id="365b0bc5-c299-4044-b2f9-8d47f899600a">
+          <field id="url" label="URL" overrideable="false" xpath="HttpSettings/@url"/>
+          <field id="connectTimeout" label="Connect Timeout" overrideable="false" xpath="HttpSettings/@connectTimeout"/>
+          <field id="readTimeout" label="Read Timeout" overrideable="false" xpath="HttpSettings/@readTimeout"/>
+          <field id="useBasicAuth" label="Use Basic Authentication" overrideable="false" xpath="HttpSettings/@useBasicAuth"/>
+          <field id="user" label="User" overrideable="false" xpath="HttpSettings/AuthSettings/@user"/>
+          <field id="password" label="Password" overrideable="false" xpath="HttpSettings/AuthSettings/@password"/>
+          <field id="consumerKey" label="OAuth Consumer Key" overrideable="false" xpath="HttpSettings/OAuthSettings/@consumerKey"/>
+          <field id="accessToken" label="OAuth Access Token" overrideable="false" xpath="HttpSettings/OAuthSettings/@accessToken"/>
+          <field id="tokenSecret" label="OAuth Token Secret" overrideable="false" xpath="HttpSettings/OAuthSettings/@tokenSecret"/>
+          <field id="requestTokenURL" label="OAuth Request Token URL" overrideable="false" xpath="HttpSettings/OAuthSettings/@requestTokenURL"/>
+          <field id="authorizationURL" label="OAuth Authorization URL" overrideable="false" xpath="HttpSettings/OAuthSettings/@authorizationURL"/>
+          <field id="accessTokenURL" label="OAuth Access URL" overrideable="false" xpath="HttpSettings/OAuthSettings/@accessTokenURL"/>
+          <field id="consumerSecret" label="OAuth Consumer Secret" overrideable="false" xpath="HttpSettings/OAuthSettings/@consumerSecret"/>
+          <field id="realm" label="OAuth Realm" overrideable="false" xpath="HttpSettings/OAuthSettings/@realm"/>
+          <field id="signatureMethod" label="OAuth Signature Method" overrideable="false" xpath="HttpSettings/OAuthSettings/@signatureMethod"/>
+          <field id="clientauth" label="Use Client Authorization" overrideable="false" xpath="HttpSettings/SSLOptions/@clientauth"/>
+          <field id="clientsslalias" label="Client SSL Certificate" overrideable="false" xpath="HttpSettings/SSLOptions/@clientsslalias"/>
+          <field id="trustServerCert" label="Use Trusted SSL Certificate" overrideable="false" xpath="HttpSettings/SSLOptions/@trustServerCert"/>
+          <field id="trustedcertalias" label="Trust SSL Server Certificate" overrideable="false" xpath="HttpSettings/SSLOptions/@trustedcertalias"/>
+          <field id="clientId" label="OAuth2 Client ID" overrideable="false" xpath="HttpSettings/OAuth2Settings/credentials/@clientId"/>
+          <field id="clientSecret" label="OAuth2 Client Secret" overrideable="false" xpath="HttpSettings/OAuth2Settings/credentials/@clientSecret"/>
+          <field id="authTokenURL2" label="OAuth2 Authorization Token URL" overrideable="false" xpath="HttpSettings/OAuth2Settings/authorizationTokenEndpoint/@url"/>
+          <field id="authorizationParameters" label="OAuth2 Authorization Parameters" overrideable="false" xpath="HttpSettings/OAuth2Settings/authorizationParameters"/>
+          <field id="accessTokenURL2" label="OAuth2 Access Token URL" overrideable="false" xpath="HttpSettings/OAuth2Settings/accessTokenEndpoint/@url"/>
+          <field id="accessTokenParameters" label="OAuth2 Access Token Parameters" overrideable="false" xpath="HttpSettings/OAuth2Settings/accessTokenParameters"/>
+          <field id="scope" label="OAuth2 Scope" overrideable="false" xpath="HttpSettings/OAuth2Settings/scope"/>
+          <field id="accessToken2" label="OAuth2 Access Token" overrideable="false" xpath="HttpSettings/OAuth2Settings/credentials/@accessToken"/>
+          <field id="refreshAuthScheme" label="OAuth2 Refresh Authorization Scheme" overrideable="false" xpath="HttpSettings/OAuth2Settings/@refreshAuthScheme"/>
+          <field id="accessKeyId" label="Amazon AWS Access Key" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/accessKeyId"/>
+          <field id="awsSecret" label="Amazon AWS Secret Key" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/awsSecret"/>
+          <field id="awsRegion" label="Amazon AWS Region" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/awsRegion"/>
+          <field id="customRegion" label="Custom Region" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/customRegion"/>
+        </ConnectionOverride>
+        <ConnectionOverride id="c5eca2db-804f-4fb0-a06e-dc4a7a2cec98">
+          <field id="directory" label="Directory" overrideable="true" xpath="DiskSettings/@directory"/>
+        </ConnectionOverride>
+        <ConnectionOverride id="2ed9923d-c49d-4d2e-a946-550e839b7505">
+          <field id="platform" label="APM Platform" overrideable="false"/>
+          <field id="eventsAPIURL" label="Events API Endpoint" overrideable="false"/>
+          <field id="metricsAPIURL" label="Metrics API Endpoint" overrideable="false"/>
+          <field id="apiKey" label="API Key" overrideable="false"/>
+          <field id="appKey" label="App Key" overrideable="false"/>
+          <field id="serviceName" label="Service Name" overrideable="false"/>
+        </ConnectionOverride>
+        <ConnectionOverride id="f7c9f762-9174-47c3-b37d-8aa2505a2149">
+          <field id="driverId" label="Driver Type" overrideable="false" xpath="DatabaseConnectionSettings/@driverId"/>
+          <field id="username" label="User" overrideable="true" xpath="DatabaseConnectionSettings/@username"/>
+          <field id="password" label="Password" overrideable="true" xpath="DatabaseConnectionSettings/@password"/>
+          <field id="host" label="Host" overrideable="true" xpath="DatabaseConnectionSettings/@host"/>
+          <field id="port" label="Port" overrideable="true" xpath="DatabaseConnectionSettings/@port"/>
+          <field id="dbname" label="DB Name" overrideable="false" xpath="DatabaseConnectionSettings/@dbname"/>
+          <field id="additional" label="Additional Options" overrideable="false" xpath="DatabaseConnectionSettings/@additional"/>
+          <field id="className" label="Class Name" overrideable="false" xpath="DatabaseConnectionSettings/@className"/>
+          <field id="urlFormat" label="Connection URL" overrideable="false" xpath="DatabaseConnectionSettings/@urlFormat"/>
+          <field id="writeSQLToFile" label="Write SQL To File?" overrideable="false" xpath="DatabaseConnectionSettings/WriteOptions/@writeSQLToFile"/>
+          <field id="sqlFilePath" label="SQL File Path" overrideable="false" xpath="DatabaseConnectionSettings/WriteOptions/@sqlFilePath"/>
+          <field id="isPoolEnabled" label="Enable Pooling" overrideable="false" xpath="DatabaseConnectionSettings/@isPoolEnabled"/>
+          <field id="maxActive" label="Maximum Connections (0 for unlimited)" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@maxActive"/>
+          <field id="minIdle" label="Minimum Connections" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@minIdle"/>
+          <field id="maxIdleTime" label="Maximum Idle Time (sec)" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@maxIdleTime"/>
+          <field id="exhaustedAction" label="When Exhausted Action" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@exhaustedAction"/>
+          <field id="maxWait" label="Maximum Wait Time (sec)" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@maxWait"/>
+          <field id="testOnBorrow" label="Test Connection When Borrowing From Pool" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@testOnBorrow"/>
+          <field id="testOnReturn" label="Test Connection When Returning To Pool" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@testOnReturn"/>
+          <field id="testIdle" label="Test Idle Connections" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@testIdle"/>
+          <field id="maxIdle" label="Validation Query" overrideable="false" xpath="DatabaseConnectionSettings/AdapterPoolInfo/@validationQuery"/>
+        </ConnectionOverride>
+      </Connections>
+      <Operations>
+        <OperationOverride id="ac207356-94da-4ef5-b065-aed786453326">
+          <field id="ObjectName" label="Object" overrideable="false" xpath="WebServicesServerListenAction/@objectName"/>
+        </OperationOverride>
+      </Operations>
+      <PartnerOverrides/>
+      <Properties>
+        <PropertyOverride name="dppPackageIds"/>
+      </Properties>
+      <Extensions>
+        <ObjectDefinitions>
+          <objectDefinition connectionId="2ed9923d-c49d-4d2e-a946-550e839b7505" connectorType="boomi_peterantony-XG9LRG-apm202-dev" id="2ed9923d-c49d-4d2e-a946-550e839b7505Update" name="APM (2024.1) Update ([conn] AppDynamics)" objectType="Update" userDefined="false">
+            <profiles>
+              <profile id="5c4265da-729c-48d9-87c4-ca18c467ff19" name="APM (2024.1) Update EXECUTE Request" operationId="150e4fd2-913e-44e6-a523-375ccbf59f6a" operationProfilePath="//GenericOperationConfig/@requestProfile" operationProfileRole="input" operationType="EXECUTE" type="profile.xml"/>
+              <profile id="963b1ef0-91a0-48f9-b1af-3d6f82978024" name="APM (2024.1) Update EXECUTE Request" operationId="35d819b2-22a1-408b-9238-fa4592adcc3d" operationProfilePath="//GenericOperationConfig/@requestProfile" operationProfileRole="input" operationType="EXECUTE" type="profile.xml"/>
+            </profiles>
+          </objectDefinition>
+          <unusedProfiles/>
+        </ObjectDefinitions>
+        <DataMaps>
+          <unusedMaps/>
+        </DataMaps>
+      </Extensions>
+      <CrossReferenceOverrides/>
+      <PGPOverrides/>
+      <DefinedProcessPropertyOverrides/>
+    </Overrides>
+  </bns:processOverrides>
+</bns:Component>

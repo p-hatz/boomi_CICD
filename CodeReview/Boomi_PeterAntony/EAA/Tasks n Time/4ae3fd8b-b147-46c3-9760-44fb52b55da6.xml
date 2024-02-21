@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/EAA/Tasks n Time" componentId="4ae3fd8b-b147-46c3-9760-44fb52b55da6" version="17" name="[script] Increment Counter" type="script.processing" createdDate="2023-02-14T05:09:37Z" createdBy="peterantony@boomi.com" modifiedDate="2023-09-15T01:18:56Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Tasks n Time" folderId="Rjo1Njk2ODc0" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <ProcessingScript xmlns="" language="groovy2" useCache="true">
+      <script>import java.util.Properties;
+import java.io.InputStream;
+import com.boomi.execution.ExecutionUtil;
+
+logger = ExecutionUtil.getBaseLogger();
+
+// Retrieve current Dynamic Process Property value
+counterMax = ExecutionUtil.getDynamicProcessProperty("dppMaxCounter");
+
+// Convert string value to int to do math
+//int intValue = Integer.parseInt(counter);
+
+// Increment value by 50
+//intValue = intValue + 50;
+
+// Convert int value back to String
+//counter = Integer.toString(intValue);
+
+// Set the dynamic process property
+//ExecutionUtil.setDynamicProcessProperty("dppStartToken", counter, false);
+
+
+for ( int i = 0; i &lt; 11550000; i++ ) {
+   logger.info("val: " + i);
+   i+=1;
+}
+
+// Pass documents through...
+for ( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
+  InputStream is = dataContext.getStream(i);
+  Properties props = dataContext.getProperties(i);
+
+  dataContext.storeStream(is, props);
+}</script>
+    </ProcessingScript>
+  </bns:object>
+</bns:Component>
