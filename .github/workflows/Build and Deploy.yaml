@@ -18,8 +18,8 @@ env:
 
 jobs:
   preReqs:
-    #runs-on: [self-hosted, linux, X64]
-    runs-on: [ubuntu-latest]
+    runs-on: [self-hosted, linux, X64]
+    #runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v3
       - name: Changed Files
