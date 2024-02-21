@@ -376,7 +376,7 @@ jobs:
               _BDCURLTestExecutionSuite=$_BDCURLTestExecutionSuite$_processId"&testSuiteExecutionId="$_testSuiteExecutionId
               #echo test execution URL: $_BDCURLTestExecutionSuite
                
-              sleep 30
+              sleep 60
               curl -so ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out --location $_BDCURLTestExecutionSuite --header 'Content-Type: application/json' --header "Authorization: Basic $_BDCAuth"
               _BDCStatus=$(jq -r '.[0]."Overall Status"' ${GITHUB_WORKSPACE}/tmp/$_resultFile.exec.out)
               echo Boomi DevOps Centre Test Status: $_BDCStatus
