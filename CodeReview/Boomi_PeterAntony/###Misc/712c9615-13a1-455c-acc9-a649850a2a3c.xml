@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Misc" componentId="712c9615-13a1-455c-acc9-a649850a2a3c" version="2" name="[map] Concat Names" type="transform.map" createdDate="2024-02-17T07:06:22Z" createdBy="peterantony@boomi.com" modifiedDate="2024-02-17T08:54:03Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Map xmlns="" fromProfile="e8f0a4e8-d84a-4774-ae6e-393d3154e91d" toProfile="155cc951-1b4d-4614-a5a7-93b591ceff72">
+      <Mappings>
+        <Mapping fromKey="4" fromKeyPath="*[@key='1']/*[@key='2']/*[@key='4']" fromNamePath="Record/Elements/firstName" fromType="profile" toFunction="1" toKey="1" toType="function"/>
+        <Mapping fromKey="5" fromKeyPath="*[@key='1']/*[@key='2']/*[@key='5']" fromNamePath="Record/Elements/LastName" fromType="profile" toFunction="1" toKey="2" toType="function"/>
+        <Mapping fromKey="3" fromKeyPath="*[@key='1']/*[@key='2']/*[@key='3']" fromNamePath="Record/Elements/id" fromType="profile" toKey="3" toKeyPath="*[@key='1']/*[@key='2']/*[@key='3']" toNamePath="Record/Elements/id" toType="profile"/>
+        <Mapping fromFunction="1" fromKey="2" fromType="function" toKey="4" toKeyPath="*[@key='1']/*[@key='2']/*[@key='4']" toNamePath="Record/Elements/Full Name" toType="profile"/>
+      </Mappings>
+      <Functions optimizeExecutionOrder="true">
+        <FunctionStep cacheEnabled="true" cacheOption="none" category="String" key="1" name="String Concat" position="1" sumEnabled="false" type="StringConcat" x="10.0" y="10.0">
+          <Inputs>
+            <Input key="1" name="fname"/>
+            <Input key="2" name="lname"/>
+          </Inputs>
+          <Outputs>
+            <Output key="2" name="Result"/>
+          </Outputs>
+          <Configuration>
+            <StringConcat delimiter=" "/>
+          </Configuration>
+        </FunctionStep>
+      </Functions>
+      <Defaults/>
+      <DocumentCacheJoins/>
+    </Map>
+  </bns:object>
+</bns:Component>
