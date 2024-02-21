@@ -51,8 +51,8 @@ jobs:
           echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
   
   createPackage:
-    #runs-on: [self-hosted, linux, X64]
-    runs-on: [ubuntu-latest]
+    runs-on: [self-hosted, linux, X64]
+    #runs-on: [ubuntu-latest]
     needs: preReqs
     outputs:
       runDeploy: ${{ steps.createPackage.outputs.deploy }}
@@ -225,8 +225,8 @@ jobs:
           done
 
   deploytoTest:
-    #runs-on: [self-hosted, linux, X64]
-    runs-on: [ubuntu-latest]
+    runs-on: [self-hosted, linux, X64]
+    #runs-on: [ubuntu-latest]
     needs: [createPackage, deploytoDev]
     environment:
       name: "Test"
@@ -442,8 +442,8 @@ jobs:
        #   fi
 
   deploytoProd:
-    #runs-on: [self-hosted, linux, X64]
-    runs-on: [ubuntu-latest]
+    runs-on: [self-hosted, linux, X64]
+    #runs-on: [ubuntu-latest]
     needs: [createPackage, deploytoDev, deploytoTest]
     environment:
       name: "Prod"
