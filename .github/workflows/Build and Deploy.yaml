@@ -134,7 +134,8 @@ jobs:
                   echo here 2
                   processScheduleVal=$(grep '^processSchedule=' $file | cut -f2 -d'=' | cut -f2 -d'|')
                   
-                  _years=$(echo $processScheduleVal | awk '{ print $1 }' | awk -F "|" '{ print $2 }')
+                  #_years=$(echo $processScheduleVal | awk '{ print $1 }' | awk -F "|" '{ print $2 }')
+                  _years=$(echo $processScheduleVal | awk '{ print $1 }')
                   echo years: $_years
                   #_months=$(echo $processScheduleVal | awk '{ print $2 }' | tr -d '\\')
                   _months=$(echo $processScheduleVal | awk '{ print $2 }')
