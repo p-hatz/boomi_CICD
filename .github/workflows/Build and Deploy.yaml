@@ -140,11 +140,11 @@ jobs:
                   _daysOfMonth=$(echo $processScheduleVal | awk '{ print $3 }')
                   _daysOfWeek=$(echo $processScheduleVal | awk '{ print $4 }')
                   _hours=$(echo $processScheduleVal | awk '{ print $5 }')
-                  _minutes=$(echo $processScheduleVal | awk '{ print $6 }')
+                  _minutes=$(echo $processScheduleVal | awk '{ print $6 }' | tr -d '"')
                   echo $_years $_months $_daysOfMonth $_daysOfWeek $_hours $_minutes
 
                   echo here 3
-                  "${GITHUB_WORKSPACE}/cli/scripts/updateProcessSchedules.sh" atomName=$atomName years="$_years" months="$_months" daysOfMonth="$_daysOfMonth" daysOfWeek="$_daysOfWeek" hours="$_hours" minutes="$_minutes"
+                  "${GITHUB_WORKSPACE}/cli/scripts/bin/updateProcessSchedules.sh" atomName=$atomName years="$_years" months="$_months" daysOfMonth="$_daysOfMonth" daysOfWeek="$_daysOfWeek" hours="$_hours" minutes="$_minutes"
                 fi
               fi
              
