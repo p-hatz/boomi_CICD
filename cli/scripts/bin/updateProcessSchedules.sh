@@ -13,7 +13,8 @@
 # maxRetry	  - (Retry schedules only) The maximum number of retries. The minimum valid value is 1; the maximum is 5.
 ###
 
-source bin/common.sh
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+
 #Query Process Schedule Status  by atomId and processId
 ARGUMENTS=(atomName atomType years months daysOfMonth daysOfWeek hours minutes)
 OPT_ARGUMENTS=(processName componentId)
@@ -26,15 +27,15 @@ fi
 # Get componentId from processName
 if [ -z "${componentId}" ] || [ null == "${componentId}" ]
 then
-  source bin/queryProcess.sh processName="$processName"
+  source $WD/bin/queryProcess.sh processName="$processName"
 fi
 
-source bin/queryProcessScheduleStatus.sh atomName="$atomName" atomType=$atomType componentId=${componentId} 
+source $WD/bin/queryProcessScheduleStatus.sh atomName="$atomName" atomType=$atomType componentId=${componentId} 
 
 saveScheduleId=scheduleId
 
 ARGUMENTS=(atomId processId scheduleId years months daysOfMonth daysOfWeek hours minutes)
-JSON_FILE=json/updateProcessSchedules.json
+JSON_FILE=$WD/json/updateProcessSchedules.json
 URL=$baseURL/ProcessSchedules/$scheduleId/update
  
 createJSON
