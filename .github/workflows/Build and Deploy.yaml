@@ -128,7 +128,7 @@ jobs:
               then
                 processScheduleId=$(grep '^processSchedule=' $file | cut -f1 -d'|' | tr -d "'")
                 echo here 1: $processScheduleId
-                if [ $_compIdx = $processScheduleId ]
+                if [ $_compIdx == $processScheduleId ]
                 then
                   echo here 2
                   processScheduleVal=$(grep '^processSchedule=' $file | cut -f2 -d'|')
