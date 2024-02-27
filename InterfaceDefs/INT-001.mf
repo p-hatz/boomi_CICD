@@ -5,9 +5,17 @@ ver=0.5.218
 buildNotes=Packaged from GitHub
 
 ##Deployment
-targetEnv=2.Test
+targetEnv=1.Dev
 listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
+
+##Process Schedule
+#1 index based,(CRON format)
+#years/months/daysOfMonth/daysOfWeek/hours/minutes
+updateSchedule=1
+updateEnv=1.Dev
+atomName="Atom.HX90.Mint"
+processSchedule="2|\* \* \* \* \* 10"
 
 ##Environment Extensions
 devEnvUpd=0
