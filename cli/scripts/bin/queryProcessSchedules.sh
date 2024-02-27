@@ -13,12 +13,12 @@ then
         return 255;
 fi
 
-source bin/queryAtom.sh atomName="$atomName" atomStatus=online atomType=$atomType
+source $WD/bin/queryAtom.sh atomName="$atomName" atomStatus=online atomType=$atomType
 
-source bin/queryProcess.sh processName="$processName"
+source $WD/bin/queryProcess.sh processName="$processName"
 
 ARGUMENTS=(atomId processId)
-JSON_FILE=json/queryProcessSchedules.json
+JSON_FILE=$WD/json/queryProcessSchedules.json
 URL=$baseURL/ProcessSchedules/query
 id=result[0].id
 exportVariable=scheduleId
