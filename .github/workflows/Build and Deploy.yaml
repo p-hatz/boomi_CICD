@@ -122,6 +122,24 @@ jobs:
               _compId=$(echo $compId | cut -f $_compIdx -d",")
               #"${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
 
+              if [ "$updateSchedule" == 1 ]
+              then
+                processScheduleId=$(grep '^processSchedule=' $file | cut -f1 -d'|')
+                if [ $_compIdx = $processScheduleId ]
+                then
+                  processScheduleVal=$(grep '^processSchedule=' $file | cut -f2 -d'|')
+                  
+                  _years=$(echo $processScheduleVal | awk '{ print $1 }' | awk -F '|' '{ print $2 }' | tr -d '\\')
+                  _months=$(echo $processScheduleVal | awk '{ print $2 }' | tr -d '\\')
+                  _daysOfMonth=$(echo $processScheduleVal | awk '{ print $3 }' | tr -d '\\')
+                  _daysOfWeek=$(echo $processScheduleVal | awk '{ print $4 }' | tr -d '\\')
+                  _hours=$(echo $processScheduleVal | awk '{ print $5 }' | tr -d '\\')
+                  _minutes=$(echo $processScheduleVal | awk '{ print $6 }' | tr -d '\\')
+                  echo $_years $_months $_daysOfMonth $_daysOfWeek $_hours $_minutes
+                  
+                  ${GITHUB_WORKSPACE}/cli/scripts/updateProcessSchedules.sh" atomName=$atomName years="$_years" months="$_months" daysOfMonth="$_daysOfMonth" daysOfWeek="$_daysOfWeek" hours="$_hours" minutes="$_minutes"
+                fi
+              fi
              
             done
           done
