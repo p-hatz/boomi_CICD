@@ -134,12 +134,13 @@ jobs:
                   echo here 2
                   processScheduleVal=$(grep '^processSchedule=' $file | cut -f2 -d'=' | cut -f2 -d'|')
                   
-                  _years=$(echo $processScheduleVal | awk '{ print $1 }' | awk -F '|' '{ print $2 }' | tr -d '\\')
-                  _months=$(echo $processScheduleVal | awk '{ print $2 }' | tr -d '\\')
-                  _daysOfMonth=$(echo $processScheduleVal | awk '{ print $3 }' | tr -d '\\')
-                  _daysOfWeek=$(echo $processScheduleVal | awk '{ print $4 }' | tr -d '\\')
-                  _hours=$(echo $processScheduleVal | awk '{ print $5 }' | tr -d '\\')
-                  _minutes=$(echo $processScheduleVal | awk '{ print $6 }' | tr -d '\\')
+                  _years=$(echo $processScheduleVal | awk '{ print $1 }' | awk -F '|' '{ print $2 }')
+                  #_months=$(echo $processScheduleVal | awk '{ print $2 }' | tr -d '\\')
+                  _months=$(echo $processScheduleVal | awk '{ print $2 }')
+                  _daysOfMonth=$(echo $processScheduleVal | awk '{ print $3 }')
+                  _daysOfWeek=$(echo $processScheduleVal | awk '{ print $4 }')
+                  _hours=$(echo $processScheduleVal | awk '{ print $5 }')
+                  _minutes=$(echo $processScheduleVal | awk '{ print $6 }')
                   echo $_years $_months $_daysOfMonth $_daysOfWeek $_hours $_minutes
 
                   echo here 3
