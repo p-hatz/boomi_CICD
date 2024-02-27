@@ -127,7 +127,7 @@ jobs:
               echo compIdx is: $_compIdx
               if [ $updateSchedule == 1 ]
               then
-                processScheduleId=$(grep '^processSchedule=' $file | cut -f1 -d'|' | tr -d '"')
+                processScheduleId=$(grep '^processSchedule=' $file | cut -f2 -d'=' | cut -f1 -d'|' | tr -d '"')
                 echo here 1: $processScheduleId
                 if [ $_compIdx == $processScheduleId ]
                 then
