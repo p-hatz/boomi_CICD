@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source bin/common.sh
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+
 # get atom id of the by atom name
 # mandatory arguments
 ARGUMENTS=(atomName atomType atomStatus)
