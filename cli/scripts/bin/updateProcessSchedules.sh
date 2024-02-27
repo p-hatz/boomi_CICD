@@ -30,14 +30,15 @@ then
   source $WD/bin/queryProcess.sh processName="$processName"
 fi
 
-source $WD/bin/queryProcessScheduleStatus.sh atomName="$atomName" atomType=$atomType componentId=${componentId} 
+#source $WD/bin/queryProcessScheduleStatus.sh atomName="$atomName" atomType=$atomType componentId=${componentId}
+source $WD/bin/queryProcessScheduleStatus.sh atomName="$atomName" componentId=${componentId}
 
 saveScheduleId=scheduleId
 
 ARGUMENTS=(atomId processId scheduleId years months daysOfMonth daysOfWeek hours minutes)
 JSON_FILE=$WD/json/updateProcessSchedules.json
 URL=$baseURL/ProcessSchedules/$scheduleId/update
- 
+
 createJSON
 unset exportVariable
 callAPI
