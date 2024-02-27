@@ -112,7 +112,7 @@ jobs:
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
             updateSchedule=$(grep '^updateSchedule=' $file | cut -f2 -d'=')
-            echo update Schedule: updateSchedule
+            echo update Schedule: $updateSchedule
             if [ $updateSchedule == 1 ]
             then
               updateEnv=$(grep '^updateEnv=' $file | cut -f2 -d'=')
@@ -126,7 +126,7 @@ jobs:
 
               if [ $updateSchedule == 1 ]
               then
-                processScheduleId=$(grep '^processSchedule=' $file | cut -f1 -d'|')
+                processScheduleId=$(grep '^processSchedule=' $file | cut -f1 -d'|' | tr -d "'")
                 echo here 1: $processScheduleId
                 if [ $_compIdx = $processScheduleId ]
                 then
