@@ -16,7 +16,8 @@
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
 #Query Process Schedule Status  by atomId and processId
-ARGUMENTS=(atomName atomType years months daysOfMonth daysOfWeek hours minutes)
+#ARGUMENTS=(atomName atomType years months daysOfMonth daysOfWeek hours minutes)
+ARGUMENTS=(atomName years months daysOfMonth daysOfWeek hours minutes)
 OPT_ARGUMENTS=(processName componentId)
 inputs "$@"
 if [ "$?" -gt "0" ]
