@@ -2,7 +2,8 @@
 # Usage : queryProcessSchedules.sh <atomName> <atomType> <processName>
 #!/bin/bash
 
-source bin/common.sh
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+
 #Query Process Schedule Status  by atomId and processId
 ARGUMENTS=(atomName atomType processName)
 
