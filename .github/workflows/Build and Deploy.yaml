@@ -36,7 +36,7 @@ jobs:
         
       - name: Install AWS CLI v2 and OS Packages
         run:  |
-          sudo apt-get install -y curl
+          #sudo apt-get install -y curl
           #not needed for GitHub hosted runners
           #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "${GITHUB_WORKSPACE}/awscliv2.zip"
           #unzip -q /tmp/awscliv2.zip -d /tmp
@@ -72,7 +72,7 @@ jobs:
         id: createPackage
         run: |
           sudo apt-get install -y libxml2-utils jq
-          
+
           BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
           BoomiUsername=${{ vars.BOOMI_USERNAME }}
           API=${{ secrets.API }}
@@ -87,7 +87,7 @@ jobs:
             funcTest=0
             sampleProc=0
             compCount=1
-            
+
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
@@ -111,9 +111,35 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
+            updateSchedule=$(grep '^updateSchedule=' $file | cut -f2 -d'=')
+            if [ $updateSchedule == 1 ]
+            then
+              updateEnv=$(grep '^updateEnv=' $file | cut -f2 -d'=')
+              atomName=$(grep '^atomName=' $file | cut -f2 -d'=')
+            fi
+            
             for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
               _compId=$(echo $compId | cut -f $_compIdx -d",")
-              "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+              #"${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+
+              if [ "$updateSchedule" == 1 ]
+              then
+                processScheduleId=$(grep '^processSchedule=' $file | cut -f1 -d'|')
+                if [ $_compIdx = $processScheduleId ]
+                then
+                  processScheduleVal=$(grep '^processSchedule=' $file | cut -f2 -d'|')
+                  
+                  _years=$(echo $processScheduleVal | awk '{ print $1 }' | awk -F '|' '{ print $2 }' | tr -d '\\'
+                  _months=$(echo $processScheduleVal | awk '{ print $2 }' | tr -d '\\'
+                  _daysOfMonth=$(echo $processScheduleVal | awk '{ print $3 }' | tr -d '\\'
+                  _daysOfWeek=$(echo $processScheduleVal | awk '{ print $4 }' | tr -d '\\'
+                  _hours=$(echo $processScheduleVal | awk '{ print $5 }' | tr -d '\\'
+                  _minutes=$(echo $processScheduleVal | awk '{ print $6 }' | tr -d '\\'
+                  echo $_years $_months $_daysOfMonth $_daysOfWeek $_hours $_minutes
+                  
+                  ${GITHUB_WORKSPACE}/cli/scripts/updateProcessSchedules.sh" atomName=$atomName years="$years" months="$months" daysOfMonth="$daysOfMonth" daysOfWeek="$daysOfWeek" hours="$hours" minutes="$minutes"
+                fi
+              fi
             done
           done
 
@@ -129,6 +155,8 @@ jobs:
           fi
 
           echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
+
+          exit 0
 
   deploytoDev:
     #runs-on: [self-hosted, linux, X64]
