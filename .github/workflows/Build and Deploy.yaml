@@ -156,8 +156,8 @@ jobs:
           echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
 
   deploytoDev:
-    #runs-on: [self-hosted, linux, X64]
-    runs-on: [ubuntu-latest]
+    runs-on: [self-hosted, linux, X64]
+    #runs-on: [ubuntu-latest]
     needs: createPackage
     #if: contains('1.Dev',needs.createPackage.outputs.runDeploy)
     if: needs.createPackage.outputs.runDeploy <= 5
