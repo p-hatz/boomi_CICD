@@ -367,7 +367,7 @@ jobs:
               cat ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               sed -i 's/\[90m//g ; s/\[30m//g' ${GITHUB_WORKSPACE}/tmp/$_resultFile.out
               
-              postmanResult=$(grep assertions ${GITHUB_WORKSPACE}/tmp/$_resultFile.out | tr -s ' ' '|' | awk -F "|" '{ print $6 }')
+              postmanResult=$(grep 'test-scripts' ${GITHUB_WORKSPACE}/tmp/$_resultFile.out | tr -s ' ' '|' | awk -F "|" '{ print $6 }')
               #postmanResult=$(echo $postmanOut | grep '200 OK' | wc -l)
               echo Postman Result: $postmanResult
               if [ "$postmanResult" == 0 ]
