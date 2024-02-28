@@ -16,8 +16,7 @@
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
 #Query Process Schedule Status  by atomId and processId
-#ARGUMENTS=(atomName atomType years months daysOfMonth daysOfWeek hours minutes)
-ARGUMENTS=(atomName years months daysOfMonth daysOfWeek hours minutes)
+ARGUMENTS=(atomName atomType years months daysOfMonth daysOfWeek hours minutes)
 OPT_ARGUMENTS=(processName componentId)
 inputs "$@"
 if [ "$?" -gt "0" ]
@@ -31,8 +30,7 @@ then
   source $WD/bin/queryProcess.sh processName="$processName"
 fi
 
-#source $WD/bin/queryProcessScheduleStatus.sh atomName="$atomName" atomType=$atomType componentId=${componentId}
-source $WD/bin/queryProcessScheduleStatus.sh atomName="$atomName" componentId=${componentId}
+source $WD/bin/queryProcessScheduleStatus.sh atomName="$atomName" atomType=$atomType componentId=${componentId}
 
 saveScheduleId=scheduleId
 
