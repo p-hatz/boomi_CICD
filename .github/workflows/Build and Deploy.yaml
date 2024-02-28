@@ -151,7 +151,7 @@ jobs:
                   echo $_years $_months $_daysOfMonth $_daysOfWeek $_hours $_minutes
 
                   echo here 3
-                  "${GITHUB_WORKSPACE}/cli/scripts/bin/updateProcessSchedules.sh" atomName=$atomName years="$_years" months="$_months" daysOfMonth="$_daysOfMonth" daysOfWeek="$_daysOfWeek" hours="$_hours" minutes="$_minutes"
+                  "${GITHUB_WORKSPACE}/cli/scripts/bin/updateProcessSchedules.sh" atomName=$atomName componentId="$_compId" years="$_years" months="$_months" daysOfMonth="$_daysOfMonth" daysOfWeek="$_daysOfWeek" hours="$_hours" minutes="$_minutes"
                 fi
               fi
              
