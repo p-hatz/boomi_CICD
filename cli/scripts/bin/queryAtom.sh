@@ -4,8 +4,7 @@ source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
 # get atom id of the by atom name
 # mandatory arguments
-#ARGUMENTS=(atomName atomType atomStatus)
-ARGUMENTS=(atomName atomStatus)
+ARGUMENTS=(atomName atomType atomStatus)
 JSON_FILE=$WD/json/queryAtom.json
 URL=$baseURL/Atom/query
 id=result[0].id
