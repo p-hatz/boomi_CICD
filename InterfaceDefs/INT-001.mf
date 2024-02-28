@@ -5,14 +5,14 @@ ver=0.5.225
 buildNotes=Packaged from GitHub
 
 ##Deployment
-targetEnv=1.Dev
+targetEnv=2.Test
 listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
 
 ##Process Schedule
 #1 index based,(CRON format)
 #years/months/daysOfMonth/daysOfWeek/hours/minutes
-updateSchedule=1
+updateSchedule=0
 updateEnv=1.Dev
 atomName="Atom.HX90.Mint"
 atomType="atom"
@@ -27,9 +27,9 @@ devEnvConnFieldId=password
 devEnvSSMId=employeeDevDB
 
 ##Functional Testing
-funcTestPostman=0
+funcTestPostman=1
 collectionId="Testing/GeneralAPITest.json"
-funcTestBDC=1
+funcTestBDC=0
 BDCTestFile="Testing/DevOpsCentreTest.json"
 
 ##Performance Testing
