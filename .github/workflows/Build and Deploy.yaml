@@ -116,8 +116,8 @@ jobs:
             if [ $updateSchedule == 1 ]
             then
               updateEnv=$(grep '^updateEnv=' $file | cut -f2 -d'=')
-              atomName=$(grep '^atomName=' $file | cut -f2 -d'=')
-              echo $updateEnv $atomName
+              _atomName=$(grep '^atomName=' $file | cut -f2 -d'=')
+              _atomType=$(grep '^atomType=' $file | cut -f2 -d'=')
             fi
             
             for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
@@ -151,7 +151,7 @@ jobs:
                   echo $_years $_months $_daysOfMonth $_daysOfWeek $_hours $_minutes
 
                   echo here 3
-                  "${GITHUB_WORKSPACE}/cli/scripts/bin/updateProcessSchedules.sh" atomName=$atomName componentId="$_compId" years="$_years" months="$_months" daysOfMonth="$_daysOfMonth" daysOfWeek="$_daysOfWeek" hours="$_hours" minutes="$_minutes"
+                  "${GITHUB_WORKSPACE}/cli/scripts/bin/updateProcessSchedules.sh" atomName=$_atomName atomType=$_atomType componentId="$_compId" years="$_years" months="$_months" daysOfMonth="$_daysOfMonth" daysOfWeek="$_daysOfWeek" hours="$_hours" minutes="$_minutes"
                 fi
               fi
              
