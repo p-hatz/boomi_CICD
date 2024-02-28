@@ -15,6 +15,7 @@ deployNotes=Deployed from GitHub
 updateSchedule=1
 updateEnv=1.Dev
 atomName="Atom.HX90.Mint"
+atomType="atom"
 processSchedule="2|\* \* \* \* \* 10"
 
 ##Environment Extensions
