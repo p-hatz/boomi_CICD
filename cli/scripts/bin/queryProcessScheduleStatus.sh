@@ -6,7 +6,8 @@
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
 #Query Process Schedule Status  by atomId and processId
-ARGUMENTS=(atomName atomType)
+#ARGUMENTS=(atomName atomType)
+ARGUMENTS=(atomName)
 OPT_ARGUMENTS=(processName componentId)
 
 inputs "$@"
@@ -15,7 +16,8 @@ then
         return 255;
 fi
 
-source $WD/bin/queryAtom.sh atomName="$atomName" atomStatus=online atomType=$atomType
+#source $WD/bin/queryAtom.sh atomName="$atomName" atomStatus=online atomType=$atomType
+source $WD/bin/queryAtom.sh atomName="$atomName" atomStatus=online
 
 if [ -z "${componentId}" ] || [ null == "${componentId}" ]
 then
