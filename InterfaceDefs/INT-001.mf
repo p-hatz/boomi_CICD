@@ -16,7 +16,7 @@ updateSchedule=1
 updateEnv=1.Dev
 atomName="Atom.HX90.Mint"
 atomType="atom"
-processSchedule="2| * * * * * *"
+processSchedule="2| \* \* \* \* \* \*"
 
 ##Environment Extensions
 devEnvUpd=0
