@@ -104,15 +104,10 @@ jobs:
 
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
 
-            #chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
-            #chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
-            #chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
-
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
             updateSchedule=$(grep '^updateSchedule=' $file | cut -f2 -d'=')
-            echo update Schedule: $updateSchedule
             if [ $updateSchedule == 1 ]
             then
               updateEnv=$(grep '^updateEnv=' $file | cut -f2 -d'=')
@@ -124,37 +119,26 @@ jobs:
               _compId=$(echo $compId | cut -f $_compIdx -d",")
               #"${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
 
-              echo compIdx is: $_compIdx
+              #echo compIdx is: $_compIdx
               if [ $updateSchedule == 1 ]
               then
                 processScheduleId=$(grep '^processSchedule=' $file | cut -f2 -d'=' | cut -f1 -d'|' | tr -d '"')
-                echo here 1: $processScheduleId
                 if [ $_compIdx == $processScheduleId ]
                 then
-                  echo here 2
+                  echo Updating Process Schedule
                   processScheduleVal=$(grep '^processSchedule=' $file | cut -f2 -d'=' | cut -f2 -d'|')
                   
-                  #_years=$(echo $processScheduleVal | awk '{ print $1 }' | awk -F "|" '{ print $2 }')
                   _years=$(echo $processScheduleVal | awk '{ print $1 }')
-                  echo years: $_years
-                  #_months=$(echo $processScheduleVal | awk '{ print $2 }' | tr -d '\\')
                   _months=$(echo $processScheduleVal | awk '{ print $2 }')
-                  echo months: $_months
                   _daysOfMonth=$(echo $processScheduleVal | awk '{ print $3 }')
-                  echo daysOfMonth: $_daysOfMonth
                   _daysOfWeek=$(echo $processScheduleVal | awk '{ print $4 }')
-                  echo daysOfWeek: $_daysOfWeek
                   _hours=$(echo $processScheduleVal | awk '{ print $5 }')
-                  echo hours: $_hours
                   _minutes=$(echo $processScheduleVal | awk '{ print $6 }' | tr -d '"')
-                  echo minutes: $_minutes
-                  echo $_years $_months $_daysOfMonth $_daysOfWeek $_hours $_minutes
-
-                  echo here 3
+                  #echo $_years $_months $_daysOfMonth $_daysOfWeek $_hours $_minutes
+                  
                   "${GITHUB_WORKSPACE}/cli/scripts/bin/updateProcessSchedules.sh" atomName=$_atomName atomType=$_atomType componentId="$_compId" years="$_years" months="$_months" daysOfMonth="$_daysOfMonth" daysOfWeek="$_daysOfWeek" hours="$_hours" minutes="$_minutes"
                 fi
               fi
-             
             done
           done
 
@@ -170,8 +154,6 @@ jobs:
           fi
 
           echo "deploy=$deployPackageHWM" >> "$GITHUB_OUTPUT"
-
-          exit 0
 
   deploytoDev:
     #runs-on: [self-hosted, linux, X64]
