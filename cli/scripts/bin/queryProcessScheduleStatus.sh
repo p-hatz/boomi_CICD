@@ -3,7 +3,8 @@
 # Process Schedule Status Query by passing the processId and atomId
 # Usage : queryProcessScheduleStatus.sh <atomId> <atomType> <processId>
 
-source bin/common.sh
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+
 #Query Process Schedule Status  by atomId and processId
 ARGUMENTS=(atomName atomType)
 OPT_ARGUMENTS=(processName componentId)
@@ -14,16 +15,16 @@ then
         return 255;
 fi
 
-source bin/queryAtom.sh atomName="$atomName" atomStatus=online atomType=$atomType
+source $WD/bin/queryAtom.sh atomName="$atomName" atomStatus=online atomType=$atomType
 
 if [ -z "${componentId}" ] || [ null == "${componentId}" ]
 then
- source bin/queryProcess.sh processName="$processName"
+ source $WD/bin/queryProcess.sh processName="$processName"
 fi
 processId="${componentId}"
 
 ARGUMENTS=(atomId processId)
-JSON_FILE=json/queryProcessScheduleStatus.json
+JSON_FILE=$WD/json/queryProcessScheduleStatus.json
 URL=$baseURL/ProcessScheduleStatus/query
 id=result[0].id
 exportVariable=scheduleId
