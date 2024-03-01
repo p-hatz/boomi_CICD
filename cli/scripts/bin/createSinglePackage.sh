@@ -21,42 +21,42 @@ saveComponentType="${componentType}"
 saveComponentVersion="${componentVersion}"
 if [ -z "${componentId}" ] || [ null == "${componentId}" ]
 then
-		notes="${saveNotes}"
+	notes="${saveNotes}"
         packageVersion="${savePackageVersion}"
         processName=`echo "${processName}" | xargs`
         saveProcessName="${processName}"
         componentType="${saveComponentType}"
         componentId=""
-		source $WD/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted=""
-		saveComponentName="${componentName}"
+	source $WD/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted=""
+	saveComponentName="${componentName}"
         saveComponentId="${componentId}"
         saveComponentVersion="${componentVersion}"
-		source $WD/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
-		if [ ! -z ${packageId} ]
-		then
-		 echoi "Created package ${packageId} for component ${saveProcessName}"
-		else 
-			return 255;
-		fi 
+	source $WD/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
+	if [ ! -z ${packageId} ]
+	then
+		echoi "Created package ${packageId} for component ${saveProcessName}"
+	else 
+		return 255;
+	fi 
 else    
-		notes="${saveNotes}"
+	notes="${saveNotes}"
         packageVersion="${savePackageVersion}"
         componentId="${saveComponentId}"
         #componentId=`echo "${componentId}" | xargs`
         saveComponentId="${componentId}"
         componentType="${saveComponentType}"
-		processName=""
-		source $WD/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted="" 
-		saveComponentName="${componentName}"
-        	saveComponentVersion="${componentVersion}"
-		componentId="${saveComponentId}"
-		source $WD/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
-		if [ ! -z ${packageId} ]
-		then
-		 echoi "Created package ${packageId} for componentId ${saveComponentId}"
-		else 
-			return 255;
-		fi 
+	processName=""
+	source $WD/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted="" 
+	saveComponentName="${componentName}"
+        saveComponentVersion="${componentVersion}"
+	componentId="${saveComponentId}"
+	source $WD/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
+	if [ ! -z ${packageId} ]
+	then
+		echoi "Created package ${packageId} for componentId ${saveComponentId}"
+	else 
+		return 255;
+	fi 
 fi  
 
 savePackageId=${packageId}
