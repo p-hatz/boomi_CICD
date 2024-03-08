@@ -1,1 +1,1 @@
-xxxxxxx
+my new file contents
