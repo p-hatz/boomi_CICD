@@ -1,1 +1,10 @@
-my new file contentsxxxxxxxxxxx
+##Build
+componentId=
+componentType=
+ver=
+buildNotes=Packaged from GitHub
+
+##Deployment
+targetEnv=
+listenerStatus=RUNNING
+deployNotes=Deployed from GitHub
