@@ -2,13 +2,17 @@ name: Build and Deploy Package
 on:
   workflow_dispatch:
     inputs:
-      componentId:
+      compId:
         description: 'Component Id'
+        required: true
+      compVer:
+        description: 'Component version'
         required: true
       environment:
         description: 'Environment to run tests against'
         type: environment
         required: true
+        
   push:
     branches:
       - main
