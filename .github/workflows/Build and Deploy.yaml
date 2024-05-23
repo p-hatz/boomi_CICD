@@ -170,8 +170,8 @@ jobs:
       - name: Changed Files
         id: changed-files
         uses: tj-actions/changed-files@v37.5.2
-        #with:
-        #  envTargetName: "1.Dev"
+        with:
+         envTargetName: "1.Dev"
         
       # Runs a set of commands using the runners shell
       - name: Deploy Package
@@ -247,6 +247,8 @@ jobs:
               #_msg="$envName: Component '$_compId ' (ver: '$compVer' ) deployed"
               #curl -d text="$_msg" -d "channel=deployments" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
             done
+
+            echo $compId~$envTargetName >> /tmp/boomiCICD.lst
           done
 
   deploytoTest:
