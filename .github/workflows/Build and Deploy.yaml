@@ -14,7 +14,7 @@ env:
   ID: ${{ github.run_id }}-${{ github.run_attempt }}
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  on: workflow_dispatch
 
 jobs:
   preReqs:
