@@ -99,25 +99,31 @@ jobs:
             compCount=1
 
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
-            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
-            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            _file="/tmp/$compId.build"
+            if [ ! -f "$_file" ]
+            then
+              compType=$(grep '^componentType=' $file | cut -f2 -d'=')
+              compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+              compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+  
+              compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
+              compCount=$((compCount + 1))
+              #echo number of Components: $compCount
+              
+              export WD=${GITHUB_WORKSPACE}/cli/scripts/
+              export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+              export GITHUB_WORKSPACE
+  
+              find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
+  
+              source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+              source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+  
+              for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
+                _compId=$(echo $compId | cut -f $_compIdx -d",")
+                "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+              done
 
-            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
-            compCount=$((compCount + 1))
-            #echo number of Components: $compCount
-            
-            export WD=${GITHUB_WORKSPACE}/cli/scripts/
-            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
-            export GITHUB_WORKSPACE
-
-            find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
-
-            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
-            source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
-
-            for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
-              _compId=$(echo $compId | cut -f $_compIdx -d",")
-              "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
-            done
+              touch $_file
+            fi
           done
