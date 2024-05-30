@@ -1,7 +1,5 @@
 ##Build
-componentId=ab3737cf-f483-404a-9f8c-07c8cab03062
+componentId=c489d5e0-bd3d-42a9-a2c6-0ee4190642de
 componentType=process
-ver=36
+ver=0.1.0
 buildNotes=Packaged from GitHub
-
-
