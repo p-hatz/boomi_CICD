@@ -66,7 +66,6 @@ jobs:
     needs: [createPackage, deploytoDev]
     environment:
       name: "Test"
-    if: needs.createPackage.outputs.runDeploy <= 3
     steps:
       - uses: actions/checkout@v3
       
@@ -107,6 +106,15 @@ jobs:
             envName=$(grep '^deploy=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
+
+            _fileBuild="/tmp/$compId.build"
+            _fileDev="/tmp/$compId.dev"
+            
+            if [ ! -f $_fileBuild ] && [ ! -f $_fileDev ]
+            then
+              echo "Component hasn't been packaged and deployed to Dev. Bailing..."
+              exit 1
+            fi
 
             compCount=1
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
