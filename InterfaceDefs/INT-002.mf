@@ -1,1 +1,10 @@
+##Package
+componentId=66769d7b-f200-43c6-ab32-2d0386e7b32c
+componentType=process
+ver=1.0.1
+#buildNotes=Initial Package
 
+##Deployment
+targetEnv=2.Test
+listenerStatus=RUNNING
+deployNotes=Deployed from GitHub
