@@ -273,7 +273,7 @@ jobs:
             #sample=1
           done
 
-deploytoProd:
+  deploytoProd:
     runs-on: [self-hosted, linux, X64]
     #runs-on: [ubuntu-latest]
     environment:
