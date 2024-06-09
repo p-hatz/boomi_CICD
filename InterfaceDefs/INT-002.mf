@@ -1,7 +1,7 @@
 ##Components
-componentId=66769d7b-f200-43c6-ab32-2d0386e7b32c
+componentId=f50c35e7-96b7-4626-9d02-18644f259f7a,73b89d08-9c13-4b7c-b376-491f030408b7
 componentType=process
-ver=1.0.2
+ver=32.6.39
 buildNotes=Initial Package
 
 ##Deployment
