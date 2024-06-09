@@ -52,14 +52,14 @@ then
  done
   
   # Create a violations report using sonarqube rules	
-	$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
+	$GITHUB_WORKSPACE/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
 
 	#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
 	export baseFolder="${packageFolder}"
 	echo savenotes: ${saveNotes}
 
 	export $saveNotes
-	source $WD/bin/gitPush.sh ${gitComponentOption}
+	source $GITHUB_WORKSPACE/bin/gitPush.sh ${gitComponentOption}
 	#export tag="${componentId}"
  	#export tag="${processName}"
 	#export notes="Created from GitHub Actions Pipeline"
