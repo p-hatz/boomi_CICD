@@ -17,7 +17,7 @@ on:
     branches:
       - main
     paths:
-      - 'InterfaceDefs/*.mf'
+      - 'InterfaceDefs/*.mf.Test'
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.ID2 }}
