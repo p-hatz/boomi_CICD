@@ -119,8 +119,8 @@ jobs:
 
             sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
             funcTestPostman=$(grep '^funcTestPostman=' $file | cut -f2 -d'=')
-            funcTestBDC=$(grep '^funcTestBDC=' $file | cut -f2 -d'=')
             collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
+            codeCheck=$(grep '^codeCheck=' $file | cut -f2 -d'=')
             
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
@@ -128,10 +128,10 @@ jobs:
 
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
 
-            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
-            chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
-            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
-            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh"
+            #chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
+            #chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            #chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
+            #chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh"
 
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
@@ -144,6 +144,13 @@ jobs:
               echo "component type set to: $_compType"
 
               source "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh" componentId=$_compId componentType=$_compType packageVersion=$compVer envId=$devEnvId
+
+              if [[ $codeCheck == 1 ]]
+              then
+                echo Checking code...
+                "${GITHUB_WORKSPACE}/cli/scripts/initCheckRules.sh" $packageId CodeReview
+                exit 0
+              fi
               
               echo "calling deployPackage (packageId: $packageId)"
               "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
