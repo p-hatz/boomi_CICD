@@ -8,6 +8,9 @@ OPT_ARGUMENTS=(componentVersion)
 URL=$baseURL/PackagedComponent/query
 id=result[0].packageId
 exportVariable=packageId
+
+savePackageId=${packageId}
+
 unset packageId
 inputs "$@"
 if [ "$?" -gt "0" ]
@@ -33,6 +36,9 @@ then
 fi
  
 clean
+
+export packageId=${savePackageId}
+
 if [ "$ERROR" -gt 0 ]
 then
    return 255;
