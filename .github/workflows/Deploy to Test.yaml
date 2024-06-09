@@ -254,12 +254,11 @@ jobs:
               _perfTestFile=$(grep '^perfTestFile=' $file | cut -f2 -d'=')
               _perfThreshold=$(grep '^perfThreshold=' $file | cut -f2 -d'=')
 
-              #rm -fr "${GITHUB_WORKSPACE}/tmp/jmeter"
-              #mkdir -p "${GITHUB_WORKSPACE}/tmp/jmeter"
+              rm -fr "${GITHUB_WORKSPACE}/tmp/jmeter"
+              mkdir -p "${GITHUB_WORKSPACE}/tmp/jmeter"
               
-              #curl "https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz" -o "${GITHUB_WORKSPACE}/tmp/jmeter.tgz"
-              wget -O ${GITHUB_WORKSPACE}/tmp/jmeter.tgz https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz 
-              tar -zxvf "${GITHUB_WORKSPACE}/tmp/jmeter.tgz" -C "${GITHUB_WORKSPACE}/tmp/jmeter"
+              wget -O ${GITHUB_WORKSPACE}/tmp/jmeter.tgz https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz
+              tar -zxvf ${GITHUB_WORKSPACE}/tmp/jmeter.tgz -C ${GITHUB_WORKSPACE}/tmp/jmeter
 
               _perfTestFile=$(echo $_perfTestFile | sed "s/\"//g")
               _resultFile=$(echo $_perfTestFile | awk -F/ '{print $NF}' | tr -d ' ' | sed "s/\"//g ; s/'//g")
