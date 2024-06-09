@@ -28,6 +28,6 @@ fi
 
 if [[ $codeCheck == 1 ]]
 then
-	echo Checking code...
+	echo Checking code!...
         source "${GITHUB_WORKSPACE}/cli/scripts/initCheckRules.sh" $packageId CodeReview
 fi              
