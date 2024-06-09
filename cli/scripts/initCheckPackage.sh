@@ -4,7 +4,7 @@ set -a
 
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-ARGUMENTS=(authToken componentId componentType packageVersion)
+ARGUMENTS=(authToken componentId componentType packageVersion envId)
 
 inputs "$@"
 if [ "$?" -gt 0 ]
