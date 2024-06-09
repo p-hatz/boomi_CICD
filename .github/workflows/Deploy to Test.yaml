@@ -146,8 +146,6 @@ jobs:
             
             envName=${{ vars.envTest }}
             devEnvId=${{ vars.devEnvId }}
-            echo devenvId: $devEnvId
-            exit
             for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
               _compId=$(echo $compId | cut -f $_compIdx -d",")
 
