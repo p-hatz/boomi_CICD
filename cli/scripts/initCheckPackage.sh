@@ -29,5 +29,5 @@ fi
 if [ $codeCheck -eq 1 ]
 then
 	echo Checking code!...
-        source "${GITHUB_WORKSPACE}/cli/scripts/initCheckRules.sh" packageId=$packageId folder=CodeReview
+        source "${GITHUB_WORKSPACE}/cli/scripts/initCheckRules.sh" packageId=$packageId extractComponentXmlFolder=CodeReview
 fi              
