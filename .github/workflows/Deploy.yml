@@ -49,13 +49,13 @@ jobs:
           #sudo apt-get install -y curl
           #not needed for GitHub hosted runners
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "${GITHUB_WORKSPACE}/awscliv2.zip"
-          unzip -q ${GITHUB_WORKSPACE}/awscliv2.zip -d /tmp
-          #unzip -q ${GITHUB_WORKSPACE}/awscliv2.zip -d ${GITHUB_WORKSPACE}/awscli
+          #unzip -q ${GITHUB_WORKSPACE}/awscliv2.zip -d /tmp
+          unzip -q ${GITHUB_WORKSPACE}/awscliv2.zip -d ${GITHUB_WORKSPACE}/awscli
           
           rm ${GITHUB_WORKSPACE}/awscliv2.zip
-          sudo /tmp/aws/install --update
+          #sudo /tmp/aws/install --update
           
-          rm -rf /tmp/aws/
+          #rm -rf /tmp/aws/
           mkdir -p ${GITHUB_WORKSPACE}/tmp
           
           deployPackageHWM=5        
