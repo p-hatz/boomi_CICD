@@ -1,7 +1,7 @@
 ##Components
 componentId=f50c35e7-96b7-4626-9d02-18644f259f7a,73b89d08-9c13-4b7c-b376-491f030408b7
 componentType=process,webservice
-ver=32.6.59
+ver=32.6.60
 #buildNotes=Initial Package
 
 ##Deployment
