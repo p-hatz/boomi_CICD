@@ -9,7 +9,7 @@ URL=$baseURL/PackagedComponent/query
 id=result[0].packageId
 exportVariable=packageId
 
-#savePackageId=${packageId}
+savePackageId=${packageId}
 
 unset packageId
 inputs "$@"
@@ -33,10 +33,10 @@ callAPI
 if [ ! -z "${packageId}" ] && [ "${packageId}" != "null" ] && [ "${packageId}" != null ]
 then
 	echoi "Found packageId ${packageId} for componentId ${componentId} with packageVersion ${packageVersion}. This package will not be recreated."
-	export packageId
 fi
  
 clean
+export savePackageId
 
 if [ "$ERROR" -gt 0 ]
 then
