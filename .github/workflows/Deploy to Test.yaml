@@ -36,6 +36,7 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v37.5.2
 
+      - name: Install AWS CLI
         id: install-aws-cli
         uses: unfor19/install-aws-cli-action@v1
         with:
@@ -45,6 +46,7 @@ jobs:
           bindir: "/usr/local/bin"           # default
           installrootdir: "/usr/local"       # default
           rootdir: ""                        # defaults to "PWD"
+          
           #workdir: ""                        # defaults to "PWD/unfor19-awscli"    - name: Install AWS CLI v2 and OS Packages
           #    run:  |
           #sudo apt-get install -y curl
