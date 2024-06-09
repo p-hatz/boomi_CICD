@@ -26,8 +26,8 @@ then
 	exit 1
 fi
 
-if [[ $codeCheck == 1 ]]
+if [ $codeCheck -eq 1 ]
 then
 	echo Checking code!...
-        source "${GITHUB_WORKSPACE}/cli/scripts/initCheckRules.sh" $packageId CodeReview
+        source "${GITHUB_WORKSPACE}/cli/scripts/initCheckRules.sh" packageId=$packageId folder=CodeReview
 fi              
