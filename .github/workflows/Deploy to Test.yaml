@@ -140,6 +140,7 @@ jobs:
             chmod +x "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh"
             chmod +x ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh"
+            chmod +x "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh"
 
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
@@ -157,7 +158,7 @@ jobs:
               "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
 
               #_msg="$envName: Component '$_compId ' (ver: '$compVer' ) deployed"
-              #curl -d text="$_msg" -d "channel=deployments" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
+              curl -d text="$_msg" -d "channel=deployments" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
             done
           
             #_id=$RANDOM
