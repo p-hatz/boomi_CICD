@@ -24,10 +24,10 @@
       </ThreadGroup>
       <hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request">
-          <stringProp name="HTTPSampler.domain">p-hatz.duckdns.org</stringProp>
-          <stringProp name="HTTPSampler.port">29090</stringProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">9090</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.path">ws/simple/executeTest</stringProp>
+          <stringProp name="HTTPSampler.path">ws/simple/getIP</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -37,14 +37,6 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
-          <collectionProp name="HeaderManager.headers">
-            <elementProp name="" elementType="Header">
-              <stringProp name="Header.name">Authorization: Basic</stringProp>
-              <stringProp name="Header.value">YmRjQGJvb21pX3BldGVyYW50b255LVhHOUxSRzo5YTY0YmYzYi00NjdjLTQ2NGUtODBjYi1kNWI5N2ZiZjlkZTY=</stringProp>
-            </elementProp>
-          </collectionProp>
-        </HeaderManager>
         <hashTree/>
         <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
