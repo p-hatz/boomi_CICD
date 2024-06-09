@@ -19,6 +19,7 @@ then
 	exit 1
 fi
 
+echo packageid: $packageId
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryDeployedPackage.sh envId=$envId packageId=$packageId
 if [ -z "$deploymentId" ]
 then
@@ -26,6 +27,7 @@ then
 	exit 1
 fi
 
+echo packageid: $packageId
 if [ $codeCheck -eq 1 ]
 then
 	echo Checking code!...
