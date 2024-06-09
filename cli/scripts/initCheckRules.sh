@@ -22,7 +22,7 @@ then
 	mkdir -p "${packageFolder}"
 	
   # save the list of component details for a codereview report to be published at the end
-	printf "%s%s%s\n" "${saveComponentId}|" "${saveComponentName}|" "${saveComponentVersion}" >> "${WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
+	printf "%s%s%s\n" "${saveComponentId}|" "${saveComponentName}|" "${saveComponentVersion}" >> "${GITHUB_WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
 	echov "Publishing package metatdata for ${packageId}."
 	source ${GITHUB_WORKSPACE}/cli/scripts/bin/publishPackagedComponentMetadata.sh packageIds="${packageId}" > "${packageFolder}/Manifest_${saveComponentId}.html"
 
@@ -48,7 +48,7 @@ then
 			source ${GITHUB_WORKSPACE}/cli/scripts/bin/createExtensionsJson.sh componentFile="${componentFile}"
 		fi
  
-    mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
+    mv "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
  done
   
   # Create a violations report using sonarqube rules	
