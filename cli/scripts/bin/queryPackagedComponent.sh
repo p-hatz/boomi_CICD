@@ -33,7 +33,7 @@ callAPI
 if [ ! -z "${packageId}" ] && [ "${packageId}" != "null" ] && [ "${packageId}" != null ]
 then
 	echoi "Found packageId ${packageId} for componentId ${componentId} with packageVersion ${packageVersion}. This package will not be recreated."
-	#export packageId
+	export packageId
 fi
  
 clean
