@@ -113,14 +113,14 @@ jobs:
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
 
-            _fileBuild="/tmp/$compId.build"
-            _fileDev="/tmp/$compId.dev"
+            #_fileBuild="/tmp/$compId.build"
+            #_fileDev="/tmp/$compId.dev"
             
-            if [ ! -f $_fileBuild ] && [ ! -f $_fileDev ]
-            then
-              echo "Component hasn't been packaged and deployed to Dev. Bailing..."
-              exit 1
-            fi
+            #if [ ! -f $_fileBuild ] && [ ! -f $_fileDev ]
+            #then
+            #  echo "Component hasn't been packaged and deployed to Dev. Bailing..."
+            #  exit 1
+            #fi
 
             compCount=1
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
@@ -147,6 +147,8 @@ jobs:
             envName=${{ vars.envTest }}
             for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
               _compId=$(echo $compId | cut -f $_compIdx -d",")
+
+              "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh" componentId=$_compId componentType=$compType packageVersion=compVer
               "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
 
               #_msg="$envName: Component '$_compId ' (ver: '$compVer' ) deployed"
