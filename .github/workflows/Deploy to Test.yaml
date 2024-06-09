@@ -58,6 +58,9 @@ jobs:
           #sudo /tmp/aws/install --update
           #rm -rf /tmp/aws/
 
+      - name: Create tmp directory
+        id: tmpDir
+        run: |
           mkdir -p ${GITHUB_WORKSPACE}/tmp
           
           deployPackageHWM=5        
