@@ -157,7 +157,7 @@ jobs:
               echo "calling deployPackage (packageId: $packageId)"
               "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
 
-              #_msg="$envName: Component '$_compId ' (ver: '$compVer' ) deployed"
+              _msg="$envName: Component '$_compId ' (ver: '$compVer' ) deployed"
               curl -d text="$_msg" -d "channel=release" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
             done
           
