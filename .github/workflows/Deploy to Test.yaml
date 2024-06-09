@@ -148,6 +148,7 @@ jobs:
             devEnvId=${{ vars.devEnvId }}
             for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
               _compId=$(echo $compId | cut -f $_compIdx -d",")
+              _compType=$(echo $compType | cut -f $_compIdx -d",")
 
               "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh" componentId=$_compId componentType=$compType packageVersion=$compVer envId=$devEnvId
               "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
