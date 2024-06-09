@@ -1,72 +1,48 @@
 {
-    "collection": {
         "info": {
-            "_postman_id": "951b0bb5-0e47-4833-9000-eb92e0dec091",
-            "name": "CICD Test",
-            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-            "updatedAt": "2024-02-21T00:00:20.000Z",
-            "uid": "3718514-951b0bb5-0e47-4833-9000-eb92e0dec091",
-            "createdAt": null,
-            "lastUpdatedBy": null
+                "_postman_id": "951b0bb5-0e47-4833-9000-eb92e0dec091",
+                "name": "CICD Test",
+                "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+                "_exporter_id": "3718514"
         },
         "item": [
-            {
-                "name": "http://p-hatz.duckdns.org:29090/ws/simple/executeTest",
-                "event": [
-                    {
-                        "listen": "test",
-                        "script": {
-                            "id": "e7a63b9a-50dd-4de5-9141-06e829873c6f",
-                            "exec": [
-                                "pm.test(\"Status code is 200\", function () {",
-                                "    pm.response.to.have.status(200);",
-                                "});"
-                            ],
-                            "type": "text/javascript"
-                        }
-                    }
-                ],
-                "id": "bc51c396-d557-46e8-8fa2-e30a25e3fee8",
-                "protocolProfileBehavior": {
-                    "disableBodyPruning": true
-                },
-                "request": {
-                    "auth": {
-                        "type": "basic",
-                        "basic": [
-                            {
-                                "key": "password",
-                                "value": "9a64bf3b-467c-464e-80cb-d5b97fbf9de6",
-                                "type": "string"
-                            },
-                            {
-                                "key": "username",
-                                "value": "bdc@boomi_peterantony-XG9LRG",
-                                "type": "string"
-                            }
-                        ]
-                    },
-                    "method": "GET",
-                    "header": [],
-                    "url": {
-                        "raw": "http://p-hatz.duckdns.org:29090/ws/simple/executeTest",
-                        "protocol": "http",
-                        "host": [
-                            "p-hatz",
-                            "duckdns",
-                            "org"
+                {
+                        "name": "http://localhost:9090/ws/simple/executeTest",
+                        "event": [
+                                {
+                                        "listen": "test",
+                                        "script": {
+                                                "exec": [
+                                                        "pm.test(\"Status code is 200\", function () {",
+                                                        "    pm.response.to.have.status(200);",
+                                                        "});"
+                                                ],
+                                                "type": "text/javascript",
+                                                "packages": {}
+                                        }
+                                }
                         ],
-                        "port": "29090",
-                        "path": [
-                            "ws",
-                            "simple",
-                            "executeTest"
-                        ]
-                    }
-                },
-                "response": [],
-                "uid": "3718514-bc51c396-d557-46e8-8fa2-e30a25e3fee8"
-            }
+                        "request": {
+                                "auth": {
+                                        "type": "noauth"
+                                },
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                        "raw": "http://localhost:9090/ws/simple/getIP",
+                                        "protocol": "http",
+                                        "host": [
+                                                "localhost"
+                                        ],
+                                        "port": "9090",
+                                        "path": [
+                                                "ws",
+                                                "simple",
+                                                "getIP"
+                                        ]
+                                }
+                        },
+                        "response": []
+                }
         ]
-    }
 }
