@@ -6,7 +6,7 @@ source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
 ARGUMENTS=(authToken componentId componentType packageVersion envId codeCheck)
 
-saveComponentId=$componentId
+saveComponentId=${componentId}
 echo save: $saveComponentId
 
 inputs "$@"
