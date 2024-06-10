@@ -197,24 +197,24 @@ function getXMLAPI {
 	export ERROR=0
   export ERROR_MESSAGE=""
 	if [ ! -z ${SLEEP_TIMER} ]; then sleep ${SLEEP_TIMER}; fi
-  curl -s -X GET -u $authToken -H "application/xml" -H "application/xml" "$URL" > "${WORKSPACE}"/out.xml
+  curl -s -X GET -u $authToken -H "application/xml" -H "application/xml" "$URL" > "${GITHUB_WORKSPACE}"/out.xml
   if [ "$VERBOSE" == "true" ]  
   then 
-   cat  "${WORKSPACE}"/out.xml >> "${WORKSPACE}"/outs.xml
+   cat  "${GITHUB_WORKSPACE}"/out.xml >> "${GITHUB_WORKSPACE}"/outs.xml
   fi
 }
 
 function extract {
-  	export ${2}="`jq -r .${1} "${WORKSPACE}"/out.json`"
+  	export ${2}="`jq -r .${1} "${GITHUB_WORKSPACE}"/out.json`"
 		echovv "export ${2}=${!2}."
 }
 
 function extractMap {
- mapfile -t ${2} < <(jq -r .result[].${1} "${WORKSPACE}/out.json")
+ mapfile -t ${2} < <(jq -r .result[].${1} "${GITHUB_WORKSPACE}/out.json")
 }
 
 function extractComponentMap {
- mapfile -t ${2} < <(jq -r .componentInfo[].${1} "${WORKSPACE}/out.json")
+ mapfile -t ${2} < <(jq -r .componentInfo[].${1} "${GITHUB_WORKSPACE}/out.json")
 }
 
 #Echo from other scripts
