@@ -25,9 +25,8 @@ for packageId in `echo "${packageIds}"`
 do
 	packageId=`echo $packageId | xargs`
 	URL=$baseURL/PackagedComponentManifest/${packageId}
- echo pre1
-  getAPI
-  echo pre2
+ 	export WORKSPACE=$GITHUB_WORKSPACE
+  	getAPI
   
   if [ "$ERROR" -gt "0" ]
 	then
