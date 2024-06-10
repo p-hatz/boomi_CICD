@@ -37,7 +37,7 @@ then
 
 		#echo $componentId : $componentVersion
 
-		source ${GITHUB_WORKSPACE}/cli/scripts/bin//getComponent.sh componentId=${componentId} version=${componentVersion} 
+		source ${GITHUB_WORKSPACE}/cli/scripts/bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
     eval `cat "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
     mkdir -p "${packageFolder}/${folderFullPath}"
 		type=$(cat "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath 'string(//*/@type)' -)
@@ -53,7 +53,7 @@ then
  done
   
   # Create a violations report using sonarqube rules	
-	$GITHUB_WORKSPACE/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
+	$GITHUB_WORKSPACE/cli/scripts/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
 
 	#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
 	export baseFolder="${packageFolder}"
