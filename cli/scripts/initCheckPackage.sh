@@ -2,12 +2,13 @@
 
 set -a
 
+saveComponentId=${componentId}
+echo save: $saveComponentId
+
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
 ARGUMENTS=(authToken componentId componentType packageVersion envId codeCheck)
 
-saveComponentId=${componentId}
-echo save: $saveComponentId
 
 inputs "$@"
 if [ "$?" -gt 0 ]
