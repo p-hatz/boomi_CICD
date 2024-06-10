@@ -60,9 +60,10 @@ then
 
  	for _compIdx in ${!componentIds[@]}; 
 	do
- 		#_compNotes=$(echo $saveNotes | cut
-
-		export "$saveNotes"
+ 		compNotesPre=$(echo $saveNotes | awk -v _fIdx=$_compIdx -F"," '{ print $_fIdx }')
+   		compNotesPost=$(echo $saveNotes | cut -f2 -d":")
+     		compNotes=$compNotesPre" "$compNotesPost
+		export "$compNotes"
 		source $GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh ${gitComponentOption}
  	done
 	#export tag="${componentId}"
