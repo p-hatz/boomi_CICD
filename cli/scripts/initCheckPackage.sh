@@ -7,6 +7,7 @@ source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 ARGUMENTS=(authToken componentId componentType packageVersion envId codeCheck)
 
 saveComponentId=$componentId
+echo save: $saveComponentId
 
 inputs "$@"
 if [ "$?" -gt 0 ]
@@ -21,6 +22,7 @@ then
 	exit 1
 fi
 
+echo save: $saveComponentId
 savePackageId=$packageId
 
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryDeployedPackage.sh envId=$envId packageId=$packageId
@@ -30,6 +32,7 @@ then
 	exit 1
 fi
 
+echo save: $saveComponentId
 if [ $codeCheck -eq 1 ]
 then
 	echo Checking code!...
