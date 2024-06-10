@@ -4,7 +4,7 @@ set -a
 
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-ARGUMENTS=(packageId extractComponentXmlFolder)
+ARGUMENTS=(packageId componentId extractComponentXmlFolder)
 
 inputs "$@"
 if [ "$?" -gt 0 ]
@@ -13,6 +13,7 @@ then
 fi
 
 savePackageId=${packageId}
+saveComponentId=${componentId}
 
 # Extract Boomi componentXMLs to a local disk
 if [ ! -z "${extractComponentXmlFolder}" ] && [ null != "${extractComponentXmlFolder}" ] && [ "" != "${extractComponentXmlFolder}" ]
