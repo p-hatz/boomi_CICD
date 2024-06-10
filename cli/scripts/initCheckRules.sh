@@ -34,7 +34,7 @@ then
 		componentId=${componentIds[$g]}
 		componentVersion=${componentVersions[$g]}
 
-		#echo $componentId : $componentVersion
+		echo $componentId : $componentVersion
 
 		source ${GITHUB_WORKSPACE}/cli/scripts/bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
     eval `cat "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
@@ -56,13 +56,16 @@ then
 
 	#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
 	export baseFolder="${packageFolder}"
-	echo savenotes: ${saveNotes}
+	#echo savenotes: ${saveNotes}
 
  	for _compIdx in ${!componentIds[@]}; 
 	do
- 		compNotesPre=$(echo $saveNotes | awk -v _fIdx=$_compIdx -F"," '{ print $_fIdx }')
-   		compNotesPost=$(echo $saveNotes | cut -f2 -d":")
-     		compNotes=$compNotesPre" "$compNotesPost
+ 		componentId=${componentIds[$_compIdx]}
+		componentVersion=${componentVersions[$_compIdx]}
+
+ 		#compNotesPre=$(echo $saveNotes | awk -v _fIdx=$_compIdx -F"," '{ print $_fIdx }')
+   		#compNotesPost=$(echo $saveNotes | cut -f2 -d":")
+     		compNotes=$componentId":"$componentVersion
 		export "$compNotes"
 		source $GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh ${gitComponentOption}
  	done
