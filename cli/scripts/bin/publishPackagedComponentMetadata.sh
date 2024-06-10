@@ -44,7 +44,7 @@ do
 		componentVersion="${cvs[$k]}"
 		componentIds+=( "${componentId}" )
 		componentVersions+=( "${componentVersion}" )
-		source $WD/bin/getComponentMetadata.sh componentId="${componentId}" version="${componentVersion}"
+		source $GITHUB_WORKSPACE/bin/getComponentMetadata.sh componentId="${componentId}" version="${componentVersion}"
     printReportRow  "${h}" "${packageId}" "${cids[$k]}" "${name}" "${type}" "${subType}" "${cvs[$k]}"	"${currentVersion}" "${modifiedBy}" "${folderName}"
 		k=$(( $k + 1 )); 
 	done
