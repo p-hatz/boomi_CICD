@@ -1,6 +1,7 @@
 #!/bin/bash
 
 saveNotes="${saveNotes}: ${compId}:${compVer}"
+echo savenotes: $saveNotes
 if [ "${gitComponentOption}" == "CLONE" ]
 then
    source $WD/bin/gitClone.sh notes="${saveNotes}"
