@@ -59,18 +59,20 @@ then
 	export baseFolder="${packageFolder}"
 	#echo savenotes: ${saveNotes}
 
- 	for _compIdx in ${!componentIds[@]}; 
-	do
- 		componentId=${componentIds[$_compIdx]}
-		componentVersion=${componentVersions[$_compIdx]}
+	source $GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh ${gitComponentOption}
+ 
+ 	#for _compIdx in ${!componentIds[@]}; 
+	#do
+ 	#	componentId=${componentIds[$_compIdx]}
+	#	componentVersion=${componentVersions[$_compIdx]}
 
  		#compNotesPre=$(echo $saveNotes | awk -v _fIdx=$_compIdx -F"," '{ print $_fIdx }')
    		#compNotesPost=$(echo $saveNotes | cut -f2 -d":")
-     		compNotes="$componentId ($componentVersion)"
-       		export compNotes
+     	#	compNotes="$componentId ($componentVersion)"
+       	#	export compNotes
 	 
-		source $GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh ${gitComponentOption}
- 	done
+	#	source $GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh ${gitComponentOption}
+ 	#done
   
 	#export tag="${componentId}"
  	#export tag="${processName}"
