@@ -24,8 +24,9 @@ then
   # save the list of component details for a codereview report to be published at the end
 	printf "%s%s%s\n" "${saveComponentId}|" "${saveComponentName}|" "${saveComponentVersion}" >> "${GITHUB_WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
 	echov "Publishing package metatdata for ${packageId}."
+ 	echo pre
 	source ${GITHUB_WORKSPACE}/cli/scripts/bin/publishPackagedComponentMetadata.sh packageIds="${packageId}" > "${packageFolder}/Manifest_${saveComponentId}.html"
-
+	echo post
   g=0
 	export baseFolder="${packageFolder}"
 
