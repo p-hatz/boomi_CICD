@@ -25,7 +25,7 @@ export URL=$baseURL/Component/${componentId}${version}
 getXMLAPI
 
 
-cat "${WORKSPACE}"/out.xml | xmllint --format - > "${WORKSPACE}"/${componentId}.xml
+cat "${GITHUB_WORKSPACE}"/out.xml | xmllint --format - > "${GITHUB_WORKSPACE}"/${componentId}.xml
 
 
 clean
