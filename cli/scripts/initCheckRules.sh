@@ -23,7 +23,7 @@ then
 	packageFolder="${folder}/${saveComponentId}"
 
  echo packagefolder is $packageFolder
-	mkdir -p "${packageFolder}"
+	mkdir -p "$packageFolder"
 	
   # save the list of component details for a codereview report to be published at the end
 	printf "%s%s%s\n" "${saveComponentId}|" "${saveComponentName}|" "${saveComponentVersion}" >> "${GITHUB_WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
