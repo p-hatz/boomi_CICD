@@ -51,7 +51,7 @@ then
     mv "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
  done
   
-  # Create a violations report using sonarqube rules	
+  	# Create a violations report using sonarqube rules	
 	$GITHUB_WORKSPACE/cli/scripts/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
 
 	#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
@@ -60,14 +60,11 @@ then
 
  	for _compIdx in ${!componentIds[@]}; 
 	do
- 		_compNotes=$(echo $saveNotes | cut
+ 		#_compNotes=$(echo $saveNotes | cut
+
+		export "$saveNotes"
+		source $GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh ${gitComponentOption}
  	done
-	
-
- 	
-
-	export $saveNotes
-	source $GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh ${gitComponentOption}
 	#export tag="${componentId}"
  	#export tag="${processName}"
 	#export notes="Created from GitHub Actions Pipeline"
