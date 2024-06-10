@@ -25,7 +25,9 @@ for packageId in `echo "${packageIds}"`
 do
 	packageId=`echo $packageId | xargs`
 	URL=$baseURL/PackagedComponentManifest/${packageId}
-  getAPI	
+ echo pre1
+  getAPI
+  echo pre2
   
   if [ "$ERROR" -gt "0" ]
 	then
