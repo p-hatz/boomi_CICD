@@ -58,6 +58,14 @@ then
 	export baseFolder="${packageFolder}"
 	echo savenotes: ${saveNotes}
 
+ 	for _compIdx in ${!componentIds[@]}; 
+	do
+ 		_compNotes=$(echo $saveNotes | cut
+ 	done
+	
+
+ 	
+
 	export $saveNotes
 	source $GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh ${gitComponentOption}
 	#export tag="${componentId}"
