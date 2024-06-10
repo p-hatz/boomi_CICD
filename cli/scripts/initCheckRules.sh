@@ -24,7 +24,6 @@ then
 
  echo packagefolder is $packageFolder
 	mkdir -p "$packageFolder"
- 	mkdir -p "/tmp/$packageFolder"
 	
   # save the list of component details for a codereview report to be published at the end
 	printf "%s%s%s\n" "${saveComponentId}|" "${saveComponentName}|" "${saveComponentVersion}" >> "${GITHUB_WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
@@ -41,8 +40,8 @@ then
 		echo $componentId : $componentVersion
 
 		source ${GITHUB_WORKSPACE}/cli/scripts/bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
-    eval `cat "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
-    mkdir -p "${packageFolder}/${folderFullPath}"
+    		eval `cat "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
+    		mkdir -p "${packageFolder}/${folderFullPath}"
 		type=$(cat "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath 'string(//*/@type)' -)
 		
 		# create extension file for this process
@@ -52,7 +51,7 @@ then
 			source ${GITHUB_WORKSPACE}/cli/scripts/bin/createExtensionsJson.sh componentFile="${componentFile}"
 		fi
  
-    mv "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
+    		mv "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
  done
   
   	# Create a violations report using sonarqube rules	
