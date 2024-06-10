@@ -40,4 +40,4 @@ echo 3
 cd "${SCRIPTS_FOLDER}"
 #rm -rf "${gitComponentRepoName}" "${baseFolder}"
 #echo removing ${_repoName} ${baseFolder} ${gitComponentRepoName}
-#rm -rf "${_repoName}" "${baseFolder}" "${gitComponentRepoName}"
+rm -rf "${_repoName}" "${baseFolder}" "${gitComponentRepoName}"
