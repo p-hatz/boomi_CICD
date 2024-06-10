@@ -2,19 +2,17 @@
 
 set -a
 
-saveComponentId=${componentId}
-echo save: $saveComponentId
-
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
 ARGUMENTS=(authToken componentId componentType packageVersion envId codeCheck)
-
-
 inputs "$@"
 if [ "$?" -gt 0 ]
 then
 	exit $?
 fi
+
+saveComponentId=${componentId}
+echo save1: $saveComponentId
 
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryPackagedComponent.sh authToken=$authToken componentId=$componentId packageVersion=$packageVersion componentType=$componentType
 if [ -z "$packageId" ]
