@@ -65,7 +65,7 @@ then
 
  		#compNotesPre=$(echo $saveNotes | awk -v _fIdx=$_compIdx -F"," '{ print $_fIdx }')
    		#compNotesPost=$(echo $saveNotes | cut -f2 -d":")
-     		compNotes=$componentId
+     		compNotes="Created from GitHub Actions Pipeline"
        		export "${compNotes}"
 		source $GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh ${gitComponentOption}
  	done
