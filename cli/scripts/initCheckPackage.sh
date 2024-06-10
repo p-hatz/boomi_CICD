@@ -19,7 +19,8 @@ then
 	exit 1
 fi
 
-savepackageId=$packageId
+savePackageId=$packageId
+saveComponentId=$componentId
 
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryDeployedPackage.sh envId=$envId packageId=$packageId
 if [ -z "$deploymentId" ]
@@ -28,9 +29,8 @@ then
 	exit 1
 fi
 
-echo packageid: $savepackageId
 if [ $codeCheck -eq 1 ]
 then
 	echo Checking code!...
-        source "${GITHUB_WORKSPACE}/cli/scripts/initCheckRules.sh" packageId=$savepackageId extractComponentXmlFolder=CodeReview
+        source "${GITHUB_WORKSPACE}/cli/scripts/initCheckRules.sh" packageId=$savePackageId componentId=$saveComponentId extractComponentXmlFolder=CodeReview
 fi              
