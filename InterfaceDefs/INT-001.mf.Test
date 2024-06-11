@@ -14,6 +14,3 @@ collectionId=Testing/GeneralAPITest.json
 perfTest=0
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=1000
-
-
-
