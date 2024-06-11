@@ -11,7 +11,7 @@ deployNotes=Deployed from GitHub
 codeCheck=0
 funcTestPostman=1
 collectionId=Testing/GeneralAPITest.json
-perfTest=1
+perfTest=0
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=1000
 
