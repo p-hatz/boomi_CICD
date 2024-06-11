@@ -32,13 +32,11 @@ cd "${_repoName}"
 #cp -R "${baseFolder}"/* "${_repoName}/${gitComponentRepoName}"
 #cd "${gitComponentRepoName}"
 
-echo 2
 git add .
 git commit -m "${saveNotes}"
 #git tag -a "${tag}" -m "${notes}"
 git push 
 
-echo 3
 cd "${SCRIPTS_FOLDER}"
 #rm -rf "${gitComponentRepoName}" "${baseFolder}"
 #echo removing ${_repoName} ${baseFolder} ${gitComponentRepoName}
