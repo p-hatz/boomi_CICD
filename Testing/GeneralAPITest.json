@@ -37,8 +37,8 @@
                                         "port": "9090",
                                         "path": [
                                                 "ws",
-                                                "simple",
-                                                "getIP"
+                                                "rest",
+                                                "IP"
                                         ]
                                 }
                         },
