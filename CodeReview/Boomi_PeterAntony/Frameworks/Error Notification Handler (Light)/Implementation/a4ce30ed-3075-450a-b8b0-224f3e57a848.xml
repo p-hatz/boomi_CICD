@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/Frameworks/Error Notification Handler (Light)/Implementation" componentId="a4ce30ed-3075-450a-b8b0-224f3e57a848" version="1" name="[crt] - APPLICATION Registry" type="crossref" createdDate="2022-08-29T01:21:33Z" createdBy="peterantony@boomi.com" modifiedDate="2022-08-29T01:21:33Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Implementation" folderId="Rjo1MTU2MzM3" copiedFromComponentId="393ae2a1-956d-49e9-ad2c-a13e182c6575" copiedFromComponentVersion="1" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <CrossRefTable xmlns="" atomEnabled="false" modelVersion="3">
+      <ColumnHeaders>
+        <columnHeader>AppKey</columnHeader>
+        <columnHeader>AppName</columnHeader>
+        <columnHeader>Reference 3</columnHeader>
+        <columnHeader>Reference 4</columnHeader>
+        <columnHeader>Reference 5</columnHeader>
+        <columnHeader>Reference 6</columnHeader>
+      </ColumnHeaders>
+      <Rows>
+        <row>
+          <Values>
+            <ref colIdx="0" value="AdPoint"/>
+            <ref colIdx="1" value="AdPoint"/>
+            <ref colIdx="2" value=""/>
+            <ref colIdx="3" value=""/>
+            <ref colIdx="4" value=""/>
+            <ref colIdx="5" value=""/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="SFDC"/>
+            <ref colIdx="1" value="Salesforce"/>
+            <ref colIdx="2" value=""/>
+            <ref colIdx="3" value=""/>
+            <ref colIdx="4" value=""/>
+            <ref colIdx="5" value=""/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="News Concierge"/>
+            <ref colIdx="1" value="News Concierge"/>
+            <ref colIdx="2" value=""/>
+            <ref colIdx="3" value=""/>
+            <ref colIdx="4" value=""/>
+            <ref colIdx="5" value=""/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="JDE"/>
+            <ref colIdx="1" value="Oracle JDE"/>
+            <ref colIdx="2" value=""/>
+            <ref colIdx="3" value=""/>
+            <ref colIdx="4" value=""/>
+            <ref colIdx="5" value=""/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="Think"/>
+            <ref colIdx="1" value="Think"/>
+            <ref colIdx="2" value=""/>
+            <ref colIdx="3" value=""/>
+            <ref colIdx="4" value=""/>
+            <ref colIdx="5" value=""/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="My Account"/>
+            <ref colIdx="1" value="My Account"/>
+            <ref colIdx="2" value=""/>
+            <ref colIdx="3" value=""/>
+            <ref colIdx="4" value=""/>
+            <ref colIdx="5" value=""/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="Newscycle"/>
+            <ref colIdx="1" value="Newscycle"/>
+            <ref colIdx="2" value=""/>
+            <ref colIdx="3" value=""/>
+            <ref colIdx="4" value=""/>
+            <ref colIdx="5" value=""/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="BPoint"/>
+            <ref colIdx="1" value="CBA BPoint"/>
+            <ref colIdx="2" value=""/>
+            <ref colIdx="3" value=""/>
+            <ref colIdx="4" value=""/>
+            <ref colIdx="5" value=""/>
+          </Values>
+        </row>
+        <row>
+          <Values>
+            <ref colIdx="0" value="AMEX"/>
+            <ref colIdx="1" value="American Express"/>
+            <ref colIdx="2" value=""/>
+            <ref colIdx="3" value=""/>
+            <ref colIdx="4" value=""/>
+            <ref colIdx="5" value=""/>
+          </Values>
+        </row>
+      </Rows>
+    </CrossRefTable>
+  </bns:object>
+</bns:Component>
