@@ -7,7 +7,7 @@
         },
         "item": [
                 {
-                        "name": "http://localhost:9090/ws/simple/executeTest",
+                        "name": "http://localhost:9090/ws/rest/IP",
                         "event": [
                                 {
                                         "listen": "test",
@@ -29,7 +29,7 @@
                                 "method": "GET",
                                 "header": [],
                                 "url": {
-                                        "raw": "http://localhost:9090/ws/simple/getIP",
+                                        "raw": "http://localhost:9090/ws/rest/IP",
                                         "protocol": "http",
                                         "host": [
                                                 "localhost"
