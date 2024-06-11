@@ -16,7 +16,9 @@ fi
 #git config --global user.email "${gitComponentUserEmail}"
 #git config --global user.name  "${gitComponentUserName}"
 
-echo 1
+git config --global user.email peter.antony@gmail.com
+git config --global user.name  "Peter Antony"
+
 git clone "${gitComponentRepoURL}"
 
 _repoName=$(basename $gitComponentRepoURL)
