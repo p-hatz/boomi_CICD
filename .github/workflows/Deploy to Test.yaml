@@ -249,8 +249,10 @@ jobs:
               if [ "$_alerts" > 0 ]
               then
                 echo "API Security Scan found $_alerts vulnerabilities!"
+                /bin/rm -fr ~/.ZAP
                 exit 1
               fi
+              /bin/rm -fr ~/.ZAP
             fi
               
             
