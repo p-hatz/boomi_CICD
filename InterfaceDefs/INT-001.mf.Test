@@ -8,11 +8,20 @@ ver=32.6.140
 targetEnv=2.Test
 listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
-codeCheck=0
-funcTestPostman=1
 
+#Code Check
+codeCheck=0
+
+#Functional Test
+funcTestPostman=0
 collectionId=Testing/GeneralAPITest.json
-perfTest=1
+
+#API Sec. Test
+APIScan=1
+APIScanFile=Testing/zapScan.py
+APIScanURL=http://localhost:9090/ws/rest/IP
+
+#performance Test
+perfTest=0
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=1000
-
