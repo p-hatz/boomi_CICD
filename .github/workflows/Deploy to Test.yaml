@@ -248,7 +248,7 @@ jobs:
               _alerts=$(grep "Number of alerts" /tmp/APIScan.out | awk '{ print $4 }')
               if [ "$_alerts" > 0 ]
               then
-                echo "API Security Scan found $_alerts !"
+                echo "API Security Scan found $_alerts vulnerabilities!"
                 exit 1
               fi
             fi
