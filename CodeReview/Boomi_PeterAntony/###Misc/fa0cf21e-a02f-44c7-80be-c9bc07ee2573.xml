@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Misc" componentId="fa0cf21e-a02f-44c7-80be-c9bc07ee2573" version="4" name="[subProc] Failure" type="process" createdDate="2024-06-18T00:45:34Z" createdBy="peterantony@boomi.com" modifiedDate="2024-06-18T00:52:37Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <process xmlns="" allowSimultaneous="false" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" updateRunDates="true" workload="general">
+      <shapes>
+        <shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="46.0">
+          <configuration>
+            <passthroughaction/>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape1.dragpoint1" toShape="shape3" x="224.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="returndocuments_icon" name="shape2" shapetype="returndocuments" userlabel="" x="432.0" y="48.0">
+          <configuration>
+            <returndocuments label=""/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+        <shape image="message_icon" name="shape3" shapetype="message" userlabel="" x="240.0" y="48.0">
+          <configuration>
+            <message combined="false">
+              <msgTxt>'{
+   id: 1,
+   msg: "'{1}'"
+}'</msgTxt>
+              <msgParameters>
+                <parametervalue key="0" valueType="process">
+                  <processparameter processproperty="dppMsg" processpropertydefaultvalue=""/>
+                </parametervalue>
+              </msgParameters>
+            </message>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape3.dragpoint1" toShape="shape2" x="416.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+      </shapes>
+    </process>
+  </bns:object>
+  <bns:processOverrides/>
+</bns:Component>

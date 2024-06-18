@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Misc" componentId="0cfa3935-557c-4dc4-9d79-8e6c0cd15bc3" version="7" name="[subProc] Exception" type="process" createdDate="2024-06-12T04:36:00Z" createdBy="peterantony@boomi.com" modifiedDate="2024-06-12T04:45:12Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Misc" componentId="0cfa3935-557c-4dc4-9d79-8e6c0cd15bc3" version="12" name="[subProc] Exception" type="process" createdDate="2024-06-12T04:36:00Z" createdBy="peterantony@boomi.com" modifiedDate="2024-06-18T00:49:34Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
   <bns:description/>
   <bns:object>
@@ -7,7 +7,7 @@
       <shapes>
         <shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="46.0">
           <configuration>
-            <passthroughaction/>
+            <noaction/>
           </configuration>
           <dragpoints>
             <dragpoint name="shape1.dragpoint1" toShape="shape3" x="224.0" y="56.0"/>
@@ -16,34 +16,30 @@
         <shape image="message_icon" name="shape3" shapetype="message" userlabel="" x="240.0" y="48.0">
           <configuration>
             <message combined="false">
-              <msgTxt>test</msgTxt>
-              <msgParameters/>
+              <msgTxt>'{
+   id: 1,
+   msg: "'{1}'"
+}'</msgTxt>
+              <msgParameters>
+                <parametervalue key="0" valueType="process">
+                  <processparameter processproperty="dppMsg" processpropertydefaultvalue=""/>
+                </parametervalue>
+              </msgParameters>
             </message>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape3.dragpoint1" toShape="shape4" x="416.0" y="56.0"/>
+            <dragpoint name="shape3.dragpoint1" toShape="shape7" x="416.0" y="56.0"/>
           </dragpoints>
         </shape>
-        <shape image="branch_icon" name="shape4" shapetype="branch" userlabel="" x="432.0" y="48.0">
-          <configuration>
-            <branch numBranches="2"/>
-          </configuration>
-          <dragpoints>
-            <dragpoint identifier="1" name="shape4.dragpoint1" text="1" toShape="shape5" x="608.0" y="56.0"/>
-            <dragpoint identifier="2" name="shape4.dragpoint2" text="2" toShape="shape7" x="608.0" y="216.0"/>
-          </dragpoints>
-        </shape>
-        <shape image="returndocuments_icon" name="shape5" shapetype="returndocuments" x="624.0" y="48.0">
-          <configuration>
-            <returndocuments/>
-          </configuration>
-          <dragpoints/>
-        </shape>
-        <shape image="exception_icon" name="shape7" shapetype="exception" userlabel="" x="624.0" y="208.0">
+        <shape image="exception_icon" name="shape7" shapetype="exception" userlabel="" x="432.0" y="48.0">
           <configuration>
             <exception stopProcessReturnSingleDoc="false" stopsingledoc="true" title="">
-              <exMessage>xxxxxxxxxxx</exMessage>
-              <exParameters/>
+              <exMessage>{1}</exMessage>
+              <exParameters>
+                <parametervalue key="0" valueType="process">
+                  <processparameter processproperty="dppMsg" processpropertydefaultvalue=""/>
+                </parametervalue>
+              </exParameters>
             </exception>
           </configuration>
           <dragpoints/>
