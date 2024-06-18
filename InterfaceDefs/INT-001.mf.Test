@@ -1,17 +1,17 @@
 ##Components
 componentId=f50c35e7-96b7-4626-9d02-18644f259f7a,73b89d08-9c13-4b7c-b376-491f030408b7
 componentType=process,webservice
-ver=32.6.127
+ver=32.6.136
 #buildNotes=Initial Package
 
 ##Deployment
 targetEnv=2.Test
 listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
-codeCheck=0
-funcTestPostman=1
+codeCheck=1
+funcTestPostman=0
 
 collectionId=Testing/GeneralAPITest.json
-perfTest=1
+perfTest=0
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=1000
