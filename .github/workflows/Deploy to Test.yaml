@@ -236,7 +236,22 @@ jobs:
               
               rm -fr "${GITHUB_WORKSPACE}/tmp/jmeter"
             fi
+
+            secScan=$(grep '^APIScan=' $file | cut -f2 -d'=')
+            if [[ $secScan == 1 ]]
+            then
+              _secScanFile=$(grep '^APIScanFile=' $file | cut -f2 -d'=')
+              _secScanURL=$(grep '^APIScanURL=' $file | cut -f2 -d'=')
+              python3 "${GITHUB_WORKSPACE}/$_secScanFile" > /tmp/APIScan.out
+              _alerts=$(grep "Number of alerts" /tmp/APIScan.out | awk '{ print $4 }')
+              if [ "$_alerts" > 0 ]
+              then
+                echo "API Security Scan found $_alerts !"
+                exit 1
+              fi
+            fi
               
+            
             #we run spark separately because the `timeout` command terminates the script
             #spark < /tmp/$_id.sample > /tmp/$_id.sample.out
             #cat /tmp/$_id.sample
