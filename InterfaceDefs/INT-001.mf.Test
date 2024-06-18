@@ -12,6 +12,6 @@ codeCheck=0
 funcTestPostman=1
 
 collectionId=Testing/GeneralAPITest.json
-perfTest=0
+perfTest=1
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=1000
