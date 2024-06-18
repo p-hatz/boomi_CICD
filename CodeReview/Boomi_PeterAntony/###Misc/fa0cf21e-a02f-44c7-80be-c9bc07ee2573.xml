@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Misc" componentId="fa0cf21e-a02f-44c7-80be-c9bc07ee2573" version="4" name="[subProc] Failure" type="process" createdDate="2024-06-18T00:45:34Z" createdBy="peterantony@boomi.com" modifiedDate="2024-06-18T00:52:37Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Misc" componentId="fa0cf21e-a02f-44c7-80be-c9bc07ee2573" version="5" name="[subProc] Failure" type="process" createdDate="2024-06-18T00:45:34Z" createdBy="peterantony@boomi.com" modifiedDate="2024-06-18T07:09:12Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
   <bns:description/>
   <bns:object>
@@ -23,7 +23,7 @@
           <configuration>
             <message combined="false">
               <msgTxt>'{
-   id: 1,
+   id: 100,
    msg: "'{1}'"
 }'</msgTxt>
               <msgParameters>
