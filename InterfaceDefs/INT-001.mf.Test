@@ -10,7 +10,7 @@ listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
 
 #Code Check
-codeCheck=0
+codeCheck=1
 
 #Functional Test
 funcTestPostman=0
@@ -22,6 +22,6 @@ APIScanFile=Testing/zapScan.py
 APIScanURL=http://localhost:9090/ws/rest/IP
 
 #performance Test
-perfTest=1
+perfTest=0
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=5000
