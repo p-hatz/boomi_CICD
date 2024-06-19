@@ -243,9 +243,9 @@ jobs:
               _secScanFile=$(grep '^APIScanFile=' $file | cut -f2 -d'=')
               _secScanURL=$(grep '^APIScanURL=' $file | cut -f2 -d'=')
 
-              #/bin/rm -fr ~/.ZAP
-              #~/Downloads/ZAP_2.15.0/zap.sh
-              #sleep 5
+              /bin/rm -fr ~/.ZAP
+              ~/Downloads/ZAP_2.15.0/zap.sh
+              sleep 5
               
               python3 "${GITHUB_WORKSPACE}/$_secScanFile" > /tmp/APIScan.out
               _alerts=$(grep "Number of alerts" /tmp/APIScan.out | awk '{ print $4 }')
