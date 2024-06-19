@@ -13,15 +13,15 @@ deployNotes=Deployed from GitHub
 codeCheck=0
 
 #Functional Test
-funcTestPostman=0
+funcTestPostman=1
 collectionId=Testing/GeneralAPITest.json
 
 #API Sec. Test
-APIScan=1
+APIScan=0
 APIScanFile=Testing/zapScan.py
 APIScanURL=http://localhost:9090/ws/rest/IP
 
 #performance Test
-perfTest=0
+perfTest=1
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=5000
