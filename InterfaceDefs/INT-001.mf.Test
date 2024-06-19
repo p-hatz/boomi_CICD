@@ -10,7 +10,7 @@ listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
 
 #Code Check
-codeCheck=0
+codeCheck=1
 
 #Functional Test
 funcTestPostman=0
