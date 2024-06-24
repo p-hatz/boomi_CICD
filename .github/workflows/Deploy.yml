@@ -37,6 +37,6 @@ jobs:
       - name: APISec|SCAN Testing
         uses: apisec-university/free-API-security-test-action@beta
         with:
-          base_url: "http://hx90:9090/ws/simple/getIP"
+          base_url: "http://hx90:9090/ws/rest/Local/IP"
           specification_path: "Testing/openapi.json"
           apisecu_token: "U2FsdGVkX19rOnMb7aGHbxaE1f7ExlzMMtVZGCMB581+CNOO1UG3sjYVikq6fcZr"
