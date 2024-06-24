@@ -27,14 +27,6 @@ env:
   ID: ${{ github.run_id }}-${{ github.run_attempt }}
   
 jobs:
-name: "APIsec|SCAN - Dynamic API Security Testing"
-
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main"]
-
-jobs:
   test_scan:
     permissions:
       contents: read # to checkout repository code
