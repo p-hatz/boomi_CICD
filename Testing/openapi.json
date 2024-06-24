@@ -1,0 +1,218 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "General API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://HX90/ws/rest/Local"
+        }
+    ],
+    "tags": [
+        {
+            "name": "IP"
+        },
+        {
+            "name": "Test"
+        }
+    ],
+    "paths": {
+        "/IP": {
+            "get": {
+                "tags": [
+                    "IP"
+                ],
+                "summary": "[wsvc] IP Address",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Root"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/default"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "522": {
+                        "$ref": "#/components/responses/522"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "413": {
+                        "$ref": "#/components/responses/413"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    }
+                }
+            }
+        },
+        "/Test": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "[wsvc] General Web Server",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/components/responses/default"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500"
+                    },
+                    "522": {
+                        "$ref": "#/components/responses/522"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    },
+                    "413": {
+                        "$ref": "#/components/responses/413"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    },
+                    "503": {
+                        "$ref": "#/components/responses/503"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Root": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                }
+            }
+        },
+        "responses": {
+            "default": {
+                "description": "Unidentified Exception",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Bad Request - There are miscellaneous errors with the request, for example, mismatches between the request and what is allowed for the operation.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "500": {
+                "description": "Internal Server Error - This generic error message appears when an unexpected condition was encountered and a more specific message is not suitable.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "522": {
+                "description": "Connection Timed Out - This message is returned to the client when the SOA Worker Maximum Execution Time has been exceeded.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "401": {
+                "description": "Unauthorized or 403 Forbidden - Authentication errors.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "413": {
+                "description": "Request Entity Too Large - The request data was too large. This is based on the SOA Input Size quota.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "404": {
+                "description": "Not Found - Invalid URL path.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "503": {
+                "description": "Service Unavailable - The caller has hit a throttle or the request was rejected because the Atom is starting or stopping.",
+                "content": {
+                    "text/html": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "X-API-Key": {
+                "type": "apiKey",
+                "name": "X-API-Key",
+                "in": "header"
+            },
+            "basic": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        }
+    },
+    "security": [
+        {
+            "X-API-Key": [],
+            "basic": []
+        }
+    ]
+}
