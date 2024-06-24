@@ -10,10 +10,10 @@ listenerStatus=RUNNING
 deployNotes=Deployed from GitHub
 
 #Code Check
-codeCheck=1
+codeCheck=0
 
 #Functional Test
-funcTestPostman=0
+funcTestPostman=1
 collectionId=Testing/GeneralAPITest.json
 
 #API Sec. Test
