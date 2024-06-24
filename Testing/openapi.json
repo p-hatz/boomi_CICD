@@ -6,7 +6,7 @@
     },
     "servers": [
         {
-            "url": "http://HX90/ws/rest/Local"
+            "url": "http://HX90:9090/ws/rest/Local"
         }
     ],
     "tags": [
