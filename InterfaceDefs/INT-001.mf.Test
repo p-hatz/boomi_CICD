@@ -13,7 +13,7 @@ deployNotes=Deployed from GitHub
 codeCheck=0
 
 #Functional Test
-funcTestPostman=0
+funcTestPostman=1
 collectionId=Testing/GeneralAPITest.json
 
 #API Sec. Test
