@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Common" componentId="34674f89-c297-43b8-ab9c-b8da5161fd85" version="11" name="[conn] MariaDB Local - DW" type="connector-settings" subType="database" createdDate="2023-08-09T08:59:04Z" createdBy="peterantony@boomi.com" modifiedDate="2024-06-07T08:30:05Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="###Common" folderId="RjoyNzI5NDE1" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues>
+    <bns:encryptedValue path="//DatabaseConnectionSettings/@password" isSet="true"/>
+  </bns:encryptedValues>
+  <bns:description/>
+  <bns:object>
+    <DatabaseConnectionSettings xmlns="" additional="" className="org.mariadb.jdbc.Driver" dbname="test" driverId="custom" host="localhost" isPoolEnabled="true" password="8d9bcdf9e054d2b5df2dd4a0c2800676d87b6f57a7009530c1ddbbde5285e63794e5d7d8159b02f51fa0976f9061d29237b83986666537f91be949b59eceecf5" port="3306" urlFormat="jdbc:mariadb://{0}:{1}/stats" username="root">
+      <WriteOptions sqlFilePath="" writeSQLToFile="false"/>
+      <AdapterPoolInfo exhaustedAction="1" maxActive="-1" maxIdle="-1" maxIdleTime="0" maxWait="0" minIdle="0" numberOfTests="0" testIdle="false" testOnBorrow="false" testOnReturn="false" timeBetweenRuns="0" validationQuery=""/>
+    </DatabaseConnectionSettings>
+  </bns:object>
+</bns:Component>
