@@ -25,9 +25,3 @@ APIScanURL=http://localhost:9090/ws/rest/IP
 perfTest=1
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=1000
-
-
-
-
-
-
