@@ -22,6 +22,9 @@ APIScanFile=Testing/zapScan.py
 APIScanURL=http://localhost:9090/ws/rest/IP
 
 #performance Test
-perfTest=1
+perfTest=0
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=5000
+
+
+
