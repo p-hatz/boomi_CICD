@@ -25,7 +25,8 @@ echo save: $saveComponentId
 savePackageId=$packageId
 
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryDeployedPackage.sh envId=$envId packageId=$packageId
-if [ -z "$deploymentId" ]
+echo deploymentid: $deploymentId
+if [ -z "$deploymentId" ] || [ "$deploymentId" = "null" ]
 then
 	echo "Package has been not been deployed to Dev"
 	exit 1
