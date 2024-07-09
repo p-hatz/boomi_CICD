@@ -28,7 +28,7 @@ source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryDeployedPackage.sh envId=$envId 
 echo deploymentid: $deploymentId
 if [ -z "$deploymentId" ] || [ "$deploymentId" = "null" ]
 then
-	echo "Package has been not been deployed to Environment!"
+	echo "Package has been not been deployed to previous Environment!"
 	exit 1
 fi
 
