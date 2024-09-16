@@ -233,14 +233,10 @@ jobs:
               then
                 echo "Performance not OK! (maxtime: $_maxTimeExec (threshold: $_perfThreshold))"
                 exit 1
+              else
+                echo "Performance OK (maxtime: $_maxTimeExec (threshold: $_perfThreshold))"
               fi
               
-              #<= didn't seem to work (?)
-              if [[ $_maxTime < $_perfThreshold  || $_maxTime == $_perfThreshold ]]
-              then
-                echo "Performance OK"
-              fi
-
               rm -fr "${GITHUB_WORKSPACE}/tmp/jmeter"
             fi
 
