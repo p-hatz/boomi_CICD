@@ -36,6 +36,13 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v37.5.2
 
+      - name: Test Var
+        id: testVar
+        run: |
+          mkdir -p ${GITHUB_WORKSPACE}/tmp
+          
+          deployPackageHWM=5        
+      
       - name: Install AWS CLI
         id: install-aws-cli
         uses: unfor19/install-aws-cli-action@v1
@@ -222,7 +229,7 @@ jobs:
               _maxTime=$(cat ${GITHUB_WORKSPACE}/tmp/jmeter/$_resultFile.out | grep 'summary =' | grep Max: | awk -F" " '{ print $13 }')
               _maxTimeExec=$((_maxTime))
 
-              if [[ $_maxTimeExec > $_perfThreshold ]]
+              if [[ "$_maxTimeExec" > "$_perfThreshold" ]]
               then
                 echo "Performance not OK! (maxtime: $_maxTimeExec (threshold: $_perfThreshold))"
                 exit 1
