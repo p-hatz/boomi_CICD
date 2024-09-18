@@ -1,7 +1,7 @@
 ##Components
 componentId=73b89d08-9c13-4b7c-b376-491f030408b7,f50c35e7-96b7-4626-9d02-18644f259f7a
 componentType=webservice,process
-ver=32.10.23
+ver=32.10.33
 #buildNotes=Initial Package
 
 ##Deployment
@@ -22,6 +22,6 @@ APIScanFile=Testing/zapScan.py
 APIScanURL=http://localhost:9090/ws/rest/IP
 
 #performance Test
-perfTest=1
+perfTest=0
 perfTestFile="Testing/General Web Server.jmx"
 perfThreshold=100
