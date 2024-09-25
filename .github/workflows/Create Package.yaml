@@ -38,7 +38,7 @@ jobs:
         uses: tj-actions/changed-files@v37.5.2
         
       # Runs a set of commands using the runners shell
-      - name: Build Package
+      - name: Build
         run: |
           sudo apt-get install -y libxml2-utils jq
           
@@ -66,19 +66,12 @@ jobs:
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            envName=$(grep '^deploy=' $file | cut -f2 -d'=')
-            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
-            compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
 
             compCount=1
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
             compCount=$((compCount + 1))
 
-            sampleProc=$(grep '^sample=' $file | cut -f2 -d'=')
-            funcTestPostman=$(grep '^funcTestPostman=' $file | cut -f2 -d'=')
-            collectionId=$(grep '^collectionId=' $file | cut -f2 -d'=')
-            codeCheck=$(grep '^codeCheck=' $file | cut -f2 -d'=')
-            
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
             export GITHUB_WORKSPACE
