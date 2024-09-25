@@ -83,7 +83,7 @@ jobs:
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             
             envName=${{ vars.envDev }}
-            devEnvId=${{ vars.devEnvId }}
+            devEnvId=${{ vars.ENVDEVID }}
             for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
               _compId=$(echo $compId | cut -f $_compIdx -d",")
               _compType=$(echo $compType | cut -f $_compIdx -d",")
@@ -92,7 +92,7 @@ jobs:
               source "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh" componentId=$_compId componentType=$_compType packageVersion=$compVer envId=$devEnvId codeCheck=$codeCheck
               
               echo "calling deployPackage (packageId: $packageId)"
-              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" envId=$envName listenerStatus=$listenerStatus
 
               _msg="$envName: Component '$_compId ' (ver: '$compVer' ) deployed"
               curl -d text="$_msg" -d "channel=release" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
