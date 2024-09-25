@@ -1,5 +1,5 @@
 ##Components
 componentId=73b89d08-9c13-4b7c-b376-491f030408b7,f50c35e7-96b7-4626-9d02-18644f259f7a
 componentType=webservice,process
-ver=32.10.60
+ver=32.10.58
 buildNotes=Create Package from GitHub Actions
