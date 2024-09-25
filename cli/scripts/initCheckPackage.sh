@@ -4,7 +4,7 @@ set -a
 
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-ARGUMENTS=(authToken componentId componentType packageVersion envId codeCheck)
+ARGUMENTS=(authToken componentId componentType packageVersion envId codeCheck checkDeployment)
 inputs "$@"
 if [ "$?" -gt 0 ]
 then
@@ -24,12 +24,18 @@ fi
 echo save: $saveComponentId
 savePackageId=$packageId
 
-source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryDeployedPackage.sh envId=$envId packageId=$packageId
-echo deploymentid: $deploymentId
-if [ -z "$deploymentId" ] || [ "$deploymentId" = "null" ]
+if [ $checkDeployment -eq 0 ]
 then
-	echo "Package has been not been deployed to previous Environment!"
-	exit 1
+	echo "Not checking for deployment"
+	exit 0
+else
+	source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryDeployedPackage.sh envId=$envId packageId=$packageId
+	echo deploymentid: $deploymentId
+	if [ -z "$deploymentId" ] || [ "$deploymentId" = "null" ]
+	then
+		echo "Package has been not been deployed to previous Environment!"
+		exit 1
+	fi
 fi
 
 echo save: $saveComponentId
