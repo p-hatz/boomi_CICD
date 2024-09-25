@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/zAR/Solutions/APM" componentId="c75ef87e-fa2f-4b23-98f3-7a0782b588cb" version="1" name="APM Start RT with w3c headers" type="connector-action" subType="boomi_anthonyrabiaza-3IG5LK-apm-dev" createdDate="2024-07-22T07:34:42Z" createdBy="peterantony@boomi.com" modifiedDate="2024-07-22T07:34:42Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="APM" folderId="Rjo2OTE2NTA2" copiedFromComponentId="46ddbaed-f912-4adf-9ebf-cfb6d64d9e6b" copiedFromComponentVersion="5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="" returnApplicationErrors="false" trackResponse="false">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <GenericOperationConfig operationType="EXECUTE" requestProfileType="xml" responseProfileType="xml">
+          <field id="action" type="string" value="start"/>
+          <field id="realTimeProcessing" type="string" value="w3c"/>
+          <field id="sendEvent" type="boolean" value="false"/>
+          <Options/>
+        </GenericOperationConfig>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>
