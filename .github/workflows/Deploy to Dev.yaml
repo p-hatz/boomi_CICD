@@ -63,7 +63,7 @@ jobs:
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            envName=$(grep '^deploy=' $file | cut -f2 -d'=')
+            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
             listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
             codeCheck=$(grep '^codeCheck=' $file | cut -f2 -d'=')
@@ -84,7 +84,7 @@ jobs:
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             
             envName=${{ vars.envDev }}
-            envId=${{ vars.devEnvId }}
+            envId=${{ vars.envId }}
             echo envId: $envId
             exit 0
             for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
