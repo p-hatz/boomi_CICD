@@ -27,7 +27,6 @@ savePackageId=$packageId
 if [ $checkDeployment -eq 0 ]
 then
 	echo "Not checking for deployment"
-	exit 0
 else
 	source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryDeployedPackage.sh envId=$envId packageId=$packageId
 	echo deploymentid: $deploymentId
