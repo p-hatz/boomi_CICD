@@ -84,14 +84,13 @@ jobs:
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             
             _envId=${{ vars.envId }}
-            echo envId: $_envId
-            exit 0
             for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
               _compId=$(echo $compId | cut -f $_compIdx -d",")
               _compType=$(echo $compType | cut -f $_compIdx -d",")
               echo "component id set to: $_compId"
+              _checkDeployment=0
               
-              source "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh" componentId=$_compId componentType=$_compType packageVersion=$compVer envId=$_envId codeCheck=$codeCheck checkDeployment=0
+              source "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh" componentId=$_compId componentType=$_compType packageVersion=$compVer envId=$_envId codeCheck=$codeCheck checkDeployment=$_checkDeployment
               
               echo "calling deployPackage (packageId: $packageId)"
               "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" envId=$_envId listenerStatus=$listenerStatus
