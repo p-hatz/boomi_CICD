@@ -7,3 +7,6 @@ ver=32.10.58
 targetEnv=1.Dev
 listenerStatus=RUNNING
 deployNotes=Deployed from GitHub Actions
+
+##CodeCheck
+codeCheck=0
