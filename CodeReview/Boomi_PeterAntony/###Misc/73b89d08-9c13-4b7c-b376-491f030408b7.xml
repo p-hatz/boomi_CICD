@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Misc" componentId="73b89d08-9c13-4b7c-b376-491f030408b7" version="19" name="[apisvc] General" type="webservice" createdDate="2022-07-05T11:42:20Z" createdBy="peterantony@boomi.com" modifiedDate="2024-02-21T01:30:22Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="Boomi_PeterAntony/###Misc" componentId="73b89d08-9c13-4b7c-b376-491f030408b7" version="54" name="(apisvc) IP Address" type="webservice" createdDate="2022-07-05T11:42:20Z" createdBy="peterantony@boomi.com" modifiedDate="2024-09-17T00:47:28Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
   <bns:description/>
   <bns:object>
     <webservice xmlns="" urlPath="">
       <restApi>
         <route processId="f50c35e7-96b7-4626-9d02-18644f259f7a">
-          <overrides httpMethod="GET" inputProfileKey="" inputType="" objectName="" outputProfileKey="" outputType="" urlPath=""/>
-          <description/>
-        </route>
-        <route processId="14970c43-775f-4921-ab22-720566c70dfa">
-          <overrides httpMethod="" inputProfileKey="" inputType="" objectName="" outputProfileKey="" outputType="" urlPath=""/>
+          <overrides contentType="" httpMethod="" inputProfileKey="" inputType="" objectName="IP" outputType="" urlPath=""/>
           <description/>
         </route>
       </restApi>
@@ -18,7 +14,7 @@
         <SOAPVersion>SOAP_1_1</SOAPVersion>
       </soapApi>
       <odataApi/>
-      <metaInfo contactEmail="" contactName="" contactUrl="" licenseName="" licenseUrl="" title="General API" version="1.0">
+      <metaInfo contactEmail="" contactName="" contactUrl="" licenseName="" licenseUrl="" organizationId="f5dc9758-2be0-4ef9-824b-4b85ef977ee8" title="IP Address" version="1.0">
         <description/>
         <termsOfService/>
       </metaInfo>
