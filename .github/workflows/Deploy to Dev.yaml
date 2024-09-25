@@ -83,9 +83,9 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             
-            _envId=${{ envId }}
+            #_envId=${{ envId }}
             _envId2=$envId
-            echo envId: $_envId
+            #echo envId: $_envId
             echo envId: $_envId2
             exit 0
             for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
