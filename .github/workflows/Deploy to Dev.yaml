@@ -83,20 +83,18 @@ jobs:
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             
-            #_envId=${{ envId }}
-            _envId2=$envId
-            #echo envId: $_envId
-            echo envId: $_envId2
+            _envId=${{ vars.envId }}
+            echo envId: $_envId
             exit 0
             for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
               _compId=$(echo $compId | cut -f $_compIdx -d",")
               _compType=$(echo $compType | cut -f $_compIdx -d",")
               echo "component id set to: $_compId"
               
-              source "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh" componentId=$_compId componentType=$_compType packageVersion=$compVer envId=$devEnvId codeCheck=$codeCheck checkDeployment=0
+              source "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh" componentId=$_compId componentType=$_compType packageVersion=$compVer envId=$_envId codeCheck=$codeCheck checkDeployment=0
               
               echo "calling deployPackage (packageId: $packageId)"
-              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" envId=$devEnvId listenerStatus=$listenerStatus
+              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" envId=$_envId listenerStatus=$listenerStatus
 
               _msg="$envName: Component '$_compId ' (ver: '$compVer' ) deployed"
               curl -d text="$_msg" -d "channel=release" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
