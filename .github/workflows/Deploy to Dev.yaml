@@ -1,0 +1,100 @@
+name: Build and Deploy Package
+on:
+  workflow_dispatch:
+    inputs:
+      compId:
+        description: 'Component Id'
+        required: true
+      compVer:
+        description: 'Component version'
+        required: true
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+        
+  push:
+    branches:
+      - main
+    paths:
+      - 'InterfaceDefs/*.Dev'
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.ID2 }}
+  AWS_DEFAULT_REGION: ap-southeast-2
+  AWS_DEFAULT_OUTPUT: json
+      
+  ID: ${{ github.run_id }}-${{ github.run_attempt }}
+  
+jobs:
+  deploytoDev:
+    runs-on: [self-hosted, linux, X64]
+    environment:
+      name: "Dev"
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Changed Files
+        id: changed-files
+        uses: tj-actions/changed-files@v37.5.2
+        
+      # Runs a set of commands using the runners shell
+      - name: Deploy Package
+        run: |
+          sudo apt-get install -y libxml2-utils jq
+          
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
+          BoomiUsername=${{ vars.BOOMI_USERNAME }}
+          API=${{ secrets.API }}
+          RepoURL=${{ github.server_url }}
+          RepoName=${{ github.repository }}
+          RepoPath=${RepoURL}/${RepoName}
+          GITUsername=${{ github.repository_owner }}
+          GITUseremail=${{ vars.EMAIL }}
+          CodeFolderXML=${{ vars.CODEFOLDER }}
+          POSTMAN=${{ secrets.POSTMAN }}
+
+          _bot=${{ secrets.BOT }}
+
+          mkdir -p ${GITHUB_WORKSPACE}/tmp
+          
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
+            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            envName=$(grep '^deploy=' $file | cut -f2 -d'=')
+            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^deployNotes=' $file | cut -f2 -d'=')
+
+            compCount=1
+            compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
+            compCount=$((compCount + 1))
+
+            codeCheck=$(grep '^codeCheck=' $file | cut -f2 -d'=')
+            
+            export WD=${GITHUB_WORKSPACE}/cli/scripts/
+            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+            export GITHUB_WORKSPACE
+
+            find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
+
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+            source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            
+            envName=${{ vars.envTest }}
+            devEnvId=${{ vars.devEnvId }}
+            for (( _compIdx=1 ; _compIdx <= $compCount ; _compIdx++ )) ; do
+              _compId=$(echo $compId | cut -f $_compIdx -d",")
+              _compType=$(echo $compType | cut -f $_compIdx -d",")
+              echo "component id set to: $_compId"
+
+              source "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh" componentId=$_compId componentType=$_compType packageVersion=$compVer envId=$devEnvId codeCheck=$codeCheck
+              
+              echo "calling deployPackage (packageId: $packageId)"
+              "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
+
+              _msg="$envName: Component '$_compId ' (ver: '$compVer' ) deployed"
+              curl -d text="$_msg" -d "channel=release" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
+            done
+          done
