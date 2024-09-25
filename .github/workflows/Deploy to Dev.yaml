@@ -90,7 +90,7 @@ jobs:
               _compType=$(echo $compType | cut -f $_compIdx -d",")
               echo "component id set to: $_compId"
               
-              source "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh" componentId=$_compId componentType=$_compType packageVersion=$compVer envId=$devEnvId codeCheck=$codeCheck
+              #source "${GITHUB_WORKSPACE}/cli/scripts/initCheckPackage.sh" componentId=$_compId componentType=$_compType packageVersion=$compVer envId=$devEnvId codeCheck=$codeCheck
               
               echo "calling deployPackage (packageId: $packageId)"
               "${GITHUB_WORKSPACE}/cli/scripts/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" envId=$devEnvId listenerStatus=$listenerStatus
