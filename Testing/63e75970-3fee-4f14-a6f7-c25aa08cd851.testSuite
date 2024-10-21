@@ -1,4 +1,6 @@
 {
       "processId": "63e75970-3fee-4f14-a6f7-c25aa08cd851",
-      "tests": [ "tc1", "tc2" ]
+      "tests": [ "tc1", "tc2" ],
+"input": "Hello World",
+"output": "Hello World"
 }
