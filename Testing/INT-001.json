@@ -1,6 +1,6 @@
 {
   "testType": "Product",
-  "payLoad":
+  "payload":
 {
   "productId": 15,
   "productName": "Durable Concrete Coat",
