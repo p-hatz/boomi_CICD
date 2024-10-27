@@ -65,8 +65,12 @@ jobs:
 
           if ($funcType="Product")
           then
-            _URL=$(jq ".URL" Testing/Product.json")
-            _payload=$(jq ".expected" Testing/Product.json")
+            _URL=$(jq -r ".URL" Testing/Product.json")
+            echo url: $_URL
+            _expected=$(jq -r ".expected" Testing/Product.json")
+            echo expected: $_expected
+            _payload=$(jq -r ".payload" Testing/INT-001.json")
+            echo payload: $_payload
           fi
 
           exit 0
