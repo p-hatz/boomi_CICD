@@ -100,3 +100,6 @@ jobs:
               curl -d text="$_msg" -d "channel=release" -H "Authorization: Bearer $_bot" -X POST https://slack.com/api/chat.postMessage
             done
           done
+
+          funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
+          funcTestFile=$(grep '^funcTestFile=' $file | cut -f2 -d'=')
