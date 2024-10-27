@@ -59,42 +59,39 @@ jobs:
 
           mkdir -p ${GITHUB_WORKSPACE}/tmp
 
-          echo file is "$file"
-          exit
-
-          funcType=$(grep '^testType=' $file | cut -f2 -d'=')
-          funcType=$(grep '^testType=' $file)
-          funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
-          funcTestFile=$(grep '^funcTestFile=' $file | cut -f2 -d'=')
-
-          echo "here1"
-          echo funcType is: "$funcType"
-          echo funcTest is: "$funcTest"
-          exit
-    
-          if [ $funcTest -eq 1 ]
-          then
-            echo "here2"
-            _URL=$(jq -r ".URL" Testing/Product.json)
-            _expected=$(jq -r ".expected" Testing/INT-001.json)
-            echo expected: $_expected|wc -c
-            
-            _payload=$(jq -r ".payload" Testing/INT-001.json)
-            
-            echo $_payload > tmp/test.payload
-            _out=$(curl -s -X POST --url $_URL --header 'content-type: application/json' --data @tmp/test.payload)
-            echo $_out|wc -c
-            if [ "$_out" == "$_expected" ]
-            then
-              echo "OK"
-            else
-              echo "Not OK"
-            fi
-          fi
-
-          exit 0
-          
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            funcType=$(grep '^testType=' $file | cut -f2 -d'=')
+            funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
+            funcTestFile=$(grep '^funcTestFile=' $file | cut -f2 -d'=')
+
+            echo "here1"
+            echo funcType is: "$funcType"
+            echo funcTest is: "$funcTest"
+          
+            if [ $funcTest -eq 1 ]
+            then
+              echo "here2"
+              _URL=$(jq -r ".URL" Testing/Product.json)
+              _expected=$(jq -r ".expected" Testing/INT-001.json)
+              echo expected: $_expected|wc -c
+            
+              _payload=$(jq -r ".payload" Testing/INT-001.json)
+            
+              echo $_payload > tmp/test.payload
+              _out=$(curl -s -X POST --url $_URL --header 'content-type: application/json' --data @tmp/test.payload)
+              echo $_out|wc -c
+              if [ "$_out" == "$_expected" ]
+              then
+                echo "OK"
+              else
+                echo "Not OK"
+              fi
+            fi
+
+            exit 0
+          
+
+          
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
