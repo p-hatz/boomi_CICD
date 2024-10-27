@@ -59,7 +59,7 @@ jobs:
 
           mkdir -p ${GITHUB_WORKSPACE}/tmp
 
-          funcType=$(grep '^funcType=' $file | cut -f2 -d'=')
+          funcType=$(grep '^testType=' $file | cut -f2 -d'=')
           funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
           funcTestFile=$(grep '^funcTestFile=' $file | cut -f2 -d'=')
 
