@@ -59,7 +59,8 @@ jobs:
 
           mkdir -p ${GITHUB_WORKSPACE}/tmp
 
-          echo $file
+          echo file is "$file"
+          exit
 
           funcType=$(grep '^testType=' $file | cut -f2 -d'=')
           funcType=$(grep '^testType=' $file)
