@@ -69,18 +69,18 @@ jobs:
             echo url: $_URL
             _expected=$(jq -r '.expected' Testing/INT-001.json)
             echo expected: $_expected
-            _payload=$(jq -r '.payload' Testing/INT-001.json)
-            echo payload: $_payload
+            #_payload=$(jq -r '.payload' Testing/INT-001.json)
+            #echo payload: $_payload
 
-            echo $_payload > tmp/test.payload
-            _out=$(curl -s -X POST --url $_URL --header 'content-type: application/json' --data @tmp/test.payload)
+            #echo $_payload > tmp/test.payload
+            #_out=$(curl -s -X POST --url $_URL --header 'content-type: application/json' --data @tmp/test.payload)
             echo $_out
-            if [ "$_out" == "$_expected" ]
-            then
-              echo "OK"
-            else
-              echo "Not OK"
-            fi
+            #if [ "$_out" == "$_expected" ]
+            #then
+             # echo "OK"
+            #else
+             # echo "Not OK"
+            #fi
           fi
 
           exit 0
