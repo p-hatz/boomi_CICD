@@ -11,4 +11,6 @@ deployNotes=Deployed from GitHub Actions
 ##CodeCheck
 codeCheck=0
 
-
+#Functional Testing
+funcTest=1
+funcTestFile=Testing/INT-001.test
