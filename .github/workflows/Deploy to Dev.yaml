@@ -63,8 +63,6 @@ jobs:
           funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
           funcTestFile=$(grep '^funcTestFile=' $file | cut -f2 -d'=')
 
-          echo here1
-
           if [ $funcType=='Product' ]
           then
             _URL=$(jq -r ".URL" Testing/Product.json)
