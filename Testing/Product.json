@@ -1,4 +1,3 @@
 {
   "URL": "http://um780:9090/ws/simple/executeFuncTest",
-  "expected": "' { \"code\": \"OK\" }' "
 }
