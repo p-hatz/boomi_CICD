@@ -64,10 +64,10 @@ jobs:
           funcTestFile=$(grep '^funcTestFile=' $file | cut -f2 -d'=')
 
           echo "here1"
-          echo $funcType
+          echo funcType is: "$funcType"
           exit
     
-          if [ "$funcType" == "Product" ]
+          if [ $funcType == "Product" ]
           then
             echo "here2"
             _URL=$(jq -r ".URL" Testing/Product.json)
