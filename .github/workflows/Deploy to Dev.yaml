@@ -65,6 +65,7 @@ jobs:
 
           echo "here1"
           echo $funcType
+          exit
     
           if [ "$funcType" == "Product" ]
           then
