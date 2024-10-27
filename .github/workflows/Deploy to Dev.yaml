@@ -63,18 +63,18 @@ jobs:
           funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
           funcTestFile=$(grep '^funcTestFile=' $file | cut -f2 -d'=')
 
-          if [ $funcType=='Product' ]
+          if [ "$funcType" == "Product" ]
           then
             _URL=$(jq -r ".URL" Testing/Product.json)
             _expected=$(jq -r ".expected" Testing/INT-001.json)
-            echo expected: $_expected|wc -l
+            echo expected: $_expected|wc -c
             
             _payload=$(jq -r ".payload" Testing/INT-001.json)
             
             echo $_payload > tmp/test.payload
             _out=$(curl -s -X POST --url $_URL --header 'content-type: application/json' --data @tmp/test.payload)
-            echo $_out|wc -l
-            if [ "$_out" == "$_expected" ]
+            echo $_out|wc -c
+            if [ "$_out" = "$_expected" ]
             then
               echo "OK"
             else
