@@ -63,9 +63,12 @@ jobs:
           funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
           funcTestFile=$(grep '^funcTestFile=' $file | cut -f2 -d'=')
 
+          echo "here1"
+          echo $funcType
+    
           if [ "$funcType" == "Product" ]
           then
-            echo "1"
+            echo "here2"
             _URL=$(jq -r ".URL" Testing/Product.json)
             _expected=$(jq -r ".expected" Testing/INT-001.json)
             echo expected: $_expected|wc -c
