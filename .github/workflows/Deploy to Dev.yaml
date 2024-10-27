@@ -65,6 +65,7 @@ jobs:
 
           echo "here1"
           echo funcType is: "$funcType"
+          echo funcTest is: "$funcTest"
           exit
     
           if [ $funcTest -eq 1 ]
