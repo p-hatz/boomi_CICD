@@ -74,7 +74,7 @@ jobs:
             
             echo $_payload > tmp/test.payload
             _out=$(curl -s -X POST --url $_URL --header 'content-type: application/json' --data @tmp/test.payload)
-            echo $_out
+            echo $_out|wc -l
             if [ "$_out" == "$_expected" ]
             then
               echo "OK"
