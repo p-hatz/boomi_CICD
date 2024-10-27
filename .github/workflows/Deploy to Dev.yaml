@@ -1,4 +1,4 @@
-name: Build and Deploy Package
+name: Deploy Package to Dev
 on:
   workflow_dispatch:
     inputs:
