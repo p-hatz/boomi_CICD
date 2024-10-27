@@ -67,7 +67,7 @@ jobs:
           echo funcType is: "$funcType"
           exit
     
-          if [ $funcType == 'Product' ]
+          if [ $funcTest -eq 1 ]
           then
             echo "here2"
             _URL=$(jq -r ".URL" Testing/Product.json)
