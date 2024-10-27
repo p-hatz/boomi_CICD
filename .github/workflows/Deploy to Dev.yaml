@@ -67,10 +67,9 @@ jobs:
           then
             _URL=$(jq -r ".URL" Testing/Product.json)
             _expected=$(jq -r ".expected" Testing/INT-001.json)
-            echo expected: $_expected
+            echo expected: $_expected|wc -l
             
             _payload=$(jq -r ".payload" Testing/INT-001.json)
-            echo payload: $_payload
             
             echo $_payload > tmp/test.payload
             _out=$(curl -s -X POST --url $_URL --header 'content-type: application/json' --data @tmp/test.payload)
