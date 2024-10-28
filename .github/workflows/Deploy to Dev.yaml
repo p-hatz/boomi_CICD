@@ -80,7 +80,7 @@ jobs:
               echo expectedOut: $_expectedOut
               if [ "$_expectedOut" != "$_execOut" ]
               then
-                echo "Test failed: Expected: $_expectedOut Actual: $_execOut
+                echo "Test failed: Expected: $_expectedOut Actual: $_execOut"
                 exit 1
               fi
             fi
