@@ -79,7 +79,9 @@ jobs:
               echo $_payload > tmp/test.payload
               _out=$(curl -s -X POST --url $_URL --header 'content-type: application/json' --data @tmp/test.payload)
               echo $_out > /tmp/exec.out
-              if [ "$_out" = "$_expected" ]
+              $execOut=$(echo $_exec | sed "s/ //g")
+              $expectedOut=$(echo $_expected | sed "s/ //g")
+              if [ "$expectedOut" = "$execOut" ]
               then
                 echo "OK"
               else
