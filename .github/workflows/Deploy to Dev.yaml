@@ -79,7 +79,7 @@ jobs:
               echo $_payload > tmp/test.payload
               _out=$(curl -s -X POST --url $_URL --header 'content-type: application/json' --data @tmp/test.payload)
               echo $_out > /tmp/exec.out
-              $execOut=$(echo $_exec | sed "s/ //g")
+              $execOut=$(echo $_out | sed "s/ //g")
               $expectedOut=$(echo $_expected | sed "s/ //g")
               if [ "$expectedOut" == "$execOut" ]
               then
