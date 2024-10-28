@@ -81,7 +81,7 @@ jobs:
               echo $_out > /tmp/exec.out
               $execOut=$(echo $_exec | sed "s/ //g")
               $expectedOut=$(echo $_expected | sed "s/ //g")
-              if [ "$expectedOut" = "$execOut" ]
+              if [ "$expectedOut" == "$execOut" ]
               then
                 echo "OK"
               else
