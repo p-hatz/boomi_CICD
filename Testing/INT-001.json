@@ -1,6 +1,6 @@
 {
   "testType": "Product",
-  "expected": "{ 'code': 'OK' }",
+  "expected": "{ \"code\": \"OK\" }",
   "payload":
 {
   "productId": 15,
