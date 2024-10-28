@@ -68,19 +68,18 @@ jobs:
             echo funcType is: "$funcType"
             echo funcTest is: "$funcTest"
           
-            if [ $funcTest -eq 1 ]
+            if [ "$funcTest" -eq 1 ]
             then
-              echo "here2"
               _URL=$(jq -r ".URL" Testing/Product.json)
               _expected=$(jq -r ".expected" Testing/INT-001.json)
-              echo expected: $_expected|wc -c
+              echo $_expected > /tmp/expected.out
             
               _payload=$(jq -r ".payload" Testing/INT-001.json)
             
               echo $_payload > tmp/test.payload
               _out=$(curl -s -X POST --url $_URL --header 'content-type: application/json' --data @tmp/test.payload)
-              echo $_out|wc -c
-              if [ "$_out" == "$_expected" ]
+              echo $_out > /tmp/exec.out
+              if [ "$_out" = "$_expected" ]
               then
                 echo "OK"
               else
