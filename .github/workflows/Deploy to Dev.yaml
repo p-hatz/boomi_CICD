@@ -64,17 +64,13 @@ jobs:
             funcTest=$(grep '^funcTest=' $file | cut -f2 -d'=')
             funcTestFile=$(grep '^funcTestFile=' $file | cut -f2 -d'=')
 
-            echo "here1"
-            echo funcType is: "$funcType"
-            echo funcTest is: "$funcTest"
-          
             if [ "$funcTest" -eq 1 ]
             then
               _URL=$(jq -r ".URL" Testing/Product.json)
               _expected=$(jq -r ".expected" Testing/INT-001.json)
               echo $_expected > /tmp/expected.out
             
-              _payload=$(jq -r ".payload" Testing/INT-001.json)
+              _payload=$(jq -r ".payload" "$funcTestFile")
             
               echo $_payload > tmp/test.payload
               _out=$(curl -s -X POST --url $_URL --header 'content-type: application/json' --data @tmp/test.payload)
