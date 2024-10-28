@@ -78,11 +78,12 @@ jobs:
               _expectedOut=$(echo $_expected | jq -r '.code')
               echo execOut: $_execOut
               echo expectedOut: $_expectedOut
-              if [ "$expectedOut" == "$execOut" ]
+              if [ "$_expectedOut" == "$_execOut" ]
               then
                 echo "OK"
               else
                 echo "Not OK"
+                exit 1
               fi
             fi
 
