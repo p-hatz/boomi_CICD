@@ -78,19 +78,13 @@ jobs:
               _expectedOut=$(echo $_expected | jq -r '.code')
               echo execOut: $_execOut
               echo expectedOut: $_expectedOut
-              if [ "$_expectedOut" == "$_execOut" ]
+              if [ "$_expectedOut" != "$_execOut" ]
               then
-                echo "OK"
-              else
-                echo "Not OK"
+                echo "Test failed: Expected: $_expectedOut Actual: $_execOut
                 exit 1
               fi
             fi
 
-            exit 0
-          
-
-          
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
