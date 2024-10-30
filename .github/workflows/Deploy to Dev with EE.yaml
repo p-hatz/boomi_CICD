@@ -92,7 +92,7 @@ jobs:
                  echo debug1
                  source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
                   source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
-                  echo debug2
+                  echo componentType is $componentType
                   source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $environmentId $componentId $componentType $fieldVal
                   echo debug3
                 fi
