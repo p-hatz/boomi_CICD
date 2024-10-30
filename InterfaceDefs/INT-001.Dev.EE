@@ -15,3 +15,8 @@ codeCheck=0
 funcTest=1
 testType=Product
 funcTestFile=Testing/INT-001.json
+
+#EE
+eeKey=MariaDB_hx90_peter
+eeKeyVer=1
+
