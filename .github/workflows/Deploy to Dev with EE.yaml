@@ -42,7 +42,7 @@ jobs:
           BoomiUsername=${{ vars.BOOMI_USERNAME }}
           API=${{ secrets.API }}
           
-          devEnvId=${{ vars.DevEnvId }}
+          devEnvId=${{ vars.EnvId }}
           echo $devEnvId > /tmp/dev.id
           exit
           RepoURL=${{ github.server_url }}
