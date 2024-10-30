@@ -41,6 +41,10 @@ jobs:
           BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
           BoomiUsername=${{ vars.BOOMI_USERNAME }}
           API=${{ secrets.API }}
+          
+          devEnvId=${{ vars.DevEnvId }}
+          echo $devEnvId
+          exit
           RepoURL=${{ github.server_url }}
           RepoName=${{ github.repository }}
           RepoPath=${RepoURL}/${RepoName}
@@ -70,7 +74,11 @@ jobs:
               if [  "$_secKey_KeyVer" == "$_keyValVer" ]
               then
                 _keyVal=$(echo $VaultSec | jq -r '.secrets[].static_version.value')
-                echo $_keyVal > /tmp/ee.out.val
+                if [ ! -z "$_keyVal" ]
+                then
+                  source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+                  source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" nvironmentId componentId componentType fieldVal
+                fi
               fi
             fi
           done
