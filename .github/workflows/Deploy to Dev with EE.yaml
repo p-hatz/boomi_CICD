@@ -74,13 +74,14 @@ jobs:
               echo $_secKey_KeyVer > /tmp/secKey_KeyVer.out
               if [  "$_secKey_KeyVer" == "$_keyValVer" ]
               then
-                _eekeyVal=$(echo $VaultSec | jq -r '.secrets[].static_version.value')
-                if [ ! -z "$_keyVal" ]
+                echo debug0
+                _eeKeyVal=$(echo $VaultSec | jq -r '.secrets[].static_version.value')
+                if [ ! -z "$_eeKeyVal" ]
                 then
                  echo debug1
                   source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
                   echo debug2
-                  source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $devEnvId $_eeCompId $_eeCompType $_eekeyVal
+                  source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $devEnvId $_eeCompId $_eeCompType $_eeKeyVal
                   echo debug3
                 fi
               fi
