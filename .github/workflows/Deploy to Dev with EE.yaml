@@ -48,9 +48,12 @@ jobs:
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
           VaultBase=${{ vars.VAULTBASE }}
-          echo $VaultBase
           VaultPath=${{ secrets.VAULT_PATH }}
-          echo $VaultPath
+          VaultClientId=${{ secrets.VAULT_CLIENT_ID }}
+          VaultClientSec=${{ secrets.VAULT_SECRET }}
+
+          VaultPathFull=$VaultBase$VaultPath
+          echo $VaultPathFull
           exit
           
           mkdir -p ${GITHUB_WORKSPACE}/tmp
