@@ -55,6 +55,12 @@ jobs:
           VaultClientSec=${{ secrets.VAULT_SECRET }}
           _Token=$(curl --location "https://auth.idp.hashicorp.com/oauth2/token" --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "client_id=$VaultClientId" --data-urlencode "client_secret=$VaultClientSec" --data-urlencode "grant_type=client_credentials" --data-urlencode "audience=https://api.hashicorp.cloud" | jq -r .access_token)
           VaultPathFull=$VaultBase$VaultPath
+
+            export WD=${GITHUB_WORKSPACE}/cli/scripts/
+            export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
+            export GITHUB_WORKSPACE
+
+            find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             _eeCompId=$(grep '^eeCompId=' $file | cut -f2 -d'=')
