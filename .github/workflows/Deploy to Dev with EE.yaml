@@ -56,7 +56,7 @@ jobs:
           VaultPathFull=$VaultBase$VaultPath
           echo $VaultPathFull > /tmp/vault.path
 
-          VaultSec=$(curl  --location "$VaultPathFull" --request GET --header "Authorization: Bearer $_Token" | jq)
+          VaultSec=$(curl  --location "$VaultPathFull" --request GET --header "Authorization: Bearer $_Token")
           echo $VaultSec > /tmp/sec.out
 
           exit
