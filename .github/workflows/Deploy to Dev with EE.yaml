@@ -54,7 +54,7 @@ jobs:
           _Token=$(curl --location "https://auth.idp.hashicorp.com/oauth2/token" --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "client_id=$VaultClientId" --data-urlencode "client_secret=$VaultClientSec" --data-urlencode "grant_type=client_credentials" --data-urlencode "audience=https://api.hashicorp.cloud" | jq -r .access_token)
           VaultPathFull=$VaultBase$VaultPath
 
-          VaultSec=$(curl  --location "$VaultPathFull" request GET --header "Authorization: Bearer $_Token" | jq)
+          VaultSec=$(curl  --location "$VaultPathFull" --request GET --header "Authorization: Bearer $_Token" | jq)
 
           echo $VaultSec > /tmp/sec.out
 
