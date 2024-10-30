@@ -65,7 +65,10 @@ jobs:
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             _eeCompId=$(grep '^eeCompId=' $file | cut -f2 -d'=')
+            componentId=$_eeCompId
+            
             _eeCompType=$(grep '^eeCompType=' $file | cut -f2 -d'=')
+            componentType=$_eeCompType
             
             _secKey=$(grep '^eeKey=' $file | cut -f2 -d'=')
             _secKeyVer=$(grep '^eeKeyVer=' $file | cut -f2 -d'=')
@@ -85,11 +88,12 @@ jobs:
                 _eeKeyVal=$(echo $VaultSec | jq -r '.secrets[].static_version.value')
                 if [ ! -z "$_eeKeyVal" ]
                 then
+                fieldVal=$_eeKeyVal
                  echo debug1
                  source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
                   source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
                   echo debug2
-                  source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $environmentId $_eeCompId $_eeCompType $_eeKeyVal
+                  source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $environmentId $componentId $componentType $_eeKeyVal
                   echo debug3
                 fi
               fi
