@@ -88,13 +88,10 @@ jobs:
                 _eeKeyVal=$(echo $VaultSec | jq -r '.secrets[].static_version.value')
                 if [ ! -z "$_eeKeyVal" ]
                 then
-                fieldVal=$_eeKeyVal
-                 echo debug1
-                 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+                  fieldVal=$_eeKeyVal
+                  source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
                   source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
-                  echo componentType is $componentType
                   source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $environmentId $componentId $componentType $fieldVal
-                  echo debug3
                 fi
               fi
             fi
