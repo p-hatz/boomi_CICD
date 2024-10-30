@@ -17,7 +17,7 @@ on:
     branches:
       - main
     paths:
-      - 'InterfaceDefs/*.Dev'
+      - 'InterfaceDefs/*.Dev.EE'
 env:
   ID: ${{ github.run_id }}-${{ github.run_attempt }}
   
