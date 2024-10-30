@@ -77,8 +77,11 @@ jobs:
                 _eekeyVal=$(echo $VaultSec | jq -r '.secrets[].static_version.value')
                 if [ ! -z "$_keyVal" ]
                 then
+                 echo debug1
                   source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+                  echo debug2
                   source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $devEnvId $_eeCompId $_eeCompType $_eekeyVal
+                  echo debug3
                 fi
               fi
             fi
