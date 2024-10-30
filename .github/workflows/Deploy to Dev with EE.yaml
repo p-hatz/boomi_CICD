@@ -43,7 +43,7 @@ jobs:
           API=${{ secrets.API }}
           
           devEnvId=${{ vars.DevEnvId }}
-          echo $devEnvId
+          echo $devEnvId > /tmp/dev.id
           exit
           RepoURL=${{ github.server_url }}
           RepoName=${{ github.repository }}
