@@ -57,12 +57,19 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             _secKey=$(grep '^eeKey=' $file | cut -f2 -d'=')
             _secKeyVer=$(grep '^eeKeyVer=' $file | cut -f2 -d'=')
+            _secKey_KeyVer=$(echo $_secKey"~"$_secKeyVer)
+            echo _secKey_KeyVer is: $_secKey_KeyVer
             
             VaultSec=$(curl  --location "$VaultPathFull" --request GET --header "Authorization: Bearer $_Token")
             if [ ! -z "$VaultSec" ]
             then
               _keyVal=$(echo $VaultSec | jq -r '.secrets[].name')
-              echo $_keyVal > /tmp/sample.keys
+              _keyValVer=$(jq -r '.secrets[].name + "~" + (.secrets[].latest_version|tostring)')
+              if [  "$_secKey_KeyVer" == "$_keyValVer" ]
+              then
+                _keyVal=$(echo $VaultSec | jq -r '.secrets[].static_version.value')
+                echo $_keyVal > /tmp/ee.out.val
+              fi
             fi
           done
           
