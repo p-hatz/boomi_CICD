@@ -61,10 +61,13 @@ jobs:
             echo _secKey_KeyVer is: $_secKey_KeyVer
             
             VaultSec=$(curl  --location "$VaultPathFull" --request GET --header "Authorization: Bearer $_Token")
+            echo $VaultSec > /tmp/vaultsec.out
             if [ ! -z "$VaultSec" ]
             then
               _keyVal=$(echo $VaultSec | jq -r '.secrets[].name')
               _keyValVer=$(jq -r '.secrets[].name + "~" + (.secrets[].latest_version|tostring)')
+              echo $_keyValVer > /tmp/keyValVer.out
+              echo $_secKey_KeyVer > /tmp/secKey_KeyVer.out
               if [  "$_secKey_KeyVer" == "$_keyValVer" ]
               then
                 _keyVal=$(echo $VaultSec | jq -r '.secrets[].static_version.value')
