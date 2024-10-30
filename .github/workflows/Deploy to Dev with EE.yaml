@@ -43,6 +43,7 @@ jobs:
           API=${{ secrets.API }}
           
           devEnvId=${{ vars.EnvId }}
+          environmentId=$devEnvId
           RepoURL=${{ github.server_url }}
           RepoName=${{ github.repository }}
           RepoPath=${RepoURL}/${RepoName}
@@ -88,7 +89,7 @@ jobs:
                  source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
                   source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
                   echo debug2
-                  source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $devEnvId $_eeCompId $_eeCompType $_eeKeyVal
+                  source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $environmentId $_eeCompId $_eeCompType $_eeKeyVal
                   echo debug3
                 fi
               fi
