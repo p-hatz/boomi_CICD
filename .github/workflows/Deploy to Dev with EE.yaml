@@ -25,7 +25,7 @@ jobs:
   deploytoDev:
     runs-on: [self-hosted, linux, X64]
     environment:
-      name: "Dev"
+      name: "Test"
     steps:
       - uses: actions/checkout@v3
       
@@ -91,9 +91,8 @@ jobs:
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
             echo $environmentId $componentId $key $fieldVal $default
-            exit
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions-PP.sh" $environmentId $componentId $key $fieldVal $default
-            
+            exit
             
             #_secKey=$(grep '^eeKey=' $file | cut -f2 -d'=')
             #_secKeyVer=$(grep '^eeKeyVer=' $file | cut -f2 -d'=')
