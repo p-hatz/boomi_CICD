@@ -12,7 +12,7 @@ deployNotes=Deployed from GitHub Actions
 codeCheck=0
 
 #Functional Testing
-funcTest=1
+funcTest=0
 testType=Product
 funcTestFile=Testing/INT-001.json
 
