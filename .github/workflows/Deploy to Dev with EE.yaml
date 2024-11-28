@@ -64,11 +64,15 @@ jobs:
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            _eeCompId=$(grep '^eeCompId=' $file | cut -f2 -d'=')
-            componentId=$_eeCompId
+            _eeFile=$(grep '^eeFile=' $file | cut -f2 -d'=')
+            cat "${GITHUB_WORKSPACE}/$_eeFile"
+            exit
+          
+            #_eeCompId=$(grep '^eeCompId=' $file | cut -f2 -d'=')
+            #componentId=$_eeCompId
             
-            _eeCompType=$(grep '^eeCompType=' $file | cut -f2 -d'=')
-            componentType=$_eeCompType
+            #_eeCompType=$(grep '^eeCompType=' $file | cut -f2 -d'=')
+            #componentType=$_eeCompType
 
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
