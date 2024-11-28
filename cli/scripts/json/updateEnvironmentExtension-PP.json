@@ -5,7 +5,7 @@
       "ProcessProperty" : [
          {
             "@type" : "OverrideProcessProperty",
-            "field" : [
+            "ProcessPropertyValue" : [
                {
                   "@type" : "ProcessPropertyValue",
                   "key" : "${key}",
