@@ -54,8 +54,8 @@ jobs:
           VaultPath=${{ secrets.VAULT_PATH }}
           VaultClientId=${{ secrets.VAULT_CLIENT_ID }}
           VaultClientSec=${{ secrets.VAULT_SECRET }}
-          _Token=$(curl --location "https://auth.idp.hashicorp.com/oauth2/token" --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "client_id=$VaultClientId" --data-urlencode "client_secret=$VaultClientSec" --data-urlencode "grant_type=client_credentials" --data-urlencode "audience=https://api.hashicorp.cloud" | jq -r .access_token)
-          VaultPathFull=$VaultBase$VaultPath
+          #_Token=$(curl --location "https://auth.idp.hashicorp.com/oauth2/token" --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "client_id=$VaultClientId" --data-urlencode "client_secret=$VaultClientSec" --data-urlencode "grant_type=client_credentials" --data-urlencode "audience=https://api.hashicorp.cloud" | jq -r .access_token)
+          #VaultPathFull=$VaultBase$VaultPath
 
             export WD=${GITHUB_WORKSPACE}/cli/scripts/
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
@@ -69,32 +69,36 @@ jobs:
             
             _eeCompType=$(grep '^eeCompType=' $file | cut -f2 -d'=')
             componentType=$_eeCompType
+
+            source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $type $environmentId $componentId $componentType $fieldVal
             
-            _secKey=$(grep '^eeKey=' $file | cut -f2 -d'=')
-            _secKeyVer=$(grep '^eeKeyVer=' $file | cut -f2 -d'=')
-            _secKey_KeyVer=$(echo $_secKey"~"$_secKeyVer)
-            echo _secKey_KeyVer is: $_secKey_KeyVer
+            #_secKey=$(grep '^eeKey=' $file | cut -f2 -d'=')
+            #_secKeyVer=$(grep '^eeKeyVer=' $file | cut -f2 -d'=')
+            #_secKey_KeyVer=$(echo $_secKey"~"$_secKeyVer)
+            #echo _secKey_KeyVer is: $_secKey_KeyVer
             
-            VaultSec=$(curl  --location "$VaultPathFull" --request GET --header "Authorization: Bearer $_Token")
-            echo $VaultSec > /tmp/vaultsec.out
-            if [ ! -z "$VaultSec" ]
-            then
-              _keyValVer=$(echo $VaultSec | jq -r '.secrets[].name + "~" + (.secrets[].latest_version|tostring)')
-              echo $_keyValVer > /tmp/keyValVer.out
-              echo $_secKey_KeyVer > /tmp/secKey_KeyVer.out
-              if [  "$_secKey_KeyVer" == "$_keyValVer" ]
-              then
-                echo debug0
-                _eeKeyVal=$(echo $VaultSec | jq -r '.secrets[].static_version.value')
-                if [ ! -z "$_eeKeyVal" ]
-                then
-                  fieldVal=$_eeKeyVal
-                  source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
-                  source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
-                  source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $environmentId $componentId $componentType $fieldVal
-                fi
-              fi
-            fi
+            #VaultSec=$(curl  --location "$VaultPathFull" --request GET --header "Authorization: Bearer $_Token")
+            #echo $VaultSec > /tmp/vaultsec.out
+            #if [ ! -z "$VaultSec" ]
+            #then
+             # _keyValVer=$(echo $VaultSec | jq -r '.secrets[].name + "~" + (.secrets[].latest_version|tostring)')
+              #echo $_keyValVer > /tmp/keyValVer.out
+              #echo $_secKey_KeyVer > /tmp/secKey_KeyVer.out
+              #if [  "$_secKey_KeyVer" == "$_keyValVer" ]
+              #then
+               # echo debug0
+                #_eeKeyVal=$(echo $VaultSec | jq -r '.secrets[].static_version.value')
+                #if [ ! -z "$_eeKeyVal" ]
+                #then
+                  #fieldVal=$_eeKeyVal
+                  #source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+                  #source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
+                  #source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $environmentId $componentId $componentType $fieldVal
+                #fi
+              #fi
+            #fi
           done
           
           exit
