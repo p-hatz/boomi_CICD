@@ -21,6 +21,4 @@ funcTestFile=Testing/INT-001.json
 #eeCompType=Connection
 #eeKey=MariaDB_hx90_peter
 #eeKeyVer=4
-eeFile="Environment Extension/INT-001.ee"
-
-
+eeFile=EnvironmentExtension/INT-001.ee
