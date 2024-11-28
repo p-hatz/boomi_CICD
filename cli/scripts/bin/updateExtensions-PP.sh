@@ -3,8 +3,8 @@
 source $WD/bin/common.sh
 
 # mandatory arguments
-ARGUMENTS=(environmentId componentId componentType fieldVal)
-JSON_FILE=$WD/json/updateEnvironmentExtension.json
+ARGUMENTS=(environmentId componentId key fieldVal default)
+JSON_FILE=$WD/json/updateEnvironmentExtension-PP.json
 inputs "$@"
 
 URL=$baseURL/EnvironmentExtensions/$environmentId/update
