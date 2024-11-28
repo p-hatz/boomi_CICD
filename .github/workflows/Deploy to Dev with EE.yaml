@@ -71,11 +71,11 @@ jobs:
               exit 1
             fi
             
-            _ppId=$(grep '^ppId=' "${GITHUB_WORKSPACE}/$_eeFile")
-            _ppName=$(grep '^ppName=' "${GITHUB_WORKSPACE}/$_eeFile")
-            _ppKey=$(grep '^ppKey=' "${GITHUB_WORKSPACE}/$_eeFile")
-            _ppVal=$(grep '^ppVal=' "${GITHUB_WORKSPACE}/$_eeFile")
-            _ppDefault=$(grep '^ppDefault=' "${GITHUB_WORKSPACE}/$_eeFile")
+            _ppId=$(grep '^ppId=' "${GITHUB_WORKSPACE}/$_eeFile" | cut -f2 -d'=')
+            _ppName=$(grep '^ppName=' "${GITHUB_WORKSPACE}/$_eeFile" | cut -f2 -d'=')
+            _ppKey=$(grep '^ppKey=' "${GITHUB_WORKSPACE}/$_eeFile" | cut -f2 -d'=')
+            _ppVal=$(grep '^ppVal=' "${GITHUB_WORKSPACE}/$_eeFile" | cut -f2 -d'=')
+            _ppDefault=$(grep '^ppDefault=' "${GITHUB_WORKSPACE}/$_eeFile" | cut -f2 -d'=')
 
             componentId=$_ppId
             key=$_ppKey
