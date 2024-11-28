@@ -1,4 +1,4 @@
-name: Deploy Package to Dev
+name: Deploy Package to Test (EE)
 on:
   workflow_dispatch:
     inputs:
