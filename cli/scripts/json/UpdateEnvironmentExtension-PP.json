@@ -1,0 +1,24 @@
+{
+   "@type" : "EnvironmentExtensions",
+   "processProperties" : {
+      "@type" : "OverrideProcessProperties",
+      "ProcessProperty" : [
+         {
+            "@type" : "OverrideProcessProperty",
+            "field" : [
+               {
+                  "@type" : "ProcessPropertyValue",
+                  "key" : "${key}",
+                  "encryptedValueSet" : false,
+                  "useDefault" : false,
+                  "value" : "${fieldVal}"
+               }
+               ],
+               "id": "${componentId}"
+         }
+         ]
+   },
+   "environmentId": "${environmentId}",
+   "id": "${environmentId}",
+   "partial": "true"
+}
