@@ -65,9 +65,23 @@ jobs:
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             _eeFile=$(grep '^eeFile=' $file | cut -f2 -d'=')
-            cat "${GITHUB_WORKSPACE}/$_eeFile"
-            exit
-          
+            if [ ! -f $_eeFile ]
+            then
+              echo "File '$_eeFile' not found!"
+              exit 1
+            fi
+            
+            _ppId=$(grep '^ppId=' "${GITHUB_WORKSPACE}/$_eeFile")
+            _ppName=$(grep '^ppName=' "${GITHUB_WORKSPACE}/$_eeFile")
+            _ppKey=$(grep '^ppKey=' "${GITHUB_WORKSPACE}/$_eeFile")
+            _ppVal=$(grep '^ppVal=' "${GITHUB_WORKSPACE}/$_eeFile")
+            _ppDefault=$(grep '^ppDefault=' "${GITHUB_WORKSPACE}/$_eeFile")
+
+            componentId=$_ppId
+            key=$_ppKey
+            fieldVal=$_ppVal
+            default="false"
+
             #_eeCompId=$(grep '^eeCompId=' $file | cut -f2 -d'=')
             #componentId=$_eeCompId
             
@@ -76,7 +90,10 @@ jobs:
 
             source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
             source "${GITHUB_WORKSPACE}/cli/scripts/bin/propertiesCICD.sh" $BoomiAccount $BoomiUsername $API $RepoPath $GITUsername $GITUseremail $CodeFolderXML
-            source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" $type $environmentId $componentId $componentType $fieldVal
+            echo $environmentId $componentId $key $fieldVal $default
+            exit
+            source "${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions-PP.sh" $environmentId $componentId $key $fieldVal $default
+            
             
             #_secKey=$(grep '^eeKey=' $file | cut -f2 -d'=')
             #_secKeyVer=$(grep '^eeKeyVer=' $file | cut -f2 -d'=')
