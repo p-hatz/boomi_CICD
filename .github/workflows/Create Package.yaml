@@ -54,6 +54,9 @@ jobs:
           POSTMAN=${{ secrets.POSTMAN }}
           SonarURL=${{ secrets.SONARHOSTURL }}
           Sonar=${{ secrets.SONARTOKEN }}
+          SonarProject=${{ vars.SONARPROJECTKEY }}
+          echo $SonarURL $Sonar $SonarProject
+          exit
 
           _bot=${{ secrets.BOT }}
           mkdir -p ${GITHUB_WORKSPACE}/tmp
