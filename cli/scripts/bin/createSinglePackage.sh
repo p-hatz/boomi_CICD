@@ -99,9 +99,10 @@ then
 
 	echo pre Sonar
  	echo sonarhome: $SONAR_HOME
-  	echo projectkey: $sonarProject
-   	echo sonarHostURL: $sonarURL
-        echo token: $sonar
+  	echo projectkey: $SonarProject
+   	echo sonarHostURL: $SonarURL
+        echo token: $Sonar
+
   	$WD/bin/sonarScanner.sh baseFolder="${packageFolder}"
    	echo post Sonar
   # Create a violations report using sonarqube rules	
