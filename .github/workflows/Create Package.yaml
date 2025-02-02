@@ -54,9 +54,9 @@ jobs:
           POSTMAN=${{ secrets.POSTMAN }}
 
           SONAR_HOME=${{ vars.SONAR_HOME }}
-          SonarURL=${{ vars.SONARHOSTURL }}
-          Sonar=${{ secrets.SONARTOKEN }}
-          SonarProject=${{ vars.SONARPROJECTKEY }}
+          sonarURL=${{ vars.SONARHOSTURL }}
+          sonar=${{ secrets.SONARTOKEN }}
+          sonarProject=${{ vars.SONARPROJECTKEY }}
           
           _bot=${{ secrets.BOT }}
           mkdir -p ${GITHUB_WORKSPACE}/tmp
@@ -82,7 +82,7 @@ jobs:
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
             export GITHUB_WORKSPACE
 
-            export SONAR_HOME SonarURL Sonar SonarProject
+            export SONAR_HOME sonarURL sonar sonarProject
 
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
 
