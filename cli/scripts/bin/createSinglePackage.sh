@@ -64,7 +64,7 @@ savePackageId=${packageId}
 # Extract Boomi componentXMLs to a local disk
 if [ ! -z "${extractComponentXmlFolder}" ] && [ null != "${extractComponentXmlFolder}" ] && [ "" != "${extractComponentXmlFolder}" ]
 then
-  folder="${WORKSPACE}/${extractComponentXmlFolder}"
+  	folder="${WORKSPACE}/${extractComponentXmlFolder}"
 	packageFolder="${folder}/${saveComponentId}"
 	mkdir -p "${packageFolder}"
 	
@@ -72,8 +72,7 @@ then
 	printf "%s%s%s\n" "${saveComponentId}|" "${saveComponentName}|" "${saveComponentVersion}" >> "${WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
 	echov "Publishing package metatdata for ${packageId}."
 	source $WD/bin/publishPackagedComponentMetadata.sh packageIds="${packageId}" > "${packageFolder}/Manifest_${saveComponentId}.html"
-
-  g=0
+  	g=0
 	export baseFolder="${packageFolder}"
 
 	for g in ${!componentIds[@]}; 
@@ -95,9 +94,16 @@ then
 			source $WD/bin/createExtensionsJson.sh componentFile="${componentFile}"
 		fi
  
-    mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
+    		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
  done
-  
+
+	echo pre Sonar
+ 	echo sonarhome: $SONAR_HOME
+  	echo projectkey: $sonarProjectKey
+   	echo sonarHostURL: $sonarHostURL
+        echo token: $sonarToken
+  	$WD/bin/sonarScanner.sh baseFolder="${packageFolder}"
+   	echo post Sonar
   # Create a violations report using sonarqube rules	
 	$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
 
