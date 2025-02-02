@@ -21,7 +21,7 @@ then
  
  cd "${SONAR_HOME}"/bin
  ./sonar-scanner \
-  -Dsonar.projectKey="${sonarProjectKey}" \
+  -Dsonar.projectKey="${sonarProject}" \
   -Dsonar.projectBaseDir="${baseFolder}" \
   -Dsonar.sources="${baseFolder}" \
   -Dsonar.host.url="${sonarHostURL}" \
