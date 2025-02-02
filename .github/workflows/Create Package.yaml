@@ -53,6 +53,8 @@ jobs:
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
           POSTMAN=${{ secrets.POSTMAN }}
+          SonarURL=${{ secrets.SONARHOSTURL }}
+          Sonar=${{ secrets.SONARTOKEN }}
 
           _bot=${{ secrets.BOT }}
           mkdir -p ${GITHUB_WORKSPACE}/tmp
