@@ -52,6 +52,8 @@ jobs:
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
           POSTMAN=${{ secrets.POSTMAN }}
+
+          SONAR_HOME=${{ vars.SONAR_HOME }}
           SonarURL=${{ vars.SONARHOSTURL }}
           Sonar=${{ secrets.SONARTOKEN }}
           SonarProject=${{ vars.SONARPROJECTKEY }}
