@@ -55,7 +55,8 @@ jobs:
           SonarURL=${{ secrets.SONARHOSTURL }}
           Sonar=${{ secrets.SONARTOKEN }}
           SonarProject=${{ vars.SONARPROJECTKEY }}
-          echo $SonarURL $Sonar $SonarProject
+          #echo $SonarURL $Sonar $SonarProject
+          echo $SonarURL
           exit
 
           _bot=${{ secrets.BOT }}
