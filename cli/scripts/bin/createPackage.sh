@@ -2,7 +2,7 @@
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
 # mandatory arguments
-ARGUMENTS=(packageVersion notes) 
+ARGUMENTS=(packageVersion notes)
 OPT_ARGUMENTS=(componentId processName extractComponentXmlFolder componentVersion tag componentType)
 
 inputs "$@"
