@@ -19,13 +19,21 @@ then
 #	SONAR_HOME="./sonar-scanner-4.2.0.1873-linux"
  #fi 
  
+ #cd "${SONAR_HOME}"/bin
+ #./sonar-scanner \
+#  -Dsonar.projectKey="${sonarProject}" \
+  #-Dsonar.projectBaseDir="${baseFolder}" \
+  #-Dsonar.sources="${baseFolder}" \
+  #-Dsonar.host.url="${sonarHostURL}" \
+  #-Dsonar.login="${sonarToken}"
+
  cd "${SONAR_HOME}"/bin
  ./sonar-scanner \
   -Dsonar.projectKey="${sonarProject}" \
   -Dsonar.projectBaseDir="${baseFolder}" \
   -Dsonar.sources="${baseFolder}" \
-  -Dsonar.host.url="${sonarHostURL}" \
-  -Dsonar.login="${sonarToken}"
+  -Dsonar.host.url="${sonarURL}" \
+  -Dsonar.login="${sonar}"
  
  cd "${WORKSPACE}"    
 fi
