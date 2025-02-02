@@ -55,16 +55,14 @@ jobs:
           SonarURL=${{ vars.SONARHOSTURL }}
           Sonar=${{ secrets.SONARTOKEN }}
           SonarProject=${{ vars.SONARPROJECTKEY }}
-          #echo $SonarURL $Sonar $SonarProject
-          echo $SonarURL
-          exit
-
+          
           _bot=${{ secrets.BOT }}
           mkdir -p ${GITHUB_WORKSPACE}/tmp
           
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             funcTestPostman=0
             funcTestBDC=0
+            codeCheck=0
             postmanInst=0
             perfTest=0
 
@@ -72,6 +70,7 @@ jobs:
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            codeCheck=$(grep '^codeCheck=' $file | cut -f2 -d'=')
 
             compCount=1
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
@@ -90,5 +89,10 @@ jobs:
               _compId=$(echo $compId | cut -f $_compIdx -d",")
               _compType=$(echo $compType | cut -f $_compIdx -d",")
               "${GITHUB_WORKSPACE}/cli/scripts/initcrPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+              echo baseFolder: $baseFolder
+              if ($sonarCheck = 1)
+              then
+                "${GITHUB_WORKSPACE}/cli/scripts/bin/sonarinitcrPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" extractComponentXmlFolder="$CodeFolderXML"
+              fi
             done
           done
