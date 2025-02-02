@@ -10,7 +10,8 @@ then
     return 255;
 fi
 
-unzip -d cli ./sonarQube/sonarscanner.zip
+unzip -nd cli ./sonarQube/sonarscanner.zip
+echo URL: ${sonarURL}
 
 if [ ! -z ${sonarURL} ]
 then
