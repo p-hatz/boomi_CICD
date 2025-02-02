@@ -31,10 +31,7 @@ jobs:
     runs-on: [self-hosted, linux, X64]
     #runs-on: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-      
+      - uses: actions/checkout@v3      
       - name: Changed Files
         id: changed-files
         uses: tj-actions/changed-files@v37.5.2
