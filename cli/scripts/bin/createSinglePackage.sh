@@ -97,14 +97,7 @@ then
     		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
  done
 
-	echo pre Sonar
- 	echo sonarhome: $SONAR_HOME
-  	echo projectkey: $SonarProject
-   	echo sonarHostURL: $SonarURL
-        echo token: $Sonar
-
   	$WD/bin/sonarScanner.sh baseFolder="${packageFolder}"
-   	echo post Sonar
   # Create a violations report using sonarqube rules	
 	$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
 
