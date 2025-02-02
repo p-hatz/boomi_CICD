@@ -13,11 +13,11 @@ fi
 if [ ! -z ${sonarHostURL} ]
 then
  echov "Running sonarscanner for components under ${baseFolder}."
- if [ -z "${SONAR_HOME}" ]
- then
-  unzip  -qn  ../../sonarqube/sonar-scanner*.zip
-	SONAR_HOME="./sonar-scanner-4.2.0.1873-linux"
- fi 
+ #if [ -z "${SONAR_HOME}" ]
+ #then
+ # unzip  -qn  ../../sonarqube/sonar-scanner*.zip
+#	SONAR_HOME="./sonar-scanner-4.2.0.1873-linux"
+ #fi 
  
  cd "${SONAR_HOME}"/bin
  ./sonar-scanner \
