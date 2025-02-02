@@ -10,9 +10,7 @@ then
     return 255;
 fi
 
-find . -name sonarscanner.zip
-#unzip -n ../../sonarQube/sonarscanner.zip
-exit
+unzip -d cli ./sonarQube/sonarscanner.zip
 
 if [ ! -z ${sonarURL} ]
 then
