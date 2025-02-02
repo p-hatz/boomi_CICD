@@ -4,7 +4,7 @@ set -a
 
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
-ARGUMENTS=(authToken componentId packageVersion notes componentType extractComponentXmlFolder codeCheck)
+ARGUMENTS=(authToken componentId packageVersion notes componentType extractComponentXmlFolder)
 
 inputs "$@"
 if [ "$?" -gt 0 ]
