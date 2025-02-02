@@ -23,6 +23,7 @@ saveNotes="${notes}"
 saveTag="${tag}"
 
 source ${GITHUB_WORKSPACE}/cli/scripts/bin/createSinglePackage.sh "$@"
+echo pre XML components
 
 handleXmlComponents "${saveExtractComponentXmlFolder}" "${saveTag}" "${saveNotes}"
 
