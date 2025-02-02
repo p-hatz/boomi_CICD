@@ -52,7 +52,7 @@ jobs:
           GITUseremail=${{ vars.EMAIL }}
           CodeFolderXML=${{ vars.CODEFOLDER }}
           POSTMAN=${{ secrets.POSTMAN }}
-          SonarURL=${{ secrets.SONARHOSTURL }}
+          SonarURL=${{ vars.SONARHOSTURL }}
           Sonar=${{ secrets.SONARTOKEN }}
           SonarProject=${{ vars.SONARPROJECTKEY }}
           #echo $SonarURL $Sonar $SonarProject
