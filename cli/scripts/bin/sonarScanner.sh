@@ -10,7 +10,10 @@ then
     return 255;
 fi
 
-if [ ! -z ${sonarHostURL} ]
+echo here!!!
+exit
+
+if [ ! -z ${sonarURL} ]
 then
  echov "Running sonarscanner for components under ${baseFolder}."
  #if [ -z "${SONAR_HOME}" ]
