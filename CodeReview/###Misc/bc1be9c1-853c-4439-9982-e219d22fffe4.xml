@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="bc1be9c1-853c-4439-9982-e219d22fffe4" version="35" name="(oper) IP Address" type="connector-action" subType="wss" createdDate="2019-11-23T05:50:24Z" createdBy="peterantony@boomi.com" modifiedDate="2024-09-11T09:18:35Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <WebServicesServerListenAction inputType="none" objectName="IP" operationType="GET" outputType="singlejson" responseContentType="application/json" responseProfile="64512d2d-f319-47d7-aeae-e57379a6fd82"/>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>

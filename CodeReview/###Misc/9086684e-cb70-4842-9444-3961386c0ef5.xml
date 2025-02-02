@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="9086684e-cb70-4842-9444-3961386c0ef5" version="4" name="(prof) Employee Det" type="profile.db" createdDate="2024-09-17T00:44:39Z" createdBy="peterantony@boomi.com" modifiedDate="2024-09-17T01:02:50Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <DatabaseProfile xmlns="" strict="true" version="2">
+      <ProfileProperties>
+        <DatabaseGeneralInfo executionType="dbread"/>
+      </ProfileProperties>
+      <DataElements>
+        <DBStatement isNode="true" key="2" name="Statement" statementType="select" storedProcedure="" tableName="">
+          <DBFields isNode="true" key="3" name="Fields" type="result_set">
+            <DatabaseElement dataType="number" enforceUnique="false" isMappable="true" isNode="true" key="7" mandatory="false" name="emp_no">
+              <DataFormat>
+                <ProfileNumberFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="datetime" enforceUnique="false" isMappable="true" isNode="true" key="5" mandatory="false" name="birth_date">
+              <DataFormat>
+                <ProfileDateFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="character" enforceUnique="false" isMappable="true" isNode="true" key="11" mandatory="false" name="first_name">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="character" enforceUnique="false" isMappable="true" isNode="true" key="16" mandatory="false" name="last_name">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="character" enforceUnique="false" isMappable="true" isNode="true" key="12" mandatory="false" name="gender">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="datetime" enforceUnique="false" isMappable="true" isNode="true" key="13" mandatory="false" name="hire_date">
+              <DataFormat>
+                <ProfileDateFormat/>
+              </DataFormat>
+            </DatabaseElement>
+          </DBFields>
+          <DBParameters isNode="true" key="4" name="Parameters">
+            <DBParameter isMappable="false" isNode="true" key="19" name="pEmpNo">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DBParameter>
+          </DBParameters>
+          <sql>SELECT emp_no,birth_date,first_name, last_name, gender, hire_date FROM employees
+where emp_no &gt;= ?</sql>
+        </DBStatement>
+      </DataElements>
+    </DatabaseProfile>
+  </bns:object>
+</bns:Component>
