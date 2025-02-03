@@ -96,6 +96,7 @@ then
 		fi
  
     		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}"
+      		echo Listing "${packageFolder}/${folderFullPath}"
  done
  	echo find...
 	find $folder
