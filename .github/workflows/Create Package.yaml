@@ -56,6 +56,7 @@ jobs:
           SONAR_HOME=${{ vars.SONAR_HOME }}
           sonarURL=${{ vars.SONARHOSTURL }}
           sonar=${{ secrets.SONARTOKEN }}
+          sonarToken=${{ secrets.SONARTOKENB64 }}
           sonarProject=${{ vars.SONARPROJECTKEY }}
           
           _bot=${{ secrets.BOT }}
