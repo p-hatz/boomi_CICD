@@ -123,6 +123,7 @@ then
    	mkdir tmp
    	#curl -s "${_url}" > tmp/_issues.tmp
     	cat tmp/_issues.tmp
+     	_issueCount=0
   	#echo issues: $_issues
     	if [ "$_issueCount" != "0" ]
      	then
