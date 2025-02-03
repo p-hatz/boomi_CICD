@@ -81,14 +81,10 @@ then
 		componentVersion=${componentVersions[$g]}
 
 		#echo $componentId : $componentVersion
-  		echo 
-
-		source $WD/bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
+  		source $WD/bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
     		eval `cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
     		mkdir -p "${packageFolder}/${folderFullPath}"
-      		ls "${packageFolder}/${folderFullPath}"
-	echo "${packageFolder}/${folderFullPath}"
-		type=$(cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath 'string(//*/@type)' -)
+      		type=$(cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath 'string(//*/@type)' -)
 		
 		# create extension file for this process
 		if [ $type == "process" ] 
@@ -99,7 +95,8 @@ then
  
     		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
  done
-
+ 	echo find...
+	find $folder
   	$WD/bin/sonarScanner.sh baseFolder="${packageFolder}"
   # Create a violations report using sonarqube rules	
 	$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
