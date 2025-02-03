@@ -115,7 +115,7 @@ then
   #curl -s --request GET --url "${_url}"
   #curl -s --request GET --url "${_url}" | jq -r ".total"
  	#_issueCount=$(curl -s --request GET --url "${_url}" | jq -r ".total")
-  	_issues=$(curl -s --request GET --url "${_url}")
+  	_issues=$(curl --request GET --url "${_url}")
   	echo issues: $_issues
     	if [ "$_issueCount" -gt 0 ]
      	then
