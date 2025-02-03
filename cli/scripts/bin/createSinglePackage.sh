@@ -98,9 +98,7 @@ then
     		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}"
       		echo Listing "${packageFolder}/${folderFullPath}"
  done
- 	echo find...
-	find $folder
-  	$WD/bin/sonarScanner.sh baseFolder="${packageFolder}"
+ 	$WD/bin/sonarScanner.sh baseFolder="${packageFolder}"	
   # Create a violations report using sonarqube rules	
 	$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
 
@@ -114,7 +112,11 @@ then
  	#export tag="${processName}"
 	#export notes="Created from GitHub Actions Pipeline"
 	#source $WD/bin/gitPush.sh "${notes}" "${tag}"
-
+ 	_issues=$(curl -s --request GET --url http://pn50:9000/api/issues/search\?project\=boomi\&issueStatuses\=OPEN --header 'authorization: Basic c3F1X2NmOTczZTY0NTQ0OWEyYmM2ZDZmZTAzYTc4OWUzNDY3NWJhNmU5ZTI6' | jq -r ".total")
+    	if [ "_$issues" != 0 ]
+     	then
+      		return 255
+	fi
 fi
 
 clean
