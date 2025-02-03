@@ -112,8 +112,9 @@ then
  	#export tag="${processName}"
 	#export notes="Created from GitHub Actions Pipeline"
 	#source $WD/bin/gitPush.sh "${notes}" "${tag}"
- 	_issues=$(curl -s --request GET --url http://pn50:9000/api/issues/search\?project\=boomi\&issueStatuses\=OPEN --header 'authorization: Basic c3F1X2NmOTczZTY0NTQ0OWEyYmM2ZDZmZTAzYTc4OWUzNDY3NWJhNmU5ZTI6' | jq -r ".total")
-    	if [ "_$issues" != 0 ]
+ 	_issueCount=$(curl -s --request GET --url http://pn50:9000/api/issues/search\?project\=boomi\&issueStatuses\=OPEN --header 'authorization: Basic c3F1X2NmOTczZTY0NTQ0OWEyYmM2ZDZmZTAzYTc4OWUzNDY3NWJhNmU5ZTI6' | jq -r ".total")
+  echo $_issueCount
+    	if [ "$_issueCount" != 0 ]
      	then
       		return 255
 	fi
