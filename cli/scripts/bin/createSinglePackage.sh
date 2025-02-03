@@ -112,10 +112,11 @@ then
 	#source $WD/bin/gitPush.sh "${notes}" "${tag}"
  	_url="${sonarURL}/api/issues/search\?project\=boomi\&issueStatuses\=OPEN --header 'authorization: Basic ${sonarToken}'"
   echo $_url
-  curl -s --request GET --url "${_url}"
-  curl -s --request GET --url "${_url}" | jq -r ".total"
- 	_issueCount=$(curl -s --request GET --url "${_url}" | jq -r ".total")
-  	echo $_issueCount
+  #curl -s --request GET --url "${_url}"
+  3curl -s --request GET --url "${_url}" | jq -r ".total"
+ 	#_issueCount=$(curl -s --request GET --url "${_url}" | jq -r ".total")
+  	_issues=$(curl -s --request GET --url "${_url}")
+  	echo issues: $_issues
     	if [ "$_issueCount" -gt 0 ]
      	then
       		echo Issues found with scan!
