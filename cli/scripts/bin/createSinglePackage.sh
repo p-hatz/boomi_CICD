@@ -115,8 +115,11 @@ then
   #curl -s --request GET --url "${_url}"
   #curl -s --request GET --url "${_url}" | jq -r ".total"
  	#_issueCount=$(curl -s --request GET --url "${_url}" | jq -r ".total")
-  	_issues=$(curl "${_url}")
-  	echo issues: $_issues
+  	#_issues=$(curl "${_url}")
+   	mkdir tmp
+   	curl "${_url}" > tmp/_issues.tmp
+    	cat tmp/_issues.tmp
+  	#echo issues: $_issues
     	if [ "$_issueCount" -gt 0 ]
      	then
       		echo Issues found with scan!
