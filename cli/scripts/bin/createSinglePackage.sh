@@ -81,10 +81,13 @@ then
 		componentVersion=${componentVersions[$g]}
 
 		#echo $componentId : $componentVersion
+  		echo 
 
 		source $WD/bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
-    eval `cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
-    mkdir -p "${packageFolder}/${folderFullPath}"
+    		eval `cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
+    		mkdir -p "${packageFolder}/${folderFullPath}"
+      		ls "${packageFolder}/${folderFullPath}"
+	echo "${packageFolder}/${folderFullPath}"
 		type=$(cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath 'string(//*/@type)' -)
 		
 		# create extension file for this process
