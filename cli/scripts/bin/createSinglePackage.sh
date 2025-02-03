@@ -119,7 +119,9 @@ then
       		echo Issues found with scan!
 		clean
       		exit 1
-	fi
+	else
+ 		echo No issues. Continuing...
+   	fi
 fi
 
 clean
