@@ -1,7 +1,8 @@
 ##Components
 #componentId=73b89d08-9c13-4b7c-b376-491f030408b7,f50c35e7-96b7-4626-9d02-18644f259f7a
-componentId=f50c35e7-96b7-4626-9d02-18644f259f7a
-componentType=webservice,process
+componentId=66769d7b-f200-43c6-ab32-2d0386e7b32c
+#componentType=webservice,process
+componentType=process
 ver=32.10.58
 buildNotes=Create Package from GitHub Actions
 
