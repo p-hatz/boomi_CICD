@@ -112,7 +112,9 @@ then
 	#source $WD/bin/gitPush.sh "${notes}" "${tag}"
  	_url="${sonarURL}/api/issues/search\?project\=boomi\&issueStatuses\=OPEN --header 'authorization: Basic ${sonarToken}'"
   echo $_url
- 	_issueCount=$(curl -s --request GET --url ${_url} | jq -r ".total")
+  curl -s --request GET --url "${_url}"
+  curl -s --request GET --url "${_url}" | jq -r ".total"
+ 	_issueCount=$(curl -s --request GET --url "${_url}" | jq -r ".total")
   	echo $_issueCount
     	if [ "$_issueCount" -gt 0 ]
      	then
