@@ -93,7 +93,9 @@ then
 			source $WD/bin/createExtensionsJson.sh componentFile="${componentFile}"
 		fi
  
-    		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
+    		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}"
+      		echo Listing...
+      		ls "${packageFolder}/${folderFullPath}" 
  done
  	echo find...
 	find $folder
