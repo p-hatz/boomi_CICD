@@ -112,9 +112,9 @@ then
 	#source $WD/bin/gitPush.sh "${notes}" "${tag}"
  	#_url="${sonarURL}/api/issues/search?project=boomi&issueStatuses=OPEN --header 'authorization: Basic ${sonarToken}'"
   	_url="${sonarURL}/api/issues/search?project=boomi&issueStatuses=OPEN"
-  	echo $_url
+  	#echo $_url
    
-  	curl "${_url}" --header 'authorization: Basic "${sonarToken"}' > tmp/_issues.tmp
+  	curl -o tmp/_issues.tmp "${_url}" --header 'authorization: Basic "${sonarToken"}'
   
   #curl -s --request GET --url "${_url}" | jq -r ".total"
  	#_issueCount=$(curl -s --request GET --url "${_url}" | jq -r ".total")
