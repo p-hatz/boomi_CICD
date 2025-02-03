@@ -64,8 +64,7 @@ savePackageId=${packageId}
 # Extract Boomi componentXMLs to a local disk
 if [ ! -z "${extractComponentXmlFolder}" ] && [ null != "${extractComponentXmlFolder}" ] && [ "" != "${extractComponentXmlFolder}" ]
 then
-	echo Here1
-  	folder="${WORKSPACE}/${extractComponentXmlFolder}"
+	folder="${WORKSPACE}/${extractComponentXmlFolder}"
 	packageFolder="${folder}/${saveComponentId}"
 	mkdir -p "${packageFolder}"
 	
@@ -111,8 +110,9 @@ then
  	#export tag="${processName}"
 	#export notes="Created from GitHub Actions Pipeline"
 	#source $WD/bin/gitPush.sh "${notes}" "${tag}"
- 	_url="${sonarURL}/api/issues/search\?project\=boomi\&issueStatuses\=OPEN --header 
- 	_issueCount=$(curl -s --request GET --url ${sonarURL}/api/issues/search\?project\=boomi\&issueStatuses\=OPEN --header 'authorization: Basic c3F1X2NmOTczZTY0NTQ0OWEyYmM2ZDZmZTAzYTc4OWUzNDY3NWJhNmU5ZTI6' | jq -r ".total")
+ 	_url="${sonarURL}/api/issues/search\?project\=boomi\&issueStatuses\=OPEN --header 'authorization: Basic ${sonarToken}'"
+  echo $_url
+ 	_issueCount=$(curl -s --request GET --url ${_url} | jq -r ".total")
   	echo $_issueCount
     	if [ "$_issueCount" -gt 0 ]
      	then
