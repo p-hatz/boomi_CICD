@@ -83,7 +83,7 @@ jobs:
             export WORKSPACE=${GITHUB_WORKSPACE}/cli/scripts/
             export GITHUB_WORKSPACE
 
-            export SONAR_HOME sonarURL sonar sonarProject
+            export SONAR_HOME sonarURL sonar sonarProject sonarToken
 
             find ${GITHUB_WORKSPACE} -name *.sh -exec chmod 700 {} \;
 
