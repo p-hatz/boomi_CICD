@@ -124,7 +124,7 @@ then
    	#curl -s "${_url}" > tmp/_issues.tmp
     	cat tmp/_issues.tmp
   	#echo issues: $_issues
-    	if [ "$_issueCount" -gt 0 ]
+    	if [ "$_issueCount" != "0" ]
      	then
       		echo Issues found with scan!
 		clean
