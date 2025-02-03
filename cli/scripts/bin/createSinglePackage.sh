@@ -112,7 +112,7 @@ then
 	#source $WD/bin/gitPush.sh "${notes}" "${tag}"
  	#_url="${sonarURL}/api/issues/search?project=boomi&issueStatuses=OPEN --header 'authorization: Basic ${sonarToken}'"
   	_url="${sonarURL}/api/issues/search?project=boomi&issueStatuses=OPEN"
-  	#echo $_url
+  	echo $_url
 
    	curl "$_url" --header 'authorization: Basic "$sonarToken"'
   
