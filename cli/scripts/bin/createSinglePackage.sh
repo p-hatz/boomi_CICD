@@ -114,13 +114,13 @@ then
   	_url="${sonarURL}/api/issues/search?project=boomi&issueStatuses=OPEN"
   	echo $_url
    
-  curl "${_url}" --header 'authorization: Basic "${sonarToken"}'
+  	curl "${_url}" --header 'authorization: Basic "${sonarToken"}' > tmp/_issues.tmp
   
   #curl -s --request GET --url "${_url}" | jq -r ".total"
  	#_issueCount=$(curl -s --request GET --url "${_url}" | jq -r ".total")
   	#_issues=$(curl "${_url}")
    	mkdir tmp
-   	curl "${_url}" > tmp/_issues.tmp
+   	#curl -s "${_url}" > tmp/_issues.tmp
     	cat tmp/_issues.tmp
   	#echo issues: $_issues
     	if [ "$_issueCount" -gt 0 ]
