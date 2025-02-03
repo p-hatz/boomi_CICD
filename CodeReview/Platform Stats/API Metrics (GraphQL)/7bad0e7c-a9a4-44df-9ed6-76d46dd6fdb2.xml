@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//Platform Stats/API Metrics (GraphQL)" componentId="7bad0e7c-a9a4-44df-9ed6-76d46dd6fdb2" version="1" name="(procProp) Date Exec" type="processproperty" createdDate="2024-08-27T00:24:58Z" createdBy="peterantony@boomi.com" modifiedDate="2024-08-27T00:24:58Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="API Metrics (GraphQL)" folderId="Rjo1MzEyMTQ0" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <DefinedProcessProperties xmlns="">
+      <definedProcessProperty key="92404ad4-deca-4f55-b9c4-ef0acbdc7ac8">
+        <helpText/>
+        <label>Date</label>
+        <type>string</type>
+        <defaultValue/>
+        <allowedValues/>
+        <persisted>false</persisted>
+      </definedProcessProperty>
+    </DefinedProcessProperties>
+  </bns:object>
+</bns:Component>
