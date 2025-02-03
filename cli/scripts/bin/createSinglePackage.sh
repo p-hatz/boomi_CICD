@@ -64,6 +64,7 @@ savePackageId=${packageId}
 # Extract Boomi componentXMLs to a local disk
 if [ ! -z "${extractComponentXmlFolder}" ] && [ null != "${extractComponentXmlFolder}" ] && [ "" != "${extractComponentXmlFolder}" ]
 then
+	echo Here1
   	folder="${WORKSPACE}/${extractComponentXmlFolder}"
 	packageFolder="${folder}/${saveComponentId}"
 	mkdir -p "${packageFolder}"
@@ -77,6 +78,7 @@ then
 
 	for g in ${!componentIds[@]}; 
 	do
+ 		echo LOOP!
 		componentId=${componentIds[$g]}
 		componentVersion=${componentVersions[$g]}
 
@@ -94,8 +96,6 @@ then
 		fi
  
     		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}"
-      		echo Listing...
-      		ls "${packageFolder}/${folderFullPath}" 
  done
  	echo find...
 	find $folder
