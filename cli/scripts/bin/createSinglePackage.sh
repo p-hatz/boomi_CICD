@@ -78,8 +78,7 @@ then
 
 	for g in ${!componentIds[@]}; 
 	do
- 		echo LOOP!
-		componentId=${componentIds[$g]}
+ 		componentId=${componentIds[$g]}
 		componentVersion=${componentVersions[$g]}
 
 		#echo $componentId : $componentVersion
@@ -96,7 +95,7 @@ then
 		fi
  
     		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}"
-      		echo Listing "${packageFolder}/${folderFullPath}"
+      		#echo Listing "${packageFolder}/${folderFullPath}"
  done
  	$WD/bin/sonarScanner.sh baseFolder="${packageFolder}"	
   # Create a violations report using sonarqube rules	
