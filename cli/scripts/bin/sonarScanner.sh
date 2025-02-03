@@ -29,6 +29,9 @@ then
   #-Dsonar.host.url="${sonarHostURL}" \
   #-Dsonar.login="${sonarToken}"
 
+echo find XML...
+  find "${baseFolder}" -name "*.xml"
+
  cd "${SONAR_HOME}"/bin
  ./sonar-scanner \
   -Dsonar.projectKey="${sonarProject}" \
