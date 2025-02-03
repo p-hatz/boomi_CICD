@@ -116,7 +116,8 @@ then
     	if [ "$_issueCount" -gt 0 ]
      	then
       		echo Issues found with scan!
-      		return 255
+		clean
+      		exit 1
 	fi
 fi
 
@@ -124,7 +125,6 @@ clean
 
 unset folder packageFolder
 export packageId=${savePackageId}
-
 
 if [ "$ERROR" -gt 0 ]
 then
