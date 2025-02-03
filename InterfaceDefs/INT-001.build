@@ -3,5 +3,5 @@
 componentId=66769d7b-f200-43c6-ab32-2d0386e7b32c
 #componentType=webservice,process
 componentType=process
-ver=32.10.58
+ver=1.10.2
 buildNotes=Create Package from GitHub Actions
