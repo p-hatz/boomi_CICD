@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="66769d7b-f200-43c6-ab32-2d0386e7b32c" version="495" name="(proc) General" type="process" createdDate="2023-06-18T10:10:48Z" createdBy="peterantony@boomi.com" modifiedDate="2025-01-16T00:29:19Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="66769d7b-f200-43c6-ab32-2d0386e7b32c" version="496" name="(proc) General" type="process" createdDate="2023-06-18T10:10:48Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-03T00:22:43Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
-  <bns:description/>
+  <bns:description>Test</bns:description>
   <bns:object>
     <process xmlns="" allowSimultaneous="false" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" updateRunDates="false" workload="general">
       <shapes>
@@ -91,7 +91,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             <documentproperties/>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape171.dragpoint1" toShape="unset" x="608.0" y="58.0"/>
+            <dragpoint name="shape171.dragpoint1" toShape="unset" x="608.0" y="218.0"/>
           </dragpoints>
         </shape>
         <shape image="connectoraction_icon" name="shape172" shapetype="connectoraction" userlabel="" x="240.0" y="48.0">
