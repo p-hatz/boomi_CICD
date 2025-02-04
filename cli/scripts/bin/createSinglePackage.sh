@@ -110,10 +110,10 @@ then
  	#export tag="${processName}"
 	#export notes="Created from GitHub Actions Pipeline"
 	#source $WD/bin/gitPush.sh "${notes}" "${tag}"
- 	_url="${sonarURL}/api/issues/search\?project\=boomi\&issueStatuses\=OPEN"
-  	echo $_url
-
-	_issues=$(curl -H "Authorization: Basic $sonarToken" "$url")
+ 	_url="${sonarURL}/api/issues/search?project=boomi&issueStatuses=OPEN"
+  	#_urlResource=""
+  	#echo $_url$_urlResource
+	_issues=$(curl -H "Authorization: Basic $sonarToken" "$_url")
  	_issueCount=0
  	_issueCount=$(echo $_issues | jq -r ".total")
    	echo issueCount: $_issueCount
