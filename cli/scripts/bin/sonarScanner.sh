@@ -29,8 +29,7 @@ then
   #-Dsonar.host.url="${sonarHostURL}" \
   #-Dsonar.login="${sonarToken}"
 
-echo find XML...
-  find "${baseFolder}" -name "*.xml"
+  #find "${baseFolder}" -name "*.xml"
 
  cd "${SONAR_HOME}"/bin
  ./sonar-scanner \
@@ -38,7 +37,7 @@ echo find XML...
   -Dsonar.projectBaseDir="${baseFolder}" \
   -Dsonar.sources="${baseFolder}" \
   -Dsonar.host.url="${sonarURL}" \
-  -Dsonar.login="${sonar}"
+  -Dsonar.login="${sonar}" > /dev/null
  
  cd "${WORKSPACE}"    
 fi
