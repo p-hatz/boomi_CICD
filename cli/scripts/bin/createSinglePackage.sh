@@ -113,7 +113,8 @@ then
  	#_url="${sonarURL}/api/issues/search?project=boomi&issueStatuses=OPEN"
   	#echo $_url
 
-	curl -v -H "Authorization: Basic $sonarToken" "http://pn50:9000/api/issues/search?project=boomi&issueStatuses=OPEN"
+	_issues=$(curl -H "Authorization: Basic $sonarToken" "http://pn50:9000/api/issues/search?project=boomi&issueStatuses=OPEN")
+ echo issues: $_issues
    	#curl -so tmp/_issues.tmp "http://pn50:9000/api/issues/search?project=boomi&issueStatuses=OPEN" --header 'authorization: Basic "$sonarToken"'
   
   #curl -s --request GET --url "${_url}" | jq -r ".total"
