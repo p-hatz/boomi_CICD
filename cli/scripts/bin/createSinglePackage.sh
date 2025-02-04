@@ -110,7 +110,7 @@ then
  	#export tag="${processName}"
 	#export notes="Created from GitHub Actions Pipeline"
 	#source $WD/bin/gitPush.sh "${notes}" "${tag}"
- 	_url="${sonarURL}/api/issues/search?project=boomi&issueStatuses=OPEN"
+ 	_url="${sonarURL}/api/issues/search\?project\=boomi\&issueStatuses\=OPEN"
   	echo $_url
 
 	_issues=$(curl -H "Authorization: Basic $sonarToken" "$url")
