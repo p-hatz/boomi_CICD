@@ -114,18 +114,10 @@ then
   	#echo $_url
 
 	_issues=$(curl -H "Authorization: Basic $sonarToken" "http://pn50:9000/api/issues/search?project=boomi&issueStatuses=OPEN")
- echo issues: $_issues
-   	#curl -so tmp/_issues.tmp "http://pn50:9000/api/issues/search?project=boomi&issueStatuses=OPEN" --header 'authorization: Basic "$sonarToken"'
-  
-  #curl -s --request GET --url "${_url}" | jq -r ".total"
- 	#_issueCount=$(curl -s --request GET --url "${_url}" | jq -r ".total")
-  	#_issues=$(curl "${_url}")
-   	mkdir tmp
-   	#curl -s "${_url}" > tmp/_issues.tmp
-    	cat tmp/_issues.tmp
-     	_issueCount=0
-  	#echo issues: $_issues
-    	if [ "$_issueCount" != "0" ]
+ 	_issueCount=0
+ 	_issueCount=$(echo $_issues | jq -r ".total")
+   	echo issueCount: $_issueCount
+    	if [ "$_issueCount" -ne "0" ]
      	then
       		echo Issues found with scan!
 		clean
