@@ -1,9 +1,9 @@
 ##Components
 #componentId=73b89d08-9c13-4b7c-b376-491f030408b7,f50c35e7-96b7-4626-9d02-18644f259f7a
-componentId=2fcc4236-c862-4ba2-a744-ebe5f3e8006d
+componentId=35717bf7-a589-46d3-a320-06b7d1a8a32d
 #componentType=webservice,process
 componentType=process
-ver=0.1.10
+ver=0.1.0
 buildNotes=Create Package from GitHub Actions
 targetEnv=2.Test
 listenerStatus=PAUSED
