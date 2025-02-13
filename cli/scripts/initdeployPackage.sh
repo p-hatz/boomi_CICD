@@ -12,4 +12,4 @@ then
 	exit $?
 fi
 
-${GITHUB_WORKSPACE}/cli/scripts/bin/deployPackage.sh componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$notes" env=$env listenerStatus=$listenerStatus
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/deployPackage.sh componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$notes" env=$env listenerStatus=$listenerStatus
