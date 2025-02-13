@@ -73,6 +73,10 @@ jobs:
             postmanInst=0
             perfTest=0
 
+            #DEBUG
+            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
+            #DEBUG
+
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
             compType=$(grep '^componentType=' $file | cut -f2 -d'=')
             compVer=$(grep '^ver=' $file | cut -f2 -d'=')
