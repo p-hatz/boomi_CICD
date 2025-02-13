@@ -57,9 +57,13 @@ else
 	else 
 		return 255;
 	fi 
-fi  
+fi
 
 savePackageId=${packageId}
+
+#DEBUG
+return 1
+#DEBUG
 
 # Extract Boomi componentXMLs to a local disk
 if [ ! -z "${extractComponentXmlFolder}" ] && [ null != "${extractComponentXmlFolder}" ] && [ "" != "${extractComponentXmlFolder}" ]
