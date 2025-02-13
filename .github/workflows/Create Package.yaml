@@ -75,6 +75,7 @@ jobs:
 
             #DEBUG
             envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
+            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
             #DEBUG
 
             compId=$(grep '^componentId=' $file | cut -f2 -d'=')
