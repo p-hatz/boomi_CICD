@@ -62,7 +62,12 @@ fi
 savePackageId=${packageId}
 
 #DEBUG
-return 0
+clean
+
+unset folder packageFolder
+export packageId=${savePackageId}
+
+return 0;
 #DEBUG
 
 # Extract Boomi componentXMLs to a local disk
