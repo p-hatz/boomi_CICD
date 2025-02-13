@@ -3,7 +3,7 @@
 componentId=35717bf7-a589-46d3-a320-06b7d1a8a32d
 #componentType=webservice,process
 componentType=process
-ver=0.1.1
+ver=0.1.2
 buildNotes=Create Package from GitHub Actions
 targetEnv=2.Test
 listenerStatus=PAUSED
