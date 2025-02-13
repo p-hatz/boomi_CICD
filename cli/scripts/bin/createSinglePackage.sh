@@ -61,15 +61,6 @@ fi
 
 savePackageId=${packageId}
 
-#DEBUG
-clean
-
-unset folder packageFolder
-export packageId=${savePackageId}
-
-return 0;
-#DEBUG
-
 # Extract Boomi componentXMLs to a local disk
 if [ ! -z "${extractComponentXmlFolder}" ] && [ null != "${extractComponentXmlFolder}" ] && [ "" != "${extractComponentXmlFolder}" ]
 then
@@ -105,6 +96,17 @@ then
     		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}"
       		#echo Listing "${packageFolder}/${folderFullPath}"
  	done
+
+#DEBUG
+clean
+
+unset folder packageFolder
+export packageId=${savePackageId}
+
+return 0;
+#DEBUG
+
+
  	
   	$WD/bin/sonarScanner.sh baseFolder="${packageFolder}"	
   	# Create a violations report using sonarqube rules	
