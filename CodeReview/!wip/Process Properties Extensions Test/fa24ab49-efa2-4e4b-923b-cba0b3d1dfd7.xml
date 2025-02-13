@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//!wip/Process Properties Extensions Test" componentId="fa24ab49-efa2-4e4b-923b-cba0b3d1dfd7" version="2" name="(procProp) id" type="processproperty" createdDate="2025-02-12T08:14:58Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-12T08:17:20Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="Process Properties Extensions Test" folderId="Rjo3Mzk4NDMw" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <DefinedProcessProperties xmlns="">
+      <definedProcessProperty key="fd3dc627-71cc-40a4-828c-76e20e1bea16">
+        <helpText/>
+        <label>id1</label>
+        <type>string</type>
+        <defaultValue>12</defaultValue>
+        <allowedValues/>
+        <persisted>false</persisted>
+      </definedProcessProperty>
+      <definedProcessProperty key="327af80b-3457-4157-b4fb-4f9c1b3f72c1">
+        <helpText/>
+        <label>id3</label>
+        <type>string</type>
+        <defaultValue>1000</defaultValue>
+        <allowedValues/>
+        <persisted>false</persisted>
+      </definedProcessProperty>
+    </DefinedProcessProperties>
+  </bns:object>
+</bns:Component>
