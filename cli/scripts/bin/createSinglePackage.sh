@@ -95,9 +95,10 @@ then
  
     		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}"
       		#echo Listing "${packageFolder}/${folderFullPath}"
- done
- 	$WD/bin/sonarScanner.sh baseFolder="${packageFolder}"	
-  # Create a violations report using sonarqube rules	
+ 	done
+ 	
+  	$WD/bin/sonarScanner.sh baseFolder="${packageFolder}"	
+  	# Create a violations report using sonarqube rules	
 	$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
 
 	#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
