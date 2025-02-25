@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//!wip/Process Properties Extensions Test" componentId="35717bf7-a589-46d3-a320-06b7d1a8a32d" version="6" name="(proc) PP Test - CICD" type="process" createdDate="2025-02-13T04:32:01Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-20T04:38:20Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Process Properties Extensions Test" folderId="Rjo3Mzk4NDMw" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//!wip/Process Properties Extensions Test" componentId="35717bf7-a589-46d3-a320-06b7d1a8a32d" version="7" name="(proc) PP Test - CICD" type="process" createdDate="2025-02-13T04:32:01Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-25T08:36:05Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Process Properties Extensions Test" folderId="Rjo3Mzk4NDMw" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
-  <bns:description/>
+  <bns:description>Sample description</bns:description>
   <bns:object>
     <process xmlns="" allowSimultaneous="false" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" updateRunDates="true" workload="general">
       <shapes>
