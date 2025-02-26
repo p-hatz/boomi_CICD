@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//!wip/Process Properties Extensions Test" componentId="1839d5b5-e1f3-4da7-8285-f24c273f2e21" version="1" name="(conn) MariaDB (pn64)" type="connector-settings" subType="officialboomi-X3979C-dbv2da-prod" createdDate="2025-02-25T19:32:04Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-25T19:32:04Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Process Properties Extensions Test" folderId="Rjo3Mzk4NDMw" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <GenericConnectionConfig xmlns="">
+      <field id="url" type="string" value="jdbc:mariadb://pn64:3306"/>
+      <field id="className" type="string" value="org.mariadb.jdbc.Driver"/>
+      <field id="username" type="string" value="peter"/>
+      <field id="password" type="password"/>
+      <field id="schemaName" type="string" value=""/>
+      <field id="connectTimeOut" type="integer"/>
+      <field id="readTimeOut" type="integer"/>
+      <field id="enablePooling" type="boolean" value="false"/>
+      <field id="maximumConnections" type="integer" value=""/>
+      <field id="minimumConnections" type="integer" value=""/>
+      <field id="maximumIdleTime" type="integer" value=""/>
+      <field id="whenExhaustedAction" type="string" value=""/>
+      <field id="maximumWaitTime" type="integer" value=""/>
+      <field id="testOnBorrow" type="boolean" value=""/>
+      <field id="testOnReturn" type="boolean" value=""/>
+      <field id="testWhileIdle" type="boolean" value=""/>
+      <field id="validationQuery" type="string" value=""/>
+      <field id="CustomProperties" type="customproperties">
+        <customProperties/>
+      </field>
+    </GenericConnectionConfig>
+  </bns:object>
+</bns:Component>

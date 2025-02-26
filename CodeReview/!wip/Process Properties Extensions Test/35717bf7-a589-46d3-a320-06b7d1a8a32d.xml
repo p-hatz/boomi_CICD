@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//!wip/Process Properties Extensions Test" componentId="35717bf7-a589-46d3-a320-06b7d1a8a32d" version="10" name="(proc) PP Test - CICD" type="process" createdDate="2025-02-13T04:32:01Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-25T19:24:58Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="Process Properties Extensions Test" folderId="Rjo3Mzk4NDMw" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//!wip/Process Properties Extensions Test" componentId="35717bf7-a589-46d3-a320-06b7d1a8a32d" version="13" name="(proc) PP Test - CICD" type="process" createdDate="2025-02-13T04:32:01Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-25T19:42:54Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="Process Properties Extensions Test" folderId="Rjo3Mzk4NDMw" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
   <bns:description>Sample description</bns:description>
   <bns:object>
@@ -46,6 +46,17 @@
             <dragpoint name="shape4.dragpoint1" toShape="shape3" x="384.0" y="104.0"/>
           </dragpoints>
         </shape>
+        <shape image="connectoraction_icon" name="shape5" shapetype="connectoraction" userlabel="" x="256.0" y="448.0">
+          <configuration>
+            <connectoraction actionType="GET" allowDynamicCredentials="NONE" connectionId="1839d5b5-e1f3-4da7-8285-f24c273f2e21" connectorType="officialboomi-X3979C-dbv2da-prod" hideSettings="false" operationId="2af3f944-60e1-4b88-b96b-c84fe8bd0a18" parameter-profile="fea47f5f-9c05-46ec-806c-c70e8209de92">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape5.dragpoint1" toShape="unset" x="388.0" y="458.0"/>
+          </dragpoints>
+        </shape>
       </shapes>
     </process>
   </bns:object>
@@ -53,6 +64,26 @@
     <Overrides xmlns="">
       <Connections>
         <ConnectionOverride id="6a139667-f60e-4742-a275-238a39832d11">
+          <field id="url" label="Connection URL" overrideable="false"/>
+          <field id="className" label="Class Name" overrideable="false"/>
+          <field id="username" label="User Name" overrideable="true"/>
+          <field id="password" label="Password" overrideable="true"/>
+          <field id="schemaName" label="Schema Name" overrideable="false"/>
+          <field id="connectTimeOut" label="Connection Timeout (ms)" overrideable="false"/>
+          <field id="readTimeOut" label="Read Timeout (ms)" overrideable="false"/>
+          <field id="enablePooling" label="Enable Connection Pooling" overrideable="false"/>
+          <field id="maximumConnections" label="Maximum Connections" overrideable="false"/>
+          <field id="minimumConnections" label="Minimum Connections" overrideable="false"/>
+          <field id="maximumIdleTime" label="Maximum Idle Time" overrideable="false"/>
+          <field id="whenExhaustedAction" label="When Exhausted Action" overrideable="false"/>
+          <field id="maximumWaitTime" label="Maximum Wait Time" overrideable="false"/>
+          <field id="testOnBorrow" label="Test Connection When Borrowing From Pool" overrideable="false"/>
+          <field id="testOnReturn" label="Test Connection When Returning to Pool" overrideable="false"/>
+          <field id="testWhileIdle" label="Test Idle Connections" overrideable="false"/>
+          <field id="validationQuery" label="Validation Query" overrideable="false"/>
+          <field id="CustomProperties" label="Connection Properties" overrideable="false"/>
+        </ConnectionOverride>
+        <ConnectionOverride id="1839d5b5-e1f3-4da7-8285-f24c273f2e21">
           <field id="url" label="Connection URL" overrideable="false"/>
           <field id="className" label="Class Name" overrideable="false"/>
           <field id="username" label="User Name" overrideable="true"/>
