@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="66769d7b-f200-43c6-ab32-2d0386e7b32c" version="517" name="(proc) General" type="process" createdDate="2023-06-18T10:10:48Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-25T18:57:32Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="66769d7b-f200-43c6-ab32-2d0386e7b32c" version="519" name="(proc) General" type="process" createdDate="2023-06-18T10:10:48Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-26T05:15:43Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
   <bns:description>Test</bns:description>
   <bns:object>
@@ -119,7 +119,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape174.dragpoint1" toShape="unset" x="224.0" y="538.0"/>
+            <dragpoint name="shape174.dragpoint1" toShape="unset" x="224.0" y="378.0"/>
           </dragpoints>
         </shape>
       </shapes>
@@ -129,12 +129,12 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
     <Overrides xmlns="">
       <Connections>
         <ConnectionOverride id="9b62aa81-efd7-45a0-9d6d-1ba27d64afc3">
-          <field id="url" label="URL" overrideable="false" xpath="HttpSettings/@url"/>
+          <field id="url" label="URL" overrideable="true" xpath="HttpSettings/@url"/>
           <field id="connectTimeout" label="Connect Timeout" overrideable="false" xpath="HttpSettings/@connectTimeout"/>
           <field id="readTimeout" label="Read Timeout" overrideable="false" xpath="HttpSettings/@readTimeout"/>
           <field id="useBasicAuth" label="Use Basic Authentication" overrideable="false" xpath="HttpSettings/@useBasicAuth"/>
-          <field id="user" label="User" overrideable="false" xpath="HttpSettings/AuthSettings/@user"/>
-          <field id="password" label="Password" overrideable="false" xpath="HttpSettings/AuthSettings/@password"/>
+          <field id="user" label="User" overrideable="true" xpath="HttpSettings/AuthSettings/@user"/>
+          <field id="password" label="Password" overrideable="true" xpath="HttpSettings/AuthSettings/@password"/>
           <field id="consumerKey" label="OAuth Consumer Key" overrideable="false" xpath="HttpSettings/OAuthSettings/@consumerKey"/>
           <field id="accessToken" label="OAuth Access Token" overrideable="false" xpath="HttpSettings/OAuthSettings/@accessToken"/>
           <field id="tokenSecret" label="OAuth Token Secret" overrideable="false" xpath="HttpSettings/OAuthSettings/@tokenSecret"/>
@@ -165,7 +165,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
         <ConnectionOverride id="6a139667-f60e-4742-a275-238a39832d11">
           <field id="url" label="Connection URL" overrideable="false"/>
           <field id="className" label="Class Name" overrideable="false"/>
-          <field id="username" label="User Name" overrideable="false"/>
+          <field id="username" label="User Name" overrideable="true"/>
           <field id="password" label="Password" overrideable="true"/>
           <field id="schemaName" label="Schema Name" overrideable="false"/>
           <field id="connectTimeOut" label="Connection Timeout (ms)" overrideable="false"/>
