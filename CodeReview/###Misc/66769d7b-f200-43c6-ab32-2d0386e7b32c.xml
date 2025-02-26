@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="66769d7b-f200-43c6-ab32-2d0386e7b32c" version="502" name="New (proc) General" type="process" createdDate="2023-06-18T10:10:48Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-04T02:52:12Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="66769d7b-f200-43c6-ab32-2d0386e7b32c" version="517" name="(proc) General" type="process" createdDate="2023-06-18T10:10:48Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-25T18:57:32Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
   <bns:description>Test</bns:description>
   <bns:object>
@@ -60,7 +60,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
         <shape image="documentproperties_icon" name="shape137" shapetype="documentproperties" userlabel="" x="48.0" y="208.0">
           <configuration>
             <documentproperties>
-              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppSleep" persist="false" propertyId="process.dppSleep" shouldEncrypt="false">
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppSleep" persist="true" propertyId="process.dppSleep" shouldEncrypt="false">
                 <sourcevalues>
                   <parametervalue key="1" valueType="static">
                     <staticparameter staticproperty="10"/>
@@ -96,7 +96,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
         </shape>
         <shape image="connectoraction_icon" name="shape172" shapetype="connectoraction" userlabel="" x="240.0" y="48.0">
           <configuration>
-            <connectoraction actionType="GET" allowDynamicCredentials="NONE" connectionId="9eaf469c-0240-4353-8712-ab24760fd471" connectorType="officialboomi-X3979C-dbv2da-prod" hideSettings="false" operationId="2af3f944-60e1-4b88-b96b-c84fe8bd0a18" parameter-profile="fea47f5f-9c05-46ec-806c-c70e8209de92">
+            <connectoraction actionType="GET" allowDynamicCredentials="NONE" connectionId="6a139667-f60e-4742-a275-238a39832d11" connectorType="officialboomi-X3979C-dbv2da-prod" hideSettings="false" operationId="2af3f944-60e1-4b88-b96b-c84fe8bd0a18" parameter-profile="fea47f5f-9c05-46ec-806c-c70e8209de92">
               <parameters/>
               <dynamicProperties/>
             </connectoraction>
@@ -111,14 +111,59 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
           </configuration>
           <dragpoints/>
         </shape>
+        <shape image="connectoraction_icon" name="shape174" shapetype="connectoraction" userlabel="" x="48.0" y="368.0">
+          <configuration>
+            <connectoraction actionType="Get" allowDynamicCredentials="NONE" connectionId="9b62aa81-efd7-45a0-9d6d-1ba27d64afc3" connectorType="http" hideSettings="false" operationId="1b18485f-182f-4862-943e-64d5f4dcab6e" parameter-profile="EMBEDDED|HttpParameterChooser|1b18485f-182f-4862-943e-64d5f4dcab6e">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape174.dragpoint1" toShape="unset" x="224.0" y="538.0"/>
+          </dragpoints>
+        </shape>
       </shapes>
     </process>
   </bns:object>
   <bns:processOverrides>
     <Overrides xmlns="">
       <Connections>
-        <ConnectionOverride id="9eaf469c-0240-4353-8712-ab24760fd471">
-          <field id="url" label="Connection URL" overrideable="true"/>
+        <ConnectionOverride id="9b62aa81-efd7-45a0-9d6d-1ba27d64afc3">
+          <field id="url" label="URL" overrideable="false" xpath="HttpSettings/@url"/>
+          <field id="connectTimeout" label="Connect Timeout" overrideable="false" xpath="HttpSettings/@connectTimeout"/>
+          <field id="readTimeout" label="Read Timeout" overrideable="false" xpath="HttpSettings/@readTimeout"/>
+          <field id="useBasicAuth" label="Use Basic Authentication" overrideable="false" xpath="HttpSettings/@useBasicAuth"/>
+          <field id="user" label="User" overrideable="false" xpath="HttpSettings/AuthSettings/@user"/>
+          <field id="password" label="Password" overrideable="false" xpath="HttpSettings/AuthSettings/@password"/>
+          <field id="consumerKey" label="OAuth Consumer Key" overrideable="false" xpath="HttpSettings/OAuthSettings/@consumerKey"/>
+          <field id="accessToken" label="OAuth Access Token" overrideable="false" xpath="HttpSettings/OAuthSettings/@accessToken"/>
+          <field id="tokenSecret" label="OAuth Token Secret" overrideable="false" xpath="HttpSettings/OAuthSettings/@tokenSecret"/>
+          <field id="requestTokenURL" label="OAuth Request Token URL" overrideable="false" xpath="HttpSettings/OAuthSettings/@requestTokenURL"/>
+          <field id="authorizationURL" label="OAuth Authorization URL" overrideable="false" xpath="HttpSettings/OAuthSettings/@authorizationURL"/>
+          <field id="accessTokenURL" label="OAuth Access URL" overrideable="false" xpath="HttpSettings/OAuthSettings/@accessTokenURL"/>
+          <field id="consumerSecret" label="OAuth Consumer Secret" overrideable="false" xpath="HttpSettings/OAuthSettings/@consumerSecret"/>
+          <field id="realm" label="OAuth Realm" overrideable="false" xpath="HttpSettings/OAuthSettings/@realm"/>
+          <field id="signatureMethod" label="OAuth Signature Method" overrideable="false" xpath="HttpSettings/OAuthSettings/@signatureMethod"/>
+          <field id="clientauth" label="Use Client Authorization" overrideable="false" xpath="HttpSettings/SSLOptions/@clientauth"/>
+          <field id="clientsslalias" label="Client SSL Certificate" overrideable="false" xpath="HttpSettings/SSLOptions/@clientsslalias"/>
+          <field id="trustServerCert" label="Use Trusted SSL Certificate" overrideable="false" xpath="HttpSettings/SSLOptions/@trustServerCert"/>
+          <field id="trustedcertalias" label="Trust SSL Server Certificate" overrideable="false" xpath="HttpSettings/SSLOptions/@trustedcertalias"/>
+          <field id="clientId" label="OAuth2 Client ID" overrideable="false" xpath="HttpSettings/OAuth2Settings/credentials/@clientId"/>
+          <field id="clientSecret" label="OAuth2 Client Secret" overrideable="false" xpath="HttpSettings/OAuth2Settings/credentials/@clientSecret"/>
+          <field id="authTokenURL2" label="OAuth2 Authorization Token URL" overrideable="false" xpath="HttpSettings/OAuth2Settings/authorizationTokenEndpoint/@url"/>
+          <field id="authorizationParameters" label="OAuth2 Authorization Parameters" overrideable="false" xpath="HttpSettings/OAuth2Settings/authorizationParameters"/>
+          <field id="accessTokenURL2" label="OAuth2 Access Token URL" overrideable="false" xpath="HttpSettings/OAuth2Settings/accessTokenEndpoint/@url"/>
+          <field id="accessTokenParameters" label="OAuth2 Access Token Parameters" overrideable="false" xpath="HttpSettings/OAuth2Settings/accessTokenParameters"/>
+          <field id="scope" label="OAuth2 Scope" overrideable="false" xpath="HttpSettings/OAuth2Settings/scope"/>
+          <field id="accessToken2" label="OAuth2 Access Token" overrideable="false" xpath="HttpSettings/OAuth2Settings/credentials/@accessToken"/>
+          <field id="refreshAuthScheme" label="OAuth2 Refresh Authorization Scheme" overrideable="false" xpath="HttpSettings/OAuth2Settings/@refreshAuthScheme"/>
+          <field id="accessKeyId" label="Amazon AWS Access Key" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/accessKeyId"/>
+          <field id="awsSecret" label="Amazon AWS Secret Key" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/awsSecret"/>
+          <field id="awsRegion" label="Amazon AWS Region" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/awsRegion"/>
+          <field id="customRegion" label="Custom Region" overrideable="false" xpath="HttpSettings/AwsSettings/credentials/customRegion"/>
+        </ConnectionOverride>
+        <ConnectionOverride id="6a139667-f60e-4742-a275-238a39832d11">
+          <field id="url" label="Connection URL" overrideable="false"/>
           <field id="className" label="Class Name" overrideable="false"/>
           <field id="username" label="User Name" overrideable="false"/>
           <field id="password" label="Password" overrideable="true"/>
@@ -147,7 +192,7 @@ for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
       </Properties>
       <Extensions>
         <ObjectDefinitions>
-          <objectDefinition connectionId="9eaf469c-0240-4353-8712-ab24760fd471" connectorType="officialboomi-X3979C-dbv2da-prod" id="9eaf469c-0240-4353-8712-ab24760fd471apiStats" name="Database V2 apiStats ((conn) MariaDB pn50)" objectType="apiStats" userDefined="false">
+          <objectDefinition connectionId="6a139667-f60e-4742-a275-238a39832d11" connectorType="officialboomi-X3979C-dbv2da-prod" id="6a139667-f60e-4742-a275-238a39832d11apiStats" name="Database V2 apiStats ((conn) MariaDB (pn64) (Generic))" objectType="apiStats" userDefined="false">
             <profiles/>
           </objectDefinition>
           <unusedProfiles/>
