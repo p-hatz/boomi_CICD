@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//!wip/Process Properties Extensions Test" componentId="35717bf7-a589-46d3-a320-06b7d1a8a32d" version="13" name="(proc) PP Test - CICD" type="process" createdDate="2025-02-13T04:32:01Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-25T19:42:54Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="Process Properties Extensions Test" folderId="Rjo3Mzk4NDMw" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//!wip/Process Properties Extensions Test" componentId="35717bf7-a589-46d3-a320-06b7d1a8a32d" version="17" name="(proc) PP Test - CICD" type="process" createdDate="2025-02-13T04:32:01Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-26T05:04:05Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Process Properties Extensions Test" folderId="Rjo3Mzk4NDMw" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
-  <bns:description>Sample description</bns:description>
+  <bns:description>xxxxx</bns:description>
   <bns:object>
     <process xmlns="" allowSimultaneous="false" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" updateRunDates="true" workload="general">
       <shapes>
-        <shape image="start" name="shape1" shapetype="start" userlabel="" x="96.0" y="94.0">
+        <shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="46.0">
           <configuration>
             <noaction/>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape1.dragpoint1" toShape="shape4" x="240.0" y="248.0"/>
+            <dragpoint name="shape1.dragpoint1" toShape="shape4" x="224.0" y="56.0"/>
           </dragpoints>
         </shape>
-        <shape image="documentproperties_icon" name="shape2" shapetype="documentproperties" userlabel="" x="256.0" y="96.0">
+        <shape image="documentproperties_icon" name="shape2" shapetype="documentproperties" userlabel="" x="48.0" y="208.0">
           <configuration>
             <documentproperties>
               <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Process Property - dppId" persist="false" propertyId="process.dppId" shouldEncrypt="false">
@@ -26,16 +26,16 @@
             </documentproperties>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape2.dragpoint1" toShape="shape3" x="384.0" y="104.0"/>
+            <dragpoint name="shape2.dragpoint1" toShape="shape3" x="416.0" y="56.0"/>
           </dragpoints>
         </shape>
-        <shape image="stop_icon" name="shape3" shapetype="stop" x="400.0" y="96.0">
+        <shape image="stop_icon" name="shape3" shapetype="stop" x="432.0" y="48.0">
           <configuration>
             <stop continue="true"/>
           </configuration>
           <dragpoints/>
         </shape>
-        <shape image="connectoraction_icon" name="shape4" shapetype="connectoraction" userlabel="" x="256.0" y="240.0">
+        <shape image="connectoraction_icon" name="shape4" shapetype="connectoraction" userlabel="" x="240.0" y="48.0">
           <configuration>
             <connectoraction actionType="GET" allowDynamicCredentials="NONE" connectionId="6a139667-f60e-4742-a275-238a39832d11" connectorType="officialboomi-X3979C-dbv2da-prod" hideSettings="false" operationId="2af3f944-60e1-4b88-b96b-c84fe8bd0a18" parameter-profile="fea47f5f-9c05-46ec-806c-c70e8209de92">
               <parameters/>
@@ -43,10 +43,10 @@
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape4.dragpoint1" toShape="shape3" x="384.0" y="104.0"/>
+            <dragpoint name="shape4.dragpoint1" toShape="shape3" x="416.0" y="56.0"/>
           </dragpoints>
         </shape>
-        <shape image="connectoraction_icon" name="shape5" shapetype="connectoraction" userlabel="" x="256.0" y="448.0">
+        <shape image="connectoraction_icon" name="shape5" shapetype="connectoraction" userlabel="" x="48.0" y="368.0">
           <configuration>
             <connectoraction actionType="GET" allowDynamicCredentials="NONE" connectionId="1839d5b5-e1f3-4da7-8285-f24c273f2e21" connectorType="officialboomi-X3979C-dbv2da-prod" hideSettings="false" operationId="2af3f944-60e1-4b88-b96b-c84fe8bd0a18" parameter-profile="fea47f5f-9c05-46ec-806c-c70e8209de92">
               <parameters/>
@@ -54,7 +54,7 @@
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape5.dragpoint1" toShape="unset" x="388.0" y="458.0"/>
+            <dragpoint name="shape5.dragpoint1" toShape="unset" x="224.0" y="378.0"/>
           </dragpoints>
         </shape>
       </shapes>
