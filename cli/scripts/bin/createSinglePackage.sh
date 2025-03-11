@@ -114,7 +114,7 @@ then
  	_url="${sonarURL}/api/issues/search?project=boomi&issueStatuses=OPEN"
   	#_urlResource=""
   	#echo $_url$_urlResource
-   echo $sonarToken
+   echo $sonarToken > /tmp/$$.token
 	_issues=$(curl -s -H "Authorization: Basic $sonarToken" "$_url")
  	_issueCount=0
  	_issueCount=$(echo $_issues | jq -r ".total")
