@@ -31,6 +31,10 @@ then
 
   #find "${baseFolder}" -name "*.xml"
 
+echo ${sonarProject}
+echo ${sonarURL}
+echo ${sonar}
+
  cd "${SONAR_HOME}"/bin
  ./sonar-scanner \
   -Dsonar.projectKey="${sonarProject}" \
