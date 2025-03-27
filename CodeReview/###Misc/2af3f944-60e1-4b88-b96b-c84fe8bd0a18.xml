@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="2af3f944-60e1-4b88-b96b-c84fe8bd0a18" version="6" name="(oper) Stats GET" type="connector-action" subType="officialboomi-X3979C-dbv2da-prod" createdDate="2024-09-11T00:19:12Z" createdBy="peterantony@boomi.com" modifiedDate="2025-01-16T00:27:59Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="2af3f944-60e1-4b88-b96b-c84fe8bd0a18" version="7" name="(oper) Stats GET" type="connector-action" subType="officialboomi-X3979C-dbv2da-prod" createdDate="2024-09-11T00:19:12Z" createdBy="peterantony@boomi.com" modifiedDate="2025-03-17T22:42:41Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
   <bns:description/>
   <bns:object>
@@ -9,8 +9,8 @@
         <GenericOperationConfig customOperationType="GET" objectTypeId="apiStats" objectTypeName="apiStats (TABLE)" operationType="EXECUTE" requestProfile="fea47f5f-9c05-46ec-806c-c70e8209de92" requestProfileType="json" responseProfile="89f25ddc-f1fd-4a55-ab8a-5ad66c84b249" responseProfileType="json">
           <field id="GetType" type="string" value="Standard Get"/>
           <field id="INClause" type="boolean" value="false"/>
-          <field id="schemaName" type="string" value="uts"/>
-          <field id="query" type="string" value="SELECT count(1) FROM apiStats"/>
+          <field id="schemaName" type="string" value=""/>
+          <field id="query" type="string" value="SELECT now()"/>
           <field id="linkElement" type="string" value=""/>
           <field id="maxRows" type="integer"/>
           <field id="maxFieldSize" type="integer"/>

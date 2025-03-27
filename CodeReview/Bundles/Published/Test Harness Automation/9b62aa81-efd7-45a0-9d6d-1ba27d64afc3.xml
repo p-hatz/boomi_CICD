@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//Bundles/Published/Test Harness Automation" componentId="9b62aa81-efd7-45a0-9d6d-1ba27d64afc3" version="3" name="(conn) AtomSphere API " type="connector-settings" subType="http" createdDate="2024-12-11T03:06:42Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-06T03:06:32Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Test Harness Automation" folderId="Rjo3NDI0ODI0" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//Bundles/Published/Test Harness Automation" componentId="9b62aa81-efd7-45a0-9d6d-1ba27d64afc3" version="3" name="(conn) AtomSphere API " type="connector-settings" subType="http" createdDate="2024-12-11T03:06:42Z" createdBy="peterantony@boomi.com" modifiedDate="2025-02-06T03:06:32Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="Test Harness Automation" folderId="Rjo3NDI0ODI0" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
   <bns:description/>
   <bns:object>
