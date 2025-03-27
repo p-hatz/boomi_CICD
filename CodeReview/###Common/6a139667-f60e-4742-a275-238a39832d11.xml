@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Common" componentId="6a139667-f60e-4742-a275-238a39832d11" version="27" name="(conn) MariaDB (pn64) (Generic)" type="connector-settings" subType="officialboomi-X3979C-dbv2da-prod" createdDate="2023-05-04T03:13:52Z" createdBy="peterantony@boomi.com" modifiedDate="2025-03-13T07:10:55Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="false" folderName="###Common" folderId="RjoyNzI5NDE1" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Common" componentId="6a139667-f60e-4742-a275-238a39832d11" version="28" name="(conn) MariaDB (pn64) (Generic)" type="connector-settings" subType="officialboomi-X3979C-dbv2da-prod" createdDate="2023-05-04T03:13:52Z" createdBy="peterantony@boomi.com" modifiedDate="2025-03-20T23:49:38Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Common" folderId="RjoyNzI5NDE1" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues>
     <bns:encryptedValue path="//GenericConnectionConfig/field[@type='password']" isSet="true"/>
   </bns:encryptedValues>
@@ -9,7 +9,7 @@
       <field id="url" type="string" value="jdbc:mariadb://pn64:3306"/>
       <field id="className" type="string" value="org.mariadb.jdbc.Driver"/>
       <field id="username" type="string" value="demo"/>
-      <field id="password" type="password" value="15f2280151760a73115959bb65edf7913330a528c11ad17ba12986e4e3cd551f4cfefb0625d95898f55729b037addb3f5a3874aa010a7f43a22536b7322117fd"/>
+      <field id="password" type="password" value="e18f2e1f32b1fb59b9280cb4673dca0a49a30f803435d9dfdda3aac72f141fccd61e815111bb0d87bc1ed080efcafe9e69453c3e2578962b40571190b2d4f00f"/>
       <field id="schemaName" type="string" value="misc"/>
       <field id="connectTimeOut" type="integer"/>
       <field id="readTimeOut" type="integer"/>
