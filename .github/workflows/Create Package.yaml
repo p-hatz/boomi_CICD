@@ -46,7 +46,6 @@ jobs:
           sudo apt-get install -y libxml2-utils jq
           
           BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
-          BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
           BoomiUsername=${{ vars.BOOMI_USERNAME }}
           API=${{ secrets.API }}
           RepoURL=${{ github.server_url }}
