@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="d439cbdc-6b83-47dc-846f-a1da1500eb0b" version="5" name="(map) SFDC Contact to DB (XML to DB)" type="transform.map" createdDate="2025-07-03T03:09:07Z" createdBy="peterantony@boomi.com" modifiedDate="2025-07-03T03:45:31Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Map xmlns="" fromProfile="32b6d76f-e0a3-448d-8fbd-dcfd58ab715e" toProfile="b3c823e6-e193-479b-a78e-e5ef00af3057">
+      <Mappings>
+        <Mapping fromKey="3" fromKeyPath="*[@key='1']/*[@key='3']" fromNamePath="Contact/FirstName" fromType="profile" toKey="8" toKeyPath="*[@key='1']/*[@key='2']/*[@key='8']" toNamePath="/Object/firstName" toType="profile"/>
+        <Mapping fromKey="4" fromKeyPath="*[@key='1']/*[@key='4']" fromNamePath="Contact/LastName" fromType="profile" toKey="11" toKeyPath="*[@key='1']/*[@key='2']/*[@key='11']" toNamePath="/Object/lastName" toType="profile"/>
+        <Mapping fromKey="5" fromKeyPath="*[@key='1']/*[@key='5']" fromNamePath="Contact/Email" fromType="profile" toKey="7" toKeyPath="*[@key='1']/*[@key='2']/*[@key='7']" toNamePath="/Object/email" toType="profile"/>
+        <Mapping fromKey="6" fromKeyPath="*[@key='1']/*[@key='6']" fromNamePath="Contact/Title" fromType="profile" toKey="12" toKeyPath="*[@key='1']/*[@key='2']/*[@key='12']" toNamePath="/Object/title" toType="profile"/>
+        <Mapping fromKey="7" fromKeyPath="*[@key='1']/*[@key='7']" fromNamePath="Contact/Job_Level__c" fromType="profile" toKey="10" toKeyPath="*[@key='1']/*[@key='2']/*[@key='10']" toNamePath="/Object/jobLevel" toType="profile"/>
+        <Mapping fromKey="9" fromKeyPath="*[@key='1']/*[@key='8']/*[@key='9']" fromNamePath="Contact/Account/Name" fromType="profile" toKey="3" toKeyPath="*[@key='1']/*[@key='2']/*[@key='3']" toNamePath="/Object/accountName" toType="profile"/>
+        <Mapping fromKey="10" fromKeyPath="*[@key='1']/*[@key='10']" fromNamePath="Contact/Contact_Status__c" fromType="profile" toKey="5" toKeyPath="*[@key='1']/*[@key='2']/*[@key='5']" toNamePath="/Object/contactStatus" toType="profile"/>
+        <Mapping fromKey="11" fromKeyPath="*[@key='1']/*[@key='11']" fromNamePath="Contact/CreatedDate" fromType="profile" toKey="4" toKeyPath="*[@key='1']/*[@key='2']/*[@key='4']" toNamePath="/Object/contactCrDT" toType="profile"/>
+        <Mapping fromKey="2" fromKeyPath="*[@key='1']/*[@key='2']" fromNamePath="Contact/Id" fromType="profile" toKey="13" toKeyPath="*[@key='1']/*[@key='2']/*[@key='13']" toNamePath="/Object/sfdcId" toType="profile"/>
+      </Mappings>
+      <Functions optimizeExecutionOrder="true"/>
+      <Defaults/>
+      <DocumentCacheJoins/>
+    </Map>
+  </bns:object>
+</bns:Component>

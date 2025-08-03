@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="7bd9ab64-1f4c-4481-bf35-6dbaabda22c3" version="8" name="(oper) Proxycurl Resolve (GET)" type="connector-action" subType="http" createdDate="2025-07-03T04:16:47Z" createdBy="peterantony@boomi.com" modifiedDate="2025-07-03T05:24:23Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <HttpGetAction dataContentType="text/plain" followRedirects="false" methodType="GET" mimePassthrough="false" requestProfileType="NONE" responseProfileType="NONE" returnErrors="true" returnMimeResponse="false">
+          <requestHeaders>
+            <header headerName="Authorization" headerValue="dppBearerToken" isVariable="true" key="1000000"/>
+          </requestHeaders>
+          <pathElements>
+            <element key="2000000" name="linkedin/profile/resolve?"/>
+            <element key="2000001" name="first_name="/>
+            <element isVariable="true" key="2000002" name="ddpFirstName"/>
+            <element key="2000003" name="&amp;last_name="/>
+            <element isVariable="true" key="2000004" name="ddpLastName"/>
+            <element key="2000005" name="&amp;company_domain="/>
+            <element isVariable="true" key="2000006" name="ddpDomain"/>
+          </pathElements>
+          <responseHeaderMapping/>
+          <reflectHeaders/>
+        </HttpGetAction>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>

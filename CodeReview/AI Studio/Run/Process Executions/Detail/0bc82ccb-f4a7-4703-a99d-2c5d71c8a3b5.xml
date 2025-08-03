@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//AI Studio/Run/Process Executions/Detail" componentId="0bc82ccb-f4a7-4703-a99d-2c5d71c8a3b5" version="18" name="(map) Execution Record Detail XML to DB" type="transform.map" createdDate="2024-02-20T07:12:38Z" createdBy="peterantony@boomi.com" modifiedDate="2025-07-28T03:18:48Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Detail" folderId="Rjo2NTU1Mjc3" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Map xmlns="" fromProfile="bcf1aee0-580a-446f-80e8-75a54929678b" toProfile="2410c62c-7a36-453f-9c87-8785188f196c">
+      <Mappings>
+        <Mapping fromFunction="1" fromKey="2" fromType="function" toKey="20" toKeyPath="*[@key='2']/*[@key='3']/*[@key='20']" toNamePath="Statement/Fields/domainName" toType="profile"/>
+        <Mapping fromKey="26" fromKeyPath="*[@key='3']/*[@key='46']/*[@key='26']" fromNamePath="QueryResult/result/message" fromType="profile" toKey="13" toKeyPath="*[@key='2']/*[@key='3']/*[@key='13']" toNamePath="Statement/Fields/message" toType="profile"/>
+        <Mapping fromKey="48" fromKeyPath="*[@key='3']/*[@key='46']/*[@key='48']" fromNamePath="QueryResult/result/executionId" fromType="profile" toKey="9" toKeyPath="*[@key='2']/*[@key='3']/*[@key='9']" toNamePath="Statement/Fields/executionId" toType="profile"/>
+        <Mapping fromKey="63" fromKeyPath="*[@key='3']/*[@key='46']/*[@key='63']" fromNamePath="QueryResult/result/nodeId" fromType="profile" toKey="6" toKeyPath="*[@key='2']/*[@key='3']/*[@key='6']" toNamePath="Statement/Fields/nodeId" toType="profile"/>
+        <Mapping fromKey="50" fromKeyPath="*[@key='3']/*[@key='46']/*[@key='50']" fromNamePath="QueryResult/result/executionTime" fromType="profile" toKey="4" toKeyPath="*[@key='2']/*[@key='3']/*[@key='4']" toNamePath="Statement/Fields/_execDt" toType="profile"/>
+        <Mapping fromKey="54" fromKeyPath="*[@key='3']/*[@key='46']/*[@key='54']" fromNamePath="QueryResult/result/processId" fromType="profile" toFunction="1" toKey="1" toType="function"/>
+        <Mapping fromKey="54" fromKeyPath="*[@key='3']/*[@key='46']/*[@key='54']" fromNamePath="QueryResult/result/processId" fromType="profile" toKey="5" toKeyPath="*[@key='2']/*[@key='3']/*[@key='5']" toNamePath="Statement/Fields/componentId" toType="profile"/>
+        <Mapping fromKey="53" fromKeyPath="*[@key='3']/*[@key='46']/*[@key='53']" fromNamePath="QueryResult/result/processName" fromType="profile" toKey="17" toKeyPath="*[@key='2']/*[@key='3']/*[@key='17']" toNamePath="Statement/Fields/processName" toType="profile"/>
+        <Mapping fromKey="60" fromKeyPath="*[@key='3']/*[@key='46']/*[@key='60']" fromNamePath="QueryResult/result/executionDuration" fromType="profile" toKey="7" toKeyPath="*[@key='2']/*[@key='3']/*[@key='7']" toNamePath="Statement/Fields/duration" toType="profile"/>
+        <Mapping fromKey="55" fromKeyPath="*[@key='3']/*[@key='46']/*[@key='55']" fromNamePath="QueryResult/result/atomName" fromType="profile" toKey="18" toKeyPath="*[@key='2']/*[@key='3']/*[@key='18']" toNamePath="Statement/Fields/runtime" toType="profile"/>
+        <Mapping fromKey="51" fromKeyPath="*[@key='3']/*[@key='46']/*[@key='51']" fromNamePath="QueryResult/result/status" fromType="profile" toKey="19" toKeyPath="*[@key='2']/*[@key='3']/*[@key='19']" toNamePath="Statement/Fields/status" toType="profile"/>
+      </Mappings>
+      <Functions optimizeExecutionOrder="true">
+        <FunctionStep cacheEnabled="true" cacheOption="none" category="Lookup" key="1" name="Cross Reference Lookup" position="1" sumEnabled="false" type="CrossRefLookup" x="30.0" y="549.0">
+          <Inputs>
+            <Input key="1" name="componentId"/>
+          </Inputs>
+          <Outputs>
+            <Output key="2" name="domain"/>
+          </Outputs>
+          <Configuration>
+            <CrossRefLookup crossRefTableId="36cedd9d-b634-43b6-8603-3971b6920f9b" skipLookupIfNoInputs="true">
+              <Input index="1" name="componentId" refId="1"/>
+              <Output index="2" name="domain" refId="3"/>
+            </CrossRefLookup>
+          </Configuration>
+        </FunctionStep>
+      </Functions>
+      <Defaults/>
+      <DocumentCacheJoins/>
+    </Map>
+  </bns:object>
+</bns:Component>

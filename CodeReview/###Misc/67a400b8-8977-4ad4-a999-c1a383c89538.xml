@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="67a400b8-8977-4ad4-a999-c1a383c89538" version="1" name="(cache) Contact (sfdcId)" type="documentcache" createdDate="2025-07-03T03:51:28Z" createdBy="peterantony@boomi.com" modifiedDate="2025-07-03T03:51:28Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <DocumentCache xmlns="" enforceSingleLucene="true" profile="b3c823e6-e193-479b-a78e-e5ef00af3057" profileType="profile.json">
+      <CacheIndex indexId="1" indexName="idx0">
+        <cacheKey alias="sfdcId (Object/sfdcId)" elementKey="13" id="2" name="sfdcId (Object/sfdcId)" taglistKey="0" xsi:type="ProfileElementKeyConfig"/>
+      </CacheIndex>
+    </DocumentCache>
+  </bns:object>
+</bns:Component>
