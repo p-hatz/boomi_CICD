@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//zCustomer/NUS/ASync Delete" componentId="6bfab39e-6974-41b4-b763-3e0134b92a4d" version="14" name="(oper) Push to Q (Batch 1)" type="connector-action" subType="queue" createdDate="2019-09-05T04:19:22Z" createdBy="peterantony@boomi.com" modifiedDate="2025-06-15T23:24:28Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="ASync Delete" folderId="Rjo1Mzg2OTk3" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <QueueSendAction batchSize="1"/>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>

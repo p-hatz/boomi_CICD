@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="bb30c4cf-e6a0-45e6-b668-584cac486f48" version="1" name="(script) Chew CPU" type="script.processing" createdDate="2025-06-30T01:06:16Z" createdBy="peterantony@boomi.com" modifiedDate="2025-06-30T01:06:16Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <ProcessingScript xmlns="" language="groovy2" useCache="true">
+      <script>import java.util.Properties;
+import java.io.InputStream;
+
+for( int i = 0; i &lt; dataContext.getDataCount(); i++ ) {
+    InputStream is = dataContext.getStream(i);
+    Properties props = dataContext.getProperties(i);
+
+    dataContext.storeStream(is, props);
+}
+
+
+def cores = Runtime.runtime.availableProcessors()
+println "Starting CPU load on ${cores} cores..."
+
+(1..cores).each { i -&gt;
+    Thread.startDaemon("cpu-burner-$i") {
+        while (true) {
+            // Perform meaningless computations to burn CPU
+            def x = 0
+            for (int j = 0; j &lt; 1000000; j++) {
+                x += Math.sin(j) * Math.cos(j)
+            }
+        }
+    }
+}
+
+// Keep the main thread alive
+Thread.sleep(Long.MAX_VALUE)
+</script>
+    </ProcessingScript>
+  </bns:object>
+</bns:Component>

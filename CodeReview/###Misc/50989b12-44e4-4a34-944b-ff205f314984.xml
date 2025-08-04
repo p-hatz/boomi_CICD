@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="50989b12-44e4-4a34-944b-ff205f314984" version="3" name="(oper) Contact (GET)" type="connector-action" subType="officialboomi-X3979C-dbv2da-prod" createdDate="2025-07-03T03:50:45Z" createdBy="peterantony@boomi.com" modifiedDate="2025-07-03T05:45:41Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="" returnApplicationErrors="false" trackResponse="false">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <GenericOperationConfig customOperationType="GET" objectTypeId="contact" objectTypeName="contact (TABLE) " operationType="EXECUTE" requestProfile="4ba49eda-37a1-4ec6-a019-f0b1bc284e58" requestProfileType="json" responseProfile="58b6f5e9-deb0-4957-b722-8501779ba4d3" responseProfileType="json">
+          <field id="GetType" type="string" value="Standard Get"/>
+          <field id="INClause" type="boolean" value="false"/>
+          <field id="schemaName" type="string" value="ai"/>
+          <field id="query" type="string" value="SELECT sfdcId,firstName,lastName,email&#10;from contact&#10;limit 2"/>
+          <field id="linkElement" type="string" value=""/>
+          <field id="maxRows" type="integer"/>
+          <field id="maxFieldSize" type="integer"/>
+          <field id="batchCount" type="integer"/>
+          <field id="fetchSize" type="integer"/>
+          <dynamicOperationField displayType="textarea" id="query" label="SQL Query" overrideable="false" type="string">
+            <helpText>Type or paste a SQL prepared statement that is valid for the Get statement. For more than one statement, separate by semicolon and append a connection property allowMultiQueries=true to the database url.</helpText>
+            <defaultValue>SELECT * FROM contact WHERE id=$id AND sfdcId=$sfdcId AND firstName=$firstName AND lastName=$lastName AND email=$email AND title=$title AND jobLevel=$jobLevel AND accountName=$accountName AND contactStatus=$contactStatus AND contactCrDT=$contactCrDT AND dt=$dt</defaultValue>
+          </dynamicOperationField>
+          <cookie role="INPUT">
+            <value>ai</value>
+          </cookie>
+          <cookie role="OUTPUT">
+            <value>{"documentBatching":false}</value>
+          </cookie>
+          <Options>
+            <QueryOptions>
+              <Fields>
+                <ConnectorObject name="contact (TABLE) ">
+                  <FieldList>
+                    <ConnectorField filterable="true" name="accountName" selectable="true" selected="true" sortable="true"/>
+                    <ConnectorField filterable="true" name="contactCrDT" selectable="true" selected="true" sortable="true"/>
+                    <ConnectorField filterable="true" name="contactStatus" selectable="true" selected="true" sortable="true"/>
+                    <ConnectorField filterable="true" name="dt" selectable="true" selected="true" sortable="true"/>
+                    <ConnectorField filterable="true" name="email" selectable="true" selected="true" sortable="true"/>
+                    <ConnectorField filterable="true" name="firstName" selectable="true" selected="true" sortable="true"/>
+                    <ConnectorField filterable="true" name="id" selectable="true" selected="true" sortable="true"/>
+                    <ConnectorField filterable="true" name="jobLevel" selectable="true" selected="true" sortable="true"/>
+                    <ConnectorField filterable="true" name="lastName" selectable="true" selected="true" sortable="true"/>
+                    <ConnectorField filterable="true" name="sfdcId" selectable="true" selected="true" sortable="true"/>
+                    <ConnectorField filterable="true" name="title" selectable="true" selected="true" sortable="true"/>
+                  </FieldList>
+                </ConnectorObject>
+              </Fields>
+              <Inputs/>
+            </QueryOptions>
+          </Options>
+        </GenericOperationConfig>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>

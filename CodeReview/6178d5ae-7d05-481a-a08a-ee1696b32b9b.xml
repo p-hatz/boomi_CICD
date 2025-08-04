@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="/" componentId="6178d5ae-7d05-481a-a08a-ee1696b32b9b" version="1" name="Agent Connection" type="connector-settings" subType="boomiai" createdDate="2025-07-29T07:40:30Z" createdBy="peterantony@boomi.com" modifiedDate="2025-07-29T07:40:30Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="/" folderId="RjoyNzA1MDY1" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <GenericConnectionConfig xmlns="">
+      <field id="url" type="string" value="https://ai-agent-garden.datalake-prod.boomi.com/api/v1/agent-garden-runtime/boomi_peterantony-XG9LRG/session"/>
+    </GenericConnectionConfig>
+  </bns:object>
+</bns:Component>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//AI Studio/Run/Process Executions/Detail" componentId="2410c62c-7a36-453f-9c87-8785188f196c" version="4" name="(prof) ProcessExecDet - CAA" type="profile.db" createdDate="2025-07-28T01:01:19Z" createdBy="peterantony@boomi.com" modifiedDate="2025-07-28T01:07:13Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="Detail" folderId="Rjo2NTU1Mjc3" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <DatabaseProfile xmlns="" strict="true" version="2">
+      <ProfileProperties>
+        <DatabaseGeneralInfo executionType="dbwrite"/>
+      </ProfileProperties>
+      <DataElements>
+        <DBStatement isNode="true" key="2" name="Statement" statementType="dynamicinsert" storedProcedure="" tableName="caa.processExecDet">
+          <DBFields isNode="true" key="3" name="Fields">
+            <DatabaseElement dataType="character" enforceUnique="false" isMappable="true" isNode="true" key="4" mandatory="false" name="_execDt">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="character" enforceUnique="false" isMappable="true" isNode="true" key="5" mandatory="false" name="componentId">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="character" enforceUnique="false" isMappable="true" isNode="true" key="17" mandatory="false" name="processName">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="character" enforceUnique="false" isMappable="true" isNode="true" key="9" mandatory="false" name="executionId">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="character" enforceUnique="false" isMappable="true" isNode="true" key="6" mandatory="false" name="nodeId">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="number" enforceUnique="false" isMappable="true" isNode="true" key="7" mandatory="false" name="duration">
+              <DataFormat>
+                <ProfileNumberFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="character" enforceUnique="false" isMappable="true" isNode="true" key="18" mandatory="false" name="runtime">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="character" enforceUnique="false" isMappable="true" isNode="true" key="19" mandatory="false" name="status">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement dataType="character" enforceUnique="false" isMappable="true" isNode="true" key="13" mandatory="false" name="message">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+            <DatabaseElement enforceUnique="false" isMappable="true" isNode="true" key="20" mandatory="false" name="domainName">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </DatabaseElement>
+          </DBFields>
+          <sql/>
+        </DBStatement>
+      </DataElements>
+    </DatabaseProfile>
+  </bns:object>
+</bns:Component>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="ffd9ee77-f8b8-4aa6-b14b-4096a6c24251" version="1" name="(oper) SFDC Contact (GET)" type="connector-action" subType="salesforce" createdDate="2025-07-03T03:14:36Z" createdBy="peterantony@boomi.com" modifiedDate="2025-07-03T03:14:36Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <SalesforceGetAction logSoql="false" objectAction="Query by Custom Soql" objectName="Custom" useBulkAPI="false">
+          <Options/>
+        </SalesforceGetAction>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>

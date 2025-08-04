@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//Messaging/AtomQ" componentId="4a0d949e-db93-4135-8bd6-6b9e0fa1db1f" version="1" name="(queue) Misc" type="queue" createdDate="2025-07-04T03:45:09Z" createdBy="peterantony@boomi.com" modifiedDate="2025-07-04T03:45:09Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="AtomQ" folderId="RjoyNzY4MzAy" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <QueueModel xmlns="">
+      <Name>qMisc</Name>
+      <Type>queue</Type>
+    </QueueModel>
+  </bns:object>
+</bns:Component>
