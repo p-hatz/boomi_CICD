@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//zCustomer/SercoASPAC" componentId="29b3d2be-ff54-44b5-9082-ae88a4613dfc" version="2" name="[oper] Hub Query Golden Records" type="connector-action" subType="http" createdDate="2020-08-31T10:03:19Z" createdBy="peterantony@boomi.com" modifiedDate="2025-04-16T07:05:49Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="SercoASPAC" folderId="RjozNTExMDc0" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <HttpGetAction dataContentType="text/xml" followRedirects="false" methodType="POST" requestProfileType="NONE" responseProfile="53e26449-5ac7-4684-889c-e3307f5563f2" responseProfileType="XML" returnErrors="false" returnMimeResponse="false">
+          <requestHeaders/>
+          <pathElements>
+            <element key="2000003" name="universes/"/>
+            <element isVariable="true" key="2000004" name="ddp_universe_id"/>
+            <element key="2000005" name="/records/query"/>
+          </pathElements>
+          <responseHeaderMapping/>
+          <reflectHeaders/>
+        </HttpGetAction>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>

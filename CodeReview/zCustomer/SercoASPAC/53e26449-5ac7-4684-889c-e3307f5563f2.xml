@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//zCustomer/SercoASPAC" componentId="53e26449-5ac7-4684-889c-e3307f5563f2" version="1" name="[prof] Hub Get Golden Records Query Response - Artist - XML" type="profile.xml" createdDate="2020-08-31T10:03:18Z" createdBy="peterantony@boomi.com" modifiedDate="2020-08-31T10:03:18Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="SercoASPAC" folderId="RjozNTExMDc0" copiedFromComponentId="a95d9df2-943a-4453-a0a8-2c4e3e46f37c" copiedFromComponentVersion="1" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <XMLProfile xmlns="" modelVersion="2" strict="true">
+      <ProfileProperties>
+        <XMLGeneralInfo/>
+        <XMLOptions encoding="utf8" implicitElementOrdering="true" parseRespectMaxOccurs="true" respectMinOccurs="false" respectMinOccursAlways="false"/>
+      </ProfileProperties>
+      <DataElements>
+        <XMLElement dataType="character" isMappable="true" isNode="true" key="1" maxOccurs="1" minOccurs="1" name="RecordQueryResponse" useNamespace="-1">
+          <DataFormat>
+            <ProfileCharacterFormat/>
+          </DataFormat>
+          <XMLAttribute dataType="character" isMappable="true" isNode="true" key="2" name="resultCount" required="false" useNamespace="-1">
+            <DataFormat>
+              <ProfileCharacterFormat/>
+            </DataFormat>
+          </XMLAttribute>
+          <XMLAttribute dataType="character" isMappable="true" isNode="true" key="3" name="totalCount" required="false" useNamespace="-1">
+            <DataFormat>
+              <ProfileCharacterFormat/>
+            </DataFormat>
+          </XMLAttribute>
+          <XMLElement dataType="character" isMappable="true" isNode="true" key="5" maxOccurs="1" minOccurs="0" name="Record" useNamespace="-1">
+            <DataFormat>
+              <ProfileCharacterFormat/>
+            </DataFormat>
+            <XMLAttribute dataType="character" isMappable="true" isNode="true" key="6" name="recordId" required="false" useNamespace="-1">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </XMLAttribute>
+            <XMLAttribute dataType="character" isMappable="true" isNode="true" key="7" name="createdDate" required="false" useNamespace="-1">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </XMLAttribute>
+            <XMLAttribute dataType="character" isMappable="true" isNode="true" key="8" name="updatedDate" required="false" useNamespace="-1">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+            </XMLAttribute>
+            <XMLElement dataType="character" isMappable="true" isNode="true" key="9" maxOccurs="-1" minOccurs="0" name="Fields" useNamespace="-1" validateData="false">
+              <DataFormat>
+                <ProfileCharacterFormat/>
+              </DataFormat>
+              <QualifierList/>
+              <XMLElement dataType="character" isMappable="true" isNode="true" key="10" maxOccurs="1" minOccurs="0" name="artist" useNamespace="-1" validateData="false">
+                <DataFormat>
+                  <ProfileCharacterFormat/>
+                </DataFormat>
+                <QualifierList/>
+                <XMLElement dataType="character" isMappable="true" isNode="true" key="11" maxOccurs="1" minOccurs="0" name="uid" useNamespace="-1">
+                  <DataFormat>
+                    <ProfileCharacterFormat/>
+                  </DataFormat>
+                </XMLElement>
+                <XMLElement dataType="character" isMappable="true" isNode="true" key="13" maxOccurs="1" minOccurs="0" name="artistid" useNamespace="-1">
+                  <DataFormat>
+                    <ProfileCharacterFormat/>
+                  </DataFormat>
+                </XMLElement>
+                <XMLElement dataType="character" isMappable="true" isNode="true" key="12" maxOccurs="1" minOccurs="0" name="name" useNamespace="-1">
+                  <DataFormat>
+                    <ProfileCharacterFormat/>
+                  </DataFormat>
+                </XMLElement>
+                <XMLElement dataType="character" isMappable="true" isNode="true" key="14" maxOccurs="1" minOccurs="0" name="genre" useNamespace="-1" validateData="false">
+                  <DataFormat>
+                    <ProfileCharacterFormat/>
+                  </DataFormat>
+                  <QualifierList/>
+                  <XMLElement dataType="character" isMappable="true" isNode="true" key="15" maxOccurs="-1" minOccurs="0" name="genre" useNamespace="-1" validateData="false">
+                    <DataFormat>
+                      <ProfileCharacterFormat/>
+                    </DataFormat>
+                    <QualifierList/>
+                  </XMLElement>
+                </XMLElement>
+              </XMLElement>
+            </XMLElement>
+          </XMLElement>
+        </XMLElement>
+      </DataElements>
+      <Namespaces>
+        <XMLNamespace key="-1" name="Empty Namespace">
+          <Types/>
+        </XMLNamespace>
+      </Namespaces>
+      <tagLists/>
+    </XMLProfile>
+  </bns:object>
+</bns:Component>

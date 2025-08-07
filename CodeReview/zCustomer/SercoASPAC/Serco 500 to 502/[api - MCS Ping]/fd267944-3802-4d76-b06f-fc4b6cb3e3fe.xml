@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//zCustomer/SercoASPAC/Serco 500 to 502/[api - MCS Ping]" componentId="fd267944-3802-4d76-b06f-fc4b6cb3e3fe" version="1" name="[oper] - return HTTP Errors" type="connector-action" subType="http" createdDate="2025-04-16T06:56:45Z" createdBy="chris.tribe@boomi.com" modifiedDate="2025-04-16T06:56:45Z" modifiedBy="chris.tribe@boomi.com" deleted="false" currentVersion="true" folderName="[api - MCS Ping]" folderId="Rjo3NTc2NTQ5" copiedFromComponentId="40698171-c01c-4e8b-a488-f6cd8015e673" copiedFromComponentVersion="1" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <HttpGetAction dataContentType="text/plain" followRedirects="false" methodType="GET" mimePassthrough="false" requestProfileType="NONE" responseProfileType="NONE" returnErrors="true" returnMimeResponse="false">
+          <requestHeaders/>
+          <pathElements/>
+          <responseHeaderMapping/>
+          <reflectHeaders/>
+        </HttpGetAction>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>
