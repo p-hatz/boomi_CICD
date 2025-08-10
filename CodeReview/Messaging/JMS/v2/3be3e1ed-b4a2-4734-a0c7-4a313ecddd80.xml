@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//Messaging/JMS/v2" componentId="3be3e1ed-b4a2-4734-a0c7-4a313ecddd80" version="5" name="(lsnr) qSupplier" type="process" createdDate="2025-07-13T11:25:38Z" createdBy="peterantony@boomi.com" modifiedDate="2025-08-06T23:53:40Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="v2" folderId="Rjo3MTYyNTgw" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//Messaging/JMS/v2" componentId="3be3e1ed-b4a2-4734-a0c7-4a313ecddd80" version="6" name="(lsnr) qSupplier" type="process" createdDate="2025-07-13T11:25:38Z" createdBy="peterantony@boomi.com" modifiedDate="2025-08-10T20:48:10Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="v2" folderId="Rjo3MTYyNTgw" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
-  <bns:description>This process demonstrates how to listen for messages on a JMS queue. The process will execute as soon as a message is placed on the queue. How the message is acknowledged/consumed is configured in the JMS Listen Operation component. View that component for more information. Note the connection and destination syntax is specific to ActiveMQ and will vary across JMS providers.
-
-This process also shows a custom JMS property declared in the JMS Operation and retrieved as a dynamic document property.</bns:description>
+  <bns:description/>
   <bns:object>
     <process xmlns="" allowSimultaneous="true" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" updateRunDates="false" workload="bridge">
       <shapes>
