@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//Messaging/JMS/v2" componentId="3be3e1ed-b4a2-4734-a0c7-4a313ecddd80" version="5" name="(lsnr) qSupplier" type="process" createdDate="2025-07-13T11:25:38Z" createdBy="peterantony@boomi.com" modifiedDate="2025-08-06T23:53:40Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="v2" folderId="Rjo3MTYyNTgw" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description>This process demonstrates how to listen for messages on a JMS queue. The process will execute as soon as a message is placed on the queue. How the message is acknowledged/consumed is configured in the JMS Listen Operation component. View that component for more information. Note the connection and destination syntax is specific to ActiveMQ and will vary across JMS providers.
+
+This process also shows a custom JMS property declared in the JMS Operation and retrieved as a dynamic document property.</bns:description>
+  <bns:object>
+    <process xmlns="" allowSimultaneous="true" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" updateRunDates="false" workload="bridge">
+      <shapes>
+        <shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="46.0">
+          <configuration>
+            <connectoraction actionType="LISTEN" allowDynamicCredentials="NONE" connectionId="5818ddcd-0958-4d92-a6f2-1adb8b00a759" connectorType="officialboomi-X3979C-jmsv2-prod" hideSettings="false" operationId="5e68cb15-6482-48bd-9ae4-55f4c1b5c008">
+              <parameters/>
+              <dynamicProperties/>
+            </connectoraction>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape1.dragpoint1" toShape="shape11" x="224.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="notify_icon" name="shape10" shapetype="notify" userlabel="" x="432.0" y="48.0">
+          <configuration>
+            <notify disableEvent="true" enableUserLog="false" perExecution="false" title="">
+              <notifyMessage>{1}</notifyMessage>
+              <notifyMessageLevel>INFO</notifyMessageLevel>
+              <notifyParameters>
+                <parametervalue key="0" valueType="track">
+                  <trackparameter defaultValue="" propertyId="dynamicdocument.ddpDeliveryCount" propertyName="Dynamic Document Property - ddpDeliveryCount"/>
+                </parametervalue>
+              </notifyParameters>
+            </notify>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape10.dragpoint1" toShape="shape15" x="608.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="documentproperties_icon" name="shape11" shapetype="documentproperties" userlabel="" x="240.0" y="48.0">
+          <configuration>
+            <documentproperties>
+              <documentproperty defaultValue="" isDynamicCredential="false" isTradingPartner="false" name="Dynamic Document Property - ddpDeliveryCount" persist="false" propertyId="dynamicdocument.ddpDeliveryCount" shouldEncrypt="false">
+                <sourcevalues>
+                  <parametervalue key="1" valueType="track">
+                    <trackparameter defaultValue="" propertyId="connector.officialboomi-X3979C-jmsv2-prod.custom_properties.JMSXDeliveryCount" propertyName="JMS V2 - Custom Properties - JMSXDeliveryCount"/>
+                  </parametervalue>
+                </sourcevalues>
+              </documentproperty>
+            </documentproperties>
+          </configuration>
+          <dragpoints>
+            <dragpoint name="shape11.dragpoint1" toShape="shape10" x="416.0" y="56.0"/>
+          </dragpoints>
+        </shape>
+        <shape image="stop_icon" name="shape15" shapetype="stop" userlabel="" x="624.0" y="48.0">
+          <configuration>
+            <stop continue="true"/>
+          </configuration>
+          <dragpoints/>
+        </shape>
+      </shapes>
+    </process>
+  </bns:object>
+  <bns:processOverrides/>
+</bns:Component>

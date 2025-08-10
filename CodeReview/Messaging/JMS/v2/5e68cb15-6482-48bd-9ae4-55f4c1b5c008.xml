@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//Messaging/JMS/v2" componentId="5e68cb15-6482-48bd-9ae4-55f4c1b5c008" version="9" name="(oper) qSupplier (v2|LISTEN)" type="connector-action" subType="officialboomi-X3979C-jmsv2-prod" createdDate="2025-07-13T11:28:36Z" createdBy="peterantony@boomi.com" modifiedDate="2025-08-07T00:01:40Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="v2" folderId="Rjo3MTYyNTgw" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="" returnApplicationErrors="false" trackResponse="true">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <GenericOperationConfig objectTypeId="dynamic_destination" objectTypeName="Dynamic Destination" operationType="LISTEN" requestProfileType="xml" responseProfileType="binary">
+          <field id="delivery_policy" type="string" value="AT_LEAST_ONCE"/>
+          <field id="use_transaction" type="boolean" value="false"/>
+          <field id="message_selector" type="string" value=""/>
+          <field id="use_durable_subscription" type="boolean" value="false"/>
+          <field id="subscription_name" type="string" value=""/>
+          <field id="max_concurrent_executions" type="integer"/>
+          <field id="singleton_listener" type="boolean" value="true"/>
+          <field id="destination" type="string" value="dynamicQueues/qSupplier"/>
+          <dynamicOperationField displayType="list" id="destination" label="Destination" overrideable="true" type="string">
+            <helpText>Indicate the destination from where to retrieve the messages.</helpText>
+          </dynamicOperationField>
+          <Options>
+            <QueryOptions>
+              <Fields>
+                <ConnectorObject name="Dynamic Destination">
+                  <FieldList/>
+                </ConnectorObject>
+              </Fields>
+              <Inputs/>
+            </QueryOptions>
+          </Options>
+        </GenericOperationConfig>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>
