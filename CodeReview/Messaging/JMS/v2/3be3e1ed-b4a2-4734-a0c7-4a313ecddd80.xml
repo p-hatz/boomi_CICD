@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//Messaging/JMS/v2" componentId="3be3e1ed-b4a2-4734-a0c7-4a313ecddd80" version="6" name="(lsnr) qSupplier" type="process" createdDate="2025-07-13T11:25:38Z" createdBy="peterantony@boomi.com" modifiedDate="2025-08-10T20:48:10Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="v2" folderId="Rjo3MTYyNTgw" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//Messaging/JMS/v2" componentId="3be3e1ed-b4a2-4734-a0c7-4a313ecddd80" version="7" name="(lsnr) qSupplier" type="process" createdDate="2025-07-13T11:25:38Z" createdBy="peterantony@boomi.com" modifiedDate="2025-08-11T00:55:22Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="v2" folderId="Rjo3MTYyNTgw" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
-  <bns:description/>
+  <bns:description>JMSv2 Listen sample</bns:description>
   <bns:object>
     <process xmlns="" allowSimultaneous="true" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" updateRunDates="false" workload="bridge">
       <shapes>
