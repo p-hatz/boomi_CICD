@@ -1,0 +1,4 @@
+{
+  "installType" : "${runtimeType}",
+  "durationMinutes" : "${duration}"
+}
