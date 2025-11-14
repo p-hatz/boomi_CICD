@@ -1,7 +1,7 @@
 #Component Details
 componentId=66769d7b-f200-43c6-ab32-2d0386e7b32c
 componentType=Process
-ver=804
+ver=805
 buildNotes=Latest change demo
 targetEnv='1. Dev'
 listenerStatus=PAUSED
