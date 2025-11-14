@@ -27,7 +27,7 @@ env:
   ID: ${{ github.run_id }}-${{ github.run_attempt }}
   
 jobs:
-  build:
+  build and deploy:
     runs-on: [self-hosted, linux, X64]
     #DEBUG
     environment:
