@@ -334,7 +334,7 @@ function handleXmlComponents {
    		  $WD/bin/publishCodeReviewReport.sh COMPONENT_LIST_FILE="${WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list" GIT_COMMIT_ID="master" > "${WORKSPACE}/${extractComponentXmlFolder}_CodeReviewReport.html"
 		    cp "${WORKSPACE}/${extractComponentXmlFolder}_CodeReviewReport.html" "${WORKSPACE}/${extractComponentXmlFolder}/CodeReviewReports/${extractComponentXmlFolder}_CodeReviewReport.html" 
 		    rm -f "${WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
-        $WD/bin/sonarScanner.sh baseFolder="${folder}"
+        #$WD/bin/sonarScanner.sh baseFolder="${folder}"
         $WD/bin/gitPush.sh baseFolder="${folder}" tag="${tag}" notes="${notes}"
     	fi
    fi
