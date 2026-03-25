@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="c62e92ac-ecef-48d7-848c-5fe616e471aa" version="5" name="(oper) Customer" type="connector-action" subType="http" createdDate="2025-11-13T21:46:50Z" createdBy="peterantony@boomi.com" modifiedDate="2025-12-01T06:19:16Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+  <bns:encryptedValues/>
+  <bns:description/>
+  <bns:object>
+    <Operation xmlns="">
+      <Archiving directory="" enabled="false"/>
+      <Configuration>
+        <HttpGetAction dataContentType="text/plain" followRedirects="false" methodType="GET" mimePassthrough="false" requestProfileType="NONE" responseProfileType="JSON" returnErrors="false" returnMimeResponse="false">
+          <requestHeaders/>
+          <pathElements>
+            <element key="2000000" name="customer"/>
+          </pathElements>
+          <responseHeaderMapping/>
+          <reflectHeaders/>
+        </HttpGetAction>
+      </Configuration>
+      <Tracking>
+        <TrackedFields/>
+      </Tracking>
+      <Caching/>
+    </Operation>
+  </bns:object>
+</bns:Component>
