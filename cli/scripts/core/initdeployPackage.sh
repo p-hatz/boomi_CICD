@@ -2,7 +2,7 @@
 
 set -a
 
-source bin/common.sh
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
 ARGUMENTS=(authToken componentId packageVersion notes componentType env listenerStatus updExt)
 
@@ -12,4 +12,4 @@ then
 	exit $?
 fi
 
-bin/deployPackage.sh componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$notes" env=$env listenerStatus=$listenerStatus updExt=$updExt
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/deployPackage.sh componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$notes" env=$env listenerStatus=$listenerStatus updExt=$updExt
