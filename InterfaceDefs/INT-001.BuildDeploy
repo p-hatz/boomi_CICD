@@ -9,5 +9,10 @@ listenerStatus=PAUSED
 #Code Quality
 codeCheck=0
 
-#Extensions
-updExt=0
+#Environment Extensions
+updEE=0
+eeCompId=6a139667-f60e-4742-a275-238a39832d11
+eeCompType=connection
+
+#Code Quality
+codeCheck=0
