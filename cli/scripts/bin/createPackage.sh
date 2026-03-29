@@ -24,7 +24,7 @@ fi
 saveNotes="${notes}"
 saveTag="${tag}"
 
-source bin/createSinglePackage.sh "$@"
+source "${GITHUB_WORKSPACE}/cli/scripts/bin/createSinglePackage.sh "$@"
 if [ "$?" -eq 255 ]
 then
     echo "Issue found with packaging. Bailing!"
