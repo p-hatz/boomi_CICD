@@ -7,7 +7,7 @@ targetEnv="0.Demo"
 listenerStatus=PAUSED
 
 #Code Quality
-codeCheck=0
+codeCheck=1
 
 #Environment Extensions
 updEE=0
