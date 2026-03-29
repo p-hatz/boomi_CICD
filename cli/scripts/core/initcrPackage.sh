@@ -2,7 +2,7 @@
 
 set -a
 
-source bin/common.sh
+source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
 
 ARGUMENTS=(authToken componentId packageVersion notes componentType extractComponentXmlFolder)
 
