@@ -29,11 +29,11 @@ then
         saveProcessName="${processName}"
         componentType="${saveComponentType}"
         componentId=""
-		source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted=""
+		source "${GITHUB_WORKSPACE}/cli/scripts/bin/queryComponentMetadata.sh" componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted=""
 		saveComponentName="${componentName}"
         saveComponentId="${componentId}"
         saveComponentVersion="${componentVersion}"
-		source ${GITHUB_WORKSPACE}/cli/scripts/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
+		source "${GITHUB_WORKSPACE}/cli/scripts/bin/createPackagedComponent.sh" componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
 	if [ ! -z ${packageId} ]
 	then
 		echoi "Created package ${packageId} for component ${saveProcessName}"
@@ -48,12 +48,12 @@ else
     saveComponentId="${componentId}"
     componentType="${saveComponentType}"
 	processName=""
-	source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted="" 
+	source "${GITHUB_WORKSPACE}/cli/scripts/bin/queryComponentMetadata.sh" componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted="" 
 	
 	saveComponentName="${componentName}"
     saveComponentVersion="${componentVersion}"
 	componentId="${saveComponentId}"
-	source ${GITHUB_WORKSPACE}/cli/scripts/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
+	source "${GITHUB_WORKSPACE}/cli/scripts/bin/createPackagedComponent.sh" componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
 	if [ ! -z ${packageId} ]
 	then
 		echoi "Created package ${packageId} for componentId ${saveComponentId}"
@@ -77,7 +77,7 @@ then
   # save the list of component details for a codereview report to be published at the end
 	printf "%s%s%s\n" "${saveComponentId}|" "${saveComponentName}|" "${saveComponentVersion}" >> "${WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
 	echov "Publishing package metatdata for ${packageId}."
-	source bin/publishPackagedComponentMetadata.sh packageIds="${packageId}" > "${packageFolder}/Manifest_${saveComponentId}.html"
+	source "${GITHUB_WORKSPACE}/cli/scripts/bin/publishPackagedComponentMetadata.sh" packageIds="${packageId}" > "${packageFolder}/Manifest_${saveComponentId}.html"
   	g=0
 	export baseFolder="${packageFolder}"
 
