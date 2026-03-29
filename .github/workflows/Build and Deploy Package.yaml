@@ -83,6 +83,8 @@ jobs:
             compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
             codeCheck=$(grep '^codeCheck=' $file | cut -f2 -d'=')
 
+            updExt=$(grep '^updEE=' $file | cut -f2 -d'=')
+            
             compCount=1
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
             compCount=$((compCount + 1))
@@ -109,6 +111,8 @@ jobs:
               _checkDeployment=0
               source "${GITHUB_WORKSPACE}/cli/scripts/core/initCheckPackage.sh" componentId=$_compId componentType=$_compType packageVersion=$compVer envId=$_envId codeCheck=$codeCheck checkDeployment=$_checkDeployment
               echo "calling deployPackage (packageId: $packageId)"
+
+              
               "${GITHUB_WORKSPACE}/cli/scripts/core/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
               #DEBUG
 
