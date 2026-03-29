@@ -105,7 +105,7 @@ jobs:
 
               #DEBUG
               _envId=${{ vars.envId }}
-              _checkDeployment=0
+              _checkDeployment=1
               source "${GITHUB_WORKSPACE}/cli/scripts/core/initCheckPackage.sh" componentId=$_compId componentType=$_compType packageVersion=$compVer envId=$_envId codeCheck=$codeCheck checkDeployment=$_checkDeployment
               echo "calling deployPackage (packageId: $packageId)"
               "${GITHUB_WORKSPACE}/cli/scripts/core/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
