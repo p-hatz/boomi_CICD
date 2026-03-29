@@ -9,7 +9,7 @@ export baseURL=https://api.boomi.com/api/rest/v1/$accountId
 #sonarProject=$(sonarProject)
 
 #export sonarURL sonar sonarProject
-export sonarRulesFile="sonar/BoomiSonarRules.xml"
+export sonarRulesFile="${GITHUB_WORKSPACE}/cli/scripts/conf/BoomiSonarRules.xml"
 
 export gitComponentRepoURL="$4"
 export gitComponentUserName="$5"
