@@ -1,5 +1,5 @@
 #!/bin/bash
-source bin/common.sh
+source "${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh"
 
 WORKSPACE=/tmp
 
