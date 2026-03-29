@@ -2,7 +2,7 @@
 
 set -a
 
-source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+source "${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh"
 
 ARGUMENTS=(packageId componentId extractComponentXmlFolder)
 
@@ -26,7 +26,7 @@ then
   # save the list of component details for a codereview report to be published at the end
 	printf "%s%s%s\n" "${saveComponentId}|" "${saveComponentName}|" "${saveComponentVersion}" >> "${GITHUB_WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
 	echov "Publishing package metatdata for ${packageId}."
-	source ${GITHUB_WORKSPACE}/cli/scripts/bin/publishPackagedComponentMetadata.sh packageIds="${packageId}" > "${packageFolder}/Manifest_${saveComponentId}.html"
+	source "${GITHUB_WORKSPACE}/cli/scripts/bin/publishPackagedComponentMetadata.sh" packageIds="${packageId}" > "${packageFolder}/Manifest_${saveComponentId}.html"
 	g=0
 	export baseFolder="${packageFolder}"
 
@@ -37,7 +37,7 @@ then
 
 		echo $componentId : $componentVersion
 
-		source ${GITHUB_WORKSPACE}/cli/scripts/bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
+		source "${GITHUB_WORKSPACE}/cli/scripts/bin/getComponent.sh" componentId=${componentId} version=${componentVersion} 
     		eval `cat "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
     		mkdir -p "${packageFolder}/${folderFullPath}"
 		type=$(cat "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath 'string(//*/@type)' -)
@@ -46,20 +46,20 @@ then
 		if [ $type == "process" ] 
 		then
 			componentFile="${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml
-			source ${GITHUB_WORKSPACE}/cli/scripts/bin/createExtensionsJson.sh componentFile="${componentFile}"
+			source "${GITHUB_WORKSPACE}/cli/scripts/bin/createExtensionsJson.sh" componentFile="${componentFile}"
 		fi
  
     		mv "${GITHUB_WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}" 
  	done
   
   	# Create a violations report using sonarqube rules	
-	$GITHUB_WORKSPACE/cli/scripts/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
+	source "$GITHUB_WORKSPACE/cli/scripts/bin/xpathRulesChecker.sh" baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
 
 	#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
 	export baseFolder="${packageFolder}"
 	#echo savenotes: ${saveNotes}
 
-	source $GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh ${gitComponentOption}
+	source "$GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh" ${gitComponentOption}
  
  	#for _compIdx in ${!componentIds[@]}; 
 	#do
