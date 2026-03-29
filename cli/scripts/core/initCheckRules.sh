@@ -59,8 +59,10 @@ then
 	export baseFolder="${packageFolder}"
 	#echo savenotes: ${saveNotes}
 
-	source "$GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh" ${gitComponentOption}
- 
+    #DEBUG
+	#source "$GITHUB_WORKSPACE/cli/scripts/bin/gitPush.sh" ${gitComponentOption}
+	#DEBUG
+	
  	#for _compIdx in ${!componentIds[@]}; 
 	#do
  	#	componentId=${componentIds[$_compIdx]}
