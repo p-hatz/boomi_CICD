@@ -114,8 +114,8 @@ then
 		export baseFolder="${packageFolder}"
 		echo savenotes: ${saveNotes}
 
-		export $saveNotes
-		source ${GITHUB_WORKSPACE}/cli/scripts/bin/gitPush.sh ${gitComponentOption}
+		export "$saveNotes"
+		source "${GITHUB_WORKSPACE}/cli/scripts/bin/gitPush.sh" ${gitComponentOption}
 		#export tag="${componentId}"
  		#export tag="${processName}"
 		#export notes="Created from GitHub Actions Pipeline"
