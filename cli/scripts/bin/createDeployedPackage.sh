@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $WD/bin/common.sh 
+source "${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh"
 # Query processattachment id before creating it
 echov "$@"
 source $WD/bin/queryDeployedPackage.sh "$@"
