@@ -41,5 +41,5 @@ echo save: $saveComponentId
 if [ $codeCheck -eq 1 ]
 then
 	echo Checking code!...
-    source "${GITHUB_WORKSPACE}/cli/scripts/bin/initCheckRules.sh" packageId=$savePackageId componentId=$saveComponentId extractComponentXmlFolder=CodeReview
+    source "${GITHUB_WORKSPACE}/cli/scripts/core/initCheckRules.sh" packageId=$savePackageId componentId=$saveComponentId extractComponentXmlFolder=CodeReview
 fi          
