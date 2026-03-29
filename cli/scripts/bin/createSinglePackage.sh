@@ -30,11 +30,11 @@ then
         saveProcessName="${processName}"
         componentType="${saveComponentType}"
         componentId=""
-	source bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted=""
-	saveComponentName="${componentName}"
+		source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted=""
+		saveComponentName="${componentName}"
         saveComponentId="${componentId}"
         saveComponentVersion="${componentVersion}"
-	source bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
+		source ${GITHUB_WORKSPACE}/cli/scripts/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
 	if [ ! -z ${packageId} ]
 	then
 		echoi "Created package ${packageId} for component ${saveProcessName}"
@@ -49,12 +49,12 @@ else
     saveComponentId="${componentId}"
     componentType="${saveComponentType}"
 	processName=""
-	source bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted="" 
+	source ${GITHUB_WORKSPACE}/cli/scripts/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted="" 
 	
 	saveComponentName="${componentName}"
     saveComponentVersion="${componentVersion}"
 	componentId="${saveComponentId}"
-	source bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
+	source ${GITHUB_WORKSPACE}/cli/scripts/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
 	if [ ! -z ${packageId} ]
 	then
 		echoi "Created package ${packageId} for componentId ${saveComponentId}"
@@ -88,7 +88,7 @@ then
 		componentVersion=${componentVersions[$g]}
 
 		echo componentId version: $componentId : $componentVersion
-  		source bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
+  		source ${GITHUB_WORKSPACE}/cli/scripts/bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
     	eval `cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
     	mkdir -p "${packageFolder}/${folderFullPath}"
       	type=$(cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath 'string(//*/@type)' -)
@@ -98,7 +98,7 @@ then
 		if [ $type == "process" ] 
 		then
 			componentFile="${WORKSPACE}"/${componentIds[$g]}.xml
-			source bin/createExtensionsJson.sh componentFile="${componentFile}"
+			source ${GITHUB_WORKSPACE}/cli/scripts/bin/createExtensionsJson.sh componentFile="${componentFile}"
 		fi
  
     	mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}"
@@ -107,16 +107,16 @@ then
 
 	if [ "${codeCheck}" -eq 1 ]
 	then
-		source bin/sonarScanner.sh baseFolder="${packageFolder}"
+		source ${GITHUB_WORKSPACE}/cli/scripts/bin/sonarScanner.sh baseFolder="${packageFolder}"
   		# Create a violations report using sonarqube rules	
-		source bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
+		source ${GITHUB_WORKSPACE}/cli/scripts/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
 
 		#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
 		export baseFolder="${packageFolder}"
 		echo savenotes: ${saveNotes}
 
 		export $saveNotes
-		source bin/gitPush.sh ${gitComponentOption}
+		source ${GITHUB_WORKSPACE}/cli/scripts/bin/gitPush.sh ${gitComponentOption}
 		#export tag="${componentId}"
  		#export tag="${processName}"
 		#export notes="Created from GitHub Actions Pipeline"
