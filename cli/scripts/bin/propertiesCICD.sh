@@ -4,7 +4,12 @@ export authToken="$2:$3"
 #Account Authorization (using an Atomsphere API Token)
 export baseURL=https://api.boomi.com/api/rest/v1/$accountId
 #Do not set 
-export sonarRulesFile="$WD/conf/BoomiSonarRules.xml"
+#sonarURL=$(sonarURL)
+#sonar=$(sonar)
+#sonarProject=$(sonarProject)
+
+#export sonarURL sonar sonarProject
+export sonarRulesFile="sonar/BoomiSonarRules.xml"
 
 export gitComponentRepoURL="$4"
 export gitComponentUserName="$5"
