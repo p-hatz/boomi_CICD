@@ -2,9 +2,7 @@
 
 set -a
 
-source bin/common.sh
-
-echo in script $authToken
+source "${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh"
 
 ARGUMENTS=(env componentId componentType fieldVal)
 
@@ -14,6 +12,6 @@ then
 	exit $?
 fi
 
-source bin/queryEnvironment.sh "env=$env" classification="*"
+source "${GITHUB_WORKSPACE}/cli/scripts/bin/queryEnvironment.sh" "env=$env" classification="*"
 
-bin/updateExtensions.sh environmentId=$envId componentId=$componentId componentType=$componentType fieldVal="$fieldVal"
+"${GITHUB_WORKSPACE}/cli/scripts/bin/updateExtensions.sh" environmentId=$envId componentId=$componentId componentType=$componentType fieldVal="$fieldVal"
