@@ -6,9 +6,6 @@ buildNotes=CR 815: Sample change
 targetEnv="0.Demo"
 listenerStatus=PAUSED
 
-#Code Quality
-codeCheck=1
-
 #Environment Extensions
 updEE=0
 eeCompId=6a139667-f60e-4742-a275-238a39832d11
