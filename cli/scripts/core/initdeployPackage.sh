@@ -2,9 +2,9 @@
 
 set -a
 
-source ${GITHUB_WORKSPACE}/cli/scripts/bin/common.sh
+source bin/common.sh
 
-ARGUMENTS=(authToken componentId packageVersion notes componentType env listenerStatus)
+ARGUMENTS=(authToken componentId packageVersion notes componentType env listenerStatus updExt)
 
 inputs "$@"
 if [ "$?" -gt 0 ]
@@ -12,4 +12,4 @@ then
 	exit $?
 fi
 
-source ${GITHUB_WORKSPACE}/cli/scripts/bin/deployPackage.sh componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$notes" env=$env listenerStatus=$listenerStatus
+bin/deployPackage.sh componentId=$componentId packageVersion=$packageVersion componentType=$componentType notes="$notes" env=$env listenerStatus=$listenerStatus updExt=$updExt
