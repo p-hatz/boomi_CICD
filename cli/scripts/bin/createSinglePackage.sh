@@ -1,5 +1,8 @@
 #!/bin/bash
-#source $WD/bin/common.sh
+source bin/common.sh
+
+export WORKSPACE=/tmp
+
 
 # mandatory arguments
 ARGUMENTS=(packageVersion notes) 
@@ -27,11 +30,11 @@ then
         saveProcessName="${processName}"
         componentType="${saveComponentType}"
         componentId=""
-	source $WD/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted=""
+	source bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted=""
 	saveComponentName="${componentName}"
         saveComponentId="${componentId}"
         saveComponentVersion="${componentVersion}"
-	source $WD/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
+	source bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
 	if [ ! -z ${packageId} ]
 	then
 		echoi "Created package ${packageId} for component ${saveProcessName}"
@@ -40,17 +43,18 @@ then
 	fi 
 else    
 	notes="${saveNotes}"
-        packageVersion="${savePackageVersion}"
-        componentId="${saveComponentId}"
-        #componentId=`echo "${componentId}" | xargs`
-        saveComponentId="${componentId}"
-        componentType="${saveComponentType}"
+    packageVersion="${savePackageVersion}"
+    componentId="${saveComponentId}"
+    #componentId=`echo "${componentId}" | xargs`
+    saveComponentId="${componentId}"
+    componentType="${saveComponentType}"
 	processName=""
-	source $WD/bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted="" 
+	source bin/queryComponentMetadata.sh componentName="${processName}" componentType="${componentType}" componentId="${componentId}" componentVersion="${componentVersion}" currentVersion="" deleted="" 
+	
 	saveComponentName="${componentName}"
-        saveComponentVersion="${componentVersion}"
+    saveComponentVersion="${componentVersion}"
 	componentId="${saveComponentId}"
-	source $WD/bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
+	source bin/createPackagedComponent.sh componentId=${componentId} componentType="${componentType}" packageVersion="${packageVersion}" notes="${notes}" componentVersion="${componentVersion}"
 	if [ ! -z ${packageId} ]
 	then
 		echoi "Created package ${packageId} for componentId ${saveComponentId}"
@@ -66,12 +70,15 @@ if [ ! -z "${extractComponentXmlFolder}" ] && [ null != "${extractComponentXmlFo
 then
 	folder="${WORKSPACE}/${extractComponentXmlFolder}"
 	packageFolder="${folder}/${saveComponentId}"
+	#for some reason we get directories created with a CR in it
+	cleanUUID=$(echo "$saveComponentId" | tr -d '\r')
+	packageFolder="${folder}/${cleanUUID}"
 	mkdir -p "${packageFolder}"
 	
   # save the list of component details for a codereview report to be published at the end
 	printf "%s%s%s\n" "${saveComponentId}|" "${saveComponentName}|" "${saveComponentVersion}" >> "${WORKSPACE}/${extractComponentXmlFolder}/${extractComponentXmlFolder}.list"
 	echov "Publishing package metatdata for ${packageId}."
-	source $WD/bin/publishPackagedComponentMetadata.sh packageIds="${packageId}" > "${packageFolder}/Manifest_${saveComponentId}.html"
+	source bin/publishPackagedComponentMetadata.sh packageIds="${packageId}" > "${packageFolder}/Manifest_${saveComponentId}.html"
   	g=0
 	export baseFolder="${packageFolder}"
 
@@ -80,52 +87,59 @@ then
  		componentId=${componentIds[$g]}
 		componentVersion=${componentVersions[$g]}
 
-		#echo $componentId : $componentVersion
-  		source $WD/bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
-    		eval `cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
-    		mkdir -p "${packageFolder}/${folderFullPath}"
-      		type=$(cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath 'string(//*/@type)' -)
+		echo componentId version: $componentId : $componentVersion
+  		source bin/getComponent.sh componentId=${componentId} version=${componentVersion} 
+    	eval `cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath '//*/@folderFullPath' -`
+    	mkdir -p "${packageFolder}/${folderFullPath}"
+      	type=$(cat "${WORKSPACE}"/${componentIds[$g]}.xml | xmllint --xpath 'string(//*/@type)' -)
 		
 		# create extension file for this process
+		echo Processing extensions
 		if [ $type == "process" ] 
 		then
 			componentFile="${WORKSPACE}"/${componentIds[$g]}.xml
-			source $WD/bin/createExtensionsJson.sh componentFile="${componentFile}"
+			source bin/createExtensionsJson.sh componentFile="${componentFile}"
 		fi
  
-    		mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}"
-      		#echo Listing "${packageFolder}/${folderFullPath}"
+    	mv "${WORKSPACE}"/${componentIds[$g]}.xml "${packageFolder}/${folderFullPath}"
+      	#echo Listing "${packageFolder}/${folderFullPath}"
  	done
 
- 	$WD/bin/sonarScanner.sh baseFolder="${packageFolder}"	
-  	# Create a violations report using sonarqube rules	
-	$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
+	if [ "${codeCheck}" -eq 1 ]
+	then
+		source bin/sonarScanner.sh baseFolder="${packageFolder}"
+  		# Create a violations report using sonarqube rules	
+		source bin/xpathRulesChecker.sh baseFolder="${packageFolder}" > "${packageFolder}/ViolationsReport_${saveComponentId}.html"
 
-	#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
-	export baseFolder="${packageFolder}"
-	echo savenotes: ${saveNotes}
+		#$WD/bin/xpathRulesChecker.sh baseFolder="${packageFolder}"
+		export baseFolder="${packageFolder}"
+		echo savenotes: ${saveNotes}
 
-	export $saveNotes
-	source $WD/bin/gitPush.sh ${gitComponentOption}
-	#export tag="${componentId}"
- 	#export tag="${processName}"
-	#export notes="Created from GitHub Actions Pipeline"
-	#source $WD/bin/gitPush.sh "${notes}" "${tag}"
- 	_url="${sonarURL}/api/issues/search?project=boomi&issueStatuses=OPEN"
-  	#_urlResource=""
-  	#echo $_url$_urlResource
-   	_issues=$(curl -s -H "Authorization: Basic $sonarToken" "$_url")
- 	_issueCount=0
- 	_issueCount=$(echo $_issues | jq -r ".total")
-   	echo issueCount: $_issueCount
+		export $saveNotes
+		source bin/gitPush.sh ${gitComponentOption}
+		#export tag="${componentId}"
+ 		#export tag="${processName}"
+		#export notes="Created from GitHub Actions Pipeline"
+		#source $WD/bin/gitPush.sh "${notes}" "${tag}"
+	
+		#need to wait until Sonar is ready
+		sleep 5
+		_url="${sonarURL}/api/issues/search?project=Boomi&issueStatuses=OPEN"
+		_issues=$(curl -s -u "$sonar:" "$_url")
+ 		_issueCount=0
+		_issueCount=$(echo $_issues | jq -r ".total")
+   		echo issueCount: $_issueCount
     	if [ "$_issueCount" -ne "0" ]
-     	then
-      		echo Issues found with scan!
-		clean
-      		exit 1
+    	then
+    		echo Issues found with scan!
+			clean
+    		return 255
+		else
+ 			echo No issues. Continuing...
+   		fi
 	else
- 		echo No issues. Continuing...
-   	fi
+		echo Skipping code Check
+	fi
 fi
 
 clean
