@@ -1,8 +1,8 @@
 #Component Details
 componentId=66769d7b-f200-43c6-ab32-2d0386e7b32c
 componentType=Process
-ver=816
-buildNotes=CR 816: Sample change
+ver=817
+buildNotes="CR 817 Sample change"
 targetEnv=0.Demo
 listenerStatus=PAUSED
 
