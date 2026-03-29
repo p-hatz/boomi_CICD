@@ -25,7 +25,7 @@ fi
 # JSON_FILE=json/queryPackagedComponentComponentVersion.json
 # fi
 
-JSON_FILE=json/queryPackagedComponent.json
+JSON_FILE=${GITHUB_WORKSPACE}/cli/scripts/json/queryPackagedComponent.json
 createJSON
  
 callAPI
