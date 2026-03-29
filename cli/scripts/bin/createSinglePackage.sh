@@ -3,7 +3,6 @@ source bin/common.sh
 
 export WORKSPACE=/tmp
 
-
 # mandatory arguments
 ARGUMENTS=(packageVersion notes) 
 OPT_ARGUMENTS=(componentId processName extractComponentXmlFolder componentVersion componentType)
