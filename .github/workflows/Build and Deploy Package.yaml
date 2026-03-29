@@ -112,15 +112,15 @@ jobs:
               "${GITHUB_WORKSPACE}/cli/scripts/core/initdeployPackage.sh" componentId=$_compId packageVersion=$compVer componentType=$_compType notes="$compNotes" env=$envName listenerStatus=$listenerStatus
               #DEBUG
 
-              eeCompId=$(grep '^eeCompId=' $(TargetMFPath) | cut -f2 -d'=')
-              eeCompType=$(grep '^eeCompType=' $(TargetMFPath) | cut -f2 -d'=')
+              eeCompId=$(grep '^eeCompId=' $file | cut -f2 -d'=')
+              eeCompType=$(grep '^eeCompType=' $file | cut -f2 -d'=')
               export eeCompId eeCompType
       
               if [ "$updExt" -eq 1 ]
               then
                 echo Updating Environment Extensions
                 echo "$(6a139667-f60e-4742-a275-238a39832d11)" | wc -l
-                source "core/initUpdEE.sh" env=$envName componentId=$eeCompId componentType=$eeCompType fieldVal="$(6a139667-f60e-4742-a275-238a39832d11)"
+                source "${GITHUB_WORKSPACE}/cli/scripts/core/initUpdEE.sh" env=$envName componentId=$eeCompId componentType=$eeCompType fieldVal="$(6a139667-f60e-4742-a275-238a39832d11)"
               fi              
             done
           done
