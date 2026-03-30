@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="1715e3c1-14fa-4da4-bf9d-7351a4287592" version="8" name="(main) Dummy Call" type="process" createdDate="2025-04-24T05:41:24Z" createdBy="peterantony@boomi.com" modifiedDate="2026-03-30T08:17:24Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
+<bns:Component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bns="http://api.platform.boomi.com/" folderFullPath="//###Misc" componentId="1715e3c1-14fa-4da4-bf9d-7351a4287592" version="10" name="(main) Dummy Call" type="process" createdDate="2025-04-24T05:41:24Z" createdBy="peterantony@boomi.com" modifiedDate="2026-03-30T19:09:23Z" modifiedBy="peterantony@boomi.com" deleted="false" currentVersion="true" folderName="###Misc" folderId="RjoyNzY4MjI5" branchName="main" branchId="Qjo0NjgxMw">
   <bns:encryptedValues/>
   <bns:description>Sample</bns:description>
   <bns:object>
     <process xmlns="" allowSimultaneous="false" enableUserLog="false" processLogOnErrorOnly="false" purgeDataImmediately="false" stopProcessingIfZeroDocuments="false" updateRunDates="true" workload="general">
       <shapes>
-        <shape image="start" name="shape1" shapetype="start" userlabel="" x="96.0" y="94.0">
+        <shape image="start" name="shape1" shapetype="start" userlabel="" x="48.0" y="46.0">
           <configuration>
             <passthroughaction/>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape1.dragpoint1" toShape="shape2" x="240.0" y="104.0"/>
+            <dragpoint name="shape1.dragpoint1" toShape="shape2" x="224.0" y="56.0"/>
           </dragpoints>
         </shape>
-        <shape image="connectoraction_icon" name="shape2" shapetype="connectoraction" userlabel="" x="256.0" y="96.0">
+        <shape image="connectoraction_icon" name="shape2" shapetype="connectoraction" userlabel="" x="240.0" y="48.0">
           <configuration>
             <connectoraction actionType="Get" allowDynamicCredentials="NONE" connectionId="a0314381-7c2b-42c4-9093-b29939ba1512" connectorType="http" hideSettings="false" operationId="c62e92ac-ecef-48d7-848c-5fe616e471aa" parameter-profile="EMBEDDED|HttpParameterChooser|c62e92ac-ecef-48d7-848c-5fe616e471aa">
               <parameters/>
@@ -21,16 +21,16 @@
             </connectoraction>
           </configuration>
           <dragpoints>
-            <dragpoint name="shape2.dragpoint1" toShape="shape4" x="368.0" y="264.0"/>
+            <dragpoint name="shape2.dragpoint1" toShape="shape4" x="416.0" y="56.0"/>
           </dragpoints>
         </shape>
-        <shape image="stop_icon" name="shape3" shapetype="stop" x="400.0" y="96.0">
+        <shape image="stop_icon" name="shape3" shapetype="stop" x="48.0" y="208.0">
           <configuration>
             <stop continue="true"/>
           </configuration>
           <dragpoints/>
         </shape>
-        <shape image="returndocuments_icon" name="shape4" shapetype="returndocuments" x="384.0" y="256.0">
+        <shape image="returndocuments_icon" name="shape4" shapetype="returndocuments" x="432.0" y="48.0">
           <configuration>
             <returndocuments/>
           </configuration>
