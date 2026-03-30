@@ -1,13 +1,13 @@
 #Component Details
 componentId=66769d7b-f200-43c6-ab32-2d0386e7b32c
 componentType=Process
-ver=830
-buildNotes=CR 830: Sample change
+ver=831
+buildNotes=CR 831: Sample change
 targetEnv=0.Demo
 listenerStatus=PAUSED
 
 #Environment Extensions
-updEE=1
+updEE=0
 eeCompId=6a139667-f60e-4742-a275-238a39832d11
 eeCompType=connection
 
