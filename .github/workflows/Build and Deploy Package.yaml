@@ -84,23 +84,7 @@ jobs:
             codeCheck=$(grep '^codeCheck=' $file | cut -f2 -d'=')
 
             updExt=$(grep '^updEE=' $file | cut -f2 -d'=')
-
-                     #DEBUG
-              eeCompId=$(grep '^eeCompId=' $file | cut -f2 -d'=')
-              eeCompType=$(grep '^eeCompType=' $file | cut -f2 -d'=')
-              export eeCompId eeCompType
-      
-              if [ "$updExt" -eq 1 ]
-              then
-                echo Updating Environment Extensions
-                echo $eeCompId...
-                _val=$(aws secretsmanager get-secret-value --secret-id "$eeCompId" | jq -r ".SecretString" | cut -f2 -d":" | sed 's/"//g ; s/}$//g')
-                echo $_val > /tmp/val.out
-                #echo "$(6a139667-f60e-4742-a275-238a39832d11)" | wc -l
-                #source "${GITHUB_WORKSPACE}/cli/scripts/core/initUpdEE.sh" env=$envName componentId=$eeCompId componentType=$eeCompType fieldVal="$(6a139667-f60e-4742-a275-238a39832d11)"
-              fi        
-              exit
-
+            
             compCount=1
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
             compCount=$((compCount + 1))
@@ -139,9 +123,9 @@ jobs:
               then
                 echo Updating Environment Extensions
                 _val=$(aws secretsmanager get-secret-value --secret-id "$eeCompId" | jq -r ".SecretString" | cut -f2 -d":" | sed 's/"//g ; s/}$//g')
-                echo $_val > /tmp/val.out
+                #echo $_val > /tmp/val.out
                 #echo "$(6a139667-f60e-4742-a275-238a39832d11)" | wc -l
-                #source "${GITHUB_WORKSPACE}/cli/scripts/core/initUpdEE.sh" env=$envName componentId=$eeCompId componentType=$eeCompType fieldVal="$(6a139667-f60e-4742-a275-238a39832d11)"
+                source "${GITHUB_WORKSPACE}/cli/scripts/core/initUpdEE.sh" env=$envName componentId=$eeCompId componentType=$eeCompType fieldVal="$(_val)"
               fi              
             done
           done
