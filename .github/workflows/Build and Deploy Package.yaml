@@ -44,21 +44,6 @@ jobs:
       - name: Build
         run: |
           sudo apt-get install -y libxml2-utils jq
-
-          #DEBUG
-              eeCompId=$(grep '^eeCompId=' $file | cut -f2 -d'=')
-              eeCompType=$(grep '^eeCompType=' $file | cut -f2 -d'=')
-              export eeCompId eeCompType
-      
-              if [ "$updExt" -eq 1 ]
-              then
-                echo Updating Environment Extensions
-                #_val=$(aws secretsmanager get-secret-value --secret-id "$eeCompId" | jq -r ".SecretString" | cut -f2 -d":" | sed 's/"//g ; s/}$//g')
-                #echo $_val > /tmp/val.out
-                #echo "$(6a139667-f60e-4742-a275-238a39832d11)" | wc -l
-                #source "${GITHUB_WORKSPACE}/cli/scripts/core/initUpdEE.sh" env=$envName componentId=$eeCompId componentType=$eeCompType fieldVal="$(6a139667-f60e-4742-a275-238a39832d11)"
-              fi        
-              exit
           
           BoomiAccount=${{ vars.BOOMI_ACCOUNT }}
           BoomiUsername=${{ vars.BOOMI_USERNAME }}
@@ -86,6 +71,21 @@ jobs:
             codeCheck=0
             postmanInst=0
             perfTest=0
+
+             #DEBUG
+              eeCompId=$(grep '^eeCompId=' $file | cut -f2 -d'=')
+              eeCompType=$(grep '^eeCompType=' $file | cut -f2 -d'=')
+              export eeCompId eeCompType
+      
+              if [ "$updExt" -eq 1 ]
+              then
+                echo Updating Environment Extensions
+                _val=$(aws secretsmanager get-secret-value --secret-id "$eeCompId" | jq -r ".SecretString" | cut -f2 -d":" | sed 's/"//g ; s/}$//g')
+                echo $_val > /tmp/val.out
+                #echo "$(6a139667-f60e-4742-a275-238a39832d11)" | wc -l
+                #source "${GITHUB_WORKSPACE}/cli/scripts/core/initUpdEE.sh" env=$envName componentId=$eeCompId componentType=$eeCompType fieldVal="$(6a139667-f60e-4742-a275-238a39832d11)"
+              fi        
+              exit
 
             #DEBUG
             envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
