@@ -72,7 +72,20 @@ jobs:
             postmanInst=0
             perfTest=0
 
-             #DEBUG
+            #DEBUG
+            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
+            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
+            #DEBUG
+
+            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
+            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
+            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
+            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
+            codeCheck=$(grep '^codeCheck=' $file | cut -f2 -d'=')
+
+            updExt=$(grep '^updEE=' $file | cut -f2 -d'=')
+
+                     #DEBUG
               eeCompId=$(grep '^eeCompId=' $file | cut -f2 -d'=')
               eeCompType=$(grep '^eeCompType=' $file | cut -f2 -d'=')
               export eeCompId eeCompType
@@ -86,19 +99,6 @@ jobs:
                 #source "${GITHUB_WORKSPACE}/cli/scripts/core/initUpdEE.sh" env=$envName componentId=$eeCompId componentType=$eeCompType fieldVal="$(6a139667-f60e-4742-a275-238a39832d11)"
               fi        
               exit
-
-            #DEBUG
-            envName=$(grep '^targetEnv=' $file | cut -f2 -d'=')
-            listenerStatus=$(grep '^listenerStatus=' $file | cut -f2 -d'=')
-            #DEBUG
-
-            compId=$(grep '^componentId=' $file | cut -f2 -d'=')
-            compType=$(grep '^componentType=' $file | cut -f2 -d'=')
-            compVer=$(grep '^ver=' $file | cut -f2 -d'=')
-            compNotes=$(grep '^buildNotes=' $file | cut -f2 -d'=')
-            codeCheck=$(grep '^codeCheck=' $file | cut -f2 -d'=')
-
-            updExt=$(grep '^updEE=' $file | cut -f2 -d'=')
 
             compCount=1
             compCount=$(echo "$compId" | awk -F "," '{print NF-1}')
