@@ -1,8 +1,8 @@
 #Component Details
 componentId=66769d7b-f200-43c6-ab32-2d0386e7b32c
 componentType=Process
-ver=825
-buildNotes=CR 825 Sample change
+ver=826
+buildNotes=CR 826 Sample change
 targetEnv=0.Demo
 listenerStatus=PAUSED
 
@@ -12,4 +12,4 @@ eeCompId=6a139667-f60e-4742-a275-238a39832d11
 eeCompType=connection
 
 #Code Quality
-codeCheck=1
+codeCheck=0
