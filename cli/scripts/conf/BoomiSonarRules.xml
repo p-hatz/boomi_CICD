@@ -256,5 +256,28 @@
             </parameter>
          </parameters>
       </rule>
+      <rule>
+         <repositoryKey>xml</repositoryKey>
+         <key>Avoid_Embedded_Scripts_In_Process</key>
+         <type>CODE_SMELL</type>
+         <priority>MAJOR</priority>
+         <name>Avoid Embedded Scripts within Process</name>
+         <templateKey>XPathCheck</templateKey>
+         <description>Detects custom scripts embedded directly within the process component. Scripting logic should ideally be externalized into a Scripting Component for reusability and better maintenance.</description>
+         <parameters>
+            <parameter>
+               <key>filePattern</key>
+               <value>**/**.xml</value>
+            </parameter>
+            <parameter>
+               <key>expression</key>
+               <value>/Component[Type='process']//script</value>
+            </parameter>
+            <parameter>
+               <key>message</key>
+               <value>This process contains an embedded script. Consider moving logic to a reusable Scripting Component.</value>
+            </parameter>
+         </parameters>
+      </rule>
    </rules>
 </profile>
