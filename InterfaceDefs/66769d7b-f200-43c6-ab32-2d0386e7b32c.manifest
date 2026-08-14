@@ -1,8 +1,8 @@
 {
   "componentId": "66769d7b-f200-43c6-ab32-2d0386e7b32c",
   "componentType": "process",
-  "ver": "1.0.0",
-  "buildNotes": "Sample",
-  "targetEnv": "0.Dev",
+  "ver": "32.0",
+  "buildNotes": "Sample Package & Deploy",
+  "targetEnv": "0.Demo",
   "listenerStatus": "PAUSED"
 }
