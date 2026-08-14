@@ -1,0 +1,8 @@
+{
+  "componentId": "95f11c41-6ce9-4d0b-822b-b45e7b9918b9",
+  "componentType": "process",
+  "ver": "1",
+  "buildNotes": "sample",
+  "targetEnv": "DEV",
+  "listenerStatus": "PAUSED"
+}
